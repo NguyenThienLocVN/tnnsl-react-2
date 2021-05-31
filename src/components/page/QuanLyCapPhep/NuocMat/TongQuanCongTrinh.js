@@ -297,7 +297,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                             <option value="3">Sắp xếp theo ngày kết thúc hiệu lực</option>
                                         </select>
                                     </div>
-                                    <div className="col-lg-3 mb-2 px-2"><button className="col-12 col-sm-1 fw-bold text-light btn btn-info d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
+                                    <div className="col-lg-3 mb-2 px-2"><button className="col-6 fw-bold text-light btn btn-info d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <Table className="table-data-license" columns={this.state.columns} bordered pagination={{ position: 'bottomLeft' }} dataSource={this.state.data}  />
                             </div>
