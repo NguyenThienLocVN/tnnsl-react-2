@@ -1,0 +1,152 @@
+/* Home page */
+.menu-home {
+    height: calc(100vh - 169px);
+    overflow-y: auto;
+}
+
+.menu-page {
+    height: calc(100vh - 35px);
+    overflow-y: auto;
+}
+
+.banner-tnmt { height: 65px; }
+
+.map-container {
+    height: calc(100vh - 169px);
+}
+
+.top-bar {
+    height: 85px;
+}
+
+.form-control:disabled, .form-control[readonly]{
+    background-color: transparent !important;
+}
+
+.bg-lightgray { background-color: #fbfafa !important; }
+.bg-goldenyellow { background-color: lightgoldenrodyellow !important }
+.bg-lightred { background-color: #f3baba !important }
+.bg-lightgreen { background-color: #b8ffb8 !important }
+.bg-lightblue { background: lightblue !important; }
+
+.btn-home-top {
+    width: 35px;
+    height: 35px;
+}
+
+#btn_back_page { font-size: 18px; }
+.bg-header-bar { background: #1874bd; }
+.text-header-bar { color: #1874bd; }
+.btn-home-top:hover { background: #ffa43b; }
+.auth-bar { background: #d4edf5; }
+.btn-logout { border: 0; font-size: 18px; }
+
+.grid-item-image {
+    width: 90px;
+    height: 75px;
+}
+
+.grid-item-text {
+    font-family: Arial, serif;
+    font-size: 14px;
+    color: #219653;
+    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+
+/* Quan ly cap phep */
+.surfacewater-usage, .discharge-water, .construction-info, .exploit-surfacewater, .information-about-license-owner-title, #wastewater-wrap {
+    border: 1px solid #d5e6fb;
+}
+
+.surfacewater-usage-title, .discharge-water-title, .construction-info-title, .exploit-surfacewater-title, .information-about-license-owner-title {
+    background: #2f80ed33;
+}
+
+.hover-link{color: #000;}
+.hover-link:hover{background-color: #1874bd !important; font-weight: bold; color: #fff;}
+
+#surfacewater-usage { overflow-y: auto; height: calc(100vh - 156px);
+}
+
+#dams-num { left: 8px; top: 5px; }
+#slash { top: 8px; left: 27px; }
+#total-dams { top: 12px; left: 32px; }
+
+.bg-sw-title-box { background: #1491A5; }
+.bg-ww-title-box { background: #24963E; }
+.bg-euw-title-box { background: #E6AD04; }
+.bg-uwe-title-box { background: #C62F3E; }
+.bg-practise-title-box { background: #606160; }
+.qlcp-chart { overflow: hidden; }
+
+
+.bg-sw-box .img__contruction { height: 75px; width: 75px; overflow: hidden; border-radius: 75px;}
+.bg-sw-box .badge { left: 50%; bottom: 0; transform: translateX(-50%); }
+
+.step__button .ant-steps-navigation.ant-steps-small .ant-steps-item-container{
+    display: flex; justify-content: center; align-items: center;
+}
+.step__button .ant-steps-navigation .ant-steps-item::after{
+    display: none;
+}
+.vh-50{height: 50vh !important;}
+.vh-100{height: 100vh !important;}
+.hydroelectric-icon { width: 65px; height: 65px; }
+.hydroelectric-sub-icon { width: 45px; height: 45px; }
+
+.ant-table-thead > tr > th { padding: 5px 6px !important; }
+.ant-table-tbody > tr > td { padding: 6px !important; cursor: pointer; font-size: 13px; }
+.table-icon { width: 15px; height: 15px; }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #1874bd !important;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.ant-steps-item-container{
+    
+    display: flex;
+    align-items: center;
+}
+
+.ant-steps-vertical > .ant-steps-item .ant-steps-item-content {
+    display: flex !important;
+    align-items: center;
+}
+.ant-steps-vertical > .ant-steps-item .ant-steps-item-icon{
+    margin: 0 16px;
+}
+
+.report-item{
+    height: 100px;
+}
+.report-item-four{
+    height: 100%;
+}
+
+.table-data-license tr:nth-child(even){background-color: #f2f2f2;}
+
+/* Gioi Thieu Chung */
+.introduce-image{
+    width: 95px;
+    height: 65px;
+}
+
+/* He thong giam sat */
+.hover-bg:hover{background-color: lightgray; transition-duration: 500ms;}
+
+@media screen and (min-width: 768px){
+    .top-bar { height: 35px; line-height: 35px; }
+    #dams-num { left: 46px; top: 17px; }
+    #slash { top: 21px; left: 65px; }
+    #total-dams { top: 25px; left: 70px; }
+    .banner-tnmt { height: 130px; }
+    .report-item-four{height: unset;}
+}
+
+@media screen and (min-width: 1024px){
+    #dams-num { left: 11px; top: 3px; } 
+    #slash {top: 8px;left: 29px; }
+    #total-dams { top: 14px; left: 33px; }
+}

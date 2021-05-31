@@ -1,0 +1,48 @@
+/* Login page */
+.background-login {
+    width: 100%;
+    filter: blur(7px);
+    height: 100vh;
+}
+
+.form-login {
+    top: calc(50% - 155px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    background: linear-gradient(228deg, #9bc4e4, #c3c2c282);
+    box-shadow: 1px 4px 10px grey;
+    width: 450px;
+}
+
+.form-register {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(228deg, #92e0a6, #c3c2c282);
+    box-shadow: 1px 4px 10px grey;
+    width: 95%;
+}
+
+.input-group-text {
+    background: #c0392b !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    width: 40px;
+}
+
+.button-login {
+    background: #c0392b !important;
+}
+
+
+/* Ipad */
+@media screen and (min-width: 768px) {
+    .form-register { width: 85%; }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+    .form-register { width: 65%; }
+}
