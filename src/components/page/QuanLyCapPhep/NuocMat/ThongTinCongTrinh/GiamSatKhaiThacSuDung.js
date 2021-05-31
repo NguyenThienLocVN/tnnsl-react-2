@@ -52,7 +52,7 @@ function TongHopHoChua() {
             <Modal.Body>
                 <div className="col-12 p-0 d-flex">
                     <div className="col-3 p-0">
-                        <p className="font-weight-bold mb-0 mt-3">THÔNG SỐ</p>
+                        <p className="fw-bold mb-0 mt-3">THÔNG SỐ</p>
                         <div className="bg-lightgray col-12 d-flex px-2">
                             <p className="col-9 p-0 my-1">Mực nước yêu cầu đầu mùa cạn (m)</p>
                             <p className="col-3 pr-0 my-1">--</p>
@@ -62,7 +62,7 @@ function TongHopHoChua() {
                             <p className="col-3 pr-0 my-1">--</p>
                         </div>
 
-                        <p className="font-weight-bold mb-0 mt-3">TÌNH HÌNH VẬN HÀNH</p>
+                        <p className="fw-bold mb-0 mt-3">TÌNH HÌNH VẬN HÀNH</p>
                         <div className="col-12 d-flex px-2 bg-lightgreen">
                             <p className="col-9 p-0 my-1">Mực nước hiện tại (m)</p>
                             <p className="col-3 pr-0 my-1">544.91</p>
@@ -161,7 +161,7 @@ function CapNhatSoLieuVanHanh() {
                         </div>
                     </div>
 
-                    <p className="font-weight-bold mb-0 mt-3 pl-2">TRUNG BÌNH NGÀY</p>
+                    <p className="fw-bold mb-0 mt-3 pl-2">TRUNG BÌNH NGÀY</p>
                     <div className="col-12 d-flex px-2">
                         <div className="col-6 d-flex px-2 bg-lightgray">
                             <p className="col-7 p-0 my-1">Mực nước hồ (m)</p>
@@ -199,7 +199,7 @@ function CapNhatSoLieuVanHanh() {
                         </div>
                     </div>
 
-                    <p className="font-weight-bold mb-0 mt-3 pl-2">CHI TIẾT</p>
+                    <p className="fw-bold mb-0 mt-3 pl-2">CHI TIẾT</p>
                     <table className="table table-sm table-bordered col-12 table-striped table-hover text-center">
                         <thead>
                             <tr>
@@ -321,147 +321,147 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                 <div className="col-sm-7 px-0">
                                     <div className="pb-2 mx-0">
                                         <div className="row mx-0 mb-3">
-                                            <p className="exploit-surfacewater-title col-12 mb-0 p-2 font-weight-bold text-left">THÔNG TIN CHUNG</p>
+                                            <p className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-left">THÔNG TIN CHUNG</p>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-12 px-0 font-weight-bold text-13">Tên công trình:</div>
+                                                <div className="col-12 px-0 fw-bold text-13">Tên công trình:</div>
                                                 <input type="text" className="form-control form-control-sm" value="Thuy Dien" readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-12 px-0 font-weight-bold text-13">Ký hiệu công trình:</div>
+                                                <div className="col-12 px-0 fw-bold text-13">Ký hiệu công trình:</div>
                                                 <input type="text" className="form-control form-control-sm" value="Thuy Dien" readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-12 px-0 font-weight-bold text-13">Chế độ khai thác:</div>
+                                                <div className="col-12 px-0 fw-bold text-13">Chế độ khai thác:</div>
                                                 <textarea rows="1" type="text" className="form-control form-control-sm" defaultValue="Thuy Dien" readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-12 px-0 font-weight-bold text-13">Phương thức khai thác:</div>
+                                                <div className="col-12 px-0 fw-bold text-13">Phương thức khai thác:</div>
                                                 <textarea rows="1" type="text" className="form-control form-control-sm" defaultValue="Thuy Dien" readOnly />
                                             </div>
                                             <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-12 px-0 font-weight-bold text-13">Địa điểm:</div>
+                                                <div className="col-12 px-0 fw-bold text-13">Địa điểm:</div>
                                                 <textarea rows="1" type="text" className="form-control form-control-sm" defaultValue="Thuy Dien" readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-6 px-0 font-weight-bold text-13">Huyện:</div>
+                                                <div className="col-6 px-0 fw-bold text-13">Huyện:</div>
                                                 <input type="text" className="form-control form-control-sm" value="Thuy Dien" readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-6 px-0 font-weight-bold text-13">Xã:</div>
+                                                <div className="col-6 px-0 fw-bold text-13">Xã:</div>
                                                 <input type="text" className="form-control form-control-sm" value="Thuy Dien" readOnly />
                                             </div>
                                             {(this.state.pagename === "thuy-dien" || this.state.pagename === "ho-chua") &&
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-10 px-0 font-weight-bold text-13">Q lớn nhất qua NM (m3/s):</div>
+                                                <div className="col-10 px-0 fw-bold text-13">Q lớn nhất qua NM (m3/s):</div>
                                                 <input type="text" className="form-control form-control-sm col-2" value="4000" readOnly />
                                             </div>}
                                             {(this.state.pagename === "tram-bom") &&
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-10 px-0 font-weight-bold text-13">Công suất máy bơm(m3/s):</div>
+                                                <div className="col-10 px-0 fw-bold text-13">Công suất máy bơm(m3/s):</div>
                                                 <input type="text" className="form-control form-control-sm col-2" value="4000" readOnly />
                                             </div>}
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-10 px-0 font-weight-bold text-13">Q xả tối thiểu (m3/s):</div>
+                                                <div className="col-10 px-0 fw-bold text-13">Q xả tối thiểu (m3/s):</div>
                                                 <input type="text" className="form-control form-control-sm col-2" value="4000" readOnly />
                                             </div>
                                             {(this.state.pagename === "thuy-dien" || this.state.pagename === "ho-chua") &&
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                <div className="col-10 px-0 font-weight-bold text-13">Công suất lắp máy MW:</div>
+                                                <div className="col-10 px-0 fw-bold text-13">Công suất lắp máy MW:</div>
                                                 <input type="text" className="form-control form-control-sm col-2" value="4000" readOnly />
                                             </div>}
                                         </div>
                                         <div className="row mx-0 mb-3">
-                                            <p className="exploit-surfacewater-title col-12 mb-0 p-2 font-weight-bold text-left">Giám sát KTSD theo thông tư 47/2017/TT-BTNMT</p>
+                                            <p className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-left">Giám sát KTSD theo thông tư 47/2017/TT-BTNMT</p>
                                             {/* Ho Chua & Thuy Dien */}
                                             {(this.state.pagename === "thuy-dien" || this.state.pagename === "ho-chua") &&
                                             <div id="thuy-dien-ho-chua">
-                                                <p className="font-14 col-12 mb-0 font-weight-bold text-danger">Thông số giám sát</p>
+                                                <p className="font-14 col-12 mb-0 fw-bold text-danger">Thông số giám sát</p>
                                                     <div className="row mx-0">
                                                         <div className="col-sm-6 px-0 row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success mb-0">Mực nước hồ (m)</p>
+                                                            <p className="font-14 col-12 fw-bold text-success mb-0">Mực nước hồ (m)</p>
                                                             <div className="row mx-0 col-sm-6 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">H_min(m):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">H_min(m):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">H_max(m):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">H_max(m):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                             </div>
                                                             <div className="row mx-0 col-sm-6 px-0">
                                                                 <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-12 px-0 font-weight-bold text-13">H_hiện tại(m):</div>
+                                                                    <div className="col-12 px-0 fw-bold text-13">H_hiện tại(m):</div>
                                                                     <input type="text" className="form-control form-control-sm col-12" value="40" readOnly />
                                                                 </div>
-                                                                <div className="row col-lg-6 p-0 mx-0 border-bottom align-items-center p-1">
+                                                                <div className="row col-6 mx-auto mx-sm-0 border-bottom align-items-center p-1">
                                                                     <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/sea-level.png'} alt="sea-level" className="w-100 h-100" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="col-sm-6 px-0 row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success mb-0">Lưu lượng xả nhà máy (m3/s)</p>
+                                                            <p className="font-14 col-12 fw-bold text-success mb-0">Lưu lượng xả nhà máy (m3/s)</p>
                                                             <div className="row mx-0 col-sm-6 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">Q_min(m3/s):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">Q_min(m3/s):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">Q_max(m3/s):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">Q_max(m3/s):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                             </div>
                                                             <div className="row mx-0 col-sm-6 px-0">
                                                                 <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-12 px-0 font-weight-bold text-13">Q_hiện tại(m3/s):</div>
+                                                                    <div className="col-12 px-0 fw-bold text-13">Q_hiện tại(m3/s):</div>
                                                                     <input type="text" className="form-control form-control-sm col-12" value="40" readOnly />
                                                                 </div>
-                                                                <div className="row col-lg-6 p-0 mx-0 border-bottom align-items-center p-1">
+                                                                <div className="row col-6 mx-auto mx-sm-0 border-bottom align-items-center p-1">
                                                                     <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/sea-level-2.png'} alt="sea-level-2" className="w-100 h-100" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="col-sm-6 px-0 row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success mb-0">Lưu lượng duy trì xả tối thiểu (m3/s)</p>
+                                                            <p className="font-14 col-12 fw-bold text-success mb-0">Lưu lượng duy trì xả tối thiểu (m3/s)</p>
                                                             <div className="row mx-0 col-sm-9 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">H_min(m):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">H_min(m):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">H_max(m):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">H_max(m):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                             </div>
-                                                            <div className="row mx-0 col-sm-3 px-1">
+                                                            <div className="row mx-0 col-3 px-1">
                                                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level.png'} alt="water-level" className="w-100 h-100" />
                                                             </div>
                                                         </div>
                                                         <div className="col-sm-6 px-0 row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success mb-0">Lưu lượng xả qua tràn (m3/s)</p>
+                                                            <p className="font-14 col-12 fw-bold text-success mb-0">Lưu lượng xả qua tràn (m3/s)</p>
                                                             <div className="row mx-0 col-sm-9 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">Q_min(m3/s):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">Q_min(m3/s):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-9 px-0 font-weight-bold text-13">Q_max(m3/s):</div>
+                                                                    <div className="col-9 px-0 fw-bold text-13">Q_max(m3/s):</div>
                                                                     <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                 </div>
                                                             </div>
-                                                            <div className="row mx-0 col-sm-3 px-1">
+                                                            <div className="row mx-0 col-3 px-1">
                                                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level-2.png'} alt="water-level-2" className="w-100 h-100" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     {/*  */}
-                                                    <p className="font-14 col-12 mb-0 font-weight-bold text-danger">Hình thức giám sát</p>
+                                                    <p className="font-14 col-12 mb-0 fw-bold text-danger">Hình thức giám sát</p>
                                                     <div className="row mx-0">
                                                         <div className="col-sm-4 px-0 row mx-0 border-right">
-                                                            <p className="font-14 col-12 font-weight-bold text-success text-center mb-0">Tự động, tực tuyến (m)</p>
+                                                            <p className="font-14 col-12 fw-bold text-success text-center mb-0">Tự động, tực tuyến (m)</p>
                                                             <div className="row mx-0 col-sm-9 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-12 px-0 font-weight-bold text-13">
+                                                                    <div className="col-12 px-0 fw-bold text-13">
                                                                         <div className="row col-lg-12 mx-0 align-items-center py-1">
                                                                             <div className="col-6 px-0 text-13 d-flex align-items-center">
                                                                                 <input type="checkbox" className="mx-1" /> <span>Có</span>
@@ -478,10 +478,10 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                                             </div>
                                                         </div>
                                                         <div className="col-sm-4 px-0 row mx-0 border-right">
-                                                            <p className="font-14 col-12 font-weight-bold text-success text-center mb-0">Giám sát bằng camera</p>
+                                                            <p className="font-14 col-12 fw-bold text-success text-center mb-0">Giám sát bằng camera</p>
                                                             <div className="row mx-0 col-sm-9 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-12 px-0 font-weight-bold text-13">
+                                                                    <div className="col-12 px-0 fw-bold text-13">
                                                                         <div className="row col-lg-12 mx-0 align-items-center py-1">
                                                                             <div className="col-6 px-0 text-13 d-flex align-items-center">
                                                                                 <input type="checkbox" className="mx-1" /> <span>Có</span>
@@ -498,10 +498,10 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                                             </div>
                                                         </div>
                                                         <div className="col-sm-4 px-0 row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success text-center mb-0">Giám sát định kỳ</p>
+                                                            <p className="font-14 col-12 fw-bold text-success text-center mb-0">Giám sát định kỳ</p>
                                                             <div className="row mx-0 col-sm-9 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-12 px-0 font-weight-bold text-13">
+                                                                    <div className="col-12 px-0 fw-bold text-13">
                                                                         <div className="row col-lg-12 mx-0 align-items-center py-1">
                                                                             <div className="col-6 px-0 text-13 d-flex align-items-center">
                                                                                 <input type="checkbox" className="mx-1" /> <span>Có</span>
@@ -523,48 +523,36 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                             {/* Tram Bom */}
                                             {(this.state.pagename === "tram-bom") &&
                                                 <div id="tram-bom">
-                                                    <p className="font-14 col-12 mb-0 font-weight-bold text-danger">Thông số giám sát</p>
+                                                    <p className="font-14 col-12 mb-0 fw-bold text-danger">Thông số giám sát</p>
                                                     <div className="row mx-0">
                                                         <div className="col-sm-12 px-0">
                                                             <div className="col-sm-6 px-0 row mx-0">
-                                                                <p className="font-14 col-12 font-weight-bold text-success mb-0">Lưu lượng khai thác(m3/s)</p>
+                                                                <p className="font-14 col-12 fw-bold text-success mb-0">Lưu lượng khai thác(m3/s)</p>
                                                                 <div className="row mx-0 col-sm-9 px-0">
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">HTNL(m3/s):</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">HTNL(m3/s):</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                     </div>
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">KTTT(m3/s):</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">KTTT(m3/s):</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                     </div>
                                                                 </div>
-                                                                <div className="row mx-0 col-sm-3 px-1">
+                                                                <div className="row mx-0 col-3 px-1">
                                                                     <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level.png'} alt="water-level" className="w-100 h-100" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success mb-0">Chất lượng nước khai thác(m3/s)</p>
+                                                            <p className="font-14 col-12 fw-bold text-success mb-0">Chất lượng nước khai thác(m3/s)</p>
                                                             <div className="col-sm-2 px-0 row mx-0">
                                                                 <div className="row mx-0 col-sm-12 px-0">
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">BOD5:</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">BOD5:</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                     </div>
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">COD:</div>
-                                                                        <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-sm-5 px-0 row mx-0">
-                                                                <div className="row mx-0 col-sm-12 px-0">
-                                                                    <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">Amoni(NH₄ Tính theo N):</div>
-                                                                        <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
-                                                                    </div>
-                                                                    <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">Nitrat(NO₃ Tính theo N):</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">COD:</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                     </div>
                                                                 </div>
@@ -572,24 +560,36 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                                             <div className="col-sm-5 px-0 row mx-0">
                                                                 <div className="row mx-0 col-sm-12 px-0">
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13">Phosphat(PO43 Tính theo P):</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">Amoni(NH₄ Tính theo N):</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                     </div>
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 font-weight-bold text-13"> TSS:</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">Nitrat(NO₃ Tính theo N):</div>
+                                                                        <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-sm-5 px-0 row mx-0">
+                                                                <div className="row mx-0 col-sm-12 px-0">
+                                                                    <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
+                                                                        <div className="col-9 px-0 fw-bold text-13">Phosphat(PO43 Tính theo P):</div>
+                                                                        <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
+                                                                    </div>
+                                                                    <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
+                                                                        <div className="col-9 px-0 fw-bold text-13"> TSS:</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="40" readOnly />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <p className="font-14 col-12 mb-0 font-weight-bold text-danger">Hình thức giám sát</p>
+                                                    <p className="font-14 col-12 mb-0 fw-bold text-danger">Hình thức giám sát</p>
                                                     <div className="row mx-0">
                                                         <div className="col-sm-4 px-0 row mx-0">
-                                                            <p className="font-14 col-12 font-weight-bold text-success text-left mb-0">Giám sát định kỳ</p>
+                                                            <p className="font-14 col-12 fw-bold text-success text-left mb-0">Giám sát định kỳ</p>
                                                             <div className="row mx-0 col-sm-9 px-0">
                                                                 <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                    <div className="col-12 px-0 font-weight-bold text-13">
+                                                                    <div className="col-12 px-0 fw-bold text-13">
                                                                         <div className="row col-lg-12 mx-0 align-items-center py-1">
                                                                             <div className="col-6 px-0 text-13 d-flex align-items-center">
                                                                                 <input type="checkbox" className="mx-1" /> <span>Có</span>
@@ -616,7 +616,7 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                     <Map className="col-12 h-100" />
                                 </div>  
                                 <div className="col-sm-12 px-0">
-                                    <p className="exploit-surfacewater-title col-12 mb-0 p-2 font-weight-bold text-left">Số liệu vận hành</p>
+                                    <p className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-left">Số liệu vận hành</p>
                                         <div>
                                             <table className="table table-hover mx-auto table-bordered table-responsive">
                                                 <thead className="thead-inverse">
@@ -645,8 +645,9 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                                             <th className="font-13 align-middle text-center">50</th>
                                                         </tr>
                                                         <tr>
-                                                            <td className="font-13 align-middle">Suối lắp 1 
-                                                                <div className="float-right font-14 d-flex text-primary"> 
+                                                            <td className="font-13 align-middle d-flex">
+                                                                <span className="d-block w-25">Suối lắp 1 </span>
+                                                                <div className="float-right font-14 d-flex text-primary w-75 justify-content-end align-items-center"> 
                                                                     <div className="mx-1"><TongHopHoChua title="Tổng hợp hồ chứa" /></div>
                                                                     <div className="mx-1"><CapNhatSoLieuVanHanh title="Cập nhật số liệu vận hành" /> </div>
                                                                 </div>

@@ -11,11 +11,11 @@ export default class FormGiamSatKTSD extends React.Component {
                         <div className="py-2 mx-0">
                             <div className="row mx-0">
                                 <div className="form-group col-sm-6">
-                                    <label className="font-13 font-weight-bold" htmlFor="ngay_lay_mau">Ngày lấy mẫu</label>
+                                    <label className="font-13 fw-bold" htmlFor="ngay_lay_mau">Ngày lấy mẫu</label>
                                     <input type="date" className="form-control font-13" id="ngay_lay_mau" />
                                 </div>
                                 <div className="form-group col-sm-6">
-                                    <label className="font-13 font-weight-bold" htmlFor="dia_diem_lay_mau">Địa điểm lấy mẫu</label>
+                                    <label className="font-13 fw-bold" htmlFor="dia_diem_lay_mau">Địa điểm lấy mẫu</label>
                                     <input type="text" className="form-control font-13" id="dia_diem_lay_mau" placeholder="Địa điểm lấy mẫu" />
                                 </div>
                             </div>

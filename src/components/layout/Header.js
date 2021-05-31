@@ -43,25 +43,25 @@ export default class Header extends React.Component {
                 {this.state.isHomepage ?
                     <div className="bg-header-bar d-flex flex-column flex-lg-row top-bar">
                         <div className="col-lg-4 col-sm-12 col-md-12 px-0 pt-md-0 pb-md-0 d-flex align-items-center">
-                            <a href="http://tainguyenmoitruongsonla.vn" title="Về trang chủ" className="font-weight-bold text-white btn-home-top d-flex justify-content-center align-items-center">
+                            <a href="http://tainguyenmoitruongsonla.vn" title="Về trang chủ" className="fw-bold text-white btn-home-top d-flex justify-content-center align-items-center">
                                 <HomeFilled />
                             </a>
-                            <div className="font-weight-bold text-white d-block pl-2">{this.state.headTitle}</div>
+                            <div className="fw-bold text-white d-block pl-2">{this.state.headTitle}</div>
                         </div>
                         <div className="bg-lightgray col-lg-8 col-sm-12 col-md-12 text-center py-1 py-lg-0">
-                            <span className="text-header-bar font-weight-bold">HỆ THỐNG QUẢN LÝ,  GIÁM SÁT, KHAI THÁC SỬ DỤNG TÀI NGUYÊN NƯỚC </span>
+                            <span className="text-header-bar fw-bold">HỆ THỐNG QUẢN LÝ,  GIÁM SÁT, KHAI THÁC SỬ DỤNG TÀI NGUYÊN NƯỚC </span>
                         </div>
                     </div>
                 :
                     <div className="bg-header-bar d-flex flex-column flex-lg-row top-bar">
                         <div className={this.state.leftBarClass}>
-                            <Link to={this.state.previousLink} id="btn_back_page" className="font-weight-bold text-white btn-home-top d-flex justify-content-center align-items-center">
+                            <Link to={this.state.previousLink} id="btn_back_page" className="fw-bold text-white btn-home-top d-flex justify-content-center align-items-center">
                                 <ArrowLeftOutlined />
                             </Link>
-                            <div className="font-weight-bold text-white d-block pl-2">{this.state.headTitle}</div>
+                            <div className="fw-bold text-white d-block pl-2">{this.state.headTitle}</div>
                         </div>
                         <div className={this.state.rightBarClass}>
-                            <span className="text-header-bar font-weight-bold">HỆ THỐNG QUẢN LÝ,  GIÁM SÁT, KHAI THÁC SỬ DỤNG TÀI NGUYÊN NƯỚC </span>
+                            <span className="text-header-bar fw-bold">HỆ THỐNG QUẢN LÝ,  GIÁM SÁT, KHAI THÁC SỬ DỤNG TÀI NGUYÊN NƯỚC </span>
                         </div>
                     </div>
                 }

@@ -92,7 +92,7 @@ export default class Login extends React.Component{
                         <Link to="register" className="btn font-13 col-6">Đăng ký</Link>
                     </div>
                     <div className="text-center mt-4">
-                        <a className="underline text-sm text-gray-600 hover:text-gray-900 font-13 font-weight-bold" href="{{ route('password.request') }}">Quên mật khẩu?</a>
+                        <a className="underline text-sm text-gray-600 hover:text-gray-900 font-13 fw-bold" href="{{ route('password.request') }}">Quên mật khẩu?</a>
                     </div>
                 </form> 
             </div>

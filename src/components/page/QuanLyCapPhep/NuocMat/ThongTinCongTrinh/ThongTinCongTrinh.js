@@ -95,8 +95,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         <div className="row mx-0 col-lg-12 px-0">
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Tên công trình:</span>
                                                         </div>
                                                         <input className="form-control form-control-sm" value=" Thủy Điện  ABC  " readOnly />
@@ -105,8 +105,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                             </div>
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Ký hiệu công trình: </span>
                                                         </div>
                                                         <input className="form-control form-control-sm" value=" CT01 " readOnly />
@@ -116,8 +116,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         </div>
                                         <div className="row mx-0 py-2 col-lg-12 border-bottom px-0">
                                             <div className="col-lg-12"> 
-                                                <div className="input-group d-flex align-items-center">
-                                                    <div className="font-weight-bold px-0 col-md-12 px-0">
+                                                <div className="row mx-0 px-0 align-items-center">
+                                                    <div className="fw-bold px-0 col-md-12 px-0">
                                                         <span >Địa điểm: </span>
                                                     </div>
                                                     <textarea className="form-control form-control-sm" rows="2" defaultValue="xã Ea Wer, xã Tân Hòa, huyện Buôn Đôn, tỉnh Đăk Lăk và xã Ea Pô huyện Cư Jút, tỉnh Đăk Nông" readOnly /> 
@@ -127,8 +127,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         <div className="row mx-0 col-lg-12 px-0">
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Huyện: </span>
                                                         </div>
                                                         <input className="form-control form-control-sm" value=" Huyện  " readOnly />
@@ -137,8 +137,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                             </div>
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Xã: </span>
                                                         </div>
                                                         <input className="form-control form-control-sm" value=" Xã " readOnly />
@@ -149,8 +149,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         <div className="row mx-0 col-lg-12 px-0">
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Mục đích sử dụng: </span>
                                                         </div>
                                                         <textarea className="form-control form-control-sm" rows="1" defaultValue="phát điện" readOnly />
@@ -159,8 +159,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                             </div>
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Nguồn nước KTSD: </span>
                                                         </div>
                                                         <textarea className="form-control form-control-sm" rows="1" defaultValue="sông Srê Pốk" readOnly />
@@ -171,8 +171,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         <div className="row mx-0 col-lg-12 px-0">
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Thuộc sông: </span>
                                                         </div>
                                                         <textarea className="form-control form-control-sm" rows="1" defaultValue="sông Srê Pốk" readOnly />
@@ -181,8 +181,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                             </div>
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Thuộc lưu vực sông: </span>
                                                         </div>
                                                         <textarea className="form-control form-control-sm" rows="1" defaultValue="sông Srê Pốk" readOnly />
@@ -193,8 +193,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         <div className="row mx-0 col-lg-12 px-0">
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Chế độ khai thác: </span>
                                                         </div>
                                                         <textarea className="form-control form-control-sm" rows="1" defaultValue="Chế độ khai thác" readOnly  />
@@ -203,8 +203,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                             </div>
                                             <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                                 <div className="col-lg-12"> 
-                                                    <div className="input-group d-flex align-items-center">
-                                                        <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                    <div className="row mx-0 px-0 align-items-center">
+                                                        <div className="fw-bold px-0 col-md-4 px-0">
                                                             <span >Lượng nước khai thác, sử dụng: </span>
                                                         </div>
                                                         <input className="form-control form-control-sm" value="200(m3/s)" readOnly  />
@@ -214,8 +214,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         </div>
                                         <div className="row mx-0 py-2 col-lg-12 border-bottom px-0">
                                             <div className="col-lg-12"> 
-                                                <div className="input-group d-flex align-items-center">
-                                                    <div className="font-weight-bold px-0 col-md-12 px-0">
+                                                <div className="row mx-0 px-0 align-items-center">
+                                                    <div className="fw-bold px-0 col-md-12 px-0">
                                                         <span >Phương thức khai thác: </span>
                                                     </div>
                                                     <textarea className="form-control form-control-sm" defaultValue="Bằng công trình với các thông số như trong hồ sơ thiết kế đã được cấp có thẩm quyền phê duyệt nộp kèm theo Đề án khai thác, sử dụng nước." rows="2" readOnly />
@@ -224,8 +224,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         </div>
                                         <div className="row mx-0 py-2 col-lg-12 border-bottom px-0">
                                             <div className="col-lg-6"> 
-                                                <div className="input-group d-flex align-items-center">
-                                                    <div className="font-weight-bold px-0 col-md-4 px-0">
+                                                <div className="row mx-0 px-0 align-items-center">
+                                                    <div className="fw-bold px-0 col-md-4 px-0">
                                                         <span >Năm sử dụng: </span>
                                                     </div>
                                                     <input className="form-control form-control-sm" value="20/02/2020" readOnly />
@@ -234,8 +234,8 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                         </div>
                                         <div className="row mx-0 py-2 col-lg-12 border-bottom px-0">
                                             <div className="col-lg-12"> 
-                                                <div className="input-group d-flex align-items-center">
-                                                    <div className="font-weight-bold px-0 col-md-12 px-0">
+                                                <div className="row mx-0 px-0 align-items-center">
+                                                    <div className="fw-bold px-0 col-md-12 px-0">
                                                         <span >Ghi chú: </span>
                                                     </div>
                                                     <textarea className="form-control form-control-sm" rows="2" defaultValue="Nội dung ghi chú" readOnly  />

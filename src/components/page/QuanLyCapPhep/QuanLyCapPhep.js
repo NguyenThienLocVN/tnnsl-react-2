@@ -157,8 +157,8 @@ export default class QuanLyCapPhep extends React.Component {
                             <div className="col-lg-12 p-0">
                                 <ul className="nav flex-column nav-pills pl-2 pb-1 mx-auto my-3 rounded">
                                     <div >
-                                        <p className="btn btn-outline-dark col-11 font-13 btn-sm d-flex justify-content-center align-items-center font-weight-bold"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
-                                        <p className="exploit-surfacewater-title mb-2 p-2 font-weight-bold text-left">KHAI THÁC SD NƯỚC MẶT</p>
+                                        <p className="btn btn-outline-dark col-12 col-sm-11 mx-auto font-13 btn-sm d-flex justify-content-center align-items-center fw-bold"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-left">KHAI THÁC SD NƯỚC MẶT</p>
                                         <li className="nav-item">
                                             <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="nav-link font-13 hover-link" href="#">Thủy Điện</Link>
                                         </li>
@@ -185,7 +185,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         </li>
                                     </div>
                                     <div className="exploit-surfacewater">
-                                        <p className="exploit-surfacewater-title mb-2 p-2 font-weight-bold text-left">KHAI THÁC SỬ DỤNG NDĐ</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-left">KHAI THÁC SỬ DỤNG NDĐ</p>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">Khai Thác</Link>
                                         </li>
@@ -200,7 +200,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         </li>
                                     </div>
                                     <div className="exploit-surfacewater">
-                                        <p className="exploit-surfacewater-title mb-2 p-2 font-weight-bold text-left">XẢ THẢI VÀO NN</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-left">XẢ THẢI VÀO NN</p>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
@@ -231,32 +231,33 @@ export default class QuanLyCapPhep extends React.Component {
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
                             <div className="card-header">Số lượng giấy phép công trình được cấp theo năm</div>
                             <div className="col-12 row mx-0 pt-2">
-                                <div className="col-12 col-md-3 mb-2">
-                                    <span className="col-12 col-lg-2 font-weight-bold">Từ :</span>
-                                    <select className="mx-3 w-75">
+                                <div className="col-12 col-md-3 mb-2 px-3">
+                                    <span className="col-12 col-lg-2 fw-bold">Từ :</span>
+                                    <select className="mx-3 form-control form-control-sm">
                                         <option defaultValue="2018">2018</option>
                                         <option defaultValue="2019">2019</option>
                                         <option defaultValue="2020">2020</option>
                                     </select>
                                 </div>
-                                <div className="col-12 col-md-3 mb-2">
-                                    <span className="col-12 col-lg-2 font-weight-bold">Đến :</span>
-                                    <select className="mx-3 w-75">
+                                <div className="col-12 col-md-3 mb-2 px-3">
+                                    <span className="col-12 col-lg-2 fw-bold">Đến :</span>
+                                    <select className="mx-3 form-control form-control-sm">
                                         <option defaultValue="2018">2018</option>
                                         <option defaultValue="2019">2019</option>
                                         <option defaultValue="2020">2020</option>
                                     </select>
                                 </div>
-                                <div className="col-12 col-md-3 mb-2">
-                                    <span className="col-12 col-lg-2 font-weight-bold">Huyện :</span>
-                                    <select className="mx-3 w-75">
+                                <div className="col-12 col-md-3 mb-2 px-3">
+                                    <span className="col-12 col-lg-2 fw-bold">Huyện :</span>
+                                    <select className="mx-3 form-control form-control-sm">
                                         <option defaultValue="2018">2018</option>
                                         <option defaultValue="2019">2019</option>
                                         <option defaultValue="2020">2020</option>
                                     </select>
                                 </div>
-                                <div className="col-md-3 d-flex align-items-center">
-                                    <button className="btn btn-sm btn-info d-flex align-items-center font-weight-bold mx-auto"><SearchOutlined /> &nbsp; THỐNG KÊ </button>
+                                <div className="col-12 col-md-3 mb-2 px-3">
+                                    <span className="col-12 col-lg-2 fw-bold">&nbsp;</span>
+                                    <button className="btn btn-sm btn-info d-flex align-items-center fw-bold mx-auto text-light"><SearchOutlined /> &nbsp; THỐNG KÊ </button>
                                 </div>
                                 
                             </div>
@@ -269,24 +270,24 @@ export default class QuanLyCapPhep extends React.Component {
                             <div className="card-body col-12 row mx-0">
                                 <div className="col-12 col-md-3 p-0">
                                     <div className="form-group">
-                                        <label className="font-weight-bold m-0">Biểu đồ:</label>
-                                        <input type="text" className="form-control" />
+                                        <label className="fw-bold m-0">Biểu đồ:</label>
+                                        <input type="text" className="form-control form-control-sm" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="font-weight-bold m-0">Đối tượng:</label>
-                                        <input type="text" className="form-control" />
+                                        <label className="fw-bold m-0">Đối tượng:</label>
+                                        <input type="text" className="form-control form-control-sm" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="font-weight-bold m-0">Nhóm:</label>
-                                        <input type="text" className="form-control" />
+                                        <label className="fw-bold m-0">Nhóm:</label>
+                                        <input type="text" className="form-control form-control-sm" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="font-weight-bold m-0">Giai đoạn:</label>
-                                        <input type="text" className="form-control" />
+                                        <label className="fw-bold m-0">Giai đoạn:</label>
+                                        <input type="text" className="form-control form-control-sm" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="font-weight-bold m-0">Chu kỳ:</label>
-                                        <input type="text" className="form-control" />
+                                        <label className="fw-bold m-0">Chu kỳ:</label>
+                                        <input type="text" className="form-control form-control-sm" />
                                     </div>
                                     <div className="form-group d-flex">
                                         <button className="col-6 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> &nbsp; Xuất PDF</button>
@@ -303,120 +304,120 @@ export default class QuanLyCapPhep extends React.Component {
                         <div className="row m-0">
                             <div className="col-lg-12 p-0">
                                 <div className="d-block col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-info">
-                                    <p className="bg-sw-title-box rounded mb-2 p-2 font-weight-bold text-center">NƯỚC MẶT</p>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">NƯỚC MẶT</p>
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
                                         <p className="col-3">1000</p>
                                     </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-success">
-                                    <p className="bg-ww-title-box rounded mb-2 p-2 font-weight-bold text-center">XẢ THẢI VÀO NGUỒN NƯỚC</p>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <p className="bg-ww-title-box rounded mb-2 p-2 fw-bold text-center">XẢ THẢI VÀO NGUỒN NƯỚC</p>
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
                                         <p className="col-3">1000</p>
                                     </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded px-0 bg-warning">
-                                    <p className="bg-euw-title-box rounded mb-2 p-2 font-weight-bold text-center">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <p className="bg-euw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
                                         <p className="col-3">1000</p>
                                     </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-danger">
-                                    <p className="bg-uwe-title-box rounded mb-2 p-2 font-weight-bold text-center">THĂM DÒ NƯỚC DƯỚI ĐẤT</p>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <p className="bg-uwe-title-box rounded mb-2 p-2 fw-bold text-center">THĂM DÒ NƯỚC DƯỚI ĐẤT</p>
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
                                         <p className="col-3">1000</p>
                                     </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-secondary">
-                                    <p className="bg-practise-title-box rounded mb-2 p-2 font-weight-bold text-center">HÀNH NGHỀ</p>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <p className="bg-practise-title-box rounded mb-2 p-2 fw-bold text-center">HÀNH NGHỀ</p>
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    <div className="font-weight-bold col-12 d-flex">
+                                    <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
                                         <p className="col-3">1000</p>
                                     </div>

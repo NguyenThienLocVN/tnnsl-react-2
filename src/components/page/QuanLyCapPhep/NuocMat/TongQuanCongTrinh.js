@@ -214,50 +214,50 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                             <div className="col-10 py-2 m-auto d-flex justify-content-center text-center">
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/dam.png'} className="p-0 hydroelectric-icon rounded-circle border border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                                 <div className="col-7 text-left p-0">
-                                    <p className="font-30 m-0 font-weight-bold">60</p>
-                                    <p className="font-weight-bold mb-1">Tổng số công trình</p>
+                                    <p className="font-30 m-0 fw-bold">60</p>
+                                    <p className="fw-bold mb-1">Tổng số công trình</p>
                                 </div>
                             </div>
 
                             <div className="col-12 py-1 mt-4 d-flex justify-content-center text-center border-top border-bottom">
                                 <div className="col-9 text-left p-0">
-                                    <p className="font-weight-bold m-0">Tổng số CT đã vận hành</p>
-                                    <p className="font-18 m-0 font-weight-bold text-danger">28 / 60</p>
+                                    <p className="fw-bold m-0">Tổng số CT đã vận hành</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">28 / 60</p>
                                 </div>
                                 <img src={this.imageConstruction()} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-left p-0">
-                                    <p className="font-weight-bold m-0">Giấy phép đã cấp</p>
-                                    <p className="font-18 m-0 font-weight-bold text-danger">11 / 60</p>
+                                    <p className="fw-bold m-0">Giấy phép đã cấp</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">11 / 60</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-left p-0">
-                                    <p className="font-weight-bold m-0">Giấy phép sắp hết hiệu lực</p>
-                                    <p className="font-18 m-0 font-weight-bold text-danger">06 / 60</p>
+                                    <p className="fw-bold m-0">Giấy phép sắp hết hiệu lực</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">06 / 60</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-2.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-2" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-left p-0">
-                                    <p className="font-weight-bold m-0">Giấy phép hết hiệu lực</p>
-                                    <p className="font-18 m-0 font-weight-bold text-danger">03 / 60</p>
+                                    <p className="fw-bold m-0">Giấy phép hết hiệu lực</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">03 / 60</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-3.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-3" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-left p-0">
-                                    <p className="font-weight-bold m-0">Giấy phép chưa phê duyệt</p>
-                                    <p className="font-18 m-0 font-weight-bold text-danger">10 / 60</p>
+                                    <p className="fw-bold m-0">Giấy phép chưa phê duyệt</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">10 / 60</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/report.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="chua-duyet" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-left p-0">
-                                    <p className="font-weight-bold m-0">Chưa có giấy phép thay thế</p>
-                                    <p className="font-18 m-0 font-weight-bold text-danger">02 / 60</p>
+                                    <p className="fw-bold m-0">Chưa có giấy phép thay thế</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">02 / 60</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
@@ -272,12 +272,12 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                             <Map className="col-12" />
 
                             <div className="col-12 p-0 ">
-                                <div className="col-12 d-flex align-items-center my-1">
-                                    <div className="input-group input-group-sm mb-1 col-3 pl-0">
+                                <div className="col-12 row align-items-center my-1 px-0 mx-0">
+                                    <div className=" mb-1 col-lg-3 ">
                                         <input type="text" className="form-control" placeholder="-- Tìm kiếm --" aria-label="-- Tìm kiếm --" aria-describedby="basic-addon2" />
                                     </div>
-                                    <div className="input-group col-3 pl-0">
-                                        <select defaultValue="0" className="custom-select font-13" id="inputGroupSelect01">
+                                    <div className="col-lg-3 mb-2">
+                                        <select defaultValue="0" className="form-control form-control-sm font-13">
                                             <option value="0">-- Chọn hiệu lực --</option>
                                             <option value="1">Còn hiệu lực</option>
                                             <option value="2">Chưa phê duyệt</option>
@@ -286,8 +286,8 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                             <option value="3">Hết hiệu lực chưa có GP thay thế</option>
                                         </select>
                                     </div>
-                                    <div className="input-group col-3">
-                                        <select defaultValue="0" className="custom-select font-13" id="inputGroupSelect01">
+                                    <div className="col-lg-3 mb-2">
+                                        <select defaultValue="0" className="form-control form-control-sm font-13">
                                             <option value="0">-- Sắp xếp --</option>
                                             <option value="1">Sắp xếp theo số giấy phép</option>
                                             <option value="2">Sắp xếp theo ngày kí</option>
@@ -297,7 +297,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                             <option value="3">Sắp xếp theo ngày kết thúc hiệu lực</option>
                                         </select>
                                     </div>
-                                    <button className="col-1 btn btn-info d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button>
+                                    <div className="col-lg-3 mb-2 px-2"><button className="col-12 col-sm-1 fw-bold text-light btn btn-info d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <Table className="table-data-license" columns={this.state.columns} bordered pagination={{ position: 'bottomLeft' }} dataSource={this.state.data}  />
                             </div>

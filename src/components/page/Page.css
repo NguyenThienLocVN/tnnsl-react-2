@@ -1,5 +1,5 @@
 /* Home page */
-.menu-home {
+/* .menu-home {
     height: calc(100vh - 169px);
     overflow-y: auto;
 }
@@ -7,7 +7,7 @@
 .menu-page {
     height: calc(100vh - 35px);
     overflow-y: auto;
-}
+} */
 
 .banner-tnmt { height: 65px; }
 
@@ -62,8 +62,8 @@
     background: #2f80ed33;
 }
 
-.hover-link{color: #000;}
-.hover-link:hover{background-color: #1874bd !important; font-weight: bold; color: #fff;}
+.hover-link{color: #000 !important;}
+.hover-link:hover{background-color: #1874bd !important; font-weight: bold; color: #fff !important;}
 
 #surfacewater-usage { overflow-y: auto; height: calc(100vh - 156px);
 }
@@ -143,6 +143,15 @@
     #total-dams { top: 25px; left: 70px; }
     .banner-tnmt { height: 130px; }
     .report-item-four{height: unset;}
+    .menu-home {
+        height: calc(100vh - 169px);
+        overflow-y: auto;
+    }
+    
+    .menu-page {
+        height: calc(100vh - 35px);
+        overflow-y: auto;
+    }
 }
 
 @media screen and (min-width: 1024px){
