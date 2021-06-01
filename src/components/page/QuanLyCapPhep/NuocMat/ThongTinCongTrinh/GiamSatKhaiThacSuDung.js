@@ -708,12 +708,14 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                 </div>  
                                 <div className="col-sm-12 px-0">
                                         <div className="position-relative">
-                                            <p className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-start">Số liệu vận hành - Tên Công trình </p>
-                                            <div className="thao_tac_slvh px-3 d-flex">
-                                                <div className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <SearchOutlined /> </div>
-                                                <div className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <FileExcelOutlined /> </div>
-                                                <div className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <PrinterOutlined /> </div>
-                                                <div className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <InfoCircleOutlined /> </div>
+                                            <div className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-start row">
+                                                <span className="d-block col-12 col-sm-4">Số liệu vận hành - Tên Công trình</span> 
+                                                <div className="thao_tac_slvh px-3 d-flex col-12 col-sm-8 justify-content-end">
+                                                    <div title="Tìm kiếm" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <SearchOutlined /> </div>
+                                                    <div title="Xuất file csv" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <FileExcelOutlined /> </div>
+                                                    <div title="In" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <PrinterOutlined /> </div>
+                                                    <div title="Chi tiết" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <InfoCircleOutlined /> </div>
+                                                </div>
                                             </div>
                                         </div>
                                         
