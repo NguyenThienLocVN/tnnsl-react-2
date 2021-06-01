@@ -99,7 +99,7 @@ export default class Login extends React.Component{
 								<h6 className="text-primary fw-bold d-block py-2">HỆ THỐNG QUẢN LÝ,  GIÁM SÁT, KHAI THÁC SỬ DỤNG TÀI NGUYÊN NƯỚC </h6>
 							</div>
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Đối tượng <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Đối tượng <span className="text-danger">*</span></p>
 								<select onChange={this.onChangeTypehandler} className="col-7 d-flex ml-3 pl-2 pr-0 custom-select input-group mb-1 font-14" >
 									<option defaultValue="0">Tổ chức</option>
 									<option defaultValue="1">Cá nhân</option>
@@ -107,7 +107,7 @@ export default class Login extends React.Component{
 							</div>
 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Tên đăng nhập <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Tên đăng nhập <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><UserOutlined /></span>
@@ -117,7 +117,7 @@ export default class Login extends React.Component{
 							</div>
 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Mật khẩu <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Mật khẩu <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><LockOutlined /></span>
@@ -128,7 +128,7 @@ export default class Login extends React.Component{
 
 							{this.state.checkOrganization && 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Tên doanh nghiệp <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Tên doanh nghiệp <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><BankOutlined /></span>
@@ -140,7 +140,7 @@ export default class Login extends React.Component{
 
 							{this.state.checkOrganization && 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Mã doanh nghiệp</p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Mã doanh nghiệp</p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><IdcardOutlined /></span>
@@ -152,7 +152,7 @@ export default class Login extends React.Component{
 
 							{!this.state.checkOrganization && 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Địa chỉ <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Địa chỉ <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><HomeOutlined /></span>
@@ -164,7 +164,7 @@ export default class Login extends React.Component{
 
 							{this.state.checkOrganization && 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Trụ sở chính</p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Trụ sở chính</p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><HomeOutlined /></span>
@@ -175,7 +175,7 @@ export default class Login extends React.Component{
 							}
 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Số điện thoại <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Số điện thoại <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><PhoneOutlined /></span>
@@ -185,7 +185,7 @@ export default class Login extends React.Component{
 							</div>
 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-left font-14">Email <span className="text-danger">*</span></p>
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Email <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"> <MailOutlined /></span>

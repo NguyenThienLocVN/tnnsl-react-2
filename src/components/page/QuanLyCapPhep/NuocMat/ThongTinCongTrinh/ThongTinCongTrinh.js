@@ -40,28 +40,28 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){
-            return " THỦY ĐIỆN | THÔNG TIN CT";
+            return " CÔNG TRÌNH THỦY ĐIỆN | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "ho-chua"){
-            return " HỒ CHỨA | THÔNG TIN CT";
+            return " CÔNG TRÌNH HỒ CHỨA | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "tram-bom"){
-            return " TRẠM BƠM | THÔNG TIN CT";
+            return " CÔNG TRÌNH TRẠM BƠM | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "he-thong-thuy-loi"){
-            return " HT THỦY LỢI | THÔNG TIN CT";
+            return " CÔNG TRÌNH HT THỦY LỢI | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "cong"){
-            return " CỐNG | THÔNG TIN CT";
+            return " CÔNG TRÌNH CỐNG | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "tram-cap-nuoc"){
-            return " TRẠM CẤP NƯỚC | THÔNG TIN CT";
+            return " CÔNG TRÌNH TRẠM CẤP NƯỚC | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "nha-may-nuoc"){
-            return " NHÀ MÁY NƯỚC | THÔNG TIN CT";
+            return " CÔNG TRÌNH NHÀ MÁY NƯỚC | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "cong-trinh-khac"){
-            return " CÔNG TRÌNH KHÁC | THÔNG TIN CT";
+            return " CÔNG TRÌNH KHÁC | THÔNG TIN CHUNG";
         }
     }
     
@@ -87,7 +87,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                                     <Map className="col-12" />
                                 </div>
                                 <div className="col-12 px-0">
-                                    <div className="row mx-0">
+                                    <div className="d-flex mx-0">
                                         <div className="py-2 px-3 text-primary border-bottom border-primary">Thông tin chung</div>
                                         <Link className="py-2 px-3 text-primary" to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-cong-trinh/chi-tiet"}>Thông tin chi tiết</Link>
                                     </div>

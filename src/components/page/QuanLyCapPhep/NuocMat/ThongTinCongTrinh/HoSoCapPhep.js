@@ -41,28 +41,28 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){
-            return " THỦY ĐIỆN | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH THỦY ĐIỆN | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "ho-chua"){
-            return " HỒ CHỨA | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH HỒ CHỨA | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "tram-bom"){
-            return " TRẠM BƠM | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH TRẠM BƠM | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "he-thong-thuy-loi"){
-            return " HT THỦY LỢI | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH HT THỦY LỢI | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "cong"){
-            return " CỐNG | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH CỐNG | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "tram-cap-nuoc"){
-            return " TRẠM CẤP NƯỚC | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH TRẠM CẤP NƯỚC | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "nha-may-nuoc"){
-            return " NHÀ MÁY NƯỚC | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH NHÀ MÁY NƯỚC | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "cong-trinh-khac"){
-            return " CÔNG TRÌNH KHÁC | HỒ SƠ CẤP PHÉP";
+            return " CÔNG TRÌNH KHÁC | THÔNG TIN CHUNG";
         }
     }
 
@@ -85,7 +85,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                             <div className="col-12 row mx-0 px-0">
                                 <div className="col-lg-6 px-0 menu-home discharge-water">
                                     <div className="row mx-0 mb-3">
-                                        <p className="exploit-surfacewater-title col-12 mb-0 p-2 font-weight fw-bold text-left">HỒ SƠ CẤP PHÉP CÔNG TRÌNH</p>
+                                        <p className="exploit-surfacewater-title col-12 mb-0 p-2 font-weight fw-bold text-start">HỒ SƠ CẤP PHÉP CÔNG TRÌNH</p>
                                         <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Tên công trình:</div>
                                             <div className="col-6 px-0 text-13">Thủy Điện</div>

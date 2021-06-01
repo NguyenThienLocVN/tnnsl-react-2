@@ -39,28 +39,28 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){
-            return " THỦY ĐIỆN | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH THỦY ĐIỆN | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "ho-chua"){
-            return " HỒ CHỨA | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH HỒ CHỨA | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "tram-bom"){
-            return " TRẠM BƠM | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH TRẠM BƠM | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "he-thong-thuy-loi"){
-            return " HT THỦY LỢI | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH HT THỦY LỢI | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "cong"){
-            return " CỐNG | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH CỐNG | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "tram-cap-nuoc"){
-            return " TRẠM CẤP NƯỚC | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH TRẠM CẤP NƯỚC | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "nha-may-nuoc"){
-            return " NHÀ MÁY NƯỚC | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH NHÀ MÁY NƯỚC | THÔNG TIN CHUNG";
         }
         else if(this.state.pagename === "cong-trinh-khac"){
-            return " CÔNG TRÌNH KHÁC | CHẤT LƯỢNG NM";
+            return " CÔNG TRÌNH KHÁC | THÔNG TIN CHUNG";
         }
     }
 
@@ -103,7 +103,7 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
                                             <input type="text" className="form-control form-control-sm col-6" value="Thuy Dien" readOnly />
                                         </div>
                                     </div>
-                                    <p className="exploit-surfacewater-title mb-0 p-2 font-weight fw-bold text-left">Chất lượng nước mặt theo QCVN 08-MT:2015-BTNMMT</p>
+                                    <p className="exploit-surfacewater-title mb-0 p-2 font-weight fw-bold text-start">Chất lượng nước mặt theo QCVN 08-MT:2015-BTNMMT</p>
                                     <table className="table table-bordered">
                                         <thead>
                                             <tr className="text-center align-middle">

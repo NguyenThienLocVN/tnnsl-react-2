@@ -103,7 +103,7 @@ export default class QuanLyCapPhepNuocMat extends React.Component {
                     <div className="col-12 col-lg-6 px-0 menu-home discharge-water">
                         <form className="pb-5">
                         <div className="col-sm-12 px-0 pb-3 step__button">
-                            <Steps responsive={true} type="default" size="small" current={current} onChange={this.onChange} className="site-navigation-steps text-left" >
+                            <Steps responsive={true} type="default" size="small" current={current} onChange={this.onChange} className="site-navigation-steps text-start" >
                                 {steps.map(item => (
                                     <Step key={item.title} icon={item.icon}  title={item.title} />
                                 ))}

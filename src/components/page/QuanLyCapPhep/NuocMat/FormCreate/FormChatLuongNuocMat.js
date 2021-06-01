@@ -44,7 +44,7 @@ export default class FormGiamSatKTSD extends React.Component {
                             </thead>
                             <tbody>
                                 
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">1</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng xả duy trì dòng chảy tối thiểu</td>
@@ -59,7 +59,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">...</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng xả duy trì dòng chảy tối thiểu</td>
@@ -74,7 +74,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">32</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng xả duy trì dòng chảy tối thiểu</td>

@@ -12,19 +12,6 @@ export default class QuanLyCapPhep extends React.Component {
             barChartData: {
                 labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
                 datasets: [{
-                    label: 'KT, SD nước biển',
-                    data: [10, 19, 3, 5, 8, 6],
-                    stack: 1,
-                    backgroundColor: [
-                      'rgba(255, 99, 132)',
-                      'rgba(255, 99, 132)',
-                      'rgba(255, 99, 132)',
-                      'rgba(255, 99, 132)',
-                      'rgba(255, 99, 132)',
-                      'rgba(255, 99, 132)'
-                    ]
-                  },
-                  {
                     label: 'Xả nước thải vào nguồn nước',
                     data: [15, 19, 3, 5, 4, 3],
                     stack: 1,
@@ -150,7 +137,7 @@ export default class QuanLyCapPhep extends React.Component {
 
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ CẤP PHÉP" previousLink="/" showHeadImage={true} />
+                <Header headTitle="QUẢN LÝ CẤP PHÉP | TÀI NGUYÊN NƯỚC" previousLink="/" showHeadImage={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-2 px-0 menu-home">
                         <div className="row m-0">
@@ -158,7 +145,7 @@ export default class QuanLyCapPhep extends React.Component {
                                 <ul className="nav flex-column nav-pills pl-2 pb-1 mx-auto my-3 rounded">
                                     <div >
                                         <p className="btn btn-outline-dark col-12 col-sm-11 mx-auto font-13 btn-sm d-flex justify-content-center align-items-center fw-bold"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
-                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-left">KHAI THÁC SD NƯỚC MẶT</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                         <li className="nav-item">
                                             <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="nav-link font-13 hover-link" href="#">Thủy Điện</Link>
                                         </li>
@@ -185,7 +172,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         </li>
                                     </div>
                                     <div className="exploit-surfacewater">
-                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-left">KHAI THÁC SỬ DỤNG NDĐ</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start">KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT</p>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">Khai Thác</Link>
                                         </li>
@@ -200,7 +187,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         </li>
                                     </div>
                                     <div className="exploit-surfacewater">
-                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-left">XẢ THẢI VÀO NN</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start">XẢ THẢI VÀO NGUỒN NƯỚC</p>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
@@ -268,33 +255,33 @@ export default class QuanLyCapPhep extends React.Component {
 
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
                             <div className="card-body col-12 row mx-0">
-                                <div className="col-12 col-md-3 p-0">
-                                    <div className="form-group">
+                                <div className="col-12 col-md-4 p-0">
+                                    <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Biểu đồ:</label>
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Đối tượng:</label>
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Nhóm:</label>
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Giai đoạn:</label>
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Chu kỳ:</label>
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
-                                    <div className="form-group d-flex">
-                                        <button className="col-6 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> &nbsp; Xuất PDF</button>
-                                        <button className="col-6 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined />&nbsp; Thống kê</button>
+                                    <div className="form-group d-flex mb-2">
+                                        <button className="col-6 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> Xuất PDF</button>
+                                        <button className="col-6 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> Thống kê</button>
                                     </div>
                                 </div>
-                                <div className="col-md-9 col-12">
+                                <div className="col-md-8 col-12">
                                     <Doughnut data={this.state.doughnutData} options={doughnutOptions} />
                                 </div>
                             </div>
@@ -304,7 +291,7 @@ export default class QuanLyCapPhep extends React.Component {
                         <div className="row m-0">
                             <div className="col-lg-12 p-0">
                                 <div className="d-block col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-info">
-                                    <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">NƯỚC MẶT</p>
+                                    <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>

@@ -132,9 +132,23 @@
     width: 95px;
     height: 65px;
 }
+.close-btn{position: absolute; top: 5px; right: 5px;}
+/* giam sat ktsd */
+
+.thao_tac_slvh{
+    position: absolute;
+    right: 0;
+    height: 20px;
+    bottom: -10px;
+    line-height: 20px;
+    overflow: hidden;
+    font-size: 12px;
+}
 
 /* He thong giam sat */
 .hover-bg:hover{background-color: lightgray; transition-duration: 500ms;}
+
+
 
 @media screen and (min-width: 768px){
     .top-bar { height: 35px; line-height: 35px; }
@@ -152,6 +166,7 @@
         height: calc(100vh - 35px);
         overflow-y: auto;
     }
+    .img__sea_lever{height: 61px;}
 }
 
 @media screen and (min-width: 1024px){

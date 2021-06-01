@@ -39,7 +39,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">1</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Mực nước hồ</td>
@@ -54,7 +54,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">2</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng xả duy trì dòng chảy tối thiểu</td>
@@ -69,7 +69,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">3</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng xả qua nhà máy</td>
@@ -84,7 +84,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">4</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng xả qua tràn</td>
@@ -99,7 +99,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">5</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Giám sát bằng camera</td>
@@ -114,7 +114,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">6</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Chất lượng nước trong quá trình khai thác theo quy định</td>
@@ -129,7 +129,7 @@ export default class FormGiamSatKTSD extends React.Component {
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                     <td><input className="form-control form-control-sm" type="number" /></td>
                                 </tr>
-                                <tr className="text-left">
+                                <tr className="text-start">
                                     <td className="font-13 text-center">7</td>
                                     <td className="text-center"><input type="checkbox" /></td>
                                     <td className="text-wrap">Lưu lượng khai thác</td>

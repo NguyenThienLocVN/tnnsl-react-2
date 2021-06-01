@@ -27,8 +27,10 @@ export default class Header extends React.Component {
         }
         else
         {
-            this.setState({leftBarClass: "col-lg-3 col-sm-12 col-md-12 px-0 pt-md-0 pb-md-0 d-flex align-items-center"});
-            this.setState({rightBarClass: "bg-lightgray col-lg-9 col-sm-12 col-md-12 text-center py-1 py-lg-0"});
+            // this.setState({leftBarClass: "col-lg-3 col-sm-12 col-md-12 px-0 pt-md-0 pb-md-0 d-flex align-items-center"});
+            // this.setState({rightBarClass: "bg-lightgray col-lg-9 col-sm-12 col-md-12 text-center py-1 py-lg-0"});
+            this.setState({leftBarClass: "col-lg-4 col-sm-12 col-md-12 px-0 pt-md-0 pb-md-0 d-flex align-items-center"});
+            this.setState({rightBarClass: "bg-lightgray col-lg-8 col-sm-12 col-md-12 text-center py-1 py-lg-0"});
         }
     }
 
