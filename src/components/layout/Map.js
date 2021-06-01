@@ -1,35 +1,33 @@
 import React from 'react';
-import { useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-
-mapboxgl.accessToken = 'pk.eyJ1Ijoibmd1eWVudGhpZW54dWFubG9jMTIiLCJhIjoiY2tkMXQ2NnI1MGlvMTJybDVoc3hpNm5qZyJ9.rkUNvwFT6U3W2fJ4_M1p0A'; // Set your mapbox token here
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 
 export default class Map extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			lng: 103.9692398828125,
-			lat: 21.529737201190642,
+			center: [21.529737201190642, 103.9692398828125],
 			zoom: 7
 		};
-		this.mapContainer = React.createRef();
-	}
-
-	componentDidMount() {
-		const { lng, lat, zoom } = this.state;
-		const map = new mapboxgl.Map({
-		  container: this.mapContainer.current,
-		  style: 'mapbox://styles/mapbox/streets-v11',
-		  center: [lng, lat],
-		  zoom: zoom
-		});
 	}
     
     render() {
 		return (
-			<div ref={this.mapContainer} className="map-container h-100" />
+			<MapContainer className="h-100 w-100 position-relative" center={this.state.center} zoom={this.state.zoom}>
+				<LayersControl position="topright">
+					<LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
+						<TileLayer
+						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+						/>
+					</LayersControl.BaseLayer>
+					<LayersControl.BaseLayer name="OpenStreetMap.BlackAndWhite">
+						<TileLayer
+						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+						url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+						/>
+					</LayersControl.BaseLayer>
+				</LayersControl>
+			</MapContainer>
 		);
     }
 }

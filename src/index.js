@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'leaflet/dist/leaflet.css';
 
 import { usePromiseTracker } from "react-promise-tracker";
 import Loader from 'react-loader-spinner';

@@ -244,7 +244,7 @@ export default class QuanLyCapPhep extends React.Component {
                                 </div>
                                 <div className="col-12 col-md-3 mb-2 px-3">
                                     <span className="col-12 col-lg-2 fw-bold">&nbsp;</span>
-                                    <button className="btn btn-sm btn-info d-flex align-items-center fw-bold mx-auto text-light"><SearchOutlined /> &nbsp; THỐNG KÊ </button>
+                                    <button className="btn btn-sm btn-primary d-flex align-items-center fw-bold mx-auto text-light"><SearchOutlined /> &nbsp; THỐNG KÊ </button>
                                 </div>
                                 
                             </div>
@@ -277,8 +277,8 @@ export default class QuanLyCapPhep extends React.Component {
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
                                     <div className="form-group d-flex mb-2 justify-content-between">
-                                        <button className="col-5 font-11 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> Xuất PDF</button>
-                                        <button className="col-5 font-11 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> Thống kê</button>
+                                        <button className="col-5 font-11 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> &nbsp; Xuất PDF</button>
+                                        <button className="col-5 font-11 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> &nbsp; Thống kê</button>
                                     </div>
                                 </div>
                                 <div className="col-md-8 col-12">
@@ -290,7 +290,7 @@ export default class QuanLyCapPhep extends React.Component {
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="row m-0">
                             <div className="col-lg-12 p-0">
-                                <div className="d-block col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-info">
+                                <div className="d-block col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-sw-content-box">
                                     <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
