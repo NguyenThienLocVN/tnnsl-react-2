@@ -137,7 +137,7 @@ export default class QuanLyCapPhep extends React.Component {
 
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ CẤP PHÉP | TÀI NGUYÊN NƯỚC" previousLink="/" showHeadImage={true} />
+                <Header headTitle="QUẢN LÝ CẤP PHÉP | TÀI NGUYÊN NƯỚC" previousLink="/" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-2 px-0 menu-home">
                         <div className="row m-0">
@@ -145,7 +145,7 @@ export default class QuanLyCapPhep extends React.Component {
                                 <ul className="nav flex-column nav-pills pl-2 pb-1 mx-auto my-3 rounded">
                                     <div >
                                         <p className="btn btn-outline-dark col-12 col-sm-11 mx-auto font-13 btn-sm d-flex justify-content-center align-items-center fw-bold"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
-                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                         <li className="nav-item">
                                             <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="nav-link font-13 hover-link" href="#">Thủy Điện</Link>
                                         </li>
@@ -172,7 +172,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         </li>
                                     </div>
                                     <div className="exploit-surfacewater">
-                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start">KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">Khai Thác</Link>
                                         </li>
@@ -187,7 +187,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         </li>
                                     </div>
                                     <div className="exploit-surfacewater">
-                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start">XẢ THẢI VÀO NGUỒN NƯỚC</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">XẢ THẢI VÀO NGUỒN NƯỚC</p>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
@@ -276,9 +276,9 @@ export default class QuanLyCapPhep extends React.Component {
                                         <label className="fw-bold m-0">Chu kỳ:</label>
                                         <input type="text" className="form-control form-control-sm" />
                                     </div>
-                                    <div className="form-group d-flex mb-2">
-                                        <button className="col-6 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> Xuất PDF</button>
-                                        <button className="col-6 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> Thống kê</button>
+                                    <div className="form-group d-flex mb-2 justify-content-between">
+                                        <button className="col-5 font-11 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> Xuất PDF</button>
+                                        <button className="col-5 font-11 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> Thống kê</button>
                                     </div>
                                 </div>
                                 <div className="col-md-8 col-12">

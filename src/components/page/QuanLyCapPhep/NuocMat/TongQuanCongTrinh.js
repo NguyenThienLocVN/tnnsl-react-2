@@ -233,7 +233,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle={this.headerTitle()} previousLink="/quan-ly-cap-phep" showHeadImage={true} />
+                <Header headTitle={this.headerTitle()} previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                         <div className="col-12 px-0">
