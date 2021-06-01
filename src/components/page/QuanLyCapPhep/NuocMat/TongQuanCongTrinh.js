@@ -2,6 +2,8 @@ import React from 'react';
 import Header from '../../../layout/Header';
 import { Link } from 'react-router-dom';
 import Map from '../../../layout/Map';
+import axios from "axios";
+import configData from "../../../../config.json";
 import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined } from '@ant-design/icons';
 
 import { Table, Tag } from 'antd';
@@ -13,108 +15,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         this.state = {
             pagename: this.props.match.params.pagename,
             showSearch: false,
-            columns : [
-                {
-                    title: '#',
-                    dataIndex: 'id',
-                },
-                {
-                  title: 'Số giấy phép',
-                  dataIndex: 'so_giay_phep',
-                },
-                {
-                  title: 'Ngày ký',
-                  dataIndex: 'ngay_ky',
-                },
-                {
-                  title: 'Tên công trình',
-                  dataIndex: 'ten_cong_trinh',
-                },
-                {
-                  title: 'Tổ chức được CP',
-                  dataIndex: 'ten_to_chuc',
-                },
-                {
-                    title: 'Ngày có hiệu lực',
-                    dataIndex: 'ngay_hieu_luc',
-                },
-                {
-                    title: 'Thời hạn (năm)',
-                    dataIndex: 'thoi_han',
-                },
-                {
-                    title: 'Trạng thái',
-                    dataIndex: 'trang_thai',
-                    render: trang_thai => (
-                        <>
-                          {trang_thai.map(tt => {
-                            let color = 'gray';
-                            let text = 'Chưa phê duyệt';
-                            if (tt === '1') {
-                              color = 'green';
-                              text = 'Còn hiệu lực';
-                            }
-                            else if (tt === '2') {
-                                color = 'orange';
-                                text = 'Sắp hết hiệu lực';
-                            }
-                            else if (tt === '3') {
-                                color = 'red';
-                                text = 'Hết hiệu lực';
-                            }
-                            else if (tt === '4') {
-                                color = 'purple';
-                                text = 'Chưa có GP thay thế';
-                            }
-                            return (
-                              <Tag color={color} key={tt}>
-                                {text.toUpperCase()}
-                              </Tag>
-                            );
-                          })}
-                        </>
-                      ),
-                },
-                {
-                    title: 'Thao tác',
-                    dataIndex: 'thao_tac',
-                }
-            ],
-            data : [
-                {
-                  id: '1',
-                  so_giay_phep: <p title="Xem file giấy phép" className="text-primary m-0">482/GP-BTNMT &nbsp; <FileOutlined /> </p>,
-                  ngay_ky: '11/05/2021',
-                  ten_cong_trinh: <p title="Xem bản đồ" className="text-primary m-0">Thủy điện Sơ Vin <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>,
-                  ten_to_chuc: 'Công ty A',
-                  ngay_hieu_luc: '12/05/2021',
-                  thoi_han: 10,
-                  trang_thai: ['1'],
-                  thao_tac: <div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div>
-                },
-                {
-                  id: '2',
-                  so_giay_phep: <p title="Xem file giấy phép" className="text-primary m-0">773/GP-BTNMT &nbsp; <FileOutlined /> </p>,
-                  ngay_ky: '04/05/2021',
-                  ten_cong_trinh: <p title="Xem bản đồ" className="text-primary m-0">Thủy điện Nậm Pia <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>,
-                  ten_to_chuc: 'Công ty B',
-                  ngay_hieu_luc: '11/05/2021',
-                  thoi_han: 10,
-                  trang_thai: ['2'],
-                  thao_tac: <div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div>
-                },
-                {
-                    id: '3',
-                    so_giay_phep: <p title="Xem file giấy phép" className="text-primary m-0">773/GP-BTNMT &nbsp; <FileOutlined /> </p>,
-                    ngay_ky: '04/05/2021',
-                    ten_cong_trinh: <p title="Xem bản đồ" className="text-primary m-0">Thủy điện Nậm Pia <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>,
-                    ten_to_chuc: 'Công ty B',
-                    ngay_hieu_luc: '11/05/2021',
-                    thoi_han: 10,
-                    trang_thai: ['3'],
-                    thao_tac: <div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div>
-                  }
-            ]
+            dataColumn: []
         }
     }
 
@@ -143,7 +44,19 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         else if(this.state.pagename === "cong-trinh-khac"){
             document.title = "Công Trình Khác | Quản lý cấp phép nước mặt";
         }
-        
+
+
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-giay-phep")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({dataColumn: response.data})
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response.data.message})
+            })
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){
@@ -231,6 +144,8 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
     }
 
     render(){
+        var stt = 1;
+
         return(
 			<div className="p-0">
                 <Header headTitle={this.headerTitle()} previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
@@ -328,7 +243,40 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                     <div className="col-lg-3 mb-2 px-2"><button className="col-6 fw-bold text-light btn btn-info d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <div className="table-responsive">
-                                    <Table className="table-data-license" columns={this.state.columns} bordered pagination={{ position: 'bottomLeft' }} dataSource={this.state.data}  />
+                                    <table className="table table-sm table-bordered col-12 table-hover text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Số giấy phép</th>
+                                                <th>Ngày ký</th>
+                                                <th>Tên công trình</th>
+                                                <th>Tổ chức được CP</th>
+                                                <th>Ngày có hiệu lực</th>
+                                                <th>Thời hạn (năm)</th>
+                                                <th>Trạng thái</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.dataColumn.map((e, i) => {
+                                                return (
+                                                    <tr>
+                                                    <td className="text-start">{i+1}</td>
+                                                    <td className="text-start"><p title="Xem file giấy phép" className="text-primary m-0">{e.so_gp} &nbsp; <FileOutlined /> </p></td>
+                                                    <td className="text-start">{e.ngay_ky}</td>
+                                                    <td className="text-start"><p title="Xem bản đồ" className="text-primary m-0">{e.ten_ct} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start">{e.ten_to_chuc}</td>
+                                                    <td className="text-start">{e.hieu_luc_tu}</td>
+                                                    <td className="text-start">{e.thoi_han_gp}</td>
+                                                    <td className="text-start">{e.status}</td>
+                                                    <td className="text-start"><div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                </tr>
+                                                )
+                                                
+                                            })}
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
