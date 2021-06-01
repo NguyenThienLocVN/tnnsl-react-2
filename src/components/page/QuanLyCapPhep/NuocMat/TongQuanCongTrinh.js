@@ -6,7 +6,6 @@ import axios from "axios";
 import configData from "../../../../config.json";
 import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined } from '@ant-design/icons';
 
-import { Table, Tag } from 'antd';
 
 export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Component {
     constructor(props)
@@ -143,8 +142,34 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         }
     }
 
+    formatDate(date) {
+        var date_format = new Date(date);
+        var d = date_format.getDate();
+        var m = date_format.getMonth();
+        var y = date_format.getFullYear();
+        return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+    }
+    checkStatus(status, date){
+        var curentDate = new Date();
+        var licenseDate = new Date(date);
+        var diff = Math.abs(curentDate - licenseDate);
+        var totalDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        if(status === 0 || status === "0"){
+            return <div className="license_status" style={{color: "#fff", backgroundColor: "gray"}}> Chưa duyệt </div>;
+        }else if(curentDate < licenseDate){
+            if(totalDays <= 60 & totalDays >= 0 ){
+                return <div className="license_status" style={{color: "#fff", backgroundColor: "orange"}}> Sắp hết hiệu lực </div>;
+            }else{
+                return <div className="license_status" style={{color: "#fff", backgroundColor: "green"}}> Còn hiệu lực </div>;
+            }
+        }else if(curentDate > licenseDate){
+            return <div className="license_status" style={{color: "#fff", backgroundColor: "red"}}> Hết hiệu lực </div>;
+        }
+    }
+    
+
     render(){
-        var stt = 1;
 
         return(
 			<div className="p-0">
@@ -217,7 +242,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                             <div className="col-12 p-0 ">
                                 <div className="col-12 row align-items-center my-1 px-0 mx-0">
                                     <div className=" mb-1 col-lg-3 ">
-                                        <input type="text" className="form-control" placeholder="-- Tìm kiếm --" aria-label="-- Tìm kiếm --" aria-describedby="basic-addon2" />
+                                        <input type="text" className="form-control form-control-sm" placeholder="-- Tìm kiếm --" aria-label="-- Tìm kiếm --" aria-describedby="basic-addon2" />
                                     </div>
                                     <div className="col-lg-3 mb-2">
                                         <select defaultValue="0" className="form-control form-control-sm font-13">
@@ -246,30 +271,30 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                     <table className="table table-sm table-bordered col-12 table-hover text-center">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Số giấy phép</th>
-                                                <th>Ngày ký</th>
-                                                <th>Tên công trình</th>
-                                                <th>Tổ chức được CP</th>
-                                                <th>Ngày có hiệu lực</th>
-                                                <th>Thời hạn (năm)</th>
-                                                <th>Trạng thái</th>
-                                                <th>Thao tác</th>
+                                                <th className="text-nowrap">#</th>
+                                                <th className="text-nowrap">Số giấy phép</th>
+                                                <th className="text-nowrap">Ngày ký giấy phép</th>
+                                                <th className="text-nowrap">Tên công trình</th>
+                                                <th className="text-nowrap">Tổ chức được cấp phép</th>
+                                                <th className="text-nowrap">Ngày có hiệu lực</th>
+                                                <th className="text-nowrap">Thời hạn (năm)</th>
+                                                <th className="text-nowrap">Trạng thái</th>
+                                                <th className="text-nowrap">Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {this.state.dataColumn.map((e, i) => {
                                                 return (
-                                                    <tr>
-                                                    <td className="text-start">{i+1}</td>
-                                                    <td className="text-start"><p title="Xem file giấy phép" className="text-primary m-0">{e.so_gp} &nbsp; <FileOutlined /> </p></td>
-                                                    <td className="text-start">{e.ngay_ky}</td>
-                                                    <td className="text-start"><p title="Xem bản đồ" className="text-primary m-0">{e.ten_ct} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
-                                                    <td className="text-start">{e.ten_to_chuc}</td>
-                                                    <td className="text-start">{e.hieu_luc_tu}</td>
-                                                    <td className="text-start">{e.thoi_han_gp}</td>
-                                                    <td className="text-start">{e.status}</td>
-                                                    <td className="text-start"><div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                    <tr key={i}>
+                                                    <td className="text-start align-middle">{i+1}</td>
+                                                    <td className="text-start align-middle"><p title="Xem file giấy phép" className="text-primary cursor_pointer m-0">{e.so_gp} &nbsp; <FileOutlined /> </p></td>
+                                                    <td className="text-center align-middle">{this.formatDate(e.ngay_ky)}</td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.ten_ct} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start align-middle">{e.ten_to_chuc}</td>
+                                                    <td className="text-center align-middle">{this.formatDate(e.hieu_luc_tu)}</td>
+                                                    <td className="text-center align-middle">{e.thoi_han_gp}</td>
+                                                    <td className="text-start align-middle">{this.checkStatus(e.status,e.hieu_luc_den)}</td>
+                                                    <td className="text-start align-middle"><div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                 </tr>
                                                 )
                                                 

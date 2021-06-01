@@ -128,6 +128,18 @@
 
 .table-data-license tr:nth-child(even){background-color: #f2f2f2;}
 
+/* Tong Quan Cong Trinh */
+.cursor_pointer{cursor: pointer;}
+
+.license_status{
+    height: 25px;
+    line-height: 25px;
+    border-radius: 25px;
+    padding: 0 1rem;
+    width: 115px;
+    text-align: center;
+}
+
 /* Gioi Thieu Chung */
 .introduce-image{
     width: 95px;
