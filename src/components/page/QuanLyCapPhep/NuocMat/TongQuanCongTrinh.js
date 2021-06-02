@@ -14,7 +14,8 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         this.state = {
             pagename: this.props.match.params.pagename,
             showSearch: false,
-            dataColumn: []
+            dataColumn: [],
+            countData: 0,
         }
     }
 
@@ -46,11 +47,14 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
 
 
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-giay-phep-thuy-dien")
             .then((response) => {
                 if(response.status === 200)
                 {
-                    this.setState({dataColumn: response.data})
+                    this.setState({
+                        dataColumn: response.data,
+                        countData: response.data.length,
+                    })
                 }
             })
             .catch((error) => {
@@ -59,28 +63,28 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | THỦY ĐIỆN ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH THỦY ĐIỆN ";
         }
         else if(this.state.pagename === "ho-chua"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | HỒ CHỨA ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH HỒ CHỨA ";
         }
         else if(this.state.pagename === "tram-bom"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | TRẠM BƠM ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH TRẠM BƠM ";
         }
         else if(this.state.pagename === "he-thong-thuy-loi"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | HỆ THỐNG THỦY LỢI ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH HỆ THỐNG THỦY LỢI ";
         }
         else if(this.state.pagename === "cong"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | CỐNG ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH CỐNG ";
         }
         else if(this.state.pagename === "tram-cap-nuoc"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | TRẠM CẤP NƯỚC ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH TRẠM CẤP NƯỚC ";
         }
         else if(this.state.pagename === "nha-may-nuoc"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | NHÀ MÁY NƯỚC ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH NHÀ MÁY NƯỚC ";
         }
         else if(this.state.pagename === "cong-trinh-khac"){
-            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH | CÔNG TRÌNH KHÁC ";
+            return "QUẢN LÝ CẤP PHÉP CÔNG TRÌNH CÔNG TRÌNH KHÁC ";
         }
     }
 
@@ -147,30 +151,29 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         var d = date_format.getDate();
         var m = date_format.getMonth();
         var y = date_format.getFullYear();
-        return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+        return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
     }
     checkStatus(status, date){
-        var curentDate = new Date();
+        var currentDate = new Date();
         var licenseDate = new Date(date);
-        var diff = Math.abs(curentDate - licenseDate);
+        var diff = Math.abs(currentDate - licenseDate);
         var totalDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
         if(status === 0 || status === "0"){
             return <div className="license_status" style={{color: "#fff", backgroundColor: "gray"}}> Chưa duyệt </div>;
-        }else if(curentDate < licenseDate){
+        }else if(currentDate < licenseDate){
             if(totalDays <= 60 & totalDays >= 0 ){
                 return <div className="license_status" style={{color: "#fff", backgroundColor: "orange"}}> Sắp hết hiệu lực </div>;
             }else{
                 return <div className="license_status" style={{color: "#fff", backgroundColor: "green"}}> Còn hiệu lực </div>;
             }
-        }else if(curentDate > licenseDate){
+        }else if(currentDate > licenseDate){
             return <div className="license_status" style={{color: "#fff", backgroundColor: "red"}}> Hết hiệu lực </div>;
         }
     }
     
 
     render(){
-
         return(
 			<div className="p-0">
                 <Header headTitle={this.headerTitle()} previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
@@ -183,49 +186,49 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                 <img src={this.imageConstruction()} className="p-0 hydroelectric-icon rounded-circle border border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                                 <div className="col-6 text-center p-0">
                                     <p className="fw-bold mb-1">Tổng số công trình {this.constructionType()} </p>
-                                    <p className="font-30 m-0 fw-bold">60</p>
+                                    <p className="font-30 m-0 fw-bold">{this.state.countData}</p>
                                 </div>
                             </div>
 
                             <div className="col-12 py-1 mt-4 d-flex justify-content-center text-center border-top border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Tổng số CT đã vận hành</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">28 / 60</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
                                 </div>
                                 <img src={this.imageConstruction()} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép đã cấp</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">11 / 60</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép sắp hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">06 / 60</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-2.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-2" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">03 / 60</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-3.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-3" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép chưa phê duyệt</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">10 / 60</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/report.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="chua-duyet" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Chưa có giấy phép</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">02 / 60</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>

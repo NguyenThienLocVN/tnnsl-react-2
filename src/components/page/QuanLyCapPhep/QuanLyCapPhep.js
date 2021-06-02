@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../../layout/Header';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import configData from "../../../config.json";
 import { SearchOutlined, DownloadOutlined, LineChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Bar, Doughnut } from 'react-chartjs-2';
 
@@ -9,6 +11,9 @@ export default class QuanLyCapPhep extends React.Component {
     {
         super(props)
         this.state = {
+            countDataNuocMat: 0,
+            countLicense: 0,
+            DataNuocMat:[],
             barChartData: {
                 labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
                 datasets: [{
@@ -96,6 +101,38 @@ export default class QuanLyCapPhep extends React.Component {
 
     componentDidMount(){
         document.title = "Quản lý cấp phép | Giám sát tài nguyên nước Sơn La";
+
+
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-tat-ca-giay-phep")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        countDataNuocMat: response.data.length,
+                        DataNuocMat: response.data,
+                    });
+                    console.log(this.state.DataNuocMat);
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response.data.message})
+            })
+
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/dem-so-giay-phep")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        countLicense: response.data,
+                    });
+                    console.log(this.state.countLicense);
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response.data.message})
+            })
     }
 
     render(){
@@ -294,23 +331,27 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.countDataNuocMat}</p>
+                                    </div>
+                                    <div className="fw-bold col-12 d-flex px-2">
+                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
+                                        <p className="col-3">{this.state.countLicense.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3"> {this.state.countLicense.sap_het_hieu_luc} </p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.countLicense.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.countLicense.chua_phe_duyet}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3"> -- </p>
                                     </div>
                                 </div>
 
