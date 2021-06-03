@@ -43,7 +43,7 @@ function App() {
 				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename" component={QuanLyCapPhepNuocMatTongQuanCongTrinh} />				
 
 				{/* Xem Thong Tin GP */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-chung" component={QuanLyCapPhepNuocMatXemThongTinChung} />
+				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/thong-tin/:id" component={QuanLyCapPhepNuocMatXemThongTinChung} />
 				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-cong-trinh" component={QuanLyCapPhepNuocMatXemThongTinCongTrinh} />
 				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-cong-trinh/chi-tiet" component={QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet} />
 				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/giam-sat-khai-thac-su-dung" component={QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung} />

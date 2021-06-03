@@ -186,7 +186,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             return <div className="license_status" style={{color: "#fff", backgroundColor: "red"}}> Hết hiệu lực </div>;
         }
     }
-    
+
 
     render(){
         return(
@@ -312,7 +312,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                     <td className="text-center align-middle">{this.formatDate(e.hieu_luc_tu)}</td>
                                                     <td className="text-center align-middle">{e.thoi_han_gp}</td>
                                                     <td className="text-start align-middle">{this.checkStatus(e.status,e.hieu_luc_den)}</td>
-                                                    <td className="text-start align-middle"><div><Link title="Xem GP" to={this.xemThongTinChung}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                    <td className="text-start align-middle"><div><Link class="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/thong-tin/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                 </tr>
                                                 )
                                                 
