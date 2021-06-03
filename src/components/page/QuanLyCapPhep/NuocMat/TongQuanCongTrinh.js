@@ -16,7 +16,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             showSearch: false,
             dataColumn: [],
             countData: 0,
-            countLicense: 0,
+            countHydroelectricLicense: 0,
         }
     }
 
@@ -67,9 +67,8 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                 if(response.status === 200)
                 {
                     this.setState({
-                        countLicense: response.data,
+                        countHydroelectricLicense: response.data.thuy_dien,
                     });
-                    console.log(this.state.countLicense);
                 }
             })
             .catch((error) => {
@@ -215,35 +214,35 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép đã cấp</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.giay_phep_da_cap} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép sắp hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.sap_het_hieu_luc} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-2.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-2" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.het_hieu_luc} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-3.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-3" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép chưa phê duyệt</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.chua_phe_duyet} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/report.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="chua-duyet" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Chưa có giấy phép</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger"> -- / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
