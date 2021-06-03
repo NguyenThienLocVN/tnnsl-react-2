@@ -125,7 +125,7 @@ export default class QuanLyCapPhep extends React.Component {
                 if(response.status === 200)
                 {
                     this.setState({
-                        countLicense: response.data,
+                        countLicense: response.data.tat_ca_gp_nuoc_mat,
                     });
                     console.log(this.state.countLicense);
                 }

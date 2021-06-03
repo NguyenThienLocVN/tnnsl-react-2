@@ -16,6 +16,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             showSearch: false,
             dataColumn: [],
             countData: 0,
+            countLicense: 0,
         }
     }
 
@@ -55,6 +56,20 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                         dataColumn: response.data,
                         countData: response.data.length,
                     })
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response.data.message})
+            })
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/dem-so-giay-phep")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        countLicense: response.data,
+                    });
+                    console.log(this.state.countLicense);
                 }
             })
             .catch((error) => {
