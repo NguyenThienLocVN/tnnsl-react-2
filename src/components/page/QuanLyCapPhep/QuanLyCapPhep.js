@@ -112,7 +112,6 @@ export default class QuanLyCapPhep extends React.Component {
                         countDataNuocMat: response.data.length,
                         DataNuocMat: response.data,
                     });
-                    console.log(this.state.DataNuocMat);
                 }
             })
             .catch((error) => {
@@ -127,7 +126,6 @@ export default class QuanLyCapPhep extends React.Component {
                     this.setState({
                         countLicense: response.data.tat_ca_gp_nuoc_mat,
                     });
-                    console.log(this.state.countLicense);
                 }
             })
             .catch((error) => {

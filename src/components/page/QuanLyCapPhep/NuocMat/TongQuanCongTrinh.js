@@ -193,7 +193,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                 <Header headTitle={this.headerTitle()} previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
-                        <div className="col-12 px-0">
+                        <div className="col-12 px-2">
                             
                             <div className="col-10 py-2 m-auto d-flex justify-content-center text-center">
                                 {/* <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/thuydien1.png'} className="p-0 hydroelectric-icon rounded-circle border border-secondary my-auto mx-3" alt="dap-thuy-dien" /> */}
