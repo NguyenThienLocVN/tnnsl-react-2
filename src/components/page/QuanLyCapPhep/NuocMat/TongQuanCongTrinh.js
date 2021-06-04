@@ -1,11 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../../../layout/Header';
 import { Link } from 'react-router-dom';
 import Map from '../../../layout/Map';
 import axios from "axios";
+import { Modal} from 'react-bootstrap';
 import configData from "../../../../config.json";
-import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined, FilePdfOutlined } from '@ant-design/icons';
 
+function ModalViewLicensePDF() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
+    return (
+      <>
+        <span title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={handleShow}> <FilePdfOutlined /> </span>
+        <Modal show={show} onHide={handleClose} size="xl">
+            <Modal.Body>
+                <iframe src="https://drive.google.com/file/d/1Ewiby-C0CHVCj4HuWfh1GRXgFU61nUHV/view?usp=sharing"></iframe>
+            </Modal.Body>
+        </Modal>
+      </>
+    );
+  }
 
 export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Component {
     constructor(props)
@@ -294,7 +312,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                 <th className="text-nowrap">Tên công trình</th>
                                                 <th className="text-nowrap">Tổ chức được cấp phép</th>
                                                 <th className="text-nowrap">Ngày có hiệu lực</th>
-                                                <th className="text-nowrap">Thời hạn (năm)</th>
+                                                <th className="text-nowrap">Thời hạn</th>
                                                 <th className="text-nowrap">Trạng thái</th>
                                                 <th className="text-nowrap">Thao tác</th>
                                             </tr>
@@ -303,15 +321,15 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                             {this.state.dataColumn.map((e, i) => {
                                                 return (
                                                     <tr key={i}>
-                                                    <td className="text-start align-middle">{i+1}</td>
-                                                    <td className="text-start align-middle"><p title="Xem file giấy phép" className="text-primary cursor_pointer m-0">{e.so_gp} &nbsp; <FileOutlined /> </p></td>
-                                                    <td className="text-center align-middle">{this.formatDate(e.ngay_ky)}</td>
+                                                    <td className="text-center align-middle">{i+1}</td>
+                                                    <td className="text-start align-middle text-nowrap"><p className="text-dark m-0">{e.so_gp} &nbsp; <ModalViewLicensePDF /> </p></td>
+                                                    <td className="text-start align-middle">{this.formatDate(e.ngay_ky)}</td>
                                                     <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.ten_ct} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                     <td className="text-start align-middle">{e.ten_to_chuc}</td>
-                                                    <td className="text-center align-middle">{this.formatDate(e.hieu_luc_tu)}</td>
+                                                    <td className="text-start align-middle">{this.formatDate(e.hieu_luc_tu)}</td>
                                                     <td className="text-center align-middle">{e.thoi_han_gp}</td>
                                                     <td className="text-start align-middle">{this.checkStatus(e.status,e.hieu_luc_den)}</td>
-                                                    <td className="text-start align-middle"><div><Link class="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                 </tr>
                                                 )
                                                 

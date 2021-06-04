@@ -172,7 +172,7 @@ export default class QuanLyCapPhep extends React.Component {
 
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ CẤP PHÉP | TÀI NGUYÊN NƯỚC" previousLink="/" showHeadImage={true} layout48={true} />
+                <Header headTitle="QUẢN LÝ CẤP PHÉP TÀI NGUYÊN NƯỚC" previousLink="/" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-2 px-0 menu-home">
                         <div className="row m-0">

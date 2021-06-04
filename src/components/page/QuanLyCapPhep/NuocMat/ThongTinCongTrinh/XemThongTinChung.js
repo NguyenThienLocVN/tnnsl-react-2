@@ -169,7 +169,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Loại hình giấy phép:</span>
                                                             </div>
-                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.loai_gp || ""} readOnly />
+                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.loaigiayphep || ""} readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>

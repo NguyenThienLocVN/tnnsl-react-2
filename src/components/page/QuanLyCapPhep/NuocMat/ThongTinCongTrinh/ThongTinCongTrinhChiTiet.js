@@ -408,8 +408,17 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                         <>
                                         
                                         {
-                                        console.log(b)
-                                        }
+                                        b.map((e)=>{
+                                            <>
+                                               
+                                                <tr>
+                                                    <th className="py-1">Trạm bơm</th>
+                                                    <td className="py-1"></td>
+                                                    <td className="py-1"></td>
+                                                    <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
+                                                </tr>
+                                            </>
+                                        })}
                                         </>
                                     }
                                     {(this.state.pagename === "tram-bom") &&
