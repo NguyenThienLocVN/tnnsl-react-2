@@ -115,7 +115,7 @@ export default class QuanLyCapPhep extends React.Component {
                 }
             })
             .catch((error) => {
-                this.setState({msg: error.response.data.message})
+                this.setState({msg: error.response})
             })
 
         axios
@@ -129,7 +129,7 @@ export default class QuanLyCapPhep extends React.Component {
                 }
             })
             .catch((error) => {
-                this.setState({msg: error.response.data.message})
+                this.setState({msg: error.response})
             })
     }
 

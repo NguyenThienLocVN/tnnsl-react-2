@@ -50,11 +50,12 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                     this.setState({
                         dataHydroContructionInfo: response.data,
                         dataCategoriesContruction: response.data.hang_muc_ct,
+                        dataWaterFlowAccordingToThePurposeOfUse: response.data.luu_luong_theo_muc_dich_sd
                     });
                 }
             })
             .catch((error) => {
-                this.setState({msg: error.response.data.message})
+                this.setState({msg: error.response})
             })
         )
     }
@@ -343,7 +344,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-8 px-0">
                                                 <span >Xả dòng chảy tối thiểu(m3/s): </span>
                                             </div>
-                                            <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                            <input className="form-control form-control-sm" value="" readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -355,7 +356,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Cấp nước(m3/s): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value="" readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -368,7 +369,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Cấp nước nông nghiệp(m3/s): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value="" readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -378,7 +379,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Phát điện(m3/s): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.luu_luong} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -388,7 +389,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Cấp  nước nông nghiệp(m3/s): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value="" readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -398,7 +399,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Cấp nước sinh hoạt(m3/s): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value="" readOnly />
                                             </div> 
                                         </div>
                                     </div>

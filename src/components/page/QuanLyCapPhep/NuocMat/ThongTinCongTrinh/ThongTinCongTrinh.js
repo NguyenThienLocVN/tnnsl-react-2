@@ -52,7 +52,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinCongTrinh extends React.Comp
                 }
             })
             .catch((error) => {
-                this.setState({msg: error.response.data.message})
+                this.setState({msg: error.response})
             })
         
     }

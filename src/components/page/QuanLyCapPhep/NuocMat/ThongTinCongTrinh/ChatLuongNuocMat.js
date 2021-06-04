@@ -2,12 +2,17 @@ import React from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
 import Map from '../../../../layout/Map';
+import { trackPromise } from 'react-promise-tracker';
+import axios from "axios";
+import configData from "../../../../../config.json";
 
 export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
           pagename: this.props.match.params.pagename,
+          dataCategoriesContruction: [],
+          chatLuongNuocMatQCVN: [],
         };
       }
     componentDidMount(){
@@ -35,6 +40,36 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
         else if(this.state.pagename === "cong-trinh-khac"){
             document.title = "Xem thông tin | Công Trình Khác | Quản lý cấp phép nước mặt";
         }
+
+        trackPromise(
+            axios
+                .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
+                .then((response) => {
+                    if(response.status === 200)
+                    {
+                        this.setState({
+                            dataCategoriesContruction: response.data,
+                        });
+                        
+                    }
+                })
+                .catch((error) => {
+                    this.setState({msg: error.response})
+                })
+            )
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/chat-luong-nuoc-mat-qcvn")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        chatLuongNuocMatQCVN: response.data,
+                    })
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
         
     }
     headerTitle = () => {
@@ -64,6 +99,22 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
         }
     }
 
+    chatLuongNuocMatQCVN = () => {
+        return (
+            this.state.chatLuongNuocMatQCVN.map((e, i) => (
+                <tr key={i} className="text-center align-middle">
+                    <td className="p-1">{i+1}</td>
+                    <td className="text-start p-1"> {e.thong_so} </td>
+                    <td className="p-1"> {e.don_vi} </td>
+                    <td className="p-1"> {e.A1} </td>
+                    <td className="p-1"> {e.A2} </td>
+                    <td className="p-1"> {e.B1} </td>
+                    <td className="p-1"> {e.B2} </td>
+                </tr>
+            ))
+        )
+    }
+
     render(){
         return(
 			<div className="p-0">
@@ -88,19 +139,19 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
                                     <div className="row mx-0 mb-3">
                                         <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Tên công trình:</div>
-                                            <input type="text" className="form-control form-control-sm col-6" value="Thuy Dien" readOnly />
+                                            <input type="text" className="form-control form-control-sm col-6" value={this.state.dataCategoriesContruction.ten_ct || ""} readOnly />
                                         </div>
                                         <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Ký hiệu công trình:</div>
-                                            <input type="text" className="form-control form-control-sm col-6" value="Thuy Dien" readOnly />
+                                            <input type="text" className="form-control form-control-sm col-6" value={this.state.dataCategoriesContruction.ky_hieu_ct || ""} readOnly />
                                         </div>
                                         <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Ngày lấy mẫu:</div>
-                                            <input type="text" className="form-control form-control-sm col-6" value="Thuy Dien" readOnly />
+                                            <input type="text" className="form-control form-control-sm col-6" value="--" readOnly />
                                         </div>
                                         <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Địa điểm lấy mẫu:</div>
-                                            <input type="text" className="form-control form-control-sm col-6" value="Thuy Dien" readOnly />
+                                            <input type="text" className="form-control form-control-sm col-6" value="--" readOnly />
                                         </div>
                                     </div>
                                     <p className="exploit-surfacewater-title mb-0 p-2 font-weight fw-bold text-start">Chất lượng nước mặt theo QCVN 08-MT:2015-BTNMMT</p>
@@ -124,69 +175,7 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">1</td>
-                                                <td className="p-1"> pH </td>
-                                                <td className="p-1"> - </td>
-                                                <td className="p-1"> 6 - 8.5 </td>
-                                                <td className="p-1"> 6 - 8.5 </td>
-                                                <td className="p-1"> 5.5 - 9 </td>
-                                                <td className="p-1"> 5.5 - 9 </td>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">2</td>
-                                                <td className="p-1">BOD₅(20⁰C)</td>
-                                                <td className="p-1"> mg/l </td>
-                                                <td className="p-1">  4 </td>
-                                                <td className="p-1">  6 </td>
-                                                <td className="p-1">  15 </td>
-                                                <td className="p-1">  25 </td>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">3</td>
-                                                <td className="p-1"> COD </td>
-                                                <td className="p-1"> mg/l </td>
-                                                <td className="p-1"> 10 </td>
-                                                <td className="p-1"> 15 </td>
-                                                <td className="p-1"> 30 </td>
-                                                <td className="p-1"> 50 </td>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">4</td>
-                                                <td className="p-1"> Oxy hòa tan(DO) </td>
-                                                <td className="p-1"> mg/l </td>
-                                                <td className="p-1"> ≥6 </td>
-                                                <td className="p-1"> ≥5 </td>
-                                                <td className="p-1"> ≥4 </td>
-                                                <td className="p-1"> ≥2 </td>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">5</td>
-                                                <td className="p-1"> Tổng chất rawsnlow lửng (TSS) </td>
-                                                <td className="p-1"> mg/l </td>
-                                                <td className="p-1"> 20 </td>
-                                                <td className="p-1"> 30 </td>
-                                                <td className="p-1"> 50 </td>
-                                                <td className="p-1"> 100 </td>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">6</td>
-                                                <td className="p-1"> Amoni(NH₄⋅ Tính theo N) </td>
-                                                <td className="p-1"> mg/l </td>
-                                                <td className="p-1"> 0.3 </td>
-                                                <td className="p-1"> 0.3 </td>
-                                                <td className="p-1"> 0.9 </td>
-                                                <td className="p-1"> 0.9 </td>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <td className="p-1">7</td>
-                                                <td className="p-1"> Clorua(CL-) </td>
-                                                <td className="p-1"> mg/l </td>
-                                                <td className="p-1"> 250 </td>
-                                                <td className="p-1"> 350 </td>
-                                                <td className="p-1"> 350 </td>
-                                                <td className="p-1"> -- </td>
-                                            </tr>
+                                            {this.chatLuongNuocMatQCVN()}
                                         </tbody>
                                     </table>
                                 </div>

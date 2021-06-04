@@ -19,7 +19,7 @@ function ModalViewLicensePDF() {
         <Modal show={show} onHide={handleClose} size="xl">
             <Modal.Body>
                 <Button className="close-btn" variant="white" onClick={handleClose}><CloseOutlined /></Button>
-                <iframe src="https://drive.google.com/file/d/1Ewiby-C0CHVCj4HuWfh1GRXgFU61nUHV/view?usp=sharing"></iframe>
+                <iframe width="100%" height="600" src="https://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/2005/68_STNMT_2005.pdf"></iframe>
             </Modal.Body>
         </Modal>
       </>
@@ -78,7 +78,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                 }
             })
             .catch((error) => {
-                this.setState({msg: error.response.data.message})
+                this.setState({msg: error.response})
             })
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/dem-so-giay-phep")
@@ -91,7 +91,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                 }
             })
             .catch((error) => {
-                this.setState({msg: error.response.data.message})
+                this.setState({msg: error.response})
             })
     }
     headerTitle = () => {
