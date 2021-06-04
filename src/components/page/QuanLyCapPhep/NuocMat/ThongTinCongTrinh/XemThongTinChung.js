@@ -3,6 +3,8 @@ import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
 import Map from '../../../../layout/Map';
 import { Tabs } from 'antd';
+import axios from "axios";
+import configData from "../../../../../config.json";
 import { FolderViewOutlined, FilePdfOutlined, PrinterOutlined } from '@ant-design/icons';
 
 const TabPane = Tabs.TabPane;
@@ -13,6 +15,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
         this.state = {
           mode: 'top',
           pagename: this.props.match.params.pagename,
+          dataHydroelectricLicenseInfo:[],
         };
       }
       componentDidMount(){
@@ -40,6 +43,20 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
         else if(this.state.pagename === "cong-trinh-khac"){
             document.title = "Xem thông tin | Công Trình Khác | Quản lý cấp phép nước mặt";
         }
+
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        dataHydroelectricLicenseInfo: response.data,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response.data.message})
+            })
         
     }
     headerTitle = () => {
@@ -78,11 +95,11 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                     <div className="col-lg-12 px-0 row mx-0">
                         <div className="col-lg-2">
                             <nav className="nav flex-column nav-pills pt-3">
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-chung"} className="nav-link text-dark border-bottom active">Thông tin chung</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-cong-trinh"} className="nav-link text-dark border-bottom">Thông tin công trình</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/giam-sat-khai-thac-su-dung"} className="nav-link text-dark border-bottom">Giám sát KTSD</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/chat-luong-nuoc-mat"} className="nav-link text-dark border-bottom">Chất lượng nước mặt</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/ho-so-cap-phep"} className="nav-link text-dark border-bottom">Hồ sơ cấp phép</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-chung/"+this.props.match.params.id} className="nav-link text-dark border-bottom active">Thông tin chung</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-cong-trinh/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Thông tin công trình</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/giam-sat-khai-thac-su-dung/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Giám sát KTSD</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/chat-luong-nuoc-mat/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Chất lượng nước mặt</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/ho-so-cap-phep/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Hồ sơ cấp phép</Link>
                             </nav>
                         </div>
                         <div className="col-12 col-lg-10 px-md-1 pr-2 menu-home discharge-water">
@@ -99,7 +116,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         <div className="fw-bold col-md-4 px-0">
                                                             <span >Tổ chức/Cá nhân được cấp phép:</span>
                                                         </div>
-                                                        <input type="text" className="form-control form-control-sm" placeholder="Organition Name" readOnly />
+                                                        <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.ten_to_chuc || ""} readOnly />
                                                     </div> 
                                                 </div>
                                             </div>
@@ -109,7 +126,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         <div className="fw-bold col-md-4 px-0">
                                                             <span >Đ/C tổ chức/cá nhân được cấp phép:</span>
                                                         </div>
-                                                        <input type="text" className="form-control form-control-sm" placeholder="Organition Adress" readOnly />
+                                                        <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroelectricLicenseInfo.dia_chi_to_chuc || ""} readOnly />
                                                     </div> 
                                                 </div>
                                             </div>
@@ -120,7 +137,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Số giấy phép:</span>
                                                             </div>
-                                                            <input type="text" className="form-control form-control-sm" placeholder="Licence Number" readOnly />
+                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.so_gp || ""} readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -130,7 +147,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Tên văn bản:</span>
                                                             </div>
-                                                            <input type="text" className="form-control form-control-sm" placeholder="Licence Name" readOnly />
+                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.ten_gp || ""} readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -141,7 +158,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         <div className="fw-bold col-md-4 px-0">
                                                             <span >Cơ quan cấp phép:</span>
                                                         </div>
-                                                        <input type="text" className="form-control form-control-sm" placeholder="Licensing authorities" readOnly />
+                                                        <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.co_quan_cp || ""} readOnly />
                                                     </div> 
                                                 </div>
                                             </div>
@@ -152,7 +169,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Loại hình giấy phép:</span>
                                                             </div>
-                                                            <input type="text" className="form-control form-control-sm" placeholder="Licence Type" readOnly />
+                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.loai_gp || ""} readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -162,7 +179,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Thời hạn giấy phép:</span>
                                                             </div>
-                                                            <input type="date" value="2020-01-01" className="form-control form-control-sm"  readOnly />
+                                                            <input type="text" value={this.state.dataHydroelectricLicenseInfo.thoi_han_gp || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -174,7 +191,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Số giấy phép cũ:</span>
                                                             </div>
-                                                            <input type="text" className="form-control form-control-sm" placeholder="Old Licence Number" readOnly />
+                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.so_gp_cu || ""} readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -184,7 +201,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Ngày cấp phép  cũ:</span>
                                                             </div>
-                                                            <input type="date" value="2020-01-01" className="form-control form-control-sm"  readOnly />
+                                                            <input type="text" value={this.state.dataHydroelectricLicenseInfo.ngay_cp_cu || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -195,7 +212,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         <div className="fw-bold px-0 col-md-12 px-0">
                                                             <span >Nội dung cấp lại:</span>
                                                         </div>
-                                                        <textarea readOnly className="form-control form-control-sm" rows="3" defaultValue="Re-issued content" />
+                                                        <textarea readOnly className="form-control form-control-sm" rows="3" defaultValue={this.state.dataHydroelectricLicenseInfo.noi_dung_cp || ""} />
                                                     </div> 
                                                 </div>
                                             </div>
@@ -206,7 +223,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Người ký:</span>
                                                             </div>
-                                                            <input type="text" className="form-control form-control-sm" placeholder="Nguyễn Văn A" readOnly />
+                                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.nguoi_ky || ""} readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -216,7 +233,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Ngày ký:</span>
                                                             </div>
-                                                            <input type="date" value="2020-01-01" className="form-control form-control-sm"  readOnly />
+                                                            <input type="date" value={this.state.dataHydroelectricLicenseInfo.ngay_ky || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -228,7 +245,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Có hiệu lực từ:</span>
                                                             </div>
-                                                            <input type="date" value="2020-01-01" className="form-control form-control-sm"  readOnly />
+                                                            <input type="date" value={this.state.dataHydroelectricLicenseInfo.hieu_luc_tu || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -238,7 +255,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <div className="fw-bold col-md-4 px-0">
                                                                 <span >Hiệu lực đến:</span>
                                                             </div>
-                                                            <input type="date" value="2020-01-01" className="form-control form-control-sm"  readOnly />
+                                                            <input type="date" value={this.state.dataHydroelectricLicenseInfo.hieu_luc_den || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -249,7 +266,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         <div className="fw-bold px-0 col-md-12 px-0">
                                                             <span >Nơi nhận:</span>
                                                         </div>
-                                                        <input type="text" className="form-control form-control-sm" placeholder="Sở TNMT" readOnly />
+                                                        <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.noi_nhan || ""} readOnly />
                                                     </div> 
                                                 </div>
                                             </div>
@@ -259,7 +276,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         <div className="fw-bold px-0 col-md-12 px-0">
                                                             <span >Ghi Chú:</span>
                                                         </div>
-                                                        <textarea readOnly className="form-control form-control-sm" rows="3" defaultValue="20/02/2020" /> 
+                                                        <textarea readOnly className="form-control form-control-sm" rows="3" defaultValue={this.state.dataHydroelectricLicenseInfo.ghi_chu_ttc || ""} /> 
                                                     </div> 
                                                 </div>
                                             </div>

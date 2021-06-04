@@ -2,12 +2,16 @@ import React from 'react';
 import Header from '../../../../layout/Header';
 import Map from '../../../../layout/Map';
 import { FileImageOutlined } from '@ant-design/icons';
+import axios from "axios";
+import configData from "../../../../../config.json";
 
 export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
           pagename: this.props.match.params.pagename,
+          dataHydroContructionInfo: [],
+          dataCategoriesContruction: [],
         };
       }
       componentDidMount(){
@@ -35,6 +39,21 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
         else if(this.state.pagename === "cong-trinh-khac"){
             document.title = "Thông tin chi tiết | Công Trình Khác | Quản lý cấp phép nước mặt";
         }
+
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        dataHydroContructionInfo: response.data,
+                        dataCategoriesContruction: response.data.hang_muc_ct,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response.data.message})
+            })
         
     }
     headerTitle = () => {
@@ -65,9 +84,12 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
     }
 
     render(){
+        var a = this.state.dataHydroContructionInfo;
+        var b = a['hang_muc_ct'];
+
         return(
 			<div className="p-0">
-                <Header headTitle={this.headerTitle()} previousLink={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-cong-trinh"} showHeadImage={true} layout48={true} />
+                <Header headTitle={this.headerTitle()} previousLink={"/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-cong-trinh/"+this.props.match.params.id} showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-lg-12 px-0 row mx-0">
                         <div className="col-lg-6 px-0 menu-home discharge-water">
@@ -79,7 +101,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-5 px-0">
                                                 <span >Tên công trình:</span>
                                             </div>
-                                            <input className="form-control form-control-sm" value=" Thủy Điện  " readOnly />
+                                            <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.ten_ct || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -89,7 +111,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-5 px-0">
                                                 <span >Ký hiệu công trình:</span>
                                             </div>
-                                            <input className="form-control form-control-sm" value=" Thủy Điện  " readOnly />
+                                            <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.ky_hieu_ct || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -99,7 +121,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Chế độ khai thác:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.che_do_kt || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -109,7 +131,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Phương thức khai thác:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.phuong_thuc_kt || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -119,7 +141,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Địa điểm:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.dia_diem || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -129,7 +151,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-5 px-0">
                                                 <span >Huyện:</span>
                                             </div>
-                                            <input className="form-control form-control-sm" value=" Thủy Điện  " readOnly />
+                                            <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.huyen || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -139,7 +161,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-5 px-0">
                                                 <span >Xã:</span>
                                             </div>
-                                            <input className="form-control form-control-sm" value=" Thủy Điện  " readOnly />
+                                            <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.xa || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -149,7 +171,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Nguồn nước khai thác:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.nguon_nuoc_ktsd	 || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -159,7 +181,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Mục đích sử dụng:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.muc_dich_sd || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -169,7 +191,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Thuộc sông:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.thuoc_song || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -179,7 +201,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Thuộc lưu vực sông:</span>
                                             </div>
-                                            <textarea rows="1" className="form-control form-control-sm" defaultValue=" Thủy Điện  " readOnly />
+                                            <textarea rows="1" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.thuoc_luu_vuc || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -189,18 +211,18 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                             <div className="fw-bold px-0 col-md-12 px-0">
                                                 <span >Năm vận hành:</span>
                                             </div>
-                                            <input type="date" className="form-control form-control-sm" value="2020-01-01" readOnly />
+                                            <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.nam_sd || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
-                                <hr />
+                                <div className="border-bottom col-12"></div>
                                 <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
                                     <div className="col-lg-12"> 
                                         <div className="row mx-0 px-0 align-items-center">
                                             <div className="fw-bold px-0 col-md-8 px-0">
                                                 <span >Công suất lắp máy(MW):</span>
                                             </div>
-                                            <input className="form-control form-control-sm" value=" 200  " readOnly />
+                                            <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.cong_suat_lap_may || ""} readOnly />
                                         </div> 
                                     </div>
                                 </div>
@@ -212,7 +234,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Q lớn nhất qua NM(m3/s): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.luu_luong_lon_nhat_qua_thuy_dien || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -222,7 +244,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Q xả TT NM(m3/s):</span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200  " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.luu_luong_xa_toi_thieu || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -232,7 +254,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Dung tích hữu ích(triệu m3): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.dung_tich_huu_ich || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div> 
@@ -242,7 +264,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Dung tích toàn bộ (triệu m3):</span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200  " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.dung_tich_toan_bo || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -252,7 +274,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Dung tích chết (triệu m3): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.muc_nuoc_chet || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -262,7 +284,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Mực nước chết(m):</span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200  " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.muc_nuoc_chet || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -272,7 +294,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Mực nước dâng BT: </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.muc_nuoc_dang_bt || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -282,7 +304,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Mực nước cao nhất TL(m):</span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200  " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.muc_nuoc_cao_nhat_truoc_lu || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -292,7 +314,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                                 <div className="fw-bold px-0 col-md-8 px-0">
                                                     <span >Mực nước đón lũ(m): </span>
                                                 </div>
-                                                <input className="form-control form-control-sm" value=" 200 " readOnly />
+                                                <input className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.muc_nuoc_don_lu || ""} readOnly />
                                             </div> 
                                         </div>
                                     </div>
@@ -384,36 +406,10 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                     <tbody>
                                     {(this.state.pagename === "thuy-dien" || this.state.pagename === "ho-chua") &&
                                         <>
-                                            <tr>
-                                                <th className="py-1">Tuyến đập</th>
-                                                <td className="py-1"></td>
-                                                <td className="py-1"></td>
-                                                <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="py-1">Cửa lấy nước</th>
-                                                <td className="py-1"></td>
-                                                <td className="py-1"></td>
-                                                <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="py-1">Nhà máy thủy điện</th>
-                                                <td className="py-1"></td>
-                                                <td className="py-1"></td>
-                                                <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="py-1">Cửa xả sau nhà máy</th>
-                                                <td className="py-1"></td>
-                                                <td className="py-1"></td>
-                                                <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
-                                            </tr>
-                                            <tr>
-                                                <th className="py-1">Công trình xả tối thiểu</th>
-                                                <td className="py-1"></td>
-                                                <td className="py-1"></td>
-                                                <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
-                                            </tr>
+                                        
+                                        {
+                                        console.log(b)
+                                        }
                                         </>
                                     }
                                     {(this.state.pagename === "tram-bom") &&
