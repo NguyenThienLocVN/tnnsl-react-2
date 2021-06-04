@@ -1,7 +1,8 @@
 import axios from 'axios';
+import configData from '../../config.json';
 
 export const apiClient = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: configData.BASE_API_URL,
     withCredentials: true,
 });
 
