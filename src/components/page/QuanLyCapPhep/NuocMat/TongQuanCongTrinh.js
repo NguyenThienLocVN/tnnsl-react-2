@@ -3,9 +3,9 @@ import Header from '../../../layout/Header';
 import { Link } from 'react-router-dom';
 import Map from '../../../layout/Map';
 import axios from "axios";
-import { Modal} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import configData from "../../../../config.json";
-import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 
 function ModalViewLicensePDF() {
     const [show, setShow] = useState(false);
@@ -18,6 +18,7 @@ function ModalViewLicensePDF() {
         <span title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={handleShow}> <FilePdfOutlined /> </span>
         <Modal show={show} onHide={handleClose} size="xl">
             <Modal.Body>
+                <Button className="close-btn" variant="white" onClick={handleClose}><CloseOutlined /></Button>
                 <iframe src="https://drive.google.com/file/d/1Ewiby-C0CHVCj4HuWfh1GRXgFU61nUHV/view?usp=sharing"></iframe>
             </Modal.Body>
         </Modal>
