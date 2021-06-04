@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import axios from "axios";
 import { trackPromise } from 'react-promise-tracker';
 import { Alert } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import configData from "../../config.json";
+
+import { apiClient, getUser } from '../common/api';
 
 import './Auth.css';
 
@@ -14,7 +15,7 @@ export default class Login extends React.Component{
     {
         super(props)
         this.state = {
-            name: '',
+            username: '',
             password: '',
             redirect: false,
             error: false,
@@ -36,28 +37,33 @@ export default class Login extends React.Component{
 
     onSignInHandler = (e) => {
         e.preventDefault();
-        trackPromise(
-            axios
-            .post(configData.API_URL + "/login", {
-                name: this.state.name,
-                password: this.state.password,
+        
+            apiClient.get('/sanctum/csrf-cookie')
+            .then(response => {
+                trackPromise(
+                    apiClient.post(configData.API_URL + "/login", {
+                        username: this.state.username,
+                        password: this.state.password,
+                    })
+                    .then((response) => {
+                        if(response.status === 200)
+                        {
+                            sessionStorage.setItem('isLoggedIn', true);
+                            sessionStorage.setItem("user", JSON.stringify(response.data));
+                            this.setState({redirect: true})
+                        }
+                    })
+                    .catch((error) => {
+                        this.setState({msg: error.response.data.message})
+                    })
+                )
             })
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    localStorage.setItem("isLoggedIn", true);
-                    localStorage.setItem("userData", JSON.stringify(response.data));
-                    this.setState({redirect: true})
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response.data.message})
-            })
-        );
+            
+        
     };
-    
+
     render(){
-        const login = localStorage.getItem("isLoggedIn");
+        const login = getUser();
         if(login || this.state.redirect)
         {
             return <Redirect to="/"/>
@@ -72,7 +78,7 @@ export default class Login extends React.Component{
                     <div>
                         <div className="d-flex">
                             <span className="input-group-text"><UserOutlined /></span>
-                            <input id="name" onChange={this.onChangehandler} className="form-control block w-full font-13 rounded-left" type="text" name="name" required autoFocus placeholder="Tên đăng nhập" />
+                            <input id="username" onChange={this.onChangehandler} className="form-control block w-full font-13 rounded-left" type="text" name="username" required autoFocus placeholder="Tên đăng nhập" />
                         </div>
                     </div>
     

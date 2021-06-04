@@ -6,6 +6,7 @@ import { Tabs } from 'antd';
 import axios from "axios";
 import configData from "../../../../../config.json";
 import { FolderViewOutlined, FilePdfOutlined, PrinterOutlined } from '@ant-design/icons';
+import { trackPromise } from 'react-promise-tracker';
 
 const TabPane = Tabs.TabPane;
 
@@ -44,6 +45,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
             document.title = "Xem thông tin | Công Trình Khác | Quản lý cấp phép nước mặt";
         }
 
+        trackPromise(
         axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
             .then((response) => {
@@ -57,7 +59,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
             .catch((error) => {
                 this.setState({msg: error.response})
             })
-        
+        )
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){

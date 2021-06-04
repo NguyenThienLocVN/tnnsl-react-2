@@ -5,7 +5,8 @@ import Map from '../../../layout/Map';
 import axios from "axios";
 import { Modal, Button } from 'react-bootstrap';
 import configData from "../../../../config.json";
-import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FileOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
+import { trackPromise } from 'react-promise-tracker';
 
 function ModalViewLicensePDF() {
     const [show, setShow] = useState(false);
@@ -65,7 +66,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             document.title = "Công Trình Khác | Quản lý cấp phép nước mặt";
         }
 
-
+        trackPromise(
         axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-giay-phep-thuy-dien")
             .then((response) => {
@@ -80,6 +81,9 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             .catch((error) => {
                 this.setState({msg: error.response})
             })
+        )
+            
+        trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/dem-so-giay-phep")
             .then((response) => {
@@ -93,6 +97,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             .catch((error) => {
                 this.setState({msg: error.response})
             })
+        )
     }
     headerTitle = () => {
         if(this.state.pagename === "thuy-dien"){

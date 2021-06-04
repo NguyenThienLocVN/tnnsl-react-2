@@ -8,6 +8,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { LoginOutlined } from '@ant-design/icons';
 import configData from "../../config.json";
 
+import { getUser } from '../common/api';
 import './Page.css'
 
 export default class Login extends React.Component {
@@ -25,27 +26,26 @@ export default class Login extends React.Component {
     }
 
     onLogoutHandler = () => {
-        var user = JSON.parse(localStorage.getItem("userData"));
-
         trackPromise(
         axios
-            .post(configData.API_URL + "/logout", {
-                remember_token: user.remember_token,
-            })
+            .post(configData.API_URL + "/logout")
             .then((response) => {
-                localStorage.clear();
-                this.setState({redirect: true}); 
+                if(response.status === '200')
+                {
+                    sessionStorage.clear();
+                    this.setState({redirect: true}); 
+                }
             })
             .catch((error) => {
                 console.log(error);
-                localStorage.clear();
+                sessionStorage.clear();
                 this.setState({redirect: true}); 
             })
         );
     };
 
     render(){
-        const user = JSON.parse(localStorage.getItem("userData"));
+        const user = getUser();
         if (!user || this.state.redirect) {
             return <Redirect to="/login" push={true} />;
         }

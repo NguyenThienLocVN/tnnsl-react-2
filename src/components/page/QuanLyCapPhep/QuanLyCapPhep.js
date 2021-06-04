@@ -5,6 +5,7 @@ import axios from "axios";
 import configData from "../../../config.json";
 import { SearchOutlined, DownloadOutlined, LineChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Bar, Doughnut } from 'react-chartjs-2';
+import { trackPromise } from 'react-promise-tracker';
 
 export default class QuanLyCapPhep extends React.Component {
     constructor(props)
@@ -103,7 +104,8 @@ export default class QuanLyCapPhep extends React.Component {
         document.title = "Quản lý cấp phép | Giám sát tài nguyên nước Sơn La";
 
 
-        axios
+        trackPromise(
+            axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-tat-ca-giay-phep")
             .then((response) => {
                 if(response.status === 200)
@@ -117,7 +119,9 @@ export default class QuanLyCapPhep extends React.Component {
             .catch((error) => {
                 this.setState({msg: error.response})
             })
+        )
 
+        trackPromise(
         axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/dem-so-giay-phep")
             .then((response) => {
@@ -131,6 +135,7 @@ export default class QuanLyCapPhep extends React.Component {
             .catch((error) => {
                 this.setState({msg: error.response})
             })
+        )
     }
 
     render(){
