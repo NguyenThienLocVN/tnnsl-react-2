@@ -239,15 +239,25 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                     <div className="col-lg-12"> 
                                                         <div className="row px-0 mx-0 align-items-center">
                                                             <div className="fw-bold col-md-4 px-0">
+                                                                <span >Chức vụ:</span>
+                                                            </div>
+                                                            <input type="text" value={this.state.dataHydroelectricLicenseInfo.chuc_vu_nguoi_ky || ""} className="form-control form-control-sm"  readOnly />
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row mx-0 col-lg-12 px-0">
+                                                <div className="row mx-0 py-2 col-lg-4 border-bottom px-0">
+                                                    <div className="col-lg-12"> 
+                                                        <div className="row px-0 mx-0 align-items-center">
+                                                            <div className="fw-bold col-md-4 px-0">
                                                                 <span >Ngày ký:</span>
                                                             </div>
                                                             <input type="date" value={this.state.dataHydroelectricLicenseInfo.ngay_ky || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="row mx-0 col-lg-12 px-0">
-                                                <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
+                                                <div className="row mx-0 py-2 col-lg-4 border-bottom px-0">
                                                     <div className="col-lg-12"> 
                                                         <div className="row px-0 mx-0 align-items-center">
                                                             <div className="fw-bold col-md-4 px-0">
@@ -257,7 +267,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div className="row mx-0 py-2 col-lg-6 border-bottom px-0">
+                                                <div className="row mx-0 py-2 col-lg-4 border-bottom px-0">
                                                     <div className="col-lg-12"> 
                                                         <div className="row px-0 mx-0 align-items-center">
                                                             <div className="fw-bold col-md-4 px-0">
@@ -266,16 +276,6 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                                                             <input type="date" value={this.state.dataHydroelectricLicenseInfo.hieu_luc_den || ""} className="form-control form-control-sm"  readOnly />
                                                         </div> 
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="row mx-0 py-2 col-lg-12 border-bottom px-0">
-                                                <div className="col-lg-12"> 
-                                                    <div className="row px-0 mx-0 align-items-center">
-                                                        <div className="fw-bold px-0 col-md-12 px-0">
-                                                            <span >Nơi nhận:</span>
-                                                        </div>
-                                                        <input type="text" className="form-control form-control-sm" value={this.state.dataHydroelectricLicenseInfo.noi_nhan || ""} readOnly />
-                                                    </div> 
                                                 </div>
                                             </div>
                                             <div className="row mx-0 py-2 col-lg-12 border-bottom px-0">

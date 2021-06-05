@@ -55,7 +55,7 @@ export default class Login extends React.Component {
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-4 px-0 menu-home discharge-water">
                         <div className="d-flex auth-bar pl-2 justify-content-between align-items-center">
-                            <span className="fw-bold p-0">Xin chào, {user.name} </span>
+                            <span className="fw-bold pl-2">Xin chào, {user.name} </span>
                             <button onClick={this.onLogoutHandler} className="px-md-3 p-2 d-flex justify-content-center align-items-center text-white btn-logout btn-danger" title="Đăng xuất">
                                 <LoginOutlined />
                             </button>
