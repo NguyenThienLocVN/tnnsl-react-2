@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Header from '../../../layout/Header';
 import { Link } from 'react-router-dom';
 import Map from '../../../layout/Map';
@@ -8,24 +8,6 @@ import configData from "../../../../config.json";
 import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 
-function ModalViewLicensePDF() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
-    return (
-      <>
-        <span title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={handleShow}> <FilePdfOutlined /> </span>
-        <Modal show={show} onHide={handleClose} size="xl">
-            <Modal.Body>
-                <Button className="close-btn" variant="white" onClick={handleClose}><CloseOutlined /></Button>
-                <iframe width="100%" height="600" src="https://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/2005/68_STNMT_2005.pdf"></iframe>
-            </Modal.Body>
-        </Modal>
-      </>
-    );
-  }
 
 export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Component {
     constructor(props)
@@ -37,7 +19,17 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             dataColumn: [],
             countData: 0,
             countHydroelectricLicense: 0,
+            activeModal: null,
         }
+        this.clickHandler = this.clickHandler.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+    }
+    clickHandler(e, index) {
+        this.setState({ activeModal: index })
+    }
+    
+    hideModal() {
+        this.setState({ activeModal: null })
     }
 
     componentDidMount(){
@@ -273,7 +265,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
 
                             <Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" className="col-11 btn btn-primary d-flex align-items-center mx-auto mt-3"><PlusOutlined /> &nbsp; Tạo mới giấy phép</Link>
                             <button className="col-11 btn btn-success d-flex align-items-center mx-auto mt-1"><FileExcelOutlined /> &nbsp; Xuất file</button>
-                            <button className="col-11 btn btn-info d-flex align-items-center mx-auto mt-1"><InfoCircleOutlined /> &nbsp; Hướng dẫn sử dụng</button>
+                            <button className="col-11 btn btn-secondary d-flex align-items-center mx-auto mt-1"><InfoCircleOutlined /> &nbsp; Hướng dẫn sử dụng</button>
                         </div>
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
@@ -306,7 +298,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                             <option value="3">Sắp xếp theo ngày kết thúc hiệu lực</option>
                                         </select>
                                     </div>
-                                    <div className="col-lg-3 mb-2 px-2"><button className="col-6 fw-bold text-light btn btn-info d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
+                                    <div className="col-lg-3 mb-2 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <div className="table-responsive">
                                     <table className="table table-sm table-bordered col-12 table-hover text-center">
@@ -328,7 +320,11 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                 return (
                                                     <tr key={i}>
                                                     <td className="text-center align-middle">{i+1}</td>
-                                                    <td className="text-start align-middle text-nowrap"><p className="text-dark m-0">{e.so_gp} &nbsp; <ModalViewLicensePDF /> </p></td>
+                                                    <td className="text-start align-middle text-nowrap">
+                                                        <p className="text-dark m-0">{e.so_gp} &nbsp;
+                                                            <span id={e.so_gp} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
+                                                        </p>
+                                                    </td>
                                                     <td className="text-start align-middle">{this.formatDate(e.ngay_ky)}</td>
                                                     <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.ten_ct} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                     <td className="text-start align-middle">{e.ten_to_chuc}</td>
@@ -336,6 +332,16 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                     <td className="text-center align-middle">{e.thoi_han_gp}</td>
                                                     <td className="text-start align-middle">{this.checkStatus(e.status,e.hieu_luc_den)}</td>
                                                     <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                    <>
+                                                        <Modal id={e.so_gp} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
+                                                            <Modal.Body>
+                                                                <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
+                                                                <div>
+                                                                    <iframe width="100%" height="600" title="file giấy phép" src={"https://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+e.tai_lieu[0].ten_folder+"/"+e.tai_lieu[0].ten_tai_lieu}></iframe>
+                                                                </div>
+                                                            </Modal.Body>
+                                                        </Modal>
+                                                    </>
                                                 </tr>
                                                 )
                                                 
