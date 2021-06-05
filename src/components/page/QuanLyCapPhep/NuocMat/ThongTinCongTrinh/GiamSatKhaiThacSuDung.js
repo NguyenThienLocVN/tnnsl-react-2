@@ -434,15 +434,15 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Chế độ khai thác:</div>
-                                                <textarea rows="1" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.che_do_kt || ""} readOnly />
+                                                <textarea rows="3" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.che_do_kt || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Phương thức khai thác:</div>
-                                                <textarea rows="1" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.phuong_thuc_kt || ""} readOnly />
+                                                <textarea rows="3" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.phuong_thuc_kt || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Địa điểm:</div>
-                                                <textarea rows="1" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.dia_diem || ""} readOnly />
+                                                <textarea rows="2" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.dia_diem || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-6 px-0 fw-bold text-13">Huyện:</div>
@@ -535,9 +535,6 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                                                     <input type="text" className="form-control form-control-sm col-3" value="--" readOnly />
                                                                 </div>
                                                             </div>
-                                                            {/* <div className="row mx-0 col-6 px-1 align-items-end border-bottom">
-                                                                <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level.png'} alt="water-level" className="w-100 img__sea_lever" />
-                                                            </div> */}
                                                             <div className="row col-6 mx-auto mx-sm-0 border-bottom align-items-end p-0">
                                                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level.png'} alt="water-level" className="w-100 img__sea_lever" />
                                                             </div>
