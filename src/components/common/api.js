@@ -14,18 +14,18 @@ export const getUser = () => {
 }
 
 // check if user is logged in from the session storage
-export const checkLoggedIn = () => {
-    return sessionStorage.getItem('isLoggedIn') || null;
+export const getToken = () => {
+    return sessionStorage.getItem('token') || null;
 }
    
 // remove the token and user from the session storage
 export const removeUserSession = () => {
-    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
 }
    
 // set the token and user from the session storage
 export const setUserSession = (token, user) => {
-    sessionStorage.setItem('access_token', token);
+    sessionStorage.setItem('token', token);
     sessionStorage.setItem('user', JSON.stringify(user));
 }

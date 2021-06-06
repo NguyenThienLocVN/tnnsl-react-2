@@ -8,7 +8,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { LoginOutlined } from '@ant-design/icons';
 import configData from "../../config.json";
 
-import { getUser } from '../common/api';
+import { getUser, removeUserSession, getToken } from '../common/api';
 import './Page.css'
 
 export default class Login extends React.Component {
@@ -28,18 +28,20 @@ export default class Login extends React.Component {
     onLogoutHandler = () => {
         trackPromise(
         axios
-            .post(configData.API_URL + "/logout")
+            .post(configData.API_URL + "/logout",{
+                token: getToken()
+            })
             .then((response) => {
-                if(response.status === '200')
+                if(response.status === 200)
                 {
-                    sessionStorage.clear();
+                    removeUserSession();
                     this.setState({redirect: true}); 
                 }
             })
             .catch((error) => {
                 console.log(error);
-                sessionStorage.clear();
-                this.setState({redirect: true}); 
+                removeUserSession();
+                this.setState({redirect: true});  
             })
         );
     };
@@ -55,7 +57,7 @@ export default class Login extends React.Component {
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-4 px-0 menu-home discharge-water">
                         <div className="d-flex auth-bar pl-2 justify-content-between align-items-center">
-                            <span className="fw-bold pl-2">Xin chào, {user.name} </span>
+                            <span className="fw-bold px-2 d-block">Xin chào, {user.name} </span>
                             <button onClick={this.onLogoutHandler} className="px-md-3 p-2 d-flex justify-content-center align-items-center text-white btn-logout btn-danger" title="Đăng xuất">
                                 <LoginOutlined />
                             </button>

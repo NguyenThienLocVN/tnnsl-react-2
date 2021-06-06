@@ -5,7 +5,7 @@ import { Alert } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import configData from "../../config.json";
 
-import { apiClient, getUser } from '../common/api';
+import { apiClient, getUser, setUserSession } from '../common/api';
 
 import './Auth.css';
 
@@ -37,7 +37,6 @@ export default class Login extends React.Component{
 
     onSignInHandler = (e) => {
         e.preventDefault();
-        
             apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
@@ -48,8 +47,7 @@ export default class Login extends React.Component{
                     .then((response) => {
                         if(response.status === 200)
                         {
-                            sessionStorage.setItem('isLoggedIn', true);
-                            sessionStorage.setItem("user", JSON.stringify(response.data));
+                            setUserSession(response.data.remember_token, response.data.user)
                             this.setState({redirect: true})
                         }
                     })
@@ -58,8 +56,6 @@ export default class Login extends React.Component{
                     })
                 )
             })
-            
-        
     };
 
     render(){

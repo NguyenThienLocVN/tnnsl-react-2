@@ -6,6 +6,8 @@ import { Alert } from 'antd';
 import { UserOutlined, LockOutlined, BankOutlined, IdcardOutlined, PhoneOutlined, MailOutlined, HomeOutlined } from '@ant-design/icons';
 import configData from "../../config.json";
 
+import { apiClient } from '../common/api';
+
 export default class Login extends React.Component{
 	constructor(props)
     {
@@ -15,7 +17,7 @@ export default class Login extends React.Component{
 			errorMsg: '',
 			successMsg: '',
 			signupData: {
-				name: '',
+				username: '',
 				email: '',
 				password: '',
 				organization_name: '',
@@ -24,7 +26,7 @@ export default class Login extends React.Component{
 				organization_address: '',
 				phone: '',
 			},
-			type: ''
+			type: 0
         }
     }
 
@@ -46,49 +48,50 @@ export default class Login extends React.Component{
 	}
 
 	onSubmitHandler = (e) => {
-		trackPromise(
-			axios
-		  	.post(configData.API_URL + "/register", {
-				name: this.state.signupData.name,
-				email: this.state.signupData.email,
-				password: this.state.signupData.password,
-				organization_name: this.state.signupData.organization_name,
-				organization_code: this.state.signupData.organization_code,
-				address: this.state.signupData.address,
-				organization_address: this.state.signupData.organization_address,
-				phone: this.state.signupData.phone,
-				type: this.state.type,
-			})
-		  	.then((response) => {
-				if (response.status === 200) {
-					this.setState({
-						successMsg: response.data.success_message,
-						signupData: {
-							name: '',
-							email: '',
-							password: '',
-							organization_name: '',
-							organization_code: '',
-							address: '',
-							organization_address: '',
-							phone: '',
-						},
-						type: '',
-						redirect: true
-					});
-				}
-			})
-			.catch((error) => {console.log(error);
-                this.setState({errorMsg: error.response.data.error_message});
+		e.preventDefault();
+		apiClient.get('/sanctum/csrf-cookie')
+            .then(response => {
+                trackPromise(
+					apiClient.post(configData.API_URL + "/register", {
+						username: this.state.signupData.username,
+						email: this.state.signupData.email,
+						password: this.state.signupData.password,
+						name: this.state.signupData.name,
+						organization_code: this.state.signupData.organization_code,
+						address: this.state.signupData.address,
+						phone: this.state.signupData.phone,
+						type: this.state.type,
+					})
+					.then((response) => {
+						if (response.status === 200) {
+							this.setState({
+								successMsg: response.data.success_message,
+								signupData: {
+									username: '',
+									name: '',
+									email: '',
+									password: '',
+									organization_code: '',
+									address: '',
+									phone: '',
+								},
+								type: '',
+								redirect: true
+							});
+						}
+					})
+					.catch((error) => {console.log(error);
+						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
+					})
+				)
             })
-		);
 	};
 
     render(){
         return (
             <div>
 				<img src={process.env.PUBLIC_URL + '/images/screenshot-tai-nguyen-nuoc.png'} className="background-login" alt="screenshot-tai-nguyen-nuoc" />
-				<div className="form-register position-absolute">
+				<form onSubmit={this.onSubmitHandler} className="form-register position-absolute">
 					<img className="w-100 banner-tnmt" src={process.env.PUBLIC_URL + '/images/ANHSOTNMT.png'} alt="banner-tnmt" />
 					<main className="d-flex flex-column flex-md-row">
 						<div className="col-lg-6 col-md-6 px-0 pt-md-0 pb-md-0 align-items-center d-none d-md-block">
@@ -100,10 +103,20 @@ export default class Login extends React.Component{
 							</div>
 							<div className="d-flex align-items-center">
 								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Đối tượng <span className="text-danger">*</span></p>
-								<select onChange={this.onChangeTypehandler} className="col-7 d-flex ml-3 pl-2 pr-0 custom-select input-group mb-1 font-14" >
-									<option defaultValue="0">Tổ chức</option>
-									<option defaultValue="1">Cá nhân</option>
+								<select name="type" onChange={this.onChangeTypehandler} value={this.state.type} className="col-7 d-flex ml-3 pl-2 pr-0 custom-select input-group mb-1 font-14" >
+									<option value="0">Tổ chức</option>
+									<option value="1">Cá nhân</option>
 								</select>
+							</div>
+ 
+							<div className="d-flex align-items-center">
+								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Tên cá nhân/Tổ chức <span className="text-danger">*</span></p>
+								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
+									<div className="input-group-prepend">
+										<span className="input-group-text justify-content-center"><BankOutlined /></span>
+									</div>
+									<input name="name" value={this.state.name} onChange={this.onChangehandler} className="form-control font-14" placeholder="VD: Công ty A hoặc Nguyễn Văn A" type="text" required />
+								</div>
 							</div>
 
 							<div className="d-flex align-items-center">
@@ -112,7 +125,7 @@ export default class Login extends React.Component{
 									<div className="input-group-prepend">
 										<span className="input-group-text justify-content-center"><UserOutlined /></span>
 									</div>
-									<input name="name" value={this.state.name} onChange={this.onChangehandler} className="form-control font-14" placeholder="Tên đăng nhập" type="text" required />
+									<input name="username" value={this.state.username} onChange={this.onChangehandler} className="form-control font-14" placeholder="Tên đăng nhập" type="text" required />
 								</div>
 							</div>
 
@@ -128,18 +141,6 @@ export default class Login extends React.Component{
 
 							{this.state.checkOrganization && 
 							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Tên doanh nghiệp <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><BankOutlined /></span>
-									</div>
-									<input name="organization_name" value={this.state.organization_name} onChange={this.onChangehandler} className="form-control font-14" placeholder="Tên doanh nghiệp" type="text" required />
-								</div>
-							</div>
-							}
-
-							{this.state.checkOrganization && 
-							<div className="d-flex align-items-center">
 								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Mã doanh nghiệp</p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
 									<div className="input-group-prepend">
@@ -150,7 +151,6 @@ export default class Login extends React.Component{
 							</div>
 							}
 
-							{!this.state.checkOrganization && 
 							<div className="d-flex align-items-center">
 								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Địa chỉ <span className="text-danger">*</span></p>
 								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
@@ -160,19 +160,6 @@ export default class Login extends React.Component{
 									<input name="address" value={this.state.address} onChange={this.onChangehandler} className="form-control font-14" placeholder="Địa chỉ" type="text" required/>
 								</div>
 							</div>
-							}
-
-							{this.state.checkOrganization && 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Trụ sở chính</p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><HomeOutlined /></span>
-									</div>
-									<input name="organization_address" value={this.state.organization_address} onChange={this.onChangehandler} className="form-control font-14" placeholder="Trụ sở chính" type="text" />
-								</div>
-							</div>
-							}
 
 							<div className="d-flex align-items-center">
 								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Số điện thoại <span className="text-danger">*</span></p>
@@ -202,13 +189,13 @@ export default class Login extends React.Component{
 							: "" }
 
 							<div className="text-center d-flex pt-2 pb-3">
-								<button onClick={this.onSubmitHandler} className="col-5 btn btn-success">Đăng ký</button>
+								<input type="submit" className="col-5 btn btn-success" value="Đăng ký" />
 
 								<Link to="/login" className="btn font-13 col-6">Đăng nhập</Link>
 							</div>
 						</div>
 					</main>
-				</div>
+				</form>
 			</div>
         )
     }
