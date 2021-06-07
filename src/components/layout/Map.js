@@ -1,11 +1,16 @@
 import React from 'react';
+import { trackPromise } from 'react-promise-tracker';
+import axios from "axios";
 import { MapContainer, TileLayer, LayersControl, Marker, Popup } from "react-leaflet";
 import L from 'leaflet';
 
+import configData from '../../config.json';
 import icon from '../common/marker.png';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
+	iconSize: [20, 35],
+    iconAnchor: [10, 35]
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
@@ -16,21 +21,38 @@ export default class Map extends React.Component {
 		this.state = {
 			center: [21.529737201190642, 103.9692398828125],
 			zoom: 8,
-			markers: [
-				[20.8538, 105.8276],
-				[21.6212, 104.1707],
-				[21.2070, 104.4999],
-				[20.9073, 105.5045],
-				[21.4613, 105.179111],
-				[21.4562, 105.173352],
-				[21.3290, 104.3357],
-				[21.4127, 104.9814],
-				[21.0213, 103.660 ]
-			]
+			mainHydroelectricLocations: []
 		};
 	}
-    
+	
+	componentDidMount(){
+		trackPromise(
+			axios
+				.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-giay-phep-thuy-dien")
+				.then((response) => {
+					if(response.status === 200)
+					{	
+						var locations = [];
+						response.data.map((e, k) => {
+							e.hang_muc_ct.map((i) => {
+								if(i.toa_do_chinh == 1)
+								{
+									locations.push(i);
+								}
+							})
+						})
+						this.setState({mainHydroelectricLocations: locations})
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+				})
+			);
+	}
+	
     render() {
+		const {mainHydroelectricLocations} = this.state;
+		
 		return (
 			<MapContainer className="h-100 w-100 position-relative" center={this.state.center} zoom={this.state.zoom}>
 				<LayersControl position="topright">
@@ -55,12 +77,11 @@ export default class Map extends React.Component {
 					</LayersControl.BaseLayer>
 
 					{(this.props.pagename === "thuy-dien") ?
-						this.state.markers.map((marker, key) => (
-							<Marker
-								position={marker}
-								key={key}
-							>
-								<Popup>A</Popup>
+						mainHydroelectricLocations.map((marker, key) => (
+							<Marker position={[marker.longitude, marker.latitude]} key={key} >
+								<Popup>
+									<b>Nội dung</b>
+								</Popup>
 							</Marker>
 							))
 						: ""
