@@ -250,15 +250,8 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
-                                    <p className="fw-bold m-0">Giấy phép chưa phê duyệt</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.chua_phe_duyet} / {this.state.countData}</p>
-                                </div>
-                                <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/report.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="chua-duyet" />
-                            </div>
-                            <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
-                                <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Chưa có giấy phép</p>
-                                    <p className="font-18 m-0 fw-bold text-danger"> -- / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger"> {this.state.countHydroelectricLicense.chua_phe_duyet} / {this.state.countData}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>

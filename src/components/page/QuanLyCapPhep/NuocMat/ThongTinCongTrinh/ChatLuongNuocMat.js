@@ -155,29 +155,31 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
                                         </div>
                                     </div>
                                     <p className="exploit-surfacewater-title mb-0 p-2 font-weight fw-bold text-start">Chất lượng nước mặt theo QCVN 08-MT:2015-BTNMMT</p>
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr className="text-center align-middle">
-                                                <th className="p-1 align-middle" rowSpan="3">STT</th>
-                                                <th className="p-1 align-middle" rowSpan="3">Thông số</th>
-                                                <th className="p-1 align-middle" rowSpan="3">Giá trị quan trắc</th>
-                                                <th className="p-1 align-middle" colSpan="4">Giá trị giới hạn</th>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <th className="p-1 align-middle" colSpan="2">A</th>
-                                                <th className="p-1 align-middle" colSpan="2">B</th>
-                                            </tr>
-                                            <tr className="text-center align-middle">
-                                                <th className="p-1 align-middle">A 1</th>
-                                                <th className="p-1 align-middle">A 2</th>
-                                                <th className="p-1 align-middle">B 1</th>
-                                                <th className="p-1 align-middle">B 2</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.chatLuongNuocMatQCVN()}
-                                        </tbody>
-                                    </table>
+                                    <div className="table-responsive">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr className="text-center align-middle">
+                                                    <th className="p-1 align-middle" rowSpan="3">STT</th>
+                                                    <th className="p-1 align-middle" rowSpan="3">Thông số</th>
+                                                    <th className="p-1 align-middle" rowSpan="3">Giá trị quan trắc</th>
+                                                    <th className="p-1 align-middle" colSpan="4">Giá trị giới hạn</th>
+                                                </tr>
+                                                <tr className="text-center align-middle">
+                                                    <th className="p-1 align-middle" colSpan="2">A</th>
+                                                    <th className="p-1 align-middle" colSpan="2">B</th>
+                                                </tr>
+                                                <tr className="text-center align-middle">
+                                                    <th className="p-1 align-middle">A 1</th>
+                                                    <th className="p-1 align-middle">A 2</th>
+                                                    <th className="p-1 align-middle">B 1</th>
+                                                    <th className="p-1 align-middle">B 2</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {this.chatLuongNuocMatQCVN()}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

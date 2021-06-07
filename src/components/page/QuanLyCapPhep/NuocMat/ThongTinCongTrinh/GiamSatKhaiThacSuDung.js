@@ -634,23 +634,24 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                                     <p className="font-14 col-12 mb-0 fw-bold text-danger">Thông số giám sát</p>
                                                     <div className="row mx-0">
                                                         <div className="col-sm-12 px-0">
-                                                            <div className="col-sm-6 px-0 row mx-0">
+                                                            <div className="col-sm-8 px-0 row mx-0">
                                                                 <p className="font-14 col-12 fw-bold text-success mb-0">Lưu lượng khai thác(m3/s)</p>
-                                                                <div className="row mx-0 col-sm-9 px-0">
+                                                                <div className="row mx-0 col-sm-6 px-0">
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 fw-bold text-13">HTNL(m3/s):</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">Qkt cho phép(m3/s):</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="--" readOnly />
                                                                     </div>
                                                                     <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
-                                                                        <div className="col-9 px-0 fw-bold text-13">KTTT(m3/s):</div>
+                                                                        <div className="col-9 px-0 fw-bold text-13">Qkt thực tế(m3/s):</div>
                                                                         <input type="text" className="form-control form-control-sm col-3" value="--" readOnly />
                                                                     </div>
                                                                 </div>
-                                                                <div className="row mx-0 col-3 px-1">
-                                                                    <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level.png'} alt="water-level" className="w-100" />
+                                                                <div className="row col-6 mx-auto mx-sm-0 border-bottom align-items-end p-0">
+                                                                    <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/water-level.png'} alt="water-level" className="w-100 img__sea_lever" />
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        
                                                         <div className="row mx-0">
                                                             <p className="font-14 col-12 fw-bold text-success mb-0">Chất lượng nước khai thác(m3/s)</p>
                                                             <div className="col-sm-2 px-0 row mx-0">
@@ -726,8 +727,8 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                 <div className="col-sm-12 px-0">
                                         <div className="position-relative">
                                             <div className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-start row">
-                                                <span className="d-block col-12 col-sm-4">Số liệu vận hành - Tên Công trình</span> 
-                                                <div className="thao_tac_slvh px-3 d-flex col-12 col-sm-8 justify-content-end">
+                                                <span className="d-block col-12 col-sm-10">Số liệu vận hành - {this.state.dataHydroContructionInfo.ten_ct}</span> 
+                                                <div className="thao_tac_slvh px-3 d-flex col-12 col-sm-2 justify-content-end">
                                                     <div title="Tìm kiếm" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <SearchOutlined /> </div>
                                                     <div title="Xuất file csv" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <FileExcelOutlined /> </div>
                                                     <div title="In" className="mx-1 p-1 btn btn-primary btn-sm rounded-circle d-flex align-items-center"> <PrinterOutlined /> </div>
