@@ -263,7 +263,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50">
-                            <Map className="col-12" pagename={this.state.pagename} />
+                            <Map className="col-12" pagename={this.state.pagename} subpagename="" />
 
                             <div className="col-12 p-0 ">
                                 <div className="col-12 row align-items-center my-1 px-0 mx-0">

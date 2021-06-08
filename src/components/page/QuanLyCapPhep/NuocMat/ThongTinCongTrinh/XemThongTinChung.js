@@ -16,6 +16,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
         this.state = {
           mode: 'top',
           pagename: this.props.match.params.pagename,
+          idConstruct: this.props.match.params.id,
           dataHydroelectricLicenseInfo:[],
         };
       }
@@ -106,7 +107,7 @@ export default class QuanLyCapPhepNuocMatXemThongTinChung extends React.Componen
                         </div>
                         <div className="col-12 col-lg-10 px-md-1 pr-2 menu-home discharge-water">
                             <div className="col-12 px-0 vh-50">
-                                <Map className="col-12" />
+                                <Map className="col-12" pagename={this.state.pagename} idConstruct={this.state.idConstruct} subpagename="thong-tin-cong-trinh" />
                             </div>
                             <div className="col-12 px-0">
                                 <Tabs className="col-12" defaultActiveKey="1" tabPosition={ mode }>
