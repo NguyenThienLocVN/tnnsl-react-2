@@ -32,6 +32,25 @@ export default class Login extends React.Component{
 
 	componentDidMount(){
         document.title = "Đăng ký | Giám sát tài nguyên nước Sơn La";
+		(function () {
+			'use strict'
+		  
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+		  
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms)
+			  .forEach(function (form) {
+				form.addEventListener('submit', function (event) {
+				  if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				  }
+		  
+				  form.classList.add('was-validated')
+				}, false)
+			  })
+		  })()
     }
 
 	onChangehandler = (e, key) => {
@@ -91,94 +110,65 @@ export default class Login extends React.Component{
         return (
             <div>
 				<img src={process.env.PUBLIC_URL + '/images/screenshot-tai-nguyen-nuoc.png'} className="background-login" alt="screenshot-tai-nguyen-nuoc" />
-				<form onSubmit={this.onSubmitHandler} className="form-register position-absolute">
+				<form onSubmit={this.onSubmitHandler} className="form-register position-absolute needs-validation" noValidate>
 					<img className="w-100 banner-tnmt" src={process.env.PUBLIC_URL + '/images/ANHSOTNMT.png'} alt="banner-tnmt" />
 					<main className="d-flex flex-column flex-md-row">
 						<div className="col-lg-6 col-md-6 px-0 pt-md-0 pb-md-0 align-items-center d-none d-md-block">
 							<img className="w-100 h-100" src={process.env.PUBLIC_URL + '/images/ban-do-dia-hinh-son-la.png'} alt="ban-do-dia-hinh-son-la" />
 						</div>
-						<div className="bg-lightgray col-lg-6 col-sm-12 col-md-6 text-center py-1 py-lg-0">
+						<div className="bg-lightgray col-lg-6 col-sm-12 col-md-6 text-center py-1 py-lg-0 px-2">
 							<div className="p-0 text-center">
 								<h6 className="text-primary fw-bold d-block py-2">HỆ THỐNG QUẢN LÝ,  GIÁM SÁT, KHAI THÁC SỬ DỤNG TÀI NGUYÊN NƯỚC </h6>
 							</div>
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Đối tượng <span className="text-danger">*</span></p>
-								<select name="type" onChange={this.onChangeTypehandler} value={this.state.type} className="col-7 d-flex ml-3 pl-2 pr-0 custom-select input-group mb-1 font-14" >
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Đối tượng <span className="text-danger">*</span></div>
+								<select name="type" onChange={this.onChangeTypehandler} value={this.state.type} className="form-select font-14 rounded-0">
 									<option value="0">Tổ chức</option>
 									<option value="1">Cá nhân</option>
 								</select>
 							</div>
- 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Tên cá nhân/Tổ chức <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><BankOutlined /></span>
-									</div>
-									<input name="name" value={this.state.name} onChange={this.onChangehandler} className="form-control font-14" placeholder="VD: Công ty A hoặc Nguyễn Văn A" type="text" required />
-								</div>
+
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Tên cá nhân/Tổ chức <span className="text-danger">*</span></div>
+								<span className="input-group-text font-20"><BankOutlined /></span>
+								<input name="name" value={this.state.name} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="VD: Công ty A hoặc Nguyễn Văn A" type="text" required />
 							</div>
 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Tên đăng nhập <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><UserOutlined /></span>
-									</div>
-									<input name="username" value={this.state.username} onChange={this.onChangehandler} className="form-control font-14" placeholder="Tên đăng nhập" type="text" required />
-								</div>
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Tên đăng nhập <span className="text-danger">*</span></div>
+								<span className="input-group-text font-20"><UserOutlined /></span>
+								<input name="username" value={this.state.username} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Tên đăng nhập" type="text" required />
 							</div>
 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Mật khẩu <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><LockOutlined /></span>
-									</div>
-									<input name="password" value={this.state.password} onChange={this.onChangehandler} className="form-control font-14" placeholder="Mật khẩu" type="password" required />
-								</div>
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Mật khẩu <span className="text-danger">*</span></div>
+								<span className="input-group-text font-20"><LockOutlined /></span>
+								<input name="password" value={this.state.password} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Mật khẩu" type="password" required />
 							</div>
-
 							{this.state.checkOrganization && 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Mã doanh nghiệp</p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><IdcardOutlined /></span>
-									</div>
-									<input name="organization_code" value={this.state.organization_code} onChange={this.onChangehandler} className="form-control font-14" placeholder="Mã doanh nghiệp" type="text" />
+								<div className="input-group mb-2 d-flex mx-0 align-items-center">
+									<div className="me-2 col-4 fw-bold text-start">Mã doanh nghiệp</div>
+									<span className="input-group-text font-20"><IdcardOutlined /></span>
+									<input name="organization_code" value={this.state.organization_code} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Mã doanh nghiệp" type="text" />
 								</div>
-							</div>
 							}
 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Địa chỉ <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><HomeOutlined /></span>
-									</div>
-									<input name="address" value={this.state.address} onChange={this.onChangehandler} className="form-control font-14" placeholder="Địa chỉ" type="text" required/>
-								</div>
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Địa chỉ <span className="text-danger">*</span></div>
+								<span className="input-group-text font-20"><HomeOutlined /></span>
+								<input name="address" value={this.state.address} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Địa chỉ" type="text" required/>
 							</div>
 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Số điện thoại <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"><PhoneOutlined /></span>
-									</div>
-									<input name="phone" value={this.state.phone} onChange={this.onChangehandler} className="form-control font-14" placeholder="Số điện thoại" type="text" required />
-								</div>
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Số điện thoại <span className="text-danger">*</span></div>
+								<span className="input-group-text font-20"><PhoneOutlined /></span>
+								<input name="phone" value={this.state.phone} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Số điện thoại" type="text" required />
 							</div>
 
-							<div className="d-flex align-items-center">
-								<p className="col-4 p-0 m-0 fw-bold text-start font-14">Email <span className="text-danger">*</span></p>
-								<div className="col-8 d-flex pr-0 form-group input-group mb-1">
-									<div className="input-group-prepend">
-										<span className="input-group-text justify-content-center"> <MailOutlined /></span>
-									</div>
-									<input name="email" value={this.state.email} onChange={this.onChangehandler} className="form-control font-14" placeholder="Email" type="text" required/>
-								</div>
+							<div className="input-group mb-2 d-flex mx-0 align-items-center">
+								<div className="me-2 col-4 fw-bold text-start">Email <span className="text-danger">*</span></div>
+								<span className="input-group-text font-20"><MailOutlined /></span>
+								<input name="email" value={this.state.email} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Email" type="text" required/>
 							</div>
 
 							{this.state.errorMsg ? 
@@ -197,6 +187,7 @@ export default class Login extends React.Component{
 					</main>
 				</form>
 			</div>
+			
         )
     }
 }
