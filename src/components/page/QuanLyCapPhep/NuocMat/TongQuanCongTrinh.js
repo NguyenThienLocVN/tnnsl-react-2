@@ -17,7 +17,6 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
             pagename: this.props.match.params.pagename,
             showSearch: false,
             dataColumn: [],
-            countData: 0,
             countHydroelectricLicense: 0,
             activeModal: null,
         }
@@ -66,7 +65,6 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                 {
                     this.setState({
                         dataColumn: response.data,
-                        countData: response.data.length,
                     })
                 }
             })
@@ -216,42 +214,42 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                 <img src={this.imageConstruction()} className="p-0 hydroelectric-icon rounded-circle border border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                                 <div className="col-6 text-center p-0">
                                     <p className="fw-bold mb-1">Tổng số công trình {this.constructionType()} </p>
-                                    <p className="font-30 m-0 fw-bold">{this.state.countData}</p>
+                                    <p className="font-30 m-0 fw-bold">{this.state.countHydroelectricLicense.tat_ca_giay_phep}</p>
                                 </div>
                             </div>
 
                             <div className="col-12 py-1 mt-4 d-flex justify-content-center text-center border-top border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Tổng số CT đã vận hành</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countData} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.tat_ca_giay_phep} / {this.state.countHydroelectricLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={this.imageConstruction()} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép đã cấp</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.giay_phep_da_cap} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.giay_phep_da_cap} / {this.state.countHydroelectricLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép sắp hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.sap_het_hieu_luc} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.sap_het_hieu_luc} / {this.state.countHydroelectricLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-2.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-2" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.het_hieu_luc} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countHydroelectricLicense.het_hieu_luc} / {this.state.countHydroelectricLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-3.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-3" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Chưa có giấy phép</p>
-                                    <p className="font-18 m-0 fw-bold text-danger"> {this.state.countHydroelectricLicense.chua_phe_duyet} / {this.state.countData}</p>
+                                    <p className="font-18 m-0 fw-bold text-danger"> {this.state.countHydroelectricLicense.chua_phe_duyet} / {this.state.countHydroelectricLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
@@ -314,23 +312,23 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                     <tr key={i}>
                                                     <td className="text-center align-middle">{i+1}</td>
                                                     <td className="text-start align-middle text-nowrap">
-                                                        <p className="text-dark m-0">{e.so_gp} &nbsp;
-                                                            <span id={e.so_gp} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
+                                                        <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
+                                                            <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
                                                         </p>
                                                     </td>
-                                                    <td className="text-start align-middle">{this.formatDate(e.ngay_ky)}</td>
-                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.ten_ct} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
-                                                    <td className="text-start align-middle">{e.ten_to_chuc}</td>
-                                                    <td className="text-start align-middle">{this.formatDate(e.hieu_luc_tu)}</td>
-                                                    <td className="text-center align-middle">{e.thoi_han_gp}</td>
-                                                    <td className="text-start align-middle">{this.checkStatus(e.status,e.hieu_luc_den)}</td>
+                                                    <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start align-middle">{e.chugiayphep_ten}</td>
+                                                    <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
+                                                    <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
+                                                    <td className="text-start align-middle">{this.checkStatus(e.status,e.gp_ngayhethan)}</td>
                                                     <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                     <>
-                                                        <Modal id={e.so_gp} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
+                                                        <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
                                                             <Modal.Body>
                                                                 <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
                                                                 <div>
-                                                                    <iframe width="100%" height="600" title="file giấy phép" src={"https://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+e.tai_lieu[0].ten_folder+"/"+e.tai_lieu[0].ten_tai_lieu}></iframe>
+                                                                    <iframe width="100%" height="600" title="file giấy phép" src={"https://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+e.tai_lieu[0].tailieu_loaigiayphep+"/"+e.tai_lieu[0].tailieu_name+"/"+e.tai_lieu[0].tailieu_giayphep}></iframe>
                                                                 </div>
                                                             </Modal.Body>
                                                         </Modal>

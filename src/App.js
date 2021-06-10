@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+
+// Authenticated login
+import ProtectedRoute from './components/common/protectedRoute'
 // Home page
 import Home from './components/page/Home';
 // Quanly cap phep page
@@ -27,12 +30,13 @@ function App() {
   return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path="/" component={Home} />
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
+				<ProtectedRoute exact path="/" component={Home} />
+				
 
 				{/* Quan ly cap phep */}
-				<Route exact path="/quan-ly-cap-phep" component={QuanLyCapPhep} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep" component={QuanLyCapPhep} />
 
 				{/* Nuoc Mat */}
 
@@ -40,24 +44,24 @@ function App() {
 				<Route exact path="/quan-ly-cap-phep/nuoc-mat/tao-moi" component={QuanLyCapPhepTaoGiayPhepNuocMat} />
 
 				{/* Tong Quan Cong Trinh */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename" component={QuanLyCapPhepNuocMatTongQuanCongTrinh} />				
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename" component={QuanLyCapPhepNuocMatTongQuanCongTrinh} />				
 
 				{/* Xem Thong Tin GP */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-chung/:id" component={QuanLyCapPhepNuocMatXemThongTinChung} />
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-cong-trinh/:id" component={QuanLyCapPhepNuocMatXemThongTinCongTrinh} />
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-cong-trinh/chi-tiet/:id" component={QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet} />
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/giam-sat-khai-thac-su-dung/:id" component={QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung} />
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/chat-luong-nuoc-mat/:id" component={QuanLyCapPhepNuocMatChatLuongNuocMat} />
-				<Route exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/ho-so-cap-phep/:id" component={QuanLyCapPhepNuocMatHoSoCapPhep} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-chung/:id" component={QuanLyCapPhepNuocMatXemThongTinChung} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-cong-trinh/:id" component={QuanLyCapPhepNuocMatXemThongTinCongTrinh} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/xem-thong-tin-cong-trinh/chi-tiet/:id" component={QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/giam-sat-khai-thac-su-dung/:id" component={QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/chat-luong-nuoc-mat/:id" component={QuanLyCapPhepNuocMatChatLuongNuocMat} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/:pagename/ho-so-cap-phep/:id" component={QuanLyCapPhepNuocMatHoSoCapPhep} />
 
 
 				{/* Gioi thieu chung */}
-				<Route exact path="/gioi-thieu-chung" component={GioiThieuChung} />
+				<ProtectedRoute exact path="/gioi-thieu-chung" component={GioiThieuChung} />
 
-				<Route exact path="/he-thong-giam-sat" component={HeThongGiamSat} />
+				<ProtectedRoute exact path="/he-thong-giam-sat" component={HeThongGiamSat} />
 
 				{/* Bao Cao Bieu Mau */}
-				<Route exact path="/bao-cao-bieu-mau" component={BaoCaoBieuMau} />
+				<ProtectedRoute exact path="/bao-cao-bieu-mau" component={BaoCaoBieuMau} />
 			</Switch>
 		</BrowserRouter>
   );
