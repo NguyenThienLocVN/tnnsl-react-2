@@ -16,7 +16,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         this.state = {
             pagename: this.props.match.params.pagename,
             showSearch: false,
-            dataColumn: [],
+            dataHydroelectricLicense: [],
             countHydroelectricLicense: 0,
             activeModal: null,
         }
@@ -64,7 +64,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                 if(response.status === 200)
                 {
                     this.setState({
-                        dataColumn: response.data,
+                        dataHydroelectricLicense: response.data,
                     })
                 }
             })
@@ -307,7 +307,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.state.dataColumn.map((e, i) => {
+                                            {this.state.dataHydroelectricLicense.map((e, i) => {
                                                 return (
                                                     <tr key={i}>
                                                     <td className="text-center align-middle">{i+1}</td>
@@ -325,10 +325,13 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                     <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                     <>
                                                         <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
-                                                            <Modal.Body>
+                                                            <Modal.Body className="bg-dark">
                                                                 <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
                                                                 <div>
+                                                                    {e.tai_lieu[0] ?
                                                                     <iframe width="100%" height="600" title="file giấy phép" src={"https://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+e.tai_lieu[0].tailieu_loaigiayphep+"/"+e.tai_lieu[0].tailieu_name+"/"+e.tai_lieu[0].tailieu_giayphep}></iframe>
+                                                                    : "Không có tài liệu"
+                                                                    }
                                                                 </div>
                                                             </Modal.Body>
                                                         </Modal>

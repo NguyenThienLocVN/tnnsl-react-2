@@ -96,49 +96,49 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Đơn xin cấp phép:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Báo cáo đề án KTSD:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Kết quả phân tích CLN:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Văn bản ý kiến cộng đồng:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Giấy tờ khác:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Quyết định phê duyệt giấy phép lần 1:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
                                         </div>
                                         <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                             <div className="col-6 px-0 fw-bold text-13">Quyết định phê duyệt giấy phép lần 2:</div>
-                                            <div className="col-6 px-0 row mx-0 text-13">
+                                            <div className="col-12 col-sm-6 px-0 d-flex mx-0 text-13">
                                                 <button type="button" className="btn btn-outline-success btn-sm d-flex align-items-center mx-1 px-1"> <FolderViewOutlined className="mx-2" /> File Đính Kèm </button>
                                                 <button type="button" className="btn btn-outline-info btn-sm d-flex align-items-center mx-1 px-1"> <PrinterOutlined className="mx-2" /> In Giấy Phép </button>
                                             </div>
