@@ -99,14 +99,14 @@ export default class Map extends React.Component {
 							<Marker position={[marker.longitude, marker.latitude]} key={key} >
 								<Popup>
 									<div>
-										<h5 class="card-title fw-bold font-13">Công trình: {marker.congtrinh_ten}</h5>	
+										<h5 class="card-title fw-bold font-13">Hạng mục: {marker.ten_hang_muc}</h5>	
 										<div class="d-flex col-12 p-1">
 											<span class="col-6 py-1">Tọa độ X:</span>
-											<span class="col-6 py-1">{marker.x}</span>
+											<span class="col-6 py-1">{marker.toa_do_x}</span>
 										</div>
 										<div class="d-flex col-12 p-1">
 											<span class="col-6 py-1">Tọa độ Y:</span>
-											<span class="col-6 py-1">{marker.y}</span>
+											<span class="col-6 py-1">{marker.toa_do_y}</span>
 										</div>
 									</div>
 								</Popup>
@@ -119,36 +119,36 @@ export default class Map extends React.Component {
 							<Marker position={[marker["0"].longitude, marker["0"].latitude]} key={key} >
 								<Popup>
 								<div>
-									<h5 class="card-title fw-bold font-13">{marker["0"].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
+									<h5 class="card-title fw-bold font-13">{marker["0"].ten_hang_muc+" - "+marker.ten_ct}</h5>
 									<table class="table table-striped table-hover">
 										<tbody>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Tọa độ X</td>
-												<td class="col-8 py-1">{marker["0"].x}</td>
+												<td class="col-8 py-1">{marker["0"].toa_do_x}</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Tọa độ Y</td>
-												<td class="col-8 py-1">{marker["0"].y}</td>
+												<td class="col-8 py-1">{marker["0"].toa_do_y}</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Địa điểm</td>
-												<td class="col-8 py-1">{marker.congtrinh_diadiem}</td>
+												<td class="col-8 py-1">{marker.dia_diem}</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Số GP</td>
-												<td class="col-8 py-1">{marker.gp_sogiayphep}</td>
+												<td class="col-8 py-1">{marker.so_gp}</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Ngày cấp</td>
-												<td class="col-8 py-1">{this.formatDate(marker.gp_thoigiancapphep)}</td>
+												<td class="col-8 py-1">{this.formatDate(marker.thoi_gian_cp)}</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1 font-11">Cấp thẩm quyền</td>
-												<td class="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+												<td class="col-8 py-1">{marker.don_vi_tham_quyen}</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
-												<td class="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
+												<td class="col-8 py-1">{marker.luu_luong_xa_toi_thieu} m<sup>3</sup>/s</td>
 											</tr>
 											<tr class="col-12 d-flex p-0">
 												<td class="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>

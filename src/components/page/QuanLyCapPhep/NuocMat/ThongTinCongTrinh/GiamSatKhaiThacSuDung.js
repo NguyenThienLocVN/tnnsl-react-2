@@ -426,11 +426,11 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                             <p className="exploit-surfacewater-title col-12 mb-0 p-2 fw-bold text-start">THÔNG TIN CHUNG</p>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Tên công trình:</div>
-                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.congtrinh_ten || ""} readOnly />
+                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.ten_ct || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Ký hiệu công trình:</div>
-                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.congtrinh_kyhieu || ""} readOnly />
+                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.ky_hieu_ct || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Chế độ khai thác:</div>
@@ -438,19 +438,19 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Phương thức khai thác:</div>
-                                                <textarea rows="3" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.phuongthuc_kt || ""} readOnly />
+                                                <textarea rows="3" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.phuong_thuc_kt || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-12 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-12 px-0 fw-bold text-13">Địa điểm:</div>
-                                                <textarea rows="2" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.congtrinh_diadiem || ""} readOnly />
+                                                <textarea rows="2" type="text" className="form-control form-control-sm" defaultValue={this.state.dataHydroContructionInfo.dia_diem || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-6 px-0 fw-bold text-13">Huyện:</div>
-                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.mahuyen || ""} readOnly />
+                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.huyen || ""} readOnly />
                                             </div>
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-6 px-0 fw-bold text-13">Xã:</div>
-                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.maxa || ""} readOnly />
+                                                <input type="text" className="form-control form-control-sm" value={this.state.dataHydroContructionInfo.xa || ""} readOnly />
                                             </div>
                                             {(this.state.pagename === "thuy-dien" || this.state.pagename === "ho-chua") &&
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
@@ -464,12 +464,12 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
                                             </div>}
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-10 px-0 fw-bold text-13">Q xả tối thiểu (m3/s):</div>
-                                                <input type="text" className="form-control form-control-sm col-2" value={this.state.dataHydroContructionInfo.luuluong_xadongchay_toithieu || ""} readOnly />
+                                                <input type="text" className="form-control form-control-sm col-2" value={this.state.dataHydroContructionInfo.luu_luong_xa_toi_thieu || ""} readOnly />
                                             </div>
                                             {(this.state.pagename === "thuy-dien" || this.state.pagename === "ho-chua") &&
                                             <div className="row col-lg-6 mx-0 border-bottom align-items-center py-1">
                                                 <div className="col-10 px-0 fw-bold text-13">Công suất lắp máy MW:</div>
-                                                <input type="text" className="form-control form-control-sm col-2" value={this.state.dataHydroContructionInfo.congsuat_lapmay || ""} readOnly />
+                                                <input type="text" className="form-control form-control-sm col-2" value={this.state.dataHydroContructionInfo.cong_suat_lap_may || ""} readOnly />
                                             </div>}
                                         </div>
                                         <div className="row mx-0 mb-3">
