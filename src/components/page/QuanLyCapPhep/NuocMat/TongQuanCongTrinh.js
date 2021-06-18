@@ -181,21 +181,14 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
         var y = date_format.getFullYear();
         return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
     }
-    checkStatus(status, date){
-        var currentDate = new Date();
-        var licenseDate = new Date(date);
-        var diff = Math.abs(currentDate - licenseDate);
-        var totalDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
-
-        if(status === 0 || status === "0"){
+    checkStatus(hieulucgiayphep){
+        if(hieulucgiayphep === "chuaduocduyet"){
             return <div className="license_status" style={{color: "#fff", backgroundColor: "gray"}}> Chưa duyệt </div>;
-        }else if(currentDate < licenseDate){
-            if(totalDays <= 60 & totalDays >= 0 ){
-                return <div className="license_status" style={{color: "#fff", backgroundColor: "orange"}}> Sắp hết hiệu lực </div>;
-            }else{
-                return <div className="license_status" style={{color: "#fff", backgroundColor: "green"}}> Còn hiệu lực </div>;
-            }
-        }else if(currentDate > licenseDate){
+        }else if(hieulucgiayphep === "saphethieuluc"){
+            return <div className="license_status" style={{color: "#fff", backgroundColor: "orange"}}> Sắp hết hiệu lực </div>;
+        }else if(hieulucgiayphep === "conhieuluc"){
+            return <div className="license_status" style={{color: "#fff", backgroundColor: "green"}}> Còn hiệu lực </div>;
+        }else if(hieulucgiayphep === "hethieuluc"){
             return <div className="license_status" style={{color: "#fff", backgroundColor: "red"}}> Hết hiệu lực </div>;
         }
     }
@@ -321,7 +314,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                     <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                     <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
                                                     <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
-                                                    <td className="text-start align-middle">{this.checkStatus(e.status,e.gp_ngayhethan)}</td>
+                                                    <td className="text-start align-middle">{this.checkStatus(e.hieulucgiayphep)}</td>
                                                     <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                     <>
                                                         <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
