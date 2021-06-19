@@ -93,7 +93,56 @@ export default class Map extends React.Component {
 						url="https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
 						/>
 					</LayersControl.BaseLayer>
-					
+
+					{(this.props.pagename === "thuy-dien" && this.props.subpagename === "") ?
+						mainHydroelectricInfo.map((marker, key) => (
+							<Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+								<Popup>
+								<div>
+									<h5 class="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
+									<table class="table table-striped table-hover">
+										<tbody>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Tọa độ X</td>
+												<td class="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Tọa độ Y</td>
+												<td class="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Địa điểm</td>
+												<td class="col-8 py-1">{marker.congtrinh_diadiem}</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Số GP</td>
+												<td class="col-8 py-1">{marker.gp_sogiayphep}</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Ngày cấp</td>
+												<td class="col-8 py-1">{this.formatDate(marker.gp_thoigiancapphep)}</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1 font-11">Cấp thẩm quyền</td>
+												<td class="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
+												<td class="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
+											</tr>
+											<tr class="col-12 d-flex p-0">
+												<td class="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
+												<td class="col-8 py-1"></td>
+											</tr>
+										</tbody>
+									</table>
+									<Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} class="card-link">Chi tiết công trình</Link>
+								</div>
+								</Popup>
+							</Marker>
+						))
+						: ""
+					}
 				</LayersControl>
 
 				
