@@ -111,8 +111,8 @@ export default class QuanLyCapPhep extends React.Component {
                 if(response.status === 200)
                 {
                     this.setState({
-                        countDataNuocMat: response.data.length,
-                        DataNuocMat: response.data,
+                        countDataNuocMat: response.data.gp_all.length,
+                        DataNuocMat: response.data.gp_all,
                     });
                 }
             })
@@ -196,7 +196,7 @@ export default class QuanLyCapPhep extends React.Component {
                                             <Link to="/quan-ly-cap-phep/nuoc-mat/tram-bom" className="nav-link font-13 hover-link">Trạm Bơm</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="/quan-ly-cap-phep/nuoc-mat/he-thong-thuy-loi" className="nav-link font-13 hover-link">Đập / Hệ Thống Thủy Lợi</Link>
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi" className="nav-link font-13 hover-link">Đập / Hệ Thống Thủy Lợi</Link>
                                         </li>
                                         <li className="nav-item">
                                             <Link to="/quan-ly-cap-phep/nuoc-mat/cong" className="nav-link font-13 hover-link">Cống</Link>
