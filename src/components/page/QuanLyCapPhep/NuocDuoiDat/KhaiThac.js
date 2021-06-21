@@ -16,8 +16,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         this.state = {
             pagename: this.props.match.params.pagename,
             showSearch: false,
-            DataCongTrinhDap: [],
-            countLicense: 0,
+            DataGPKTSDNuocDuoiDat: [],
+            countLicense: [],
             activeModal: null,
         }
         this.clickHandler = this.clickHandler.bind(this);
@@ -33,15 +33,46 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
     componentDidMount(){
         document.title = "Khai thác nước dưới đất";
-        
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-giay-phep")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        DataGPKTSDNuocDuoiDat: response.data,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        countLicense: response.data.countLicense,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
     }
     formatDate(date) {
         if(date === null){
             return "--";
+        }else if(date === "0000-00-00"){
+            return "--";
         }else{
             var date_format = new Date(date);
             var d = date_format.getDate();
-            var m = date_format.getMonth();
+            var m = date_format.getMonth()+1;
             var y = date_format.getFullYear();
             return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
         }
@@ -69,7 +100,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                     <p className="fw-bold font-24 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
-                                    <p className="font-30 m-0 fw-bold">1</p>
+                                    <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-icon border border-secondary my-auto mx-3" alt="dap-thuy-dien" />
@@ -79,35 +110,35 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                             <div className="col-12 py-1 mt-4 d-flex justify-content-center text-center border-top border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Tổng số công trình (TSCT)  đã vận hành</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">1 / 1</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countLicense.tat_ca_giay_phep} / {this.state.countLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="dap-thuy-dien" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép đã cấp</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">0 / 1</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countLicense.giay_phep_da_cap} / {this.state.countLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép sắp hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">0 / 1</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countLicense.sap_het_hieu_luc} / {this.state.countLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-2.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-2" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Giấy phép hết hiệu lực</p>
-                                    <p className="font-18 m-0 fw-bold text-danger">0 / 1</p>
+                                    <p className="font-18 m-0 fw-bold text-danger">{this.state.countLicense.het_hieu_luc} / {this.state.countLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-3.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-3" />
                             </div>
                             <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                                 <div className="col-9 text-start p-0">
                                     <p className="fw-bold m-0">Chưa có giấy phép</p>
-                                    <p className="font-18 m-0 fw-bold text-danger"> 0 / 1</p>
+                                    <p className="font-18 m-0 fw-bold text-danger"> {this.state.countLicense.chua_phe_duyet} / {this.state.countLicense.tat_ca_giay_phep}</p>
                                 </div>
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
@@ -166,35 +197,36 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td className="text-center align-middle">1</td>
-                                                <td className="text-start align-middle text-nowrap">
-                                                    <p className="text-dark m-0">SOGP &nbsp;
-                                                        <span id="SOGP" title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event)}> <FilePdfOutlined /> </span>
-                                                    </p>
-                                                </td>
-                                                <td className="text-start align-middle">1</td>
-                                                <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">1<img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
-                                                <td className="text-start align-middle">1</td>
-                                                <td className="text-start align-middle">1</td>
-                                                <td className="text-center align-middle">1</td>
-                                                <td className="text-start align-middle">1</td>
-                                                <td className="text-start align-middle text-nowrap">
-                                                    <div>
-                                                        <Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/id'}><EyeOutlined /></Link>
-                                                        <Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined />
-                                                        </Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span>
-                                                    </div>
-                                                </td>
-                                                <>
-                                                    <Modal id="1" onHide={this.hideModal} size="xl">
-                                                        <Modal.Body className="bg-dark">
-                                                            <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
-                                                            <div> Không có tài liệu </div>
-                                                        </Modal.Body>
-                                                    </Modal>
-                                                </>
-                                            </tr>
+                                            {this.state.DataGPKTSDNuocDuoiDat.map((e, i) => {
+                                                return (
+                                                    <tr key={i}>
+                                                    <td className="text-center align-middle">{i+1}</td>
+                                                    <td className="text-start align-middle text-nowrap">
+                                                        <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
+                                                            <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
+                                                        </p>
+                                                    </td>
+                                                    <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start align-middle">{e.chugiayphep_ten}</td>
+                                                    <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
+                                                    <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
+                                                    <td className="text-start align-middle">{this.checkStatus(e.hieulucgiayphep)}</td>
+                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-mat/tao-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                    <>
+                                                        <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
+                                                            <Modal.Body className="bg-dark">
+                                                                <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
+                                                                <div>
+                                                                    Chưa có gp
+                                                                </div>
+                                                            </Modal.Body>
+                                                        </Modal>
+                                                    </>
+                                                </tr>
+                                                )
+                                                
+                                            })}
                                         </tbody>
                                     </table>
                                 </div>

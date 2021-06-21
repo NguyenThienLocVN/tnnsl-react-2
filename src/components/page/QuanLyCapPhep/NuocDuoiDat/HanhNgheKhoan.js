@@ -17,7 +17,6 @@ export default class QuanLyCapPhepNuocDuoiDatHanhNgheKhoan extends React.Compone
             pagename: this.props.match.params.pagename,
             showSearch: false,
             DataCongTrinhDap: [],
-            countLicense: 0,
             activeModal: null,
         }
         this.clickHandler = this.clickHandler.bind(this);
@@ -37,6 +36,8 @@ export default class QuanLyCapPhepNuocDuoiDatHanhNgheKhoan extends React.Compone
     }
     formatDate(date) {
         if(date === null){
+            return "--";
+        }else if(date === "0000-00-00"){
             return "--";
         }else{
             var date_format = new Date(date);

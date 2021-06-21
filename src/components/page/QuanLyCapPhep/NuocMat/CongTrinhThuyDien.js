@@ -69,6 +69,8 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
     formatDate(date) {
         if(date === null){
             return "--";
+        }else if(date === "0000-00-00"){
+            return "--";
         }else{
             var date_format = new Date(date);
             var d = date_format.getDate();

@@ -7,19 +7,19 @@ import { SearchOutlined, DownloadOutlined, LineChartOutlined, InfoCircleOutlined
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { trackPromise } from 'react-promise-tracker';
 
+
 export default class QuanLyCapPhep extends React.Component {
     constructor(props)
     {
         super(props)
         this.state = {
-            countDataNuocMat: 0,
-            countLicense: 0,
-            DataNuocMat:[],
+            DemGPNuocMat:[],
+            DemGPKTSDNuocDuoiDat:[],
             barChartData: {
                 labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
                 datasets: [{
                     label: 'Xả nước thải vào nguồn nước',
-                    data: [15, 19, 3, 5, 4, 3],
+                    data: [5, 7, 13, 5, 6, 9],
                     stack: 1,
                     backgroundColor: [
                       'rgba(255, 159, 64)',
@@ -103,32 +103,15 @@ export default class QuanLyCapPhep extends React.Component {
     componentDidMount(){
         document.title = "Quản lý cấp phép | Giám sát tài nguyên nước Sơn La";
 
-
-        trackPromise(
-            axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-tat-ca-giay-phep")
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        countDataNuocMat: response.data.gp_all.length,
-                        DataNuocMat: response.data.gp_all,
-                    });
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response})
-            })
-        )
-
         trackPromise(
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/dem-so-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep")
             .then((response) => {
                 if(response.status === 200)
                 {
                     this.setState({
-                        countLicense: response.data.tat_ca_gp_nuoc_mat,
+                        DemGPNuocMat: response.data.gp_nuocmat,
+                        DemGPKTSDNuocDuoiDat: response.data.gp_ktsdnuocduoidat,
                     });
                 }
             })
@@ -334,23 +317,23 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">{this.state.countDataNuocMat}</p>
+                                        <p className="col-3">{this.state.DemGPNuocMat.tat_ca_giay_phep}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
-                                        <p className="col-3">{this.state.countLicense.con_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPNuocMat.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3"> {this.state.countLicense.sap_het_hieu_luc} </p>
+                                        <p className="col-3"> {this.state.DemGPNuocMat.sap_het_hieu_luc} </p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.countLicense.het_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPNuocMat.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">{this.state.countLicense.chua_phe_duyet}</p>
+                                        <p className="col-3">{this.state.DemGPNuocMat.chua_phe_duyet}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
@@ -364,6 +347,7 @@ export default class QuanLyCapPhep extends React.Component {
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
+                                    
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
@@ -386,23 +370,27 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-euw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.tat_ca_giay_phep}</p>
+                                    </div>
+                                    <div className="fw-bold col-12 d-flex px-2">
+                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
+                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.sap_het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">--</p>
                                     </div>
                                 </div>
 
