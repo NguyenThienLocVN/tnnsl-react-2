@@ -1,12 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { trackPromise } from 'react-promise-tracker';
-import axios from "axios";
-import { MapContainer, TileLayer, LayersControl, Marker, Popup } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import L from 'leaflet';
 
-import configData from '../../config.json';
 import icon from '../common/marker.png';
 
 let DefaultIcon = L.icon({

@@ -8,7 +8,6 @@ import configData from "../../../../config.json";
 import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 
-
 export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Component {
     constructor(props)
     {
@@ -16,9 +15,12 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
         this.state = {
             pagename: this.props.match.params.pagename,
             showSearch: false,
-            DataCongTrinhThuyDien: [],
+            dataCongTrinhThuyDien: [],
             countLicense: 0,
             activeModal: null,
+            total: null,
+            per_page: 10,
+            current_page: 1
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -33,22 +35,7 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
 
     componentDidMount(){
         document.title = "Công trình thủy điện";
-
-        trackPromise(
-            axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-tat-ca-giay-phep")
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        DataCongTrinhThuyDien: response.data.gp_thuydien,
-                    });
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response})
-            })
-        )
+        this.makeHttpRequestWithPage(1);
             
         trackPromise(
             axios
@@ -66,6 +53,27 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
             })
         )
     }
+
+    makeHttpRequestWithPage = (pageNumber) => {
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/danh-sach-tat-ca-giay-phep?page="+pageNumber)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        dataCongTrinhThuyDien: response.data.gp_thuydien.data,
+                        total: response.data.tonggp_thuydien,
+                        current_page: response.data.gp_thuydien.current_page
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+    }
+
     formatDate(date) {
         if(date === null){
             return "--";
@@ -93,6 +101,27 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
 
 
     render(){
+        console.log(Math.ceil(this.state.total / this.state.per_page));
+
+        // Handle pagination feature
+        let renderPageNumbers;
+        const pageNumbers = [];
+        if (this.state.total !== null) {
+            for (let i = 1; i <= Math.ceil(this.state.total / this.state.per_page); i++) {
+                pageNumbers.push(i);
+            }
+    
+            renderPageNumbers = pageNumbers.map(number => {
+                let classes = this.state.current_page === number ? 'active' : '';
+            
+                if (number === 1 || number === this.state.total || (number >= this.state.current_page - 2 && number <= this.state.current_page + 2)) {
+                    return (
+                        <li key={number} className={classes+" page-item cursor_pointer"} onClick={() => this.makeHttpRequestWithPage(number)}><p className="page-link">{number}</p></li>
+                    );
+                }
+            });
+        }
+
         return(
 			<div className="p-0">
                 <Header headTitle="QUẢN LÝ CẤP PHÉP CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
@@ -197,10 +226,10 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.state.DataCongTrinhThuyDien.map((e, i) => {
+                                            {this.state.dataCongTrinhThuyDien.map((e, i) => {
                                                 return (
                                                     <tr key={i}>
-                                                    <td className="text-center align-middle">{i+1}</td>
+                                                    <td className="text-center align-middle">{e.id}</td>
                                                     <td className="text-start align-middle text-nowrap">
                                                         <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
                                                             <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
@@ -232,6 +261,13 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
                                             })}
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation">
+                                        <ul className="pagination justify-content-center">
+                                            <li className={this.state.current_page === 1 ? "disabled page-item" : "page-item"}><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page - 1)}>&laquo;</p></li>
+                                            {renderPageNumbers}
+                                            <li className={this.state.current_page === Math.ceil(this.state.total / this.state.per_page) ? "disabled page-item" : "page-item" }><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page + 1)}>&raquo;</p></li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
