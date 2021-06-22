@@ -5,7 +5,7 @@ import Map from '../../../layout/Map';
 import axios from "axios";
 import { Modal, Button } from 'react-bootstrap';
 import configData from "../../../../config.json";
-import { InfoCircleOutlined, EyeOutlined, PlusOutlined, FileExcelOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
+import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 
 

@@ -32,7 +32,6 @@ export default class Login extends React.Component{
 	componentDidMount(){
         document.title = "Đăng ký | Giám sát tài nguyên nước Sơn La";
 		(function () {
-			'use strict'
 		  
 			// Fetch all the forms we want to apply custom Bootstrap validation styles to
 			var forms = document.querySelectorAll('.needs-validation')

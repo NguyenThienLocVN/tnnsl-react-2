@@ -194,7 +194,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td scope="row"></td>
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
