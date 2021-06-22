@@ -94,7 +94,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 <Header headTitle="QUẢN LÝ CẤP PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
-                        <div className="col-12 px-2">
+                        <div className="col-12 px-2 pb-4">
                             <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
                                     <p className="fw-bold font-24 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
