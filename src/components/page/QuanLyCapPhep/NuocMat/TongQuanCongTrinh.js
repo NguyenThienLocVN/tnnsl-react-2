@@ -117,7 +117,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
     }
 
     xemThongTinChung = () => {
-        return "/quan-ly-cap-phep/nuoc-mat/"+this.state.pagename+"/xem-thong-tin-chung";
+        return "/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-chung";
     }
 
     imageConstruction = () => {
@@ -315,7 +315,7 @@ export default class QuanLyCapPhepNuocMatTongQuanCongTrinh extends React.Compone
                                                     <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
                                                     <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
                                                     <td className="text-start align-middle">{this.checkStatus(e.hieulucgiayphep)}</td>
-                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/'+this.state.pagename+'/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
                                                     <>
                                                         <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
                                                             <Modal.Body className="bg-dark">

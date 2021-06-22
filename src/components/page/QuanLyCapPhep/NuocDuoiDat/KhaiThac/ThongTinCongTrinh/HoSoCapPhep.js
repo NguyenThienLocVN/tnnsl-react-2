@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../../../layout/Header';
-import Map from '../../../../layout/Map';
+import Header from '../../../../../layout/Header';
+import Map from '../../../../../layout/Map';
 import { Link } from 'react-router-dom';
 import { PrinterOutlined, FolderViewOutlined } from '@ant-design/icons';
 

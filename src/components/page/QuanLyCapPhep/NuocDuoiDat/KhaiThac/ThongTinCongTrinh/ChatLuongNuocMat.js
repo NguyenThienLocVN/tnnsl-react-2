@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../../../../layout/Header';
+import Header from '../../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import Map from '../../../../layout/Map';
-import { trackPromise } from 'react-promise-tracker';
+import Map from '../../../../../layout/Map';
 import axios from "axios";
-import configData from "../../../../../config.json";
+import configData from "../../../../../../config.json";
+import { trackPromise } from 'react-promise-tracker';
 
 export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Component {
     constructor(props) {
@@ -16,30 +16,8 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
         };
       }
     componentDidMount(){
-        if(this.state.pagename === "thuy-dien"){
-            document.title = "Xem thông tin | Thủy điện | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "ho-chua"){
-            document.title = "Xem thông tin | Hồ Chứa | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "tram-bom"){
-            document.title = "Xem thông tin | Trạm Bơm | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "he-thong-thuy-loi"){
-            document.title = "Xem thông tin | Đập/Hệ Thống Thủy Lợi | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "cong"){
-            document.title = "Xem thông tin | Cống | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "tram-cap-nuoc"){
-            document.title = "Xem thông tin | Trạm Cấp  Nước | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "nha-may-nuoc"){
-            document.title = "Xem thông tin | Nhà  Máy Nước | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "cong-trinh-khac"){
-            document.title = "Xem thông tin | Công Trình Khác | Quản lý cấp phép nước mặt";
-        }
+        
+        document.title = "Xem thông tin khai thác nước dưới đất";
 
         trackPromise(
             axios
@@ -72,32 +50,6 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
             })
         
     }
-    headerTitle = () => {
-        if(this.state.pagename === "thuy-dien"){
-            return " CÔNG TRÌNH THỦY ĐIỆN | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "ho-chua"){
-            return " CÔNG TRÌNH HỒ CHỨA | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "tram-bom"){
-            return " CÔNG TRÌNH TRẠM BƠM | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "he-thong-thuy-loi"){
-            return " CÔNG TRÌNH HT THỦY LỢI | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "cong"){
-            return " CÔNG TRÌNH CỐNG | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "tram-cap-nuoc"){
-            return " CÔNG TRÌNH TRẠM CẤP NƯỚC | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "nha-may-nuoc"){
-            return " CÔNG TRÌNH NHÀ MÁY NƯỚC | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "cong-trinh-khac"){
-            return " CÔNG TRÌNH KHÁC | THÔNG TIN CHUNG";
-        }
-    }
 
     chatLuongNuocMatQCVN = () => {
         return (
@@ -118,7 +70,7 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle={this.headerTitle()} previousLink={"/quan-ly-cap-phep/nuoc-mat/"+this.props.match.params.id} showHeadImage={true} layout48={true} />
+                <Header headTitle="KHAI THÁC NƯỚC DƯỚI ĐẤT CHẤT LƯỢNG NƯỚC MẶT" previousLink={"/quan-ly-cap-phep/nuoc-mat/"+this.props.match.params.id} showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-lg-12 px-0 row mx-0">
                         <div className="col-lg-2">

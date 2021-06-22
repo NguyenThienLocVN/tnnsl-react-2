@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../../../../layout/Header';
-import Map from '../../../../layout/Map';
+import Header from '../../../../../layout/Header';
+import Map from '../../../../../layout/Map';
 import { FileImageOutlined } from '@ant-design/icons';
 import axios from "axios";
 import { trackPromise } from 'react-promise-tracker';
-import configData from "../../../../../config.json";
+import configData from "../../../../../../config.json";
 
 export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.Component {
     constructor(props) {

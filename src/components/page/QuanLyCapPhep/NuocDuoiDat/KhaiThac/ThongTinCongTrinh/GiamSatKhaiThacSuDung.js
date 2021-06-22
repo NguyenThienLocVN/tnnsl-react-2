@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Header from '../../../../layout/Header';
+import Header from '../../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import Map from '../../../../layout/Map';
+import Map from '../../../../../layout/Map';
 import { DatePicker } from 'antd';
 import { Modal, Button} from 'react-bootstrap';
 import { MacCommandOutlined, SelectOutlined, SearchOutlined, CalendarOutlined, CloseOutlined, FileExcelOutlined, PrinterOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { Line } from 'react-chartjs-2';
 import axios from "axios";
 import { trackPromise } from 'react-promise-tracker';
-import configData from "../../../../../config.json";
+import configData from "../../../../../../config.json";
 
 function TongHopHoChua() {
     const [show, setShow] = useState(false);

@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../../../../layout/Header';
+import Header from '../../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import Map from '../../../../layout/Map';
+import Map from '../../../../../layout/Map';
 import { Tabs } from 'antd';
 import axios from "axios";
-import configData from "../../../../../config.json";
+import configData from "../../../../../../config.json";
 import { FolderViewOutlined, FilePdfOutlined, PrinterOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 
