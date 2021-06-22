@@ -84,6 +84,8 @@
 .bg-sw-box .img__contruction { height: 75px; width: 75px; overflow: hidden; border-radius: 75px;}
 .bg-sw-box .badge { left: 50%; bottom: 0; transform: translateX(-50%); }
 
+.text-violet{ color: #D71EB9;}
+
 .step__button .ant-steps-navigation.ant-steps-small .ant-steps-item-container{
     display: flex; justify-content: center; align-items: center;
 }

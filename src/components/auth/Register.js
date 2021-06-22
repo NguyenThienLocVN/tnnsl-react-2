@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from "axios";
 import { trackPromise } from 'react-promise-tracker';
 import { Alert } from 'antd';
 import { UserOutlined, LockOutlined, BankOutlined, IdcardOutlined, PhoneOutlined, MailOutlined, HomeOutlined } from '@ant-design/icons';

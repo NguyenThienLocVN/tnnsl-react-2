@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
-import Header from '../../../layout/Header';
+import Header from '../../layout/Header';
 import { Steps, Button, message } from 'antd';
-import Map from '../../../layout/Map';
+import Map from '../../layout/Map';
 import { SolutionOutlined, BankOutlined, BarChartOutlined, StarFilled, RightOutlined, LeftOutlined,SaveOutlined } from '@ant-design/icons';
 import FormThongTinChung from "./FormCreate/FormThongTinChung";
 import FormThongTinCongTrinh from "./FormCreate/FormThongTinCongTrinh";
@@ -65,7 +65,7 @@ const steps = [
 ];
 
 
-export default class QuanLyCapPhepNuocMat extends React.Component {
+export default class QuanLyCapPhepCapMoiGiayPhep extends React.Component {
     constructor(props)
     {
         super(props)
