@@ -65,7 +65,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                         <div className="col-12 px-2">
                             <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-24 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">1</p>

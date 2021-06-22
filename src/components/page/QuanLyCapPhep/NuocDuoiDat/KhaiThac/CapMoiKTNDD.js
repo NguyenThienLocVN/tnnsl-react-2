@@ -43,7 +43,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                     <div className="col-12 px-2 pb-4">
                         <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-24 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
@@ -98,7 +98,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <form>
                             <div className="col-12 row m-0 p-0">
-                                <p className="fw-bold w-100 text-violet p-2 m-0">1.Tổ chức/Cá nhân đề nghị CP</p>
+                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">1.Tổ chức/Cá nhân đề nghị CP</p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân </label>
@@ -133,7 +133,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 </div>
                             </div>
                             <div className="col-12 row m-0 p-0">
-                                <p className="fw-bold w-100 text-violet p-2 m-0">2.Nội dung đề nghị cấp phép: </p>
+                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị cấp phép: </p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtring_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
@@ -225,7 +225,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                     </div>
                                 </div>
                                 <div className="col-sm-6 row m-0 p-0">
-                                    <p className="fw-bold w-100 text-violet p-2 m-0">3.Giấy tờ, tài liệu nộp kèm theo</p>
+                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Giấy tờ, tài liệu nộp kèm theo</p>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="filesodo" className="form-label d-block w-75 m-0 font-13">- Sơ đồ khu vực và vị trí công trình khai thác nước dưới đất</label>
@@ -265,7 +265,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 </div>
                                 <div className="col-sm-6 p-0">
                                     <div className="col-sm-12 row m-0 p-0">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép  </p>
+                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép  </p>
                                         <div className="col-sm-12">
                                             <div className="mb-2 d-flex mx-0">
                                                 <label htmlFor="filesodo" className="form-label d-block w-75 m-0 font-13">Đúng sự thật </label>
@@ -286,7 +286,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                     <div className="col-sm-12 row m-0 p-0">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0">5.Tình trạng hồ sơ đề nghị cấp phép  </p>
+                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép  </p>
                                         <div className="col-sm-12">
                                             <div className="mb-2 d-flex mx-0">
                                                 <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Nộp hồ sơ  </label>
