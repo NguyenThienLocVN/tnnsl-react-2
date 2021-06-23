@@ -23,6 +23,7 @@ import QuanLyCapPhepGiaHanKTSDNuocDuoiDat from './components/page/QuanLyCapPhep/
 import QuanLyCapPhepDieuChinhKTSDNuocDuoiDat from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/DieuChinhKTSDNuocDuoiDat';
 import QuanLyCapPhepNuocDuoiDatKhaiThac from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/KhaiThac';
 import QuanLyCapPhepCapMoiGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/CapMoiKTNDD';
+import QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/QuanLyCapPhep';
 // Xem thong tin
 import QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/XemThongTinChung';
 import QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinCongTrinh from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/ThongTinCongTrinh';
@@ -50,6 +51,7 @@ import GioiThieuChung from './components/page/GioiThieuChung/GioiThieuChung';
 import HeThongGiamSat from './components/page/HeThongGiamSat/HeThongGiamSat';
 
 import BaoCaoBieuMau from './components/page/BaoCaoBieuMau/BaoCaoBieuMau';
+
 
 function App() {
   return (
@@ -107,6 +109,9 @@ function App() {
 
 				{/* Cap Moi Khai Thac Nuoc Duoi Dat */}
 				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" component={QuanLyCapPhepCapMoiGiayPhepKTNDD} />
+
+				{/* Quan Ly Cap Moi Khai Thac Nuoc Duoi Dat */}
+				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD} />
 				
 				{/* Xem Thong Tin GP Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung} />

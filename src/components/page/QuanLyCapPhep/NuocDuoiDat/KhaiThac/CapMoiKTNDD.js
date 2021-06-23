@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../../../config.json";
+import {Dropdown} from "react-bootstrap";
 
 
 export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
@@ -89,7 +90,17 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
 
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
+                            
+                            <Dropdown>
+                                <Dropdown.Toggle className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold text-dark" style={{backgroundColor: "#1EC0D7"}} id="CapMoiGiayPhep">
+                                    Cấp mới giấy phép
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi">Cấp mới giấy phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
@@ -290,25 +301,25 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                         <div className="col-sm-12">
                                             <div className="mb-2 d-flex mx-0">
                                                 <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Nộp hồ sơ  </label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-success">Đã Hoàn Tất</span></div>
                                             </div>
                                         </div>
                                         <div className="col-sm-12">
                                             <div className="mb-2 d-flex mx-0">
                                                 <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Đang lấy ý kiến thẩm định</label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-danger">Đang chờ...</span></div>
                                             </div>
                                         </div>
                                         <div className="col-sm-12">
                                             <div className="mb-2 d-flex mx-0">
                                                 <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Hoàn thành hồ sơ cấp phép </label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-danger">Chưa Hoàn Tất</span></div>
                                             </div>
                                         </div>
                                         <div className="col-sm-12">
                                             <div className="mb-2 d-flex mx-0">
                                                 <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Đã được cấp phép</label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-danger">Chưa Hoàn Tất</span></div>
                                             </div>
                                         </div>
                                     </div>
