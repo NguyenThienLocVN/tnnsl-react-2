@@ -22,6 +22,9 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             DataGPKTSDNuocDuoiDat: [],
             countLicense: [],
             activeModal: null,
+            total: null,
+            per_page: 10,
+            current_page: 1
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -34,16 +37,17 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         this.setState({ activeModal: null })
     }
 
-    componentDidMount(){
-        document.title = "Khai thác nước dưới đất";
+    makeHttpRequestWithPage = (pageNumber) => {
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-giay-phep?page="+pageNumber)
             .then((response) => {
                 if(response.status === 200)
                 {
                     this.setState({
                         DataGPKTSDNuocDuoiDat: response.data.gp_ktnuocduoidat.data,
+                        total: response.data.tonggp_ktnuocduoidat,
+                        current_page: response.data.gp_ktnuocduoidat.current_page
                     });
                 }
             })
@@ -51,6 +55,12 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+    }
+
+    componentDidMount(){
+        document.title = "Khai thác nước dưới đất";
+        this.makeHttpRequestWithPage(1);
+    
         trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
@@ -67,6 +77,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             })
         )
     }
+
     formatDate(date) {
         if(date === null){
             return "--";
@@ -92,6 +103,26 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         }
     }
     render(){
+        // Handle pagination feature
+        let renderPageNumbers;
+        const pageNumbers = [];
+        if (this.state.total !== null) {
+            for (let i = 1; i <= Math.ceil(this.state.total / this.state.per_page); i++) {
+                pageNumbers.push(i);
+            }
+    
+            // eslint-disable-next-line array-callback-return
+            renderPageNumbers = pageNumbers.map(number => {
+                let classes = this.state.current_page === number ? 'active' : '';
+            
+                if (number === 1 || number === this.state.total || (number >= this.state.current_page - 2 && number <= this.state.current_page + 2)) {
+                    return (
+                        <li key={number} className={classes+" page-item cursor_pointer"} onClick={() => this.makeHttpRequestWithPage(number)}><p className="page-link">{number}</p></li>
+                    );
+                }
+            });
+        }
+
         return(
 			<div className="p-0">
                 <Header headTitle="QUẢN LÝ CẤP PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
@@ -206,7 +237,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             {this.state.DataGPKTSDNuocDuoiDat.map((e, i) => {
                                                 return (
                                                     <tr key={i}>
-                                                    <td className="text-center align-middle">{i+1}</td>
+                                                    <td className="text-center align-middle">{e.id}</td>
                                                     <td className="text-start align-middle text-nowrap">
                                                         <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
                                                             <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
@@ -235,6 +266,13 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             })}
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation">
+                                        <ul className="pagination justify-content-center">
+                                            <li className={this.state.current_page === 1 ? "disabled page-item" : "page-item"}><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page - 1)}>&laquo;</p></li>
+                                            {renderPageNumbers}
+                                            <li className={this.state.current_page === Math.ceil(this.state.total / this.state.per_page) ? "disabled page-item" : "page-item" }><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page + 1)}>&raquo;</p></li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
