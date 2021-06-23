@@ -12,7 +12,6 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
         this.state = {
           pagename: this.props.match.params.pagename,
           dataHydroContructionInfo: [],
-          dataCategoriesContruction: [],
         };
       }
       componentDidMount(){
@@ -26,28 +25,12 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                 {
                     this.setState({
                         dataHydroContructionInfo: response.data,
-                        dataCategoriesContruction: response.data.hang_muc_ct,
-                        dataWaterFlowAccordingToThePurposeOfUse: response.data.luu_luong_theo_muc_dich_sd
                     });
                 }
             })
             .catch((error) => {
                 this.setState({msg: error.response})
             })
-        )
-    }
-
-    // hang muc cong trinh
-    getCategoriesContruction = () => {
-        return (
-            this.state.dataCategoriesContruction.map((e, i) => (
-                <tr key={i}>
-                    <th className="py-1">{e.tenhangmuc}</th>
-                    <td className="py-1 text-center">{e.x}</td>
-                    <td className="py-1 text-center">{e.y}</td>
-                    <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
-                </tr>
-            ))
         )
     }
 
@@ -369,7 +352,12 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {this.getCategoriesContruction()}
+                                        <tr key="1">
+                                            <th className="py-1">GS</th>
+                                            <td className="py-1 text-center">1223</td>
+                                            <td className="py-1 text-center">123</td>
+                                            <td className="text-center py-1"> <button type="button" className="font-12 mx-auto d-flex align-items-center btn btn-outline-success btn-sm"> <FileImageOutlined className="mx-1" /> XEM</button> </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
