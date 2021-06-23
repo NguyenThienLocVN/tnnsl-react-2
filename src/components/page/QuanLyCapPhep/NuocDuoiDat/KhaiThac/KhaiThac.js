@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import Map from '../../../../layout/Map';
+import { MapContainer } from "react-leaflet";
+import { BasemapLayer, FeatureLayer } from "react-esri-leaflet";
 import axios from "axios";
 import { Modal, Button } from 'react-bootstrap';
 import configData from "../../../../../config.json";
@@ -14,6 +15,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     {
         super(props)
         this.state = {
+            center: [21.529737201190642, 103.9692398828125],
+			zoom: 8,
             pagename: this.props.match.params.pagename,
             showSearch: false,
             DataGPKTSDNuocDuoiDat: [],
@@ -151,7 +154,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50">
-                            <Map className="col-12" pagename={this.state.pagename} subpagename="" />
+                            <MapContainer className="col-12 h-100 w-100 position-relative" center={this.state.center} zoom={this.state.zoom}>
+                                <BasemapLayer name="Imagery" />
+                                <BasemapLayer name="ImageryLabels" />
+                            </MapContainer>
 
                             <div className="col-12 p-0 ">
                                 <div className="col-12 row align-items-center my-1 px-0 mx-0">

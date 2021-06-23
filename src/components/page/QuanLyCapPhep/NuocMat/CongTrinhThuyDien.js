@@ -101,8 +101,6 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
 
 
     render(){
-        console.log(Math.ceil(this.state.total / this.state.per_page));
-
         // Handle pagination feature
         let renderPageNumbers;
         const pageNumbers = [];
@@ -111,6 +109,7 @@ export default class QuanLyCapPhepNuocMatCongTrinhThuyDien extends React.Compone
                 pageNumbers.push(i);
             }
     
+            // eslint-disable-next-line array-callback-return
             renderPageNumbers = pageNumbers.map(number => {
                 let classes = this.state.current_page === number ? 'active' : '';
             
