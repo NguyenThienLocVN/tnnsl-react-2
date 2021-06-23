@@ -21,7 +21,7 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
 
         trackPromise(
             axios
-                .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
+                .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id)
                 .then((response) => {
                     if(response.status === 200)
                     {
@@ -70,16 +70,16 @@ export default class QuanLyCapPhepNuocMatChatLuongNuocMat extends React.Componen
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="KHAI THÁC NƯỚC DƯỚI ĐẤT CHẤT LƯỢNG NƯỚC MẶT" previousLink={"/quan-ly-cap-phep/nuoc-mat/"+this.props.match.params.id} showHeadImage={true} layout48={true} />
+                <Header headTitle="KHAI THÁC NƯỚC DƯỚI ĐẤT CHẤT LƯỢNG NƯỚC MẶT" previousLink={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac"} showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-lg-12 px-0 row mx-0">
                         <div className="col-lg-2">
                             <nav className="nav flex-column nav-pills pt-3">
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-chung/"+this.props.match.params.id} className="nav-link text-dark border-bottom ">Thông tin chung</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-cong-trinh/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Thông tin công trình</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/giam-sat-khai-thac-su-dung/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Giám sát KTSD</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/chat-luong-nuoc-mat/"+this.props.match.params.id} className="nav-link text-dark border-bottom active">Chất lượng nước mặt</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/ho-so-cap-phep/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Hồ sơ cấp phép</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/"+this.props.match.params.id} className="nav-link text-dark border-bottom ">Thông tin chung</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Thông tin công trình</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/giam-sat-khai-thac-su-dung/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Giám sát KTSD</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chat-luong-nuoc-mat/"+this.props.match.params.id} className="nav-link text-dark border-bottom active">Chất lượng nước mặt</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/ho-so-cap-phep/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Hồ sơ cấp phép</Link>
                             </nav>
                         </div>
                         <div className="col-12 row mx-0 col-lg-10 px-md-1 pr-2 menu-home discharge-water">

@@ -334,34 +334,11 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
         };
       }
     componentDidMount(){
-        if(this.state.pagename === "thuy-dien"){
-            document.title = "Xem thông tin | Thủy điện | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "ho-chua"){
-            document.title = "Xem thông tin | Hồ Chứa | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "tram-bom"){
-            document.title = "Xem thông tin | Trạm Bơm | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "he-thong-thuy-loi"){
-            document.title = "Xem thông tin | Đập/Hệ Thống Thủy Lợi | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "cong"){
-            document.title = "Xem thông tin | Cống | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "tram-cap-nuoc"){
-            document.title = "Xem thông tin | Trạm Cấp  Nước | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "nha-may-nuoc"){
-            document.title = "Xem thông tin | Nhà  Máy Nước | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "cong-trinh-khac"){
-            document.title = "Xem thông tin | Công Trình Khác | Quản lý cấp phép nước mặt";
-        }
+        document.title = "Giám sát khai thác sử dụng nước dưới đất";
 
         trackPromise(
             axios
-                .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
+                .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id)
                 .then((response) => {
                     if(response.status === 200)
                     {
@@ -376,46 +353,20 @@ export default class QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung extends React.Com
             )
         
     }
-    headerTitle = () => {
-        if(this.state.pagename === "thuy-dien"){
-            return " CÔNG TRÌNH THỦY ĐIỆN | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "ho-chua"){
-            return " CÔNG TRÌNH HỒ CHỨA | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "tram-bom"){
-            return " CÔNG TRÌNH TRẠM BƠM | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "he-thong-thuy-loi"){
-            return " CÔNG TRÌNH HT THỦY LỢI | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "cong"){
-            return " CÔNG TRÌNH CỐNG | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "tram-cap-nuoc"){
-            return " CÔNG TRÌNH TRẠM CẤP NƯỚC | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "nha-may-nuoc"){
-            return " CÔNG TRÌNH NHÀ MÁY NƯỚC | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "cong-trinh-khac"){
-            return " CÔNG TRÌNH KHÁC | THÔNG TIN CHUNG";
-        }
-    }
 
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle={this.headerTitle()} previousLink={"/quan-ly-cap-phep/nuoc-mat/"+this.props.match.params.id} showHeadImage={true} layout48={true} />
+                <Header headTitle="GIÁM SÁT KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac"} showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-lg-12 px-0 row mx-0">
                         <div className="col-lg-2">
                             <nav className="nav flex-column nav-pills pt-3">
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-chung/"+this.props.match.params.id} className="nav-link text-dark border-bottom ">Thông tin chung</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-cong-trinh/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Thông tin công trình</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/giam-sat-khai-thac-su-dung/"+this.props.match.params.id} className="nav-link text-dark border-bottom active">Giám sát KTSD</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/chat-luong-nuoc-mat/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Chất lượng nước mặt</Link>
-                                <Link to={"/quan-ly-cap-phep/nuoc-mat/ho-so-cap-phep/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Hồ sơ cấp phép</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/"+this.props.match.params.id} className="nav-link text-dark border-bottom ">Thông tin chung</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Thông tin công trình</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/giam-sat-khai-thac-su-dung/"+this.props.match.params.id} className="nav-link text-dark border-bottom active">Giám sát KTSD</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chat-luong-nuoc-mat/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Chất lượng nước mặt</Link>
+                                <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/ho-so-cap-phep/"+this.props.match.params.id} className="nav-link text-dark border-bottom">Hồ sơ cấp phép</Link>
                             </nav>
                         </div>
                         <div className="col-12 col-lg-10 px-0 pr-2 menu-home discharge-water">

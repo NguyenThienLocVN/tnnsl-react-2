@@ -109,12 +109,12 @@ function App() {
 				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" component={QuanLyCapPhepCapMoiGiayPhepKTNDD} />
 				
 				{/* Xem Thong Tin GP Khai Thac Nuoc Duoi Dat */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/:id" component={QuanLyCapPhepNuocMatXemThongTinChung} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/:id" component={QuanLyCapPhepNuocMatXemThongTinCongTrinh} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/chi-tiet/:id" component={QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/giam-sat-khai-thac-su-dung/:id" component={QuanLyCapPhepNuocMatGiamSatKhaiThacSuDung} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chat-luong-nuoc-mat/:id" component={QuanLyCapPhepNuocMatChatLuongNuocMat} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/ho-so-cap-phep/:id" component={QuanLyCapPhepNuocMatHoSoCapPhep} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinCongTrinh} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/chi-tiet/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatThongTinCongTrinhChiTiet} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/giam-sat-khai-thac-su-dung/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatGiamSatKhaiThacSuDung} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chat-luong-nuoc-mat/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatChatLuongNuocMat} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/ho-so-cap-phep/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatHoSoCapPhep} />
 
 
 

@@ -40,7 +40,7 @@ export default class QuanLyCapPhepNuocDuoiDatThamDo extends React.Component {
         }else{
             var date_format = new Date(date);
             var d = date_format.getDate();
-            var m = date_format.getMonth();
+            var m = date_format.getMonth()+1;
             var y = date_format.getFullYear();
             return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
         }

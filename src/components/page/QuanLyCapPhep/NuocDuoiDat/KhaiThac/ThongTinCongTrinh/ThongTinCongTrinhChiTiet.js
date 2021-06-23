@@ -16,34 +16,11 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
         };
       }
       componentDidMount(){
-        if(this.state.pagename === "thuy-dien"){
-            document.title = "Thông tin chi tiết | Thủy điện | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "ho-chua"){
-            document.title = "Thông tin chi tiết | Hồ Chứa | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "tram-bom"){
-            document.title = "Thông tin chi tiết | Trạm Bơm | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "he-thong-thuy-loi"){
-            document.title = "Thông tin chi tiết | Đập/Hệ Thống Thủy Lợi | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "cong"){
-            document.title = "Thông tin chi tiết | Cống | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "tram-cap-nuoc"){
-            document.title = "Thông tin chi tiết | Trạm Cấp  Nước | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "nha-may-nuoc"){
-            document.title = "Thông tin chi tiết | Nhà  Máy Nước | Quản lý cấp phép nước mặt";
-        }
-        else if(this.state.pagename === "cong-trinh-khac"){
-            document.title = "Thông tin chi tiết | Công Trình Khác | Quản lý cấp phép nước mặt";
-        }
+        document.title = "Thông tin chi tiết khai thác sử dụng nước dưới đất";
 
         trackPromise(
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/giay-phep-thuy-dien/"+this.props.match.params.id)
+        .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id)
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -58,32 +35,6 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
                 this.setState({msg: error.response})
             })
         )
-    }
-    headerTitle = () => {
-        if(this.state.pagename === "thuy-dien"){
-            return " CÔNG TRÌNH THỦY ĐIỆN | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "ho-chua"){
-            return " CÔNG TRÌNH HỒ CHỨA | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "tram-bom"){
-            return " CÔNG TRÌNH TRẠM BƠM | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "he-thong-thuy-loi"){
-            return " CÔNG TRÌNH HT THỦY LỢI | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "cong"){
-            return " CÔNG TRÌNH CỐNG | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "tram-cap-nuoc"){
-            return " CÔNG TRÌNH TRẠM CẤP NƯỚC | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "nha-may-nuoc"){
-            return " CÔNG TRÌNH NHÀ MÁY NƯỚC | THÔNG TIN CHUNG";
-        }
-        else if(this.state.pagename === "cong-trinh-khac"){
-            return " CÔNG TRÌNH KHÁC | THÔNG TIN CHUNG";
-        }
     }
 
     // hang muc cong trinh
@@ -103,7 +54,7 @@ export default class QuanLyCapPhepNuocMatThongTinCongTrinhChiTiet extends React.
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle={this.headerTitle()} previousLink={"/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-cong-trinh/"+this.props.match.params.id} showHeadImage={true} layout48={true} />
+                <Header headTitle="THÔNG TIN CÔNG TRÌNH CHI TIẾT KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-cong-trinh/"+this.props.match.params.id} showHeadImage={true} layout66={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-lg-12 px-0 row mx-0">
                         <div className="col-lg-6 px-0 menu-home discharge-water">
