@@ -18,7 +18,7 @@ import QuanLyCapPhepNuocMatCongTrinhCong from './components/page/QuanLyCapPhep/N
 import QuanLyCapPhepNuocMatCongTrinhTramCapNuoc from './components/page/QuanLyCapPhep/NuocMat/CongTrinhTramCapNuoc';
 import QuanLyCapPhepNuocMatCongTrinhNhaMayNuoc from './components/page/QuanLyCapPhep/NuocMat/CongTrinhNhaMayNuoc';
 
-// Quanly cap phep nuoc duoi dat
+// Quanly cap phep khai thac nuoc duoi dat
 import QuanLyCapPhepGiaHanKTSDNuocDuoiDat from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/GiaHanKTSDNuocDuoiDat';
 import QuanLyCapPhepDieuChinhKTSDNuocDuoiDat from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/DieuChinhKTSDNuocDuoiDat';
 import QuanLyCapPhepNuocDuoiDatKhaiThac from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/KhaiThac';
@@ -32,9 +32,15 @@ import QuanLyCapPhepKhaiThacNuocDuoiDatGiamSatKhaiThacSuDung from './components/
 import QuanLyCapPhepKhaiThacNuocDuoiDatChatLuongNuocMat from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/ChatLuongNuocMat';
 import QuanLyCapPhepKhaiThacNuocDuoiDatHoSoCapPhep from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/HoSoCapPhep';
 
-// 
+// Quanly cap phep tham do nuoc duoi dat
+import QuanLyCapPhepGiaHanThamDoNuocDuoiDat from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo/GiaHanThamDo';
+import QuanLyCapPhepNuocDuoiDatThamDo from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo/ThamDo';
+import QuanLyCapPhepDieuChinhThamDo from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo/DieuChinhThamDo';
+import QuanLyCapPhepCapMoiGiayPhepThamDo from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo/CapMoiThamDo';
+import QuanLyCapPhepGiayPhepThamDo from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo/QuanLyCapPhepGiayPhepThamDo';
 
-import QuanLyCapPhepNuocDuoiDatThamDo from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo';
+
+
 import QuanLyCapPhepNuocDuoiDatHanhNgheKhoan from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan';
 import QuanLyCapPhepNuocDuoiDatCongTrinhKhac from './components/page/QuanLyCapPhep/NuocDuoiDat/CongTrinhKhac';
 
@@ -98,6 +104,8 @@ function App() {
 
 				{/* Nuoc Duoi Dat */}
 
+				{/* khai thac */}
+
 				{/* Gia Han Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/gia-han" component={QuanLyCapPhepGiaHanKTSDNuocDuoiDat} />
 
@@ -122,9 +130,24 @@ function App() {
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/ho-so-cap-phep/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatHoSoCapPhep} />
 
 
+				{/* tham do */}
+				
+				{/* Gia Han Tham Do Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/gia-han" component={QuanLyCapPhepGiaHanThamDoNuocDuoiDat} />
+
+				{/* Dieu Chinh Tham Do Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/dieu-chinh" component={QuanLyCapPhepDieuChinhThamDo} />
 
 				{/* Tham Do Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" component={QuanLyCapPhepNuocDuoiDatThamDo} />
+
+				{/* Cap Moi Tham Do Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/cap-moi" component={QuanLyCapPhepCapMoiGiayPhepThamDo} />
+
+				{/* Quan Ly Cap Moi Tham Do Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/quan-ly-cap-moi" component={QuanLyCapPhepGiayPhepThamDo} />
+
+
 
 				{/* Hanh Nghe Khoan Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan" component={QuanLyCapPhepNuocDuoiDatHanhNgheKhoan} />

@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../../../layout/Header';
+import Header from '../../../../layout/Header';
+import Map from '../../../../layout/Map';
 import { Link } from 'react-router-dom';
-import Map from '../../../layout/Map';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Dropdown } from 'react-bootstrap';
 import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 
 
@@ -65,7 +65,7 @@ export default class QuanLyCapPhepNuocDuoiDatThamDo extends React.Component {
                         <div className="col-12 px-2">
                             <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khai thác nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thăm dò nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">1</p>
@@ -111,9 +111,18 @@ export default class QuanLyCapPhepNuocDuoiDatThamDo extends React.Component {
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
 
-                            <Link to="/quan-ly-cap-phep/cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
-                            <Link to="#" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
-                            <Link to="#" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
+                            <Dropdown>
+                                <Dropdown.Toggle className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold text-dark" style={{backgroundColor: "#1EC0D7"}} id="CapMoiGiayPhep">
+                                    Cấp mới giấy phép
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/cap-moi">Cấp mới giấy phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                         </div>
                     </div>
