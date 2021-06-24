@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import { MapContainer } from "react-leaflet";
+import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import { Modal, Button } from 'react-bootstrap';
@@ -205,6 +205,53 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                             <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
                                 <BasemapLayer name="Imagery" />
                                 <BasemapLayer name="ImageryLabels" />
+
+                                {this.state.DataGPKTSDNuocDuoiDat.map((marker, key) => (
+                                    <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_thoigiancapphep)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
+                                                        <td className="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
+                                                        <td className="col-8 py-1"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker>
+                                ))}
                             </MapContainer>
 
                             <div className="col-12 p-0 ">
@@ -241,7 +288,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             <tr>
                                                 <th className="text-nowrap">#</th>
                                                 <th className="text-nowrap">Số giấy phép</th>
-                                                <th className="text-nowrap">Ngày ký giấy phép</th>
+                                                <th className="text-nowrap">Ngày ký</th>
                                                 <th className="text-nowrap">Tên công trình</th>
                                                 <th className="text-nowrap">Tổ chức được cấp phép</th>
                                                 <th className="text-nowrap">Ngày có hiệu lực</th>
