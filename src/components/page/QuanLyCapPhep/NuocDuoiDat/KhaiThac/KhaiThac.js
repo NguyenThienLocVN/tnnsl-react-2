@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
 import { MapContainer } from "react-leaflet";
@@ -9,7 +9,6 @@ import configData from "../../../../../config.json";
 import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import {Dropdown} from "react-bootstrap";
-
 
 export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     constructor(props)
@@ -29,6 +28,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.hideModal = this.hideModal.bind(this);
+
+        this.mapRef = React.createRef();
     }
     clickHandler(e, index) {
         this.setState({ activeModal: index })
@@ -79,6 +80,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         )
     }
 
+    clickToZoom = (lat, long) => {
+        this.mapRef.current.flyTo([lat, long], 10);
+    }
+
     formatDate(date) {
         if(date === null){
             return "--";
@@ -92,6 +97,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
         }
     }
+
     checkStatus(hieulucgiayphep){
         if(hieulucgiayphep === "chuaduocduyet"){
             return <div className="license_status" style={{color: "#fff", backgroundColor: "gray"}}> Chưa duyệt </div>;
@@ -103,6 +109,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             return <div className="license_status" style={{color: "#fff", backgroundColor: "red"}}> Hết hiệu lực </div>;
         }
     }
+
     render(){
         // Handle pagination feature
         let renderPageNumbers;
@@ -195,7 +202,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50">
-                            <MapContainer className="col-12 h-100 w-100 position-relative" center={this.state.center} zoom={this.state.zoom}>
+                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
                                 <BasemapLayer name="Imagery" />
                                 <BasemapLayer name="ImageryLabels" />
                             </MapContainer>
@@ -254,7 +261,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                                         </p>
                                                     </td>
                                                     <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
-                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" onClick={() => this.clickToZoom(e.hang_muc_ct[0].longitude, e.hang_muc_ct[0].latitude)} className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                     <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                     <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
                                                     <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
