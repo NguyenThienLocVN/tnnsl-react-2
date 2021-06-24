@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../../../config.json";
-import {Dropdown, Form} from "react-bootstrap";
+import {Dropdown, Form, Button} from "react-bootstrap";
 import { getUser} from '../../../../common/api';
 
 const user = getUser();
@@ -167,7 +167,8 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                     <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                     <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                     <td className="text-start align-middle">
-                                                        <Form>
+                                                        {user.role === "admin" ?
+                                                        <Form id={"selectStatus"+e.id}>
                                                             <Form.Group controlId={e.gp_sogiayphep}>
                                                                 <Form.Control size="sm" as="select" defaultValue={e.status === 0 & e.status === 1 ? 0 : e.status}>
                                                                     <option value={0}>Nộp hồ sơ</option>
@@ -177,8 +178,20 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                                 </Form.Control>
                                                             </Form.Group>
                                                         </Form>
+                                                        :
+                                                        <Form id={"selectStatus"+e.id}>
+                                                            <Form.Group controlId={e.gp_sogiayphep}>
+                                                                <Form.Control disabled size="sm" as="select" defaultValue={e.status === 0 & e.status === 1 ? 0 : e.status}>
+                                                                    <option value={0}>Nộp hồ sơ</option>
+                                                                    <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                                                    <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                                    <option value={1}>Đã được cấp phép</option>
+                                                                </Form.Control>
+                                                            </Form.Group>
+                                                        </Form>
+                                                        }
                                                     </td>
-                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to="#">Cập nhật</Link></div></td>
+                                                    <td className="text-start align-middle text-nowrap"><div><Button variant="link" title="Cập nhật">Cập nhật</Button></div></td>
                                                 </tr>
                                             )
                                         })}

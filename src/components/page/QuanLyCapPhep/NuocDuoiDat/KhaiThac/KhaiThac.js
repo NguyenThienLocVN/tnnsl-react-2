@@ -264,8 +264,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                                         <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
                                                             <Modal.Body className="bg-dark">
                                                                 <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
-                                                                <div>
-                                                                    Chưa có gp
+                                                                <div className="text-light">
+                                                                    Không có dữ liệu...
                                                                 </div>
                                                             </Modal.Body>
                                                         </Modal>
