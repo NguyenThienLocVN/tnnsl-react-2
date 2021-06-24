@@ -1,17 +1,6 @@
 import React from 'react';
 import { MapContainer } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
-import L from 'leaflet';
-
-import icon from '../common/marker.png';
-
-let DefaultIcon = L.icon({
-    iconUrl: icon,
-	iconSize: [20, 35],
-    iconAnchor: [10, 35]
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
 
 export default class Map extends React.Component {
 	constructor(props) {

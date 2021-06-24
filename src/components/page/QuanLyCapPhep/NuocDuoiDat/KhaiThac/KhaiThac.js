@@ -9,6 +9,17 @@ import configData from "../../../../../config.json";
 import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import {Dropdown} from "react-bootstrap";
+import L from 'leaflet';
+
+import icon from '../../../../common/marker.png';
+
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+	iconSize: [15, 15],
+    iconAnchor: [10, 15]
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     constructor(props)
@@ -81,7 +92,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     }
 
     clickToZoom = (lat, long) => {
-        this.mapRef.current.flyTo([lat, long], 10);
+        this.mapRef.current.flyTo([lat, long], 12);
     }
 
     formatDate(date) {
@@ -247,7 +258,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
                                         </div>
                                         </Popup>
                                     </Marker>
