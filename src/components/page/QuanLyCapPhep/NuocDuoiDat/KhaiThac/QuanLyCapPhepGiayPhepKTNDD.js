@@ -5,9 +5,9 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../../../config.json";
 import {Dropdown, Form} from "react-bootstrap";
-import { EyeOutlined, SearchOutlined } from '@ant-design/icons';
+import { getUser} from '../../../../common/api';
 
-
+const user = getUser();
 export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Component {
     constructor(props)
     {
@@ -15,8 +15,10 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
         this.state = {
             pagename: this.props.match.params.pagename,
             countLicense: [],
+            dataNewLicenseManagement: [],
         }
     }
+    
     componentDidMount(){
         document.title = "Nước dưới đất - cấp mới giấy phéo";
         trackPromise(
@@ -28,6 +30,28 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                     this.setState({
                         countLicense: response.data.gp_ktsdnuocduoidat,
                     });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-cap-moi-giay-phep-ktndd/"+user.id)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    if(user.role === "admin"){
+                        this.setState({
+                            dataNewLicenseManagement: response.data.role_admin.data,
+                        });
+                    }else if(user.role === "user"){
+                        this.setState({
+                            dataNewLicenseManagement: response.data.role_user.data,
+                        });
+                    }
+                    
                 }
             })
             .catch((error) => {
@@ -110,34 +134,20 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 p-0 ">
                             <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                                <div className=" mb-1 col-lg-3 ">
+                                <div className=" mb-1 col-lg-9 ">
                                     <input type="text" className="form-control form-control-sm" placeholder="-- Tìm kiếm --" aria-label="-- Tìm kiếm --" aria-describedby="basic-addon2" />
-                                </div>
-                                <div className="col-lg-3 mb-2">
-                                    <select defaultValue="0" className="form-control form-control-sm font-13">
-                                        <option value="0">-- Chọn hiệu lực --</option>
-                                        <option value="1">Còn hiệu lực</option>
-                                        <option value="2">Chưa phê duyệt</option>
-                                        <option value="3">Hết hiệu lực</option>
-                                        <option value="3">Sắp hết hiệu lực</option>
-                                        <option value="3">Hết hiệu lực chưa có GP thay thế</option>
-                                    </select>
                                 </div>
                                 <div className="col-lg-3 mb-2">
                                     <select defaultValue="0" className="form-control form-control-sm font-13">
                                         <option value="0">-- Sắp xếp --</option>
                                         <option value="1">Sắp xếp theo số giấy phép</option>
-                                        <option value="2">Sắp xếp theo ngày kí</option>
                                         <option value="3">Sắp xếp theo tên công trình</option>
-                                        <option value="3">Sắp xếp theo tên ĐVXCP</option>
-                                        <option value="3">Sắp xếp theo ngày bắt đầu hiệu lực</option>
-                                        <option value="3">Sắp xếp theo ngày kết thúc hiệu lực</option>
+                                        <option value="3">Sắp xếp theo tên ĐVCP</option>
                                     </select>
                                 </div>
-                                <div className="col-lg-3 mb-2 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                             </div>
-                            <div className="table-responsive">
-                                <table className="table table-sm table-bordered col-12 table-hover text-center">
+                            <div className="table-responsive px-2">
+                                <table className="table table-bordered table-hover text-center">
                                     <thead>
                                         <tr>
                                             <th className="text-nowrap">#</th>
@@ -149,25 +159,29 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr key="1">
-                                            <td className="text-center align-middle">1</td>
-                                            <td className="text-start align-middle text-nowrap"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">SOGP/01 < EyeOutlined /></p></td>
-                                            <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">Ten Cong Trinh <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
-                                            <td className="text-start align-middle">Ten Chu GP</td>
-                                            <td className="text-start align-middle">
-                                                <Form>
-                                                    <Form.Group controlId="formGridState">
-                                                        <Form.Control as="select" defaultValue="Nộp hồ sơ">
-                                                            <option>Nộp hồ sơ</option>
-                                                            <option>Đang lấy ý kiến thẩm định</option>
-                                                            <option>Hoàn thành hồ sơ cấp phép</option>
-                                                            <option>Đã được cấp phép</option>
-                                                        </Form.Control>
-                                                    </Form.Group>
-                                                </Form>
-                                            </td>
-                                            <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to="#">Cập nhật</Link></div></td>
-                                        </tr>
+                                        {this.state.dataNewLicenseManagement.map((e, i)=>{
+                                            return(
+                                                <tr key={i}>
+                                                    <td className="text-center align-middle">{i+1}</td>
+                                                    <td className="text-start align-middle text-nowrap"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.gp_sogiayphep}</p></td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start align-middle">{e.chugiayphep_ten}</td>
+                                                    <td className="text-start align-middle">
+                                                        <Form>
+                                                            <Form.Group controlId={e.gp_sogiayphep}>
+                                                                <Form.Control size="sm" as="select" defaultValue={e.status === 0 & e.status === 1 ? 0 : e.status}>
+                                                                    <option value={0}>Nộp hồ sơ</option>
+                                                                    <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                                                    <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                                    <option value={1}>Đã được cấp phép</option>
+                                                                </Form.Control>
+                                                            </Form.Group>
+                                                        </Form>
+                                                    </td>
+                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to="#">Cập nhật</Link></div></td>
+                                                </tr>
+                                            )
+                                        })}
                                     </tbody>
                                 </table>
                             </div>

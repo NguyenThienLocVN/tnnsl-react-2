@@ -23,7 +23,7 @@ import QuanLyCapPhepGiaHanKTSDNuocDuoiDat from './components/page/QuanLyCapPhep/
 import QuanLyCapPhepDieuChinhKTSDNuocDuoiDat from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/DieuChinhKTSDNuocDuoiDat';
 import QuanLyCapPhepNuocDuoiDatKhaiThac from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/KhaiThac';
 import QuanLyCapPhepCapMoiGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/CapMoiKTNDD';
-import QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/QuanLyCapPhep';
+import QuanLyCapPhepGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/QuanLyCapPhepGiayPhepKTNDD';
 // Xem thong tin
 import QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/XemThongTinChung';
 import QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinCongTrinh from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/ThongTinCongTrinh';
@@ -99,19 +99,19 @@ function App() {
 				{/* Nuoc Duoi Dat */}
 
 				{/* Gia Han Khai Thac Nuoc Duoi Dat */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/gia-han" component={QuanLyCapPhepGiaHanKTSDNuocDuoiDat} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/gia-han" component={QuanLyCapPhepGiaHanKTSDNuocDuoiDat} />
 
 				{/* Dieu Chinh Khai Thac Nuoc Duoi Dat */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/dieu-chinh" component={QuanLyCapPhepDieuChinhKTSDNuocDuoiDat} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/dieu-chinh" component={QuanLyCapPhepDieuChinhKTSDNuocDuoiDat} />
 
 				{/* Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" component={QuanLyCapPhepNuocDuoiDatKhaiThac} />
 
 				{/* Cap Moi Khai Thac Nuoc Duoi Dat */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" component={QuanLyCapPhepCapMoiGiayPhepKTNDD} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" component={QuanLyCapPhepCapMoiGiayPhepKTNDD} />
 
 				{/* Quan Ly Cap Moi Khai Thac Nuoc Duoi Dat */}
-				<Route exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" component={QuanLyCapPhepGiayPhepKTNDD} />
 				
 				{/* Xem Thong Tin GP Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung} />

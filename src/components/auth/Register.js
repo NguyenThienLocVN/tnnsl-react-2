@@ -121,8 +121,8 @@ export default class Login extends React.Component{
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Đối tượng <span className="text-danger">*</span></div>
 								<select name="type" onChange={this.onChangeTypehandler} value={this.state.type} className="form-select font-14 rounded-0">
-									<option value="0">Tổ chức</option>
-									<option value="1">Cá nhân</option>
+									<option value="to-chuc">Tổ chức</option>
+									<option value="ca-nhan">Cá nhân</option>
 								</select>
 							</div>
 

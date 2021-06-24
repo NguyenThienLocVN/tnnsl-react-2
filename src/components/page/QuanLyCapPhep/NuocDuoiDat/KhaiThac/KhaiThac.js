@@ -2,12 +2,13 @@ import React from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
 import { MapContainer } from "react-leaflet";
-import { BasemapLayer, FeatureLayer } from "react-esri-leaflet";
+import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import { Modal, Button } from 'react-bootstrap';
 import configData from "../../../../../config.json";
 import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
+import {Dropdown} from "react-bootstrap";
 
 
 export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
@@ -177,7 +178,16 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
 
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
+                            <Dropdown>
+                                <Dropdown.Toggle className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold text-dark" style={{backgroundColor: "#1EC0D7"}} id="CapMoiGiayPhep">
+                                    Cấp mới giấy phép
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi">Cấp mới giấy phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
