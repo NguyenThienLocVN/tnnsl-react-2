@@ -32,6 +32,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             showSearch: false,
             DataGPKTSDNuocDuoiDat: [],
             countLicense: [],
+            dataLicense: [],
+            statusFilter:"all",
             activeModal: null,
             total: null,
             per_page: 10,
@@ -121,7 +123,31 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         }
     }
 
+    filterLicense = (e) => {
+        let status = e.target.value;
+        this.setState({statusFilter: status});
+        
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/filter-license/"+this.state.statusFilter)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        dataLicense: response.data,
+                    });
+                    console.log(this.state.dataLicense);
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+    }
+
     render(){
+        
+        console.log(this.state.statusFilter);
         // Handle pagination feature
         let renderPageNumbers;
         const pageNumbers = [];
@@ -271,13 +297,12 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                         <input type="text" className="form-control form-control-sm" placeholder="-- Tìm kiếm --" aria-label="-- Tìm kiếm --" aria-describedby="basic-addon2" />
                                     </div>
                                     <div className="col-lg-3 mb-2">
-                                        <select defaultValue="0" className="form-control form-control-sm font-13">
-                                            <option value="0">-- Chọn hiệu lực --</option>
-                                            <option value="1">Còn hiệu lực</option>
-                                            <option value="2">Chưa phê duyệt</option>
-                                            <option value="3">Hết hiệu lực</option>
-                                            <option value="3">Sắp hết hiệu lực</option>
-                                            <option value="3">Hết hiệu lực chưa có GP thay thế</option>
+                                        <select defaultValue="all" className="form-control form-control-sm font-13" onChange={this.filterLicense}>
+                                            <option value="all">-- Chọn hiệu lực --</option>
+                                            <option value="conhieuluc">Còn hiệu lực</option>
+                                            <option value="chuapheduyet">Chưa phê duyệt</option>
+                                            <option value="hethieuluc">Hết hiệu lực</option>
+                                            <option value="saphethieuluc">Sắp hết hiệu lực</option>
                                         </select>
                                     </div>
                                     <div className="col-lg-3 mb-2">
@@ -312,30 +337,30 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             {this.state.DataGPKTSDNuocDuoiDat.map((e, i) => {
                                                 return (
                                                     <tr key={i}>
-                                                    <td className="text-center align-middle">{e.id}</td>
-                                                    <td className="text-start align-middle text-nowrap">
-                                                        <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
-                                                            <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
-                                                        </p>
-                                                    </td>
-                                                    <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
-                                                    <td className="text-start align-middle"><p title="Xem bản đồ" onClick={() => this.clickToZoom(e.hang_muc_ct[0].longitude, e.hang_muc_ct[0].latitude)} className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
-                                                    <td className="text-start align-middle">{e.chugiayphep_ten}</td>
-                                                    <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
-                                                    <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
-                                                    <td className="text-start align-middle">{this.checkStatus(e.hieulucgiayphep)}</td>
-                                                    <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
-                                                    <>
-                                                        <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
-                                                            <Modal.Body className="bg-dark">
-                                                                <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
-                                                                <div className="text-light">
-                                                                    Không có dữ liệu...
-                                                                </div>
-                                                            </Modal.Body>
-                                                        </Modal>
-                                                    </>
-                                                </tr>
+                                                        <td className="text-center align-middle">{e.id}</td>
+                                                        <td className="text-start align-middle text-nowrap">
+                                                            <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
+                                                                <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
+                                                            </p>
+                                                        </td>
+                                                        <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
+                                                        <td className="text-start align-middle"><p title="Xem bản đồ" onClick={() => this.clickToZoom(e.hang_muc_ct[0].longitude, e.hang_muc_ct[0].latitude)} className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                        <td className="text-start align-middle">{e.chugiayphep_ten}</td>
+                                                        <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
+                                                        <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
+                                                        <td className="text-start align-middle">{this.checkStatus(e.hieulucgiayphep)}</td>
+                                                        <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
+                                                        <>
+                                                            <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
+                                                                <Modal.Body className="bg-dark">
+                                                                    <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
+                                                                    <div className="text-light">
+                                                                        Không có dữ liệu...
+                                                                    </div>
+                                                                </Modal.Body>
+                                                            </Modal>
+                                                        </>
+                                                    </tr>
                                                 )
                                                 
                                             })}
