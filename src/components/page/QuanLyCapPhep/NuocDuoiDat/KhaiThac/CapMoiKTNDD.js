@@ -276,23 +276,23 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 </div>
                                 <div className="col-sm-6 p-0">
                                     <div className="col-sm-12 row m-0 p-0">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép  </p>
-                                        <div className="col-sm-12">
+                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
+                                        <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 font-13">Đúng sự thật </label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div><input type="checkbox" id="camket_dungsuthat" /></div>
+                                                <label htmlFor="camket_dungsuthat" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
                                             </div>
                                         </div>
-                                        <div className="col-sm-12">
+                                        <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 font-13">Chấp hành đúng, đầy đủ các quy định</label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div><input type="checkbox" id="camket_chaphanhdayduquydinh" /></div>
+                                                <label htmlFor="camket_chaphanhdayduquydinh" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
                                             </div>
                                         </div>
-                                        <div className="col-sm-12">
+                                        <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 font-13">Đã  gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường </label>
-                                                <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
+                                                <div><input type="checkbox" id="camket_daguihosotoibtnmt" /></div>
+                                                <label htmlFor="camket_daguihosotoibtnmt" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
                                             </div>
                                         </div>
                                     </div>

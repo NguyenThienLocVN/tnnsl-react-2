@@ -7,7 +7,7 @@ import configData from "../../../../../config.json";
 import {Dropdown} from "react-bootstrap";
 
 
-export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
+export default class QuanLyCapPhepCapMoiGiayPhepHanhNgheKhoan extends React.Component {
     constructor(props)
     {
         super(props)
@@ -38,13 +38,13 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHOAN NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <div className="col-12 px-2 pb-4">
                         <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thăm dò nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khoan nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
@@ -97,12 +97,12 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/cap-moi">Cấp mới giấy phép</Dropdown.Item>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/cap-moi">Cấp mới giấy phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                         </div>
                     </div>
@@ -147,25 +147,25 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                                 <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị cấp phép: </p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtring_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình thăm dò</label>
+                                        <label htmlFor="congtring_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khoan nước dưới đất</label>
                                         <input type="text" className="form-control form-control-sm" id="congtring_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích thăm dò</label>
+                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khoan nước dưới đất</label>
                                         <input type="text" className="form-control form-control-sm" id="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.3.Quy mô thăm dò</label>
+                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.3.Quy mô khoan</label>
                                         <input type="text" className="form-control form-control-sm" id="tangchuanuoc" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Tầng chứa nước thăm dò </label>
+                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Tầng chứa nước khoan nước dưới đất </label>
                                         <input type="text" className="form-control form-control-sm" id="sogieng_quantrac" />
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                                 </div>
                                 <div className="col-sm-12">
                                     <div className="mb-2 row m-0">
-                                        <label className="form-label fw-bold col-12 p-0">2.7.Số hiệu, vị trí và thông số của công trình khai thác</label>
+                                        <label className="form-label fw-bold col-12 p-0">2.7.Khối lượng hạng mục khoan chủ yếu</label>
                                         <div className="col-sm-10 p-0 table-responsive">
                                             <table className="table table-bordered">
                                                 <thead>
@@ -231,7 +231,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                                 </div>
                                 <div className="col-sm-7">
                                     <div className="mb-2 d-flex mx-0">
-                                        <label htmlFor="filesodo" className="form-label d-block w-75 m-0 fw-bold">2.8.Sơ đồ khu vực và vị trí công trình khai thác nước kèm theo</label>
+                                        <label htmlFor="filesodo" className="form-label d-block w-75 m-0 fw-bold">2.8.Sơ đồ khu vực và vị trí công trình khoan kèm theo</label>
                                         <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
                                     </div>
                                 </div>

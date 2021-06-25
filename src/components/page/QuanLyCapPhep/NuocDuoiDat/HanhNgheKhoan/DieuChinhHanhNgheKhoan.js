@@ -7,7 +7,7 @@ import configData from "../../../../../config.json";
 import {Dropdown} from "react-bootstrap";
 
 
-export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
+export default class QuanLyCapPhepGiaHanHanhNgheKhoan extends React.Component {
     constructor(props)
     {
         super(props)
@@ -17,7 +17,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
         }
     }
     componentDidMount(){
-        document.title = "Nước dưới đất - cấp mới giấy phép";
+        document.title = "Nước dưới đất - điều chỉnh giấy phép";
         trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
@@ -38,13 +38,13 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ GIA HẠN GIẤY PHÉP KHOAN NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <div className="col-12 px-2 pb-4">
                         <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thăm dò nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khoan nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
@@ -90,19 +90,18 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                                 <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                             </div>
 
-                            
                             <Dropdown>
                                 <Dropdown.Toggle className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold text-dark" style={{backgroundColor: "#1EC0D7"}} id="CapMoiGiayPhep">
                                     Cấp mới giấy phép
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/cap-moi">Cấp mới giấy phép</Dropdown.Item>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/cap-moi">Cấp mới giấy phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                         </div>
                     </div>
@@ -110,80 +109,90 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                         <form>
                             <div className="col-12 row m-0 p-0">
                                 <p className="fw-bold w-100 text-violet p-2 m-0 font-15">1.Tổ chức/Cá nhân đề nghị CP</p>
-                                <div className="col-sm-6">
+                                <div className="col-sm-5">
                                     <div className="mb-2">
-                                        <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân  </label>
+                                        <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên chủ giấy phép</label>
                                         <input type="text" className="form-control form-control-sm" id="chugiayphep_ten" />
                                     </div>
                                 </div>
-                                <div className="col-sm-6">
+                                <div className="col-sm-4">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_sogiaypheo" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh</label>
-                                        <input type="text" className="form-control form-control-sm" id="gp_sogiaypheo" />
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="mb-2">
-                                        <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.3.Địa chỉ  </label>
+                                        <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.2.Địa chỉ</label>
                                         <input type="text" className="form-control form-control-sm" id="chugiayphep_diachi" />
                                     </div>
                                 </div>
-                                <div className="col-sm-6 p-0 row m-0">
-                                    <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.4.Điện thoại   </label>
+                                <div className="col-sm-3">
+                                    <div className="mb-2">
+                                        <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.3.Điện thoại</label>
                                         <input type="text" className="form-control form-control-sm" id="chugiayphep_phone" />
                                     </div>
-                                    <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax   </label>
-                                        <input type="text" className="form-control form-control-sm" id="chugiayphep_fax" />
-                                    </div>
-                                    <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email   </label>
-                                        <input type="mail" className="form-control form-control-sm" id="chugiayphep_email" />
-                                    </div>
+                                </div>
+                                <div className="mb-2 col-sm-2">
+                                    <label htmlFor="gp_sogiayphep" className="form-label fw-bold m-0">1.4.Số Giấy phép</label>
+                                    <input type="text" className="form-control form-control-sm" id="gp_sogiayphep" />
+                                </div>
+                                <div className="mb-2 col-sm-2">
+                                    <label htmlFor="gp_ngayky" className="form-label fw-bold m-0">1.5.Ngày ký</label>
+                                    <input type="text" className="form-control form-control-sm" id="gp_ngayky" />
+                                </div>
+                                <div className="mb-2 col-sm-2">
+                                    <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">1.6.Hiệu lực từ ngày</label>
+                                    <input type="mail" className="form-control form-control-sm" id="congtrinh_ten" />
+                                </div>
+                                <div className="mb-2 col-sm-2">
+                                    <label htmlFor="gp_ngayhieuluc" className="form-label fw-bold m-0">1.7.Tên công trình</label>
+                                    <input type="mail" className="form-control form-control-sm" id="gp_ngayhieuluc" />
+                                </div>
+                                <div className="mb-2 col-sm-2">
+                                    <label htmlFor="gp_ngayhieuluc" className="form-label fw-bold m-0">1.8.Fax </label>
+                                    <input type="mail" className="form-control form-control-sm" id="gp_ngayhieuluc" />
+                                </div>
+                                <div className="mb-2 col-sm-2">
+                                    <label htmlFor="gp_ngayhieuluc" className="form-label fw-bold m-0">1.9.Email </label>
+                                    <input type="mail" className="form-control form-control-sm" id="gp_ngayhieuluc" />
                                 </div>
                             </div>
                             <div className="col-12 row m-0 p-0">
-                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị cấp phép: </p>
+                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị điều chỉnh giấy phép: </p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtring_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình thăm dò</label>
+                                        <label htmlFor="congtring_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khoan</label>
                                         <input type="text" className="form-control form-control-sm" id="congtring_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích thăm dò</label>
+                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khoan</label>
                                         <input type="text" className="form-control form-control-sm" id="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.3.Quy mô thăm dò</label>
+                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.3.Quy mô khoan</label>
                                         <input type="text" className="form-control form-control-sm" id="tangchuanuoc" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Tầng chứa nước thăm dò </label>
+                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Tầng chứa nước khoan </label>
                                         <input type="text" className="form-control form-control-sm" id="sogieng_quantrac" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.5.Thời gian thi công</label>
+                                        <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.5.Lý do đề nghị điều chỉnh giấy phép khoan nước dưới đất</label>
                                         <input type="text" className="form-control form-control-sm" id="tongluuluong_ktsd_max" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
+                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị  điều chỉnh giấy phép</label>
                                         <input type="text" className="form-control form-control-sm" id="gp_thoigiancapphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
                                     <div className="mb-2 row m-0">
-                                        <label className="form-label fw-bold col-12 p-0">2.7.Số hiệu, vị trí và thông số của công trình khai thác</label>
+                                        <label className="form-label fw-bold col-12 p-0">2.7.Khối lượng hạng mục khoan chủ yếu</label>
                                         <div className="col-sm-10 p-0 table-responsive">
                                             <table className="table table-bordered">
                                                 <thead>
@@ -231,7 +240,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepThamDo extends React.Component {
                                 </div>
                                 <div className="col-sm-7">
                                     <div className="mb-2 d-flex mx-0">
-                                        <label htmlFor="filesodo" className="form-label d-block w-75 m-0 fw-bold">2.8.Sơ đồ khu vực và vị trí công trình khai thác nước kèm theo</label>
+                                        <label htmlFor="filesodo" className="form-label d-block w-75 m-0 fw-bold">2.10.Sơ đồ khu vực và vị trí công trình khai thác nước kèm theo</label>
                                         <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="filesodo" /></div>
                                     </div>
                                 </div>

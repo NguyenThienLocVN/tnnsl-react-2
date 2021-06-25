@@ -44,7 +44,7 @@ export default class QuanLyCapPhepGiaHanThamDo extends React.Component {
                     <div className="col-12 px-2 pb-4">
                         <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thâm dò nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thăm dò nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
@@ -270,13 +270,22 @@ export default class QuanLyCapPhepGiaHanThamDo extends React.Component {
                                 <div className="col-sm-6 p-0">
                                     <div className="col-sm-12 row m-0 p-0">
                                         <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
-                                        <p className="m-0">Đúng sự thật</p>
-                                        <p className="m-0">Chấp hành đúng, đầy đủ các quy định</p>
-                                        <p className="m-0">Đã  gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</p>
                                         <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex mx-0">
-                                                <div><input type="checkbox" id="camket" /></div>
-                                                <label htmlFor="camket" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đồng ý</label>
+                                                <div><input type="checkbox" id="camket_dungsuthat" /></div>
+                                                <label htmlFor="camket_dungsuthat" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-12 mt-2">
+                                            <div className="mb-2 d-flex mx-0">
+                                                <div><input type="checkbox" id="camket_chaphanhdayduquydinh" /></div>
+                                                <label htmlFor="camket_chaphanhdayduquydinh" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-12 mt-2">
+                                            <div className="mb-2 d-flex mx-0">
+                                                <div><input type="checkbox" id="camket_daguihosotoibtnmt" /></div>
+                                                <label htmlFor="camket_daguihosotoibtnmt" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
                                             </div>
                                         </div>
                                     </div>

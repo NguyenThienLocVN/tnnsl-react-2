@@ -40,8 +40,16 @@ import QuanLyCapPhepCapMoiGiayPhepThamDo from './components/page/QuanLyCapPhep/N
 import QuanLyCapPhepGiayPhepThamDo from './components/page/QuanLyCapPhep/NuocDuoiDat/ThamDo/QuanLyCapPhepGiayPhepThamDo';
 
 
+// Quanly cap phep hanh nghe khoan nuoc duoi dat
+import QuanLyCapPhepGiaHanHanhNgheKhoanNuocDuoiDat from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan/GiaHanHanhNgheKhoan';
+import QuanLyCapPhepNuocDuoiDatHanhNgheKhoan from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan/HanhNgheKhoan';
+import QuanLyCapPhepDieuChinhHanhNgheKhoan from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan/DieuChinhHanhNgheKhoan';
+import QuanLyCapPhepCapMoiGiayPhepHanhNgheKhoan from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan/CapMoiHanhNgheKhoan';
+import QuanLyCapPhepGiayPhepHanhNgheKhoan from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan/QuanLyCapPhepGiayPhepHanhNgheKhoan';
 
-import QuanLyCapPhepNuocDuoiDatHanhNgheKhoan from './components/page/QuanLyCapPhep/NuocDuoiDat/HanhNgheKhoan';
+
+
+
 import QuanLyCapPhepNuocDuoiDatCongTrinhKhac from './components/page/QuanLyCapPhep/NuocDuoiDat/CongTrinhKhac';
 
 import QuanLyCapPhepNuocMatXemThongTinChung from './components/page/QuanLyCapPhep/NuocMat/ThongTinCongTrinh/XemThongTinChung';
@@ -130,7 +138,7 @@ function App() {
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/ho-so-cap-phep/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatHoSoCapPhep} />
 
 
-				{/* tham do */}
+				{/* Tham Do */}
 				
 				{/* Gia Han Tham Do Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/gia-han" component={QuanLyCapPhepGiaHanThamDoNuocDuoiDat} />
@@ -146,6 +154,23 @@ function App() {
 
 				{/* Quan Ly Cap Moi Tham Do Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/quan-ly-cap-moi" component={QuanLyCapPhepGiayPhepThamDo} />
+
+				{/* Hanh Nghe Khoan */}
+				
+				{/* Gia Han Hanh Nghe Khoan Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/gia-han" component={QuanLyCapPhepGiaHanHanhNgheKhoanNuocDuoiDat} />
+
+				{/* Dieu Chinh Hanh Nghe Khoan Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/dieu-chinh" component={QuanLyCapPhepDieuChinhHanhNgheKhoan} />
+
+				{/* Hanh Nghe Khoan Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan" component={QuanLyCapPhepNuocDuoiDatHanhNgheKhoan} />
+
+				{/* Cap Moi Hanh Nghe Khoan Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/cap-moi" component={QuanLyCapPhepCapMoiGiayPhepHanhNgheKhoan} />
+
+				{/* Quan Ly Cap Moi Hanh Nghe Khoan Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/quan-ly-cap-moi" component={QuanLyCapPhepGiayPhepHanhNgheKhoan} />
 
 
 

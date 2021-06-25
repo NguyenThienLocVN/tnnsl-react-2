@@ -8,7 +8,7 @@ import {Dropdown, Form, Button} from "react-bootstrap";
 import { getUser} from '../../../../common/api';
 
 const user = getUser();
-export default class QuanLyCapPhepQuanLyCapPhepGiayPhepThamDo extends React.Component {
+export default class QuanLyCapPhepQuanLyCapPhepGiayPhepHanhNgheKhoan extends React.Component {
     constructor(props)
     {
         super(props)
@@ -63,13 +63,13 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepThamDo extends React.Comp
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="QUẢN LÝ CẤP MỚI GIẤY PHÉP KHOAN NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <div className="col-12 px-2 pb-4">
                         <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                                 <div className="col-12 text-center p-0">
-                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thăm dò nước dưới đất </p>
+                                    <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> khoan nước dưới đất </p>
                                 </div>
                                 <div className="col-6 text-center p-0">
                                     <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
@@ -122,12 +122,12 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepThamDo extends React.Comp
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/cap-moi">Cấp mới giấy phép</Dropdown.Item>
+                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/cap-moi">Cấp mới giấy phép</Dropdown.Item>
                                     <Dropdown.Item href="#/action-3">Quản lý cấp phép</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
-                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                         </div>
                     </div>
