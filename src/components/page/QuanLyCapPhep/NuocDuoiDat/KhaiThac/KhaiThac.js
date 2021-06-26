@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, LayersControl } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import { Modal, Button } from 'react-bootstrap';
@@ -9,7 +9,8 @@ import configData from "../../../../../config.json";
 import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import {Dropdown} from "react-bootstrap";
-import L from 'leaflet';
+import * as L from 'leaflet';
+import * as esri from 'esri-leaflet';
 
 import icon from '../../../../common/marker.png';
 
@@ -33,7 +34,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             DataGPKTSDNuocDuoiDat: [],
             countLicense: [],
             dataLicense: [],
-            statusFilter:"all",
+            statusFilter: "all",
+			contructionInfoForMap: [],
             activeModal: null,
             total: null,
             per_page: 10,
@@ -70,6 +72,22 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh?page="+pageNumber)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        contructionInfoForMap: response.data,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
     }
 
     componentDidMount(){
@@ -95,6 +113,60 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
     clickToZoom = (lat, long) => {
         this.mapRef.current.flyTo([lat, long], 12);
+    }
+
+    changeBasemap = (event) => {
+        // Change basemap follow select option
+        var basemap = event.target.value
+        var map = this.mapRef.current;
+
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+    
+        var layer = esri.basemapLayer(basemap);
+    
+        map.addLayer(layer);
+    
+        if (basemap === 'ShadedRelief'
+        || basemap === 'Oceans'
+        || basemap === 'Gray'
+        ) {
+            var layerLabels = esri.basemapLayer(basemap + 'Labels');
+            map.addLayer(layerLabels);
+        } else if (basemap === 'Imagery') {
+            var imagery = esri.basemapLayer('Imagery');
+            var imageryLabels = esri.basemapLayer('ImageryLabels');
+            map.addLayer(imagery);
+            map.addLayer(imageryLabels);
+        }
+
+        // Add marker
+        var markerStyle = {
+            radius: 7,
+            fillColor: "yellow",
+            color: "yellow",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 1,
+            className: 'marker'
+        };
+
+        // Draw circle each point
+        L.geoJSON(this.state.contructionInfoForMap, {
+        onEachFeature: this.onEachFeature,
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, markerStyle);
+        }
+        }).addTo(map);
+    }
+
+    // Click to show popup
+    onEachFeature = (feature, layer) => {
+        if (feature.properties && feature.properties.hoverContent) {
+            layer.on('click', function() { layer.bindPopup(feature.properties.detailContent, {closeOnClick: true, autoClose: false}).openPopup()});
+            layer.on('mouseover', function() { layer.bindPopup(feature.properties.hoverContent).openPopup()});
+        }
     }
 
     formatDate(date) {
@@ -146,8 +218,6 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     }
 
     render(){
-        
-        console.log(this.state.statusFilter);
         // Handle pagination feature
         let renderPageNumbers;
         const pageNumbers = [];
@@ -238,10 +308,64 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                         </div>
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
-                        <div className="col-12 px-md-1 vh-50">
+                        <div className="col-12 px-md-1 vh-50 position-relative">
+                            <select defaultValue="Imagery" id="switch-basemaps" className="position-absolute" onChange={this.changeBasemap}>
+                                <option value="Imagery">Bản đồ vệ tinh</option>
+                                <option value="Topographic">Bản đồ địa hình</option>
+                                <option value="Streets">Bản đồ đường</option>
+                                <option value="NationalGeographic">Bản đồ địa lý</option>
+                                <option value="Gray">Bản đồ xám</option>
+                            </select>
                             <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
                                 <BasemapLayer name="Imagery" />
                                 <BasemapLayer name="ImageryLabels" />
+
+                                {this.state.DataGPKTSDNuocDuoiDat.map((marker, key) => (
+                                    marker.hang_muc_ct[0] ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+                                    <Popup>
+                                    <div>
+                                        <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                        <table className="table table-striped table-hover mb-2">
+                                            <tbody>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Tọa độ X</td>
+                                                    <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Tọa độ Y</td>
+                                                    <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Địa điểm</td>
+                                                    <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Số GP</td>
+                                                    <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Ngày cấp</td>
+                                                    <td className="col-8 py-1">{this.formatDate(marker.gp_thoigiancapphep)}</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                    <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
+                                                    <td className="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
+                                                </tr>
+                                                <tr className="col-12 d-flex p-0">
+                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
+                                                    <td className="col-8 py-1"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <Link to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                    </div>
+                                    </Popup>
+                                </Marker> : ""
+                                ))}
                             </MapContainer>
 
                             <div className="col-12 p-0 ">

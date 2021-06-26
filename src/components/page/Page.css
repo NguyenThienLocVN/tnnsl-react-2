@@ -1,18 +1,13 @@
-/* Home page */
-/* .menu-home {
-    height: calc(100vh - 169px);
-    overflow-y: auto;
-}
-
-.menu-page {
-    height: calc(100vh - 35px);
-    overflow-y: auto;
-} */
-
 .banner-tnmt { height: 65px; }
 
 .map-container {
     height: calc(100vh - 169px);
+}
+
+#switch-basemaps {
+    z-index: 9999;
+    right: 15px;
+    top: 20px;
 }
 
 .top-bar {
