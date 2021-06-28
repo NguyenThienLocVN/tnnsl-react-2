@@ -57,7 +57,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP  KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <div className="col-12 px-2 pb-4">
@@ -207,22 +207,22 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center align-center" rowSpan="2">Số hiệu</th>
-                                                        <th className="text-center align-center" colSpan="2">Tọa độ (VN2000, kinh tuyến trục,...múi chiếu,...)</th>
-                                                        <th className="text-center align-center" rowSpan="2">Lưu lượng(m3/ngày đêm)</th>
-                                                        <th className="text-center align-center" rowSpan="2">Chế độ khai thác (giờ/ngày đêm)</th>
-                                                        <th className="text-center align-center" colSpan="2">Chiều sâu đoạn thu nước(m)</th>
-                                                        <th className="text-center align-center" rowSpan="2">Chiều sâu mực nước tĩnh(m)</th>
-                                                        <th className="text-center align-center" rowSpan="2">Chiều sâu mực nước động lớn nhất cho phép (m)</th>
-                                                        <th className="text-center align-center" rowSpan="2">Tầng chứa nước khai thác</th>
-                                                        <th className="text-center align-center text-nowrap">Thao Tác</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Số hiệu</th>
+                                                        <th className="text-center align-middle" colSpan="2">Tọa độ (VN2000, kinh tuyến trục,...múi chiếu,...)</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Lưu lượng(m3/ngày đêm)</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Chế độ khai thác (giờ/ngày đêm)</th>
+                                                        <th className="text-center align-middle" colSpan="2">Chiều sâu đoạn thu nước(m)</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Chiều sâu mực nước tĩnh(m)</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Chiều sâu mực nước động lớn nhất cho phép (m)</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Tầng chứa nước khai thác</th>
+                                                        <th className="text-center align-middle text-nowrap">Thao Tác</th>
                                                     </tr>
                                                     <tr>
-                                                        <th className="text-center align-center">X</th>
-                                                        <th className="text-center align-center">Y</th>
-                                                        <th className="text-center align-center">Từ</th>
-                                                        <th className="text-center align-center">Đến</th>
-                                                        <th className="text-center align-center">
+                                                        <th className="text-center align-middle">X</th>
+                                                        <th className="text-center align-middle">Y</th>
+                                                        <th className="text-center align-middle">Từ</th>
+                                                        <th className="text-center align-middle">Đến</th>
+                                                        <th className="text-center align-middle">
                                                             <div className="w-100">
                                                                 <Button variant="primary" className="mb-2 w-100 btn btn-sm" onClick={event => this.clickHandler(event, "1")}>Thêm</Button>
                                                                 <>
@@ -299,17 +299,40 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="sohieu" name="sohieu" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="x" name="x" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="y" name="y" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="luuluongkhaithac" name="luuluongkhaithac" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="chedo_ktsd" name="chedo_ktsd" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="chieusau_doanthunuoctu" name="chieusau_doanthunuoctu" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="chieusau_doanthunuocden" name="chieusau_doanthunuocden" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="chieusau_mucnuoctinh" name="chieusau_mucnuoctinh" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="chieusau_mucnuocdong_max" name="chieusau_mucnuocdong_max" readOnly />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" className="form-control form-control-sm" id="tangchuanuoc_kt" name="tangchuanuoc_kt" readOnly />
+                                                        </td>
+                                                        <td className="d-flex">
+                                                            <Button size="sm" variant="primary">Sửa</Button>
+                                                            <Button size="sm" variant="danger">Xóa</Button>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
