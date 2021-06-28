@@ -146,8 +146,8 @@
 }
 .close-btn{position: absolute; top: 5px; right: 5px;}
 /* giam sat ktsd */
-
-
+.ant-pagination-options { display: none !important; }
+.ant-modal-mask { background-color: rgb(0 0 0 / 9%) !important; }
 
 /* He thong giam sat */
 .hover-bg:hover{background-color: lightgray; transition-duration: 500ms;}

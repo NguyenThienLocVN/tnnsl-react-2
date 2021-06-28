@@ -1,19 +1,22 @@
 import React, { useRef } from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
-import { MapContainer, Marker, Popup, TileLayer, LayersControl } from "react-leaflet";
+import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
-import { Modal, Button } from 'react-bootstrap';
 import configData from "../../../../../config.json";
-import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
+import { EyeOutlined, SearchOutlined, FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import {Dropdown} from "react-bootstrap";
+import { Table, Select, Input, Modal} from 'antd';
+
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
 
 import icon from '../../../../common/marker.png';
 
+
+const { Option } = Select;
 let DefaultIcon = L.icon({
     iconUrl: icon,
 	iconSize: [15, 15],
@@ -31,68 +34,43 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 			zoom: 8,
             pagename: this.props.match.params.pagename,
             showSearch: false,
-            DataGPKTSDNuocDuoiDat: [],
             countLicense: [],
-            dataLicense: [],
-            statusFilter: "",
 			contructionInfoForMap: [],
             activeModal: null,
-            total: null,
-            per_page: 10,
-            current_page: 1
+            loading: false,
+            sRT: "",
+            dataSource: [],
+            nameSearch: "",
+            visible: false,
+            activeModal: null,
         }
-        this.clickHandler = this.clickHandler.bind(this);
-        this.hideModal = this.hideModal.bind(this);
 
         this.mapRef = React.createRef();
     }
-    clickHandler(e, index) {
+
+    showModal = (item) => {
+        this.setState({
+            visible: true,
+            currentItem: item
+        });
+    };
+
+    handleCancel = e => {
+        this.setState({
+          visible: false
+        });
+      };
+
+    clickHandler = (e, index) => {
         this.setState({ activeModal: index })
     }
     
-    hideModal() {
+    hideModal = () => {
         this.setState({ activeModal: null })
-    }
-
-    makeHttpRequestWithPage = (pageNumber) => {
-        trackPromise(
-            axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-giay-phep?page="+pageNumber)
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        DataGPKTSDNuocDuoiDat: response.data.gp_ktnuocduoidat.data,
-                        total: response.data.tonggp_ktnuocduoidat,
-                        current_page: response.data.gp_ktnuocduoidat.current_page
-                    });
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response})
-            })
-        )
-
-        trackPromise(
-            axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh?page="+pageNumber)
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        contructionInfoForMap: response.data,
-                    });
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response})
-            })
-        )
     }
 
     componentDidMount(){
         document.title = "Khai thác nước dưới đất";
-        this.makeHttpRequestWithPage(1);
     
         trackPromise(
             axios
@@ -109,6 +87,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+
+        this.fetch(this.state.pagination);
     }
 
     clickToZoom = (lat, long) => {
@@ -195,48 +175,155 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         }
     }
 
-    filterLicense = (e) => {
-        let filter = e.target.value;
-        
-        trackPromise(
-            axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/loc-giay-phep/"+filter)
+    handleTableChange = (pagination, filters, sorter) => {
+        this.fetch({
+          sortField: sorter.field,
+          sortOrder: sorter.order,
+          pagination,
+          ...filters,
+        });
+    };
+
+    fetch = (params = {}) => {
+        this.setState({ loading: true });
+        axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-giay-phep")
             .then((response) => {
                 if(response.status === 200)
                 {
                     this.setState({
-                        DataGPKTSDNuocDuoiDat: response.data.hethieuluc.data,
-                        total: response.data.tong_hethieuluc,
-                        current_page: response.data.hethieuluc.current_page
-                    });
+                        loading: false,
+                        dataSource: response.data,
+                        pagination: {
+                          ...params.pagination,
+                          total: 200,
+                        },
+                      });
                 }
             })
             .catch((error) => {
                 this.setState({msg: error.response})
             })
-        )
-    }
+    };
+
+    getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({
+          setSelectedKeys,
+          selectedKeys,
+          confirm,
+          clearFilters
+        }) => (
+          <div style={{ padding: 8 }}>
+            <Input
+              placeholder={`Search ${dataIndex}`}
+              //value={selectedKeys[0]}
+              onChange={e =>
+                setSelectedKeys(e.target.value ? [e.target.value] : [])
+              }
+              onPressEnter={() => this.handleSearch(selectedKeys, confirm)}
+            />
+          </div>
+        ),
+        filterIcon: filtered => (
+          <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+          if (visible) {
+            setTimeout(() => this.searchInput.select());
+          }
+        }
+      });
+    
+      handleSearch = (selectedKeys, confirm) => {
+        confirm();
+        this.setState({ sRT: selectedKeys[0] });
+      };
+    
+      handleReset = clearFilters => {
+        clearFilters();
+        this.setState({ sRT: "" });
+      };
 
     render(){
-        // Handle pagination feature
-        let renderPageNumbers;
-        const pageNumbers = [];
-        if (this.state.total !== null) {
-            for (let i = 1; i <= Math.ceil(this.state.total / this.state.per_page); i++) {
-                pageNumbers.push(i);
-            }
-    
-            // eslint-disable-next-line array-callback-return
-            renderPageNumbers = pageNumbers.map(number => {
-                let classes = this.state.current_page === number ? 'active' : '';
-            
-                if (number === 1 || number === this.state.total || (number >= this.state.current_page - 2 && number <= this.state.current_page + 2)) {
-                    return (
-                        <li key={number} className={classes+" page-item cursor_pointer"} onClick={() => this.makeHttpRequestWithPage(number)}><p className="page-link">{number}</p></li>
-                    );
-                }
-            });
-        }
+        const columns = [
+            {
+              title: '#',
+              dataIndex: 'id',
+              key: 'id',
+            },
+            {
+              title: 'Số GP',
+              dataIndex: 'gp_sogiayphep',
+              key: 'gp_sogiayphep',
+              render: (text, record, index) => (
+                <>
+                    <p className="text-primary cursor_pointer m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
+                    <Modal title="Basic Modal" id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
+                        <div>
+                            {record.tai_lieu_nuoc_duoi_dat[0] ?
+                            <iframe width="100%" height="600" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep+".pdf"}></iframe>
+                            : "Không có tài liệu"
+                            }
+                        </div>
+                    </Modal>
+                </>
+              ),
+            },
+            {
+              title: 'Ngày ký',
+              dataIndex: 'gp_ngayky',
+              key: 'gp_ngayky',
+              render: (text, record) => (
+                this.formatDate(record.gp_ngayky)
+              )
+            },
+            {
+                title: 'Tên công trình',
+                dataIndex: 'congtrinh_ten',
+                key: 'congtrinh_ten',
+                render: (text, record) => (
+                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].longitude, record.hang_muc_ct[0].latitude) : null} className="text-primary m-0 cursor_pointer">{record.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
+                )
+            },
+            {
+                title: 'Tổ chức được cấp phép',
+                dataIndex: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',
+            },
+            {
+                title: 'Ngày có hiệu lực',
+                dataIndex: 'gp_ngaybatdau',
+                key: 'gp_ngaybatdau',
+                render: (text, record) => (
+                    this.formatDate(record.gp_ngaybatdau)
+                )
+            },
+            {
+                title: 'Thời hạn',
+                dataIndex: 'gp_thoihangiayphep',
+                key: 'gp_thoihangiayphep',
+            },
+            {
+                title: 'Trạng thái',
+                dataIndex: 'hieulucgiayphep',
+                key: 'hieulucgiayphep',
+                render: (text, record) => (
+                    this.checkStatus(record.hieulucgiayphep)
+                )
+            },
+            {
+                title: '',
+                key: 'action',
+                render: (text, record) => (
+                    <div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+record.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div>
+                )
+            },
+        ];
 
         return(
 			<div className="p-0">
@@ -320,8 +407,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                 <BasemapLayer name="Imagery" />
                                 <BasemapLayer name="ImageryLabels" />
 
-                                {this.state.DataGPKTSDNuocDuoiDat.map((marker, key) => (
-                                    marker.hang_muc_ct ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+                                {this.state.dataSource.map((marker, key) => (
+                                    marker.hang_muc_ct[0] ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
                                     <Popup>
                                     <div>
                                         <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
@@ -370,86 +457,43 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
                             <div className="col-12 p-0 ">
                                 <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                                    <div className=" mb-1 col-lg-3 ">
-                                        <input type="text" className="form-control form-control-sm" placeholder="-- Tìm kiếm --" aria-label="-- Tìm kiếm --" aria-describedby="basic-addon2" />
+                                    <div className="col-lg-3">
+                                        <Input.Search
+                                            allowClear
+                                            onSearch={nameSearch =>
+                                                this.setState({
+                                                    dataSource: this.state.dataSource.filter(person =>
+                                                        person.gp_sogiayphep.includes(nameSearch)
+                                                    )
+                                                })
+                                            }
+                                            placeholder="--Nhập số giấy phép--"
+                                        />
                                     </div>
-                                    <div className="col-lg-3 mb-2">
-                                        <select defaultValue="all" className="form-control form-control-sm font-13" onChange={this.filterLicense}>
-                                            <option value="all">-- Chọn hiệu lực --</option>
-                                            <option value="conhieuluc">Còn hiệu lực</option>
-                                            <option value="chuapheduyet">Chưa phê duyệt</option>
-                                            <option value="hethieuluc">Hết hiệu lực</option>
-                                            <option value="saphethieuluc">Sắp hết hiệu lực</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-lg-3 mb-2">
-                                        <select defaultValue="0" className="form-control form-control-sm font-13">
-                                            <option value="0">-- Sắp xếp --</option>
-                                            <option value="1">Sắp xếp theo số giấy phép</option>
-                                            <option value="2">Sắp xếp theo ngày kí</option>
-                                            <option value="3">Sắp xếp theo tên công trình</option>
-                                            <option value="3">Sắp xếp theo tên ĐVXCP</option>
-                                            <option value="3">Sắp xếp theo ngày bắt đầu hiệu lực</option>
-                                            <option value="3">Sắp xếp theo ngày kết thúc hiệu lực</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-lg-3 mb-2 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
+                                    <Select className="col-lg-2" defaultValue="conhieuluc" onChange={this.handleFilter}>
+                                        <Option value="all">-- Chọn hiệu lực --</Option>
+                                        <Option value="conhieuluc">Còn hiệu lực</Option>
+                                        <Option value="chuapheduyet">Chưa phê duyệt</Option>
+                                        <Option value="hethieuluc">Hết hiệu lực</Option>
+                                        <Option value="saphethieuluc">Sắp hết hiệu lực</Option>
+                                    </Select>
+                                    <Select className="col-lg-3" defaultValue="0" onChange={this.handleFilter}>
+                                        <Option value="0">-- Sắp xếp --</Option>
+                                        <Option value="1">Sắp xếp theo số giấy phép</Option>
+                                        <Option value="2">Sắp xếp theo ngày kí</Option>
+                                        <Option value="3">Sắp xếp theo tên công trình</Option>
+                                        <Option value="4">Sắp xếp theo tên ĐVXCP</Option>
+                                        <Option value="5">Sắp xếp theo ngày bắt đầu hiệu lực</Option>
+                                        <Option value="6">Sắp xếp theo ngày kết thúc hiệu lực</Option>
+                                    </Select>
+                                    <div className="col-lg-3 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <div className="table-responsive">
-                                    <table className="table table-sm table-bordered col-12 table-hover text-center">
-                                        <thead>
-                                            <tr>
-                                                <th className="text-nowrap">#</th>
-                                                <th className="text-nowrap">Số giấy phép</th>
-                                                <th className="text-nowrap">Ngày ký</th>
-                                                <th className="text-nowrap">Tên công trình</th>
-                                                <th className="text-nowrap">Tổ chức được cấp phép</th>
-                                                <th className="text-nowrap">Ngày có hiệu lực</th>
-                                                <th className="text-nowrap">Thời hạn</th>
-                                                <th className="text-nowrap">Trạng thái</th>
-                                                <th className="text-nowrap">Thao tác</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.state.DataGPKTSDNuocDuoiDat !== null ? this.state.DataGPKTSDNuocDuoiDat.map((e, i) => {
-                                                return (
-                                                    <tr key={i}>
-                                                        <td className="text-center align-middle">{e.id}</td>
-                                                        <td className="text-start align-middle text-nowrap">
-                                                            <p className="text-dark m-0">{e.gp_sogiayphep} &nbsp;
-                                                                <span id={e.gp_sogiayphep} title="Xem file giấy phép" className="text-primary cursor_pointer m-0" onClick={event => this.clickHandler(event, i)}> <FilePdfOutlined /> </span>
-                                                            </p>
-                                                        </td>
-                                                        <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
-                                                        <td className="text-start align-middle"><p title="Xem bản đồ" onClick={e.hang_muc_ct ? () => this.clickToZoom(e.hang_muc_ct[0].longitude, e.hang_muc_ct[0].latitude) : null} className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
-                                                        <td className="text-start align-middle">{e.chugiayphep_ten}</td>
-                                                        <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
-                                                        <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
-                                                        <td className="text-start align-middle">{this.checkStatus(e.hieulucgiayphep)}</td>
-                                                        <td className="text-start align-middle text-nowrap"><div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+e.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div></td>
-                                                        <>
-                                                            <Modal id={e.gp_sogiayphep} show={this.state.activeModal === i} onHide={this.hideModal} size="xl">
-                                                                <Modal.Body className="bg-dark">
-                                                                    <Button className="close-btn text-white" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
-                                                                    <div className="text-light">
-                                                                        Không có dữ liệu...
-                                                                    </div>
-                                                                </Modal.Body>
-                                                            </Modal>
-                                                        </>
-                                                    </tr>
-                                                )
-                                            }) : ""}
-                                        </tbody>
-                                    </table>
-                                    <p className="m-0">Tổng cộng {this.state.total} bản ghi</p>
-                                    <nav aria-label="Page navigation">
-                                        <ul className="pagination justify-content-center">
-                                            <li className={this.state.current_page === 1 ? "disabled page-item" : "page-item"}><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page - 1)}>&laquo;</p></li>
-                                            {renderPageNumbers}
-                                            <li className={this.state.current_page === Math.ceil(this.state.total / this.state.per_page) ? "disabled page-item" : "page-item" }><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page + 1)}>&raquo;</p></li>
-                                        </ul>
-                                    </nav>
+                                    <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
+                                            columns={columns} 
+                                            loading={this.state.loading}
+                                            onChange={this.handleTableChange}
+                                            dataSource={this.state.dataSource} />
                                 </div>
                             </div>
                         </div>
