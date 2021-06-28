@@ -34,7 +34,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             DataGPKTSDNuocDuoiDat: [],
             countLicense: [],
             dataLicense: [],
-            statusFilter: "all",
+            statusFilter: "",
 			contructionInfoForMap: [],
             activeModal: null,
             total: null,
@@ -196,19 +196,19 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     }
 
     filterLicense = (e) => {
-        let status = e.target.value;
-        this.setState({statusFilter: status});
+        let filter = e.target.value;
         
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/filter-license/"+this.state.statusFilter)
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/loc-giay-phep/"+filter)
             .then((response) => {
                 if(response.status === 200)
                 {
                     this.setState({
-                        dataLicense: response.data,
+                        DataGPKTSDNuocDuoiDat: response.data.hethieuluc.data,
+                        total: response.data.tong_hethieuluc,
+                        current_page: response.data.hethieuluc.current_page
                     });
-                    console.log(this.state.dataLicense);
                 }
             })
             .catch((error) => {
@@ -321,7 +321,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                 <BasemapLayer name="ImageryLabels" />
 
                                 {this.state.DataGPKTSDNuocDuoiDat.map((marker, key) => (
-                                    marker.hang_muc_ct[0] ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+                                    marker.hang_muc_ct ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
                                     <Popup>
                                     <div>
                                         <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
@@ -411,7 +411,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.state.DataGPKTSDNuocDuoiDat.map((e, i) => {
+                                            {this.state.DataGPKTSDNuocDuoiDat !== null ? this.state.DataGPKTSDNuocDuoiDat.map((e, i) => {
                                                 return (
                                                     <tr key={i}>
                                                         <td className="text-center align-middle">{e.id}</td>
@@ -421,7 +421,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                                             </p>
                                                         </td>
                                                         <td className="text-start align-middle">{this.formatDate(e.gp_ngayky)}</td>
-                                                        <td className="text-start align-middle"><p title="Xem bản đồ" onClick={e.hang_muc_ct[0] ? () => this.clickToZoom(e.hang_muc_ct[0].longitude, e.hang_muc_ct[0].latitude) : null} className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                        <td className="text-start align-middle"><p title="Xem bản đồ" onClick={e.hang_muc_ct ? () => this.clickToZoom(e.hang_muc_ct[0].longitude, e.hang_muc_ct[0].latitude) : null} className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                         <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                         <td className="text-start align-middle">{this.formatDate(e.gp_ngaybatdau)}</td>
                                                         <td className="text-center align-middle">{e.gp_thoihangiayphep}</td>
@@ -439,10 +439,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                                         </>
                                                     </tr>
                                                 )
-                                                
-                                            })}
+                                            }) : ""}
                                         </tbody>
                                     </table>
+                                    <p className="m-0">Tổng cộng {this.state.total} bản ghi</p>
                                     <nav aria-label="Page navigation">
                                         <ul className="pagination justify-content-center">
                                             <li className={this.state.current_page === 1 ? "disabled page-item" : "page-item"}><p className="page-link cursor_pointer" onClick={() => this.makeHttpRequestWithPage(this.state.current_page - 1)}>&laquo;</p></li>
