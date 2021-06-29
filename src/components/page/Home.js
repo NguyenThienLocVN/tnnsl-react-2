@@ -119,7 +119,7 @@ export default class Login extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-8 map-container px-md-0">
+                    <div className="col-12 col-lg-8 map-container px-md-0 position-relative">
                         <Map />
                     </div>
                 </main>

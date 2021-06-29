@@ -486,7 +486,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                         <Option value="5">Sắp xếp theo ngày bắt đầu hiệu lực</Option>
                                         <Option value="6">Sắp xếp theo ngày kết thúc hiệu lực</Option>
                                     </Select>
-                                    <div className="col-lg-3 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
+                                    <div className="col-lg-2 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <div className="table-responsive">
                                     <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
