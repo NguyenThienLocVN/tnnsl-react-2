@@ -7,8 +7,9 @@ import axios from "axios";
 import configData from "../../../../../config.json";
 import { EyeOutlined, SearchOutlined, FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
-import {Dropdown} from "react-bootstrap";
-import { Table, Select, Input, Modal} from 'antd';
+import { Dropdown } from "react-bootstrap";
+import { ConfigProvider, Table, Select, Input, Modal} from 'antd';
+import vnVN from 'antd/lib/locale/vi_VN';
 
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
@@ -33,33 +34,19 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             center: [21.529737201190642, 103.9692398828125],
 			zoom: 8,
             pagename: this.props.match.params.pagename,
-            showSearch: false,
             countLicense: [],
 			contructionInfoForMap: [],
-            activeModal: null,
             loading: false,
             sRT: "",
             dataSource: [],
             nameSearch: "",
             visible: false,
             activeModal: null,
+            pagination: {},
         }
 
         this.mapRef = React.createRef();
     }
-
-    showModal = (item) => {
-        this.setState({
-            visible: true,
-            currentItem: item
-        });
-    };
-
-    handleCancel = e => {
-        this.setState({
-          visible: false
-        });
-      };
 
     clickHandler = (e, index) => {
         this.setState({ activeModal: index })
@@ -192,11 +179,17 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     }
 
     handleTableChange = (pagination, filters, sorter) => {
+        const pager = { ...this.state.pagination };
+        pager.current = pagination.current;
+        this.setState({
+        pagination: pager
+        });
         this.fetch({
-          sortField: sorter.field,
-          sortOrder: sorter.order,
-          pagination,
-          ...filters,
+            results: pagination.pageSize,
+            page: pagination.current,
+            sortField: sorter.field,
+            sortOrder: sorter.order,
+            ...filters,
         });
     };
 
@@ -266,6 +259,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
       };
 
     render(){
+        let { sortedInfo, filteredInfo } = this.state;
+        sortedInfo = sortedInfo || {};
+        filteredInfo = filteredInfo || {};
+        
         const columns = [
             {
               title: '#',
@@ -294,6 +291,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
               title: 'Ngày ký',
               dataIndex: 'gp_ngayky',
               key: 'gp_ngayky',
+              sorter: (a, b) => new Date(a.gp_ngayky) - new Date(b.gp_ngayky),
               render: (text, record) => (
                 this.formatDate(record.gp_ngayky)
               )
@@ -323,6 +321,11 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 title: 'Thời hạn',
                 dataIndex: 'gp_thoihangiayphep',
                 key: 'gp_thoihangiayphep',
+                sorter: (a, b) => {
+                    let year_a = a.gp_thoihangiayphep.split(" ");
+                    let year_b = b.gp_thoihangiayphep.split(" ");
+                    return year_a[0] - year_b[0];
+                }
             },
             {
                 title: 'Trạng thái',
@@ -493,23 +496,18 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                         <Option value="hethieuluc">Hết hiệu lực</Option>
                                         <Option value="saphethieuluc">Sắp hết hiệu lực</Option>
                                     </Select>
-                                    <Select className="col-lg-3" defaultValue="0" onChange={this.handleFilter}>
-                                        <Option value="0">-- Sắp xếp --</Option>
-                                        <Option value="1">Sắp xếp theo số giấy phép</Option>
-                                        <Option value="2">Sắp xếp theo ngày kí</Option>
-                                        <Option value="3">Sắp xếp theo tên công trình</Option>
-                                        <Option value="4">Sắp xếp theo tên ĐVXCP</Option>
-                                        <Option value="5">Sắp xếp theo ngày bắt đầu hiệu lực</Option>
-                                        <Option value="6">Sắp xếp theo ngày kết thúc hiệu lực</Option>
-                                    </Select>
                                     <div className="col-lg-2 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
                                 </div>
                                 <div className="table-responsive">
-                                    <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
+                                    <ConfigProvider locale={vnVN}>
+                                        <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
                                             columns={columns} 
                                             loading={this.state.loading}
                                             onChange={this.handleTableChange}
-                                            dataSource={this.state.dataSource} />
+                                            dataSource={this.state.dataSource}
+                                            pagination={this.state.pagination} 
+                                            pagination={{ pageSize: 10}}/>
+                                    </ConfigProvider>
                                 </div>
                             </div>
                         </div>
