@@ -88,6 +88,22 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             })
         )
 
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        contructionInfoForMap: response.data,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+
         this.fetch(this.state.pagination);
     }
 
