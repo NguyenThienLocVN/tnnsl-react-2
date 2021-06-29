@@ -96,6 +96,9 @@
 .ant-table-tbody > tr > td { padding: 6px !important; cursor: pointer; font-size: 13px; }
 .table-icon { width: 15px; height: 15px; }
 
+.ant-modal{top: 0 !important;}
+.modal-view-file-pdf iframe{height: 75vh !important;}
+
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
     background-color: #1874bd !important;
     color: #fff !important;
@@ -161,16 +164,11 @@
     #total-dams { top: 25px; left: 70px; }
     .banner-tnmt { height: 130px; }
     .report-item-four{height: unset;}
-    .menu-home {
-        height: calc(100vh - 169px);
-        overflow-y: auto;
-    }
-    
-    .menu-page {
-        height: calc(100vh - 35px);
-        overflow-y: auto;
-    }
+    .menu-home {height: calc(100vh - 169px);overflow-y: auto;}
+    .menu-page {height: calc(100vh - 35px);overflow-y: auto;}
     .img__sea_lever{height: 61px;}
+    .ant-modal{top: 100px !important;}
+    .modal-view-file-pdf iframe{height: 600px !important;}
 }
 
 @media screen and (min-width: 1024px){

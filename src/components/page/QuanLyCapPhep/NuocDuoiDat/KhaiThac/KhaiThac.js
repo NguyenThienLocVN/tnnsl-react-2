@@ -263,10 +263,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
               render: (text, record, index) => (
                 <>
                     <p className="text-primary cursor_pointer m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
-                    <Modal title="Basic Modal" id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
+                    <Modal className="modal-view-file-pdf" title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
                             {record.tai_lieu_nuoc_duoi_dat[0] ?
-                            <iframe width="100%" height="600" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep+".pdf"}></iframe>
+                            <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep+".pdf"}></iframe>
                             : "Không có tài liệu"
                             }
                         </div>
