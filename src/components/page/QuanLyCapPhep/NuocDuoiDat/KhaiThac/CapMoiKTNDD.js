@@ -49,6 +49,12 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     submitHandler = event => {
         event.preventDefault();
         event.target.className += " was-validated";
+
+        const formData = new FormData(event.target);
+        // event.preventDefault();
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
     };
     
     changeHandler = event => {
@@ -178,8 +184,8 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.3.Tầng chứa nước khai thác  </label>
-                                        <input type="text" required className="form-control form-control-sm" id="tangchuanuoc" name="tangchuanuoc" />
+                                        <label htmlFor="tangchuanuoc_license" className="form-label fw-bold m-0">2.3.Tầng chứa nước khai thác  </label>
+                                        <input type="text" required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -282,8 +288,8 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                                                     <input type="text" className="form-control form-control-sm" id="chieusau_mucnuocdong_max" />
                                                                                 </div>
                                                                                 <div className="mb-2">
-                                                                                    <label htmlFor="tangchuanuoc_kt" className="form-label fw-bold">Tầng chứa nước khai thác</label>
-                                                                                    <input type="text" className="form-control form-control-sm" id="tangchuanuoc_kt" />
+                                                                                    <label htmlFor="tangchuanuoc_gieng" className="form-label fw-bold">Tầng chứa nước khai thác</label>
+                                                                                    <input type="text" className="form-control form-control-sm" id="tangchuanuoc_gieng" />
                                                                                 </div>
                                                                             </div>
                                                                             <div className="row m-0 justify-content-between">
