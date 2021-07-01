@@ -8,6 +8,7 @@ import {Dropdown, Form, Button} from "react-bootstrap";
 import { getUser} from '../../../../common/api';
 import { Modal } from 'antd';
 import { apiClient } from '../../../../common/api';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const user = getUser();
 export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Component {
@@ -95,6 +96,16 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
 					})
 				)
             })
+    }
+    destroyLicenseHandler = (id_gp) =>{
+        trackPromise(
+            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp)
+            .then((response) => {
+                if (response.status === 200) {
+                    window.location.reload();
+                }
+            })
+        );
     }
     render(){
         return(
@@ -200,7 +211,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                 <tr key={i}>
                                                     <td className="text-center align-middle">{i+1}</td>
                                                     <td className="text-start align-middle text-nowrap"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.gp_sogiayphep}</p></td>
-                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten ? e.congtrinh_ten : "--"}</p></td>
                                                     <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                     <td className="text-start align-middle">
                                                         <Form>
@@ -234,7 +245,16 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                             </form>
                                                         </Modal>
                                                     </td>
-                                                    <td className="text-start align-middle text-nowrap"><div><Button onClick={(e) => this.clickHandler(e, i)} variant="link" title="Chỉnh Sửa">Chỉnh Sửa</Button></div></td>
+                                                    {user.role === "admin" ? 
+                                                        <td className="text-start align-middle text-nowrap">
+                                                            <div>
+                                                            <Button onClick={(e) => this.clickHandler(e, i)} variant="link" title="Chỉnh Sửa"><EditOutlined /></Button>
+                                                            <Button onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+e.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(e.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
+                                                            </div>
+                                                        </td>
+                                                        :
+                                                        <td className="text-start align-middle"></td>
+                                                    }
                                                 </tr>
                                             )
                                         })}
