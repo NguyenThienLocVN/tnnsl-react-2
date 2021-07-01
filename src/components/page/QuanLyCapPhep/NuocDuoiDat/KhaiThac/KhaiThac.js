@@ -8,7 +8,7 @@ import configData from "../../../../../config.json";
 import { EyeOutlined, SearchOutlined, FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import { Dropdown } from "react-bootstrap";
-import { ConfigProvider, Table, Select, Input, Modal} from 'antd';
+import { ConfigProvider, Table, Select, Input, Modal, Space } from 'antd';
 import vnVN from 'antd/lib/locale/vi_VN';
 
 import * as L from 'leaflet';
@@ -23,6 +23,7 @@ let DefaultIcon = L.icon({
 	iconSize: [15, 15],
     iconAnchor: [10, 15]
 });
+const { Search } = Input;
 
 L.Marker.prototype.options.icon = DefaultIcon;
   
@@ -440,8 +441,8 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                             </MapContainer>
 
                             <div className="col-12 py-1 row align-items-center">
-                                <div className="col-lg-3">
-                                    <Input.Search allowClear name="search" placeholder="--Nhập số giấy phép--" onSearch={nameSearch =>
+                                <div className="col-lg-4">
+                                    <Search allowClear id="search" name="search" placeholder="--Nhập số giấy phép--" onSearch={nameSearch =>
                                         nameSearch === '' ? this.fetch(this.state.pagination, 'all') :
                                         this.setState({
                                             dataSource: this.state.dataSource.filter(item =>
@@ -450,15 +451,17 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             }) 
                                     } />
                                 </div>
-                                <div className="col-3 p-0">
-                                    <select name="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
-                                        <option value="all">Tất cả</option>
-                                        <option value="conhieuluc">Còn hiệu lực</option>
-                                        <option value="chuapheduyet">Chưa phê duyệt</option>
-                                        <option value="hethieuluc">Hết hiệu lực</option>
-                                        <option value="saphethieuluc">Sắp hết hiệu lực</option>
-                                    </select>
-                                </div>
+                                {/* <div className="col-9 row m-0 p-0 justify-content-end"> */}
+                                    <div className="col-3 p-0">
+                                        <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                            <option value="all">Tất cả</option>
+                                            <option value="conhieuluc">Còn hiệu lực</option>
+                                            <option value="chuapheduyet">Chưa phê duyệt</option>
+                                            <option value="hethieuluc">Hết hiệu lực</option>
+                                            <option value="saphethieuluc">Sắp hết hiệu lực</option>
+                                        </select>
+                                    </div>
+                                {/* </div> */}
                                 <div className="table-responsive">
                                     <ConfigProvider locale={vnVN}>
                                         <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
@@ -466,6 +469,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             loading={this.state.loading}
                                             onChange={() => this.handleTableChange}
                                             dataSource={this.state.dataSource}
+                                            rowKey="id" 
                                             pagination={{
                                             showTotal: (total, range) => `Tất cả ${total} bản ghi`,
                                                 current: this.state.currentPage,

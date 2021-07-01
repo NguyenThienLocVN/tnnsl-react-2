@@ -122,7 +122,9 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
 					.then((response) => {
 						if (response.status === 200) {
 							window.location.href = '/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi';
-						}
+						}else{
+                            alert("Hãy điền đủ thông tin ở tất cả các trường nhập dữ liệu.")
+                        }
 					})
 					.catch((error) => {console.log(error);
 						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
@@ -317,7 +319,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                         <th className="text-center align-middle">Từ</th>
                                                         <th className="text-center align-middle">Đến</th>
                                                         <th className="text-center align-middle">
-                                                            {/* <div className="w-100">
+                                                            <div className="w-100">
                                                                 <Button variant="primary" className="mb-2 w-100 btn btn-sm" onClick={event => this.clickHandler(event, "1")}>Thêm</Button>
                                                                 <>
                                                                     <Modal 
@@ -333,51 +335,51 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                                                 <h4>Số hiệu, vị trí và thông số của công trình</h4>
                                                                                 <div className="mb-2">
                                                                                     <label htmlFor="sohieu" className="form-label fw-bold">Số hiệu</label>
-                                                                                    <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="sohieu" />
+                                                                                    <input type="text" className="form-control form-control-sm" />
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <div className="row">
                                                                                         <div className="col-sm-6">
                                                                                             <label htmlFor="x" className="form-label fw-bold">Tọa độ X</label>
-                                                                                            <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="x" />
+                                                                                            <input type="text" className="form-control form-control-sm" />
                                                                                         </div>
                                                                                         <div className="col-sm-6">
                                                                                             <label htmlFor="y" className="form-label fw-bold">Tọa độ Y</label>
-                                                                                            <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="y" />
+                                                                                            <input type="text" className="form-control form-control-sm" />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <label htmlFor="luuluongkhaithac" className="form-label fw-bold">Lưu lượng</label>
-                                                                                    <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="luuluongkhaithac" />
+                                                                                    <input type="text" className="form-control form-control-sm" />
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <label htmlFor="chedo_ktsd" className="form-label fw-bold">Chế độ khai thác</label>
-                                                                                    <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="chedo_ktsd" />
+                                                                                    <input type="text" className="form-control form-control-sm" />
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <div className="row">
                                                                                         <div className="col-sm-6">
                                                                                             <label htmlFor="chieusau_doanthunuoctu" className="form-label fw-bold">Chiều sâu đoạn thu Nước từ</label>
-                                                                                            <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_doanthunuoctu" />
+                                                                                            <input type="text" className="form-control form-control-sm" />
                                                                                         </div>
                                                                                         <div className="col-sm-6">
                                                                                             <label htmlFor="chieusau_doanthunuocden" className="form-label fw-bold">Chiều sâu đoạn thu nước đến</label>
-                                                                                            <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_doanthunuocden" />
+                                                                                            <input type="text" className="form-control form-control-sm" />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <label htmlFor="chieusau_mucnuoctinh" className="form-label fw-bold">Chiều sâu mực nước tĩnh</label>
-                                                                                    <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_mucnuoctinh" />
+                                                                                    <input type="text" className="form-control form-control-sm" />
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <label htmlFor="chieusau_mucnuocdong_max" className="form-label fw-bold">Chiều sâu mực nước động lớn nhất</label>
-                                                                                    <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_mucnuocdong_max" />
+                                                                                    <input type="text" className="form-control form-control-sm" />
                                                                                 </div>
                                                                                 <div className="mb-2">
                                                                                     <label htmlFor="tangchuanuoc_gieng" className="form-label fw-bold">Tầng chứa nước khai thác</label>
-                                                                                    <input type="text" onChange={this.changeHandler} className="form-control form-control-sm" id="tangchuanuoc_gieng" />
+                                                                                    <input type="text" className="form-control form-control-sm" />
                                                                                 </div>
                                                                             </div>
                                                                             <div className="row m-0 justify-content-between">
@@ -387,7 +389,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                                         </Modal.Body>
                                                                     </Modal>
                                                                 </>
-                                                            </div> */}
+                                                            </div>
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -433,91 +435,79 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-6 row m-0 p-0">
+                                <div className="col-sm-12 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Giấy tờ, tài liệu nộp kèm theo</p>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Sơ đồ khu vực và vị trí công trình khai thác nước dưới đất</label>
                                             <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">- Báo cáo kết quả thăm dò đánh giá trữ lượng nước dưới đất</label>
                                             <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Báo cáo hiện trạng khai thác </label>
                                             <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Phiếu kết quả phân tích chất lượng nguồn nước dưới đất </label>
                                             <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13">- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng  </label>
                                             <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_giaytokhac" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan </label>
                                             <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_giaytokhac" name="tailieu_giaytokhac" /></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-6 p-0">
+                                <div className="col-sm-12 p-0">
                                     <div className="col-sm-12 row m-0 p-0">
                                         <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
-                                        <div className="col-sm-12 mt-2">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <div><input type="checkbox" required id="camket_dungsuthat" name="camket_dungsuthat" /></div>
-                                                <label htmlFor="camket_dungsuthat" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
+                                        <div className="col-sm-3 mt-2">
+                                            <div className="mb-2 d-flex alicn-items-center mx-0">
+                                                <div className="d-flex justify-content-end pe-3">
+                                                    <div className="round">
+                                                        <input type="checkbox" required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                        <label htmlFor="camket_dungsuthat"></label>
+                                                    </div>
+                                                </div>
+                                                <label htmlFor="camket_dungsuthat" className="form-label d-block m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
                                             </div>
                                         </div>
-                                        <div className="col-sm-12 mt-2">
+                                        <div className="col-sm-3 mt-2">
                                             <div className="mb-2 d-flex mx-0">
-                                                <div><input type="checkbox" required id="camket_chaphanhdayduquydinh" name="camket_chaphanhdayduquydinh" /></div>
-                                                <label htmlFor="camket_chaphanhdayduquydinh" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
+                                                <div className="d-flex justify-content-end pe-3">
+                                                    <div className="round">
+                                                        <input type="checkbox" required id="camket_chaphanhdayduquydinh" name="camket_chaphanhdayduquydinh" />
+                                                        <label htmlFor="camket_chaphanhdayduquydinh"></label>
+                                                    </div>
+                                                </div>
+                                                <label htmlFor="camket_chaphanhdayduquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
                                             </div>
                                         </div>
-                                        <div className="col-sm-12 mt-2">
+                                        <div className="col-sm-6 mt-2">
                                             <div className="mb-2 d-flex mx-0">
-                                                <div><input type="checkbox" id="camket_daguihosotoibtnmt" name="camket_daguihosotoibtnmt" /></div>
-                                                <label htmlFor="camket_daguihosotoibtnmt" className="form-label d-block w-75 m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-12 row m-0 p-0">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép  </p>
-                                        <div className="col-sm-12">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Nộp hồ sơ  </label>
-                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-success">Đã Hoàn Tất</span></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-12">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Đang lấy ý kiến thẩm định</label>
-                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-danger">Đang chờ...</span></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-12">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Hoàn thành hồ sơ cấp phép </label>
-                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-danger">Chưa Hoàn Tất</span></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-12">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <label htmlFor="filesodo" className="form-label d-block w-75 m-0 text-primary fw-bold">Đã được cấp phép</label>
-                                                <div className="w-25"><span className="d-flex justify-content-center align-items-cemter rounded border border-danger">Chưa Hoàn Tất</span></div>
+                                                <div className="d-flex justify-content-end pe-3">
+                                                    <div className="round">
+                                                        <input type="checkbox" id="camket_daguihosotoibtnmt" name="camket_daguihosotoibtnmt" />
+                                                        <label htmlFor="camket_daguihosotoibtnmt"></label>
+                                                    </div>
+                                                </div>
+                                                <label htmlFor="camket_daguihosotoibtnmt" className="form-label d-block m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
                                             </div>
                                         </div>
                                     </div>
