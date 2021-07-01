@@ -6,6 +6,8 @@ import axios from "axios";
 import configData from "../../../../../config.json";
 import {Dropdown, Form, Button} from "react-bootstrap";
 import { getUser} from '../../../../common/api';
+import { Modal } from 'antd';
+import { apiClient } from '../../../../common/api';
 
 const user = getUser();
 export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Component {
@@ -16,7 +18,17 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
             pagename: this.props.match.params.pagename,
             countLicense: [],
             dataNewLicenseManagement: [],
+            activeModal: null,
+            status: '',
+            id_gp: '',
         }
+    }
+    clickHandler = (e, index) => {
+        this.setState({ activeModal: index })
+    }
+    
+    hideModal = () => {
+        this.setState({ activeModal: null })
     }
     
     componentDidMount(){
@@ -59,6 +71,30 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
             })
         )
         
+    }
+    handleStatusChange = (event) => {
+        this.setState({
+            status: event.target.value,
+        });
+    }
+    handleFormUpdateStatusSubmit = (e) => {
+        e.preventDefault();
+        var id_gp = e.target[1].value;
+        const licenseStatus = this.state.status;
+        apiClient.get('/sanctum/csrf-cookie')
+            .then(response => {
+                trackPromise(
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-nhat-trang-thai-giay-phep/"+id_gp, { status:licenseStatus })
+                    .then((response) => {
+						if (response.status === 200) {
+							window.location.reload();
+						}
+					})
+					.catch((error) => {console.log(error);
+						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
+					})
+				)
+            })
     }
     render(){
         return(
@@ -167,20 +203,8 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                     <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                     <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                     <td className="text-start align-middle">
-                                                        {user.role === "admin" ?
-                                                        <Form id={"selectStatus"+e.id}>
-                                                            <Form.Group controlId={e.gp_sogiayphep}>
-                                                                <Form.Control size="sm" as="select" defaultValue={e.status === 0 & e.status === 1 ? 0 : e.status}>
-                                                                    <option value={0}>Nộp hồ sơ</option>
-                                                                    <option value={2}>Đang lấy ý kiến thẩm định</option>
-                                                                    <option value={3}>Hoàn thành hồ sơ cấp phép</option>
-                                                                    <option value={1}>Đã được cấp phép</option>
-                                                                </Form.Control>
-                                                            </Form.Group>
-                                                        </Form>
-                                                        :
-                                                        <Form id={"selectStatus"+e.id}>
-                                                            <Form.Group controlId={e.gp_sogiayphep}>
+                                                        <Form>
+                                                            <Form.Group controlId={e.id}>
                                                                 <Form.Control disabled size="sm" as="select" defaultValue={e.status === 0 & e.status === 1 ? 0 : e.status}>
                                                                     <option value={0}>Nộp hồ sơ</option>
                                                                     <option value={2}>Đang lấy ý kiến thẩm định</option>
@@ -189,9 +213,28 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                                 </Form.Control>
                                                             </Form.Group>
                                                         </Form>
-                                                        }
+                                                        <Modal 
+                                                            title="Sửa trạng thái giấy phép" 
+                                                            width={450}
+                                                            id={e.gp_sogiayphep} 
+                                                            visible={this.state.activeModal === i} 
+                                                            footer={null}
+                                                            onCancel={this.hideModal}>
+                                                            <form ref="form" onSubmit={this.handleFormUpdateStatusSubmit}>
+                                                                <Form.Group controlId={'GPKTNuocDuoiDat-'+e.id}>
+                                                                    <Form.Control name="status" onChange={this.handleStatusChange} size="sm" as="select" defaultValue={e.status === 0 & e.status === 1 ? 0 : e.status}>
+                                                                        <option value={0}>Nộp hồ sơ</option>
+                                                                        <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                                                        <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                                        <option value={1}>Đã được cấp phép</option>
+                                                                    </Form.Control>
+                                                                </Form.Group>
+                                                                <input type="hidden" name="id_gp" value={e.id} />
+                                                                <Button type="submit" onClick={this.hideModal} className="mt-3" variant="primary" title="Cập nhật">Cập nhật</Button>
+                                                            </form>
+                                                        </Modal>
                                                     </td>
-                                                    <td className="text-start align-middle text-nowrap"><div><Button variant="link" title="Cập nhật">Cập nhật</Button></div></td>
+                                                    <td className="text-start align-middle text-nowrap"><div><Button onClick={(e) => this.clickHandler(e, i)} variant="link" title="Chỉnh Sửa">Chỉnh Sửa</Button></div></td>
                                                 </tr>
                                             )
                                         })}
