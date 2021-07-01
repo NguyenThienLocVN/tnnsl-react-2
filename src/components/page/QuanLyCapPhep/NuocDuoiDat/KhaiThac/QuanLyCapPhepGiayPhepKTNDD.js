@@ -51,7 +51,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
         )
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-cap-moi-giay-phep-ktndd/"+user.id)
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-cap-moi-giay-phep-ktndd/"+user.id+"/all")
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -97,8 +97,10 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
 				)
             })
     }
-    destroyLicenseHandler = (id_gp) =>{
+    handlerDestroyLicense = (id_gp) =>{
+        alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
+            
             axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp)
             .then((response) => {
                 if (response.status === 200) {
@@ -211,7 +213,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                 <tr key={i}>
                                                     <td className="text-center align-middle">{i+1}</td>
                                                     <td className="text-start align-middle text-nowrap"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.gp_sogiayphep}</p></td>
-                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten ? e.congtrinh_ten : "--"}</p></td>
+                                                    <td className="text-start align-middle"><p title="Xem bản đồ" className="text-primary m-0 cursor_pointer">{e.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p></td>
                                                     <td className="text-start align-middle">{e.chugiayphep_ten}</td>
                                                     <td className="text-start align-middle">
                                                         <Form>
@@ -249,7 +251,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                                         <td className="text-start align-middle text-nowrap">
                                                             <div>
                                                             <Button onClick={(e) => this.clickHandler(e, i)} variant="link" title="Chỉnh Sửa"><EditOutlined /></Button>
-                                                            <Button onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+e.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(e.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
+                                                            <Button onClick={() =>this.handlerDestroyLicense(e.id)} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
                                                             </div>
                                                         </td>
                                                         :

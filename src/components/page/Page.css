@@ -208,27 +208,6 @@
   }
 
 
-  /* general styling */
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-  
-  body {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    background-color: #f1f2f3;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  
-  .container {
-    margin: 0 auto;
-  }
-
-
 @media screen and (min-width: 768px){
     .top-bar { height: 35px; line-height: 35px; }
     #dams-num { left: 46px; top: 17px; }
