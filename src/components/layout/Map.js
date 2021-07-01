@@ -1,7 +1,6 @@
 import React from 'react';
 import { MapContainer } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
-import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
 
 export default class Map extends React.Component {

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Header from '../../../../layout/Header';
 import { Link } from 'react-router-dom';
 import { MapContainer, Marker, Popup } from "react-leaflet";
@@ -25,7 +25,7 @@ let DefaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
-
+  
 export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     constructor(props)
     {
@@ -37,12 +37,14 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             countLicense: [],
 			contructionInfoForMap: [],
             loading: false,
-            sRT: "",
             dataSource: [],
-            nameSearch: "",
             visible: false,
             activeModal: null,
             pagination: {},
+            search: '',
+            filter: '',
+            showReset: false,
+            disabled: false,
         }
 
         this.mapRef = React.createRef();
@@ -91,11 +93,11 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             })
         )
 
-        this.fetch(this.state.pagination);
+        this.fetch(this.state.pagination, 'all');
     }
 
     clickToZoom = (lat, long) => {
-        this.mapRef.current.flyTo([lat, long], 12);
+        this.mapRef.current.flyTo([lat, long], 15);
     }
 
     changeBasemap = (event) => {
@@ -179,24 +181,18 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     }
 
     handleTableChange = (pagination, filters, sorter) => {
-        const pager = { ...this.state.pagination };
-        pager.current = pagination.current;
-        this.setState({
-        pagination: pager
-        });
         this.fetch({
-            results: pagination.pageSize,
-            page: pagination.current,
             sortField: sorter.field,
             sortOrder: sorter.order,
+            pagination,
             ...filters,
-        });
+          });
     };
 
-    fetch = (params = {}) => {
+    fetch = (params = {}, filter) => {
         this.setState({ loading: true });
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/loc-giay-phep/"+filter)
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -204,10 +200,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                         loading: false,
                         dataSource: response.data,
                         pagination: {
-                          ...params.pagination,
-                          total: 200,
+                            ...params.pagination,
+                            total: response.data.length
                         },
-                      });
+                    });
                 }
             })
             .catch((error) => {
@@ -215,54 +211,33 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             })
     };
 
-    getColumnSearchProps = dataIndex => ({
-        filterDropdown: ({
-          setSelectedKeys,
-          selectedKeys,
-          confirm,
-          clearFilters
-        }) => (
-          <div style={{ padding: 8 }}>
-            <Input
-              placeholder={`Search ${dataIndex}`}
-              //value={selectedKeys[0]}
-              onChange={e =>
-                setSelectedKeys(e.target.value ? [e.target.value] : [])
-              }
-              onPressEnter={() => this.handleSearch(selectedKeys, confirm)}
-            />
-          </div>
-        ),
-        filterIcon: filtered => (
-          <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        ),
-        onFilter: (value, record) =>
-          record[dataIndex]
-            .toString()
-            .toLowerCase()
-            .includes(value.toLowerCase()),
-        onFilterDropdownVisibleChange: visible => {
-          if (visible) {
-            setTimeout(() => this.searchInput.select());
-          }
-        }
-      });
-    
-      handleSearch = (selectedKeys, confirm) => {
-        confirm();
-        this.setState({ sRT: selectedKeys[0] });
-      };
-    
-      handleReset = clearFilters => {
-        clearFilters();
-        this.setState({ sRT: "" });
-      };
-
-    render(){
-        let { sortedInfo, filteredInfo } = this.state;
-        sortedInfo = sortedInfo || {};
-        filteredInfo = filteredInfo || {};
+    onSearchFilterHandler = (e) => {
+        const data = new FormData(e.target);
+        var filterValue = data.get('filter');
+        var searchValue = data.get('search');
         
+        this.fetch(this.state.pagination, filterValue);     
+
+        e.preventDefault();
+    }
+
+    onReset = () => {
+        this.fetch(this.state.pagination, 'all');
+        this.setState({
+            showReset: false,
+            disabled: false,
+        })
+    }
+
+    onChangeSearchFilter = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+    }
+
+    render(){        
         const columns = [
             {
               title: '#',
@@ -273,12 +248,13 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
               title: 'Số GP',
               dataIndex: 'gp_sogiayphep',
               key: 'gp_sogiayphep',
+              width: '10%',
               render: (text, record, index) => (
                 <>
                     <p className="text-primary cursor_pointer m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
                     <Modal className="modal-view-file-pdf" title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
-                            {record.tai_lieu_nuoc_duoi_dat[0] ?
+                            {record.tai_lieu_nuoc_duoi_dat && record.tai_lieu_nuoc_duoi_dat[0] !== undefined ?
                             <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep+".pdf"}></iframe>
                             : "Không có tài liệu"
                             }
@@ -300,8 +276,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 title: 'Tên công trình',
                 dataIndex: 'congtrinh_ten',
                 key: 'congtrinh_ten',
+                width: '30%',
+                sorter: (a, b) => a.congtrinh_ten.localeCompare(b.congtrinh_ten),
                 render: (text, record) => (
-                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].longitude, record.hang_muc_ct[0].latitude) : null} className="text-primary m-0 cursor_pointer">{record.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
+                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].latitude, record.hang_muc_ct[0].longitude) : null} className="text-primary m-0 cursor_pointer">{record.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
                 )
             },
             {
@@ -427,7 +405,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                 <BasemapLayer name="ImageryLabels" />
 
                                 {this.state.dataSource.map((marker, key) => (
-                                    marker.hang_muc_ct[0] ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
                                     <Popup>
                                     <div>
                                         <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
@@ -475,38 +453,34 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                             </MapContainer>
 
                             <div className="col-12 p-0 ">
-                                <div className="col-12 row align-items-center my-1 px-0 mx-0">
+                                <form ref='form' onSubmit={this.onSearchFilterHandler} className="col-12 row align-items-center my-1 px-0 mx-0">
                                     <div className="col-lg-3">
-                                        <Input.Search
-                                            allowClear
-                                            onSearch={nameSearch =>
-                                                this.setState({
-                                                    dataSource: this.state.dataSource.filter(person =>
-                                                        person.gp_sogiayphep.includes(nameSearch)
-                                                    )
-                                                })
-                                            }
-                                            placeholder="--Nhập số giấy phép--"
-                                        />
+                                        <Input name="search" onChange={this.onChangeSearchFilter} placeholder="--Nhập số giấy phép--" />
                                     </div>
-                                    <Select className="col-lg-2" defaultValue="conhieuluc" onChange={this.handleFilter}>
-                                        <Option value="all">-- Chọn hiệu lực --</Option>
-                                        <Option value="conhieuluc">Còn hiệu lực</Option>
-                                        <Option value="chuapheduyet">Chưa phê duyệt</Option>
-                                        <Option value="hethieuluc">Hết hiệu lực</Option>
-                                        <Option value="saphethieuluc">Sắp hết hiệu lực</Option>
-                                    </Select>
-                                    <div className="col-lg-2 px-2"><button className="col-6 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13">Tìm &nbsp;<SearchOutlined /></button></div>
-                                </div>
+                                    <div className="col-lg-2 p-0">
+                                        <select name="filter" disabled={this.state.disabled} className="form-select font-13" defaultValue="all">
+                                            <option value="all">Tất cả</option>
+                                            <option value="conhieuluc">Còn hiệu lực</option>
+                                            <option value="chuapheduyet">Chưa phê duyệt</option>
+                                            <option value="hethieuluc">Hết hiệu lực</option>
+                                            <option value="saphethieuluc">Sắp hết hiệu lực</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-lg-2 px-2"><input type="submit" disabled={this.state.disabled} className="col-8 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13" value="Tìm" /></div>
+                                    {this.state.showReset === true ?
+                                        <div className="col-lg-2 px-2"><input type="reset" className="col-8 fw-bold btn bg-danger d-flex align-items-center justify-content-center font-13" onClick={this.onReset} name="reset" value="Reset" /></div> : "" }
+                                </form>
                                 <div className="table-responsive">
                                     <ConfigProvider locale={vnVN}>
                                         <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
                                             columns={columns} 
                                             loading={this.state.loading}
-                                            onChange={this.handleTableChange}
+                                            onChange={() => this.handleTableChange}
                                             dataSource={this.state.dataSource}
-                                            pagination={this.state.pagination} 
-                                            pagination={{ pageSize: 10}}/>
+                                            pagination={{
+                                            showTotal: (total, range) => `Tất cả ${total} bản ghi`,
+                                                current: this.state.currentPage,
+                                                pageSize: 10}}/>
                                     </ConfigProvider>
                                 </div>
                             </div>
