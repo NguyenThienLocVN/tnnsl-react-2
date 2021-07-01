@@ -213,12 +213,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
     // Function handle filter feature
     onFilterHandle = (e) => {
-        const data = new FormData(e.target);
-        var filterValue = data.get('filter');
-        
-        this.fetch(this.state.pagination, filterValue);     
-
-        e.preventDefault();
+        this.fetch(this.state.pagination, e.target.value);   
     }
 
     onReset = () => {
@@ -444,7 +439,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                 ))}
                             </MapContainer>
 
-                            <div className="col-12 p-0 row align-items-center">
+                            <div className="col-12 py-1 row align-items-center">
                                 <div className="col-lg-3">
                                     <Input.Search allowClear name="search" placeholder="--Nhập số giấy phép--" onSearch={nameSearch =>
                                         nameSearch === '' ? this.fetch(this.state.pagination, 'all') :
@@ -455,18 +450,15 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             }) 
                                     } />
                                 </div>
-                                <form ref='form' onSubmit={this.onFilterHandle} className="col-8 row align-items-center justify-content-end my-1 px-0 mx-0">
-                                    <div className="col-lg-3 p-0">
-                                        <select name="filter" disabled={this.state.disabled} className="form-select font-13" defaultValue="all">
-                                            <option value="all">Tất cả</option>
-                                            <option value="conhieuluc">Còn hiệu lực</option>
-                                            <option value="chuapheduyet">Chưa phê duyệt</option>
-                                            <option value="hethieuluc">Hết hiệu lực</option>
-                                            <option value="saphethieuluc">Sắp hết hiệu lực</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-lg-2 px-2"><input type="submit" disabled={this.state.disabled} className="col-8 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13" value="Lọc" /></div>
-                                </form>
+                                <div className="col-3 p-0">
+                                    <select name="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                        <option value="all">Tất cả</option>
+                                        <option value="conhieuluc">Còn hiệu lực</option>
+                                        <option value="chuapheduyet">Chưa phê duyệt</option>
+                                        <option value="hethieuluc">Hết hiệu lực</option>
+                                        <option value="saphethieuluc">Sắp hết hiệu lực</option>
+                                    </select>
+                                </div>
                                 <div className="table-responsive">
                                     <ConfigProvider locale={vnVN}>
                                         <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
