@@ -97,7 +97,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     }
 
     clickToZoom = (lat, long) => {
-        this.mapRef.current.flyTo([lat, long], 15);
+        this.mapRef.current.flyTo([lat, long], 16);
     }
 
     changeBasemap = (event) => {
@@ -211,10 +211,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             })
     };
 
-    onSearchFilterHandler = (e) => {
+    // Function handle filter feature
+    onFilterHandle = (e) => {
         const data = new FormData(e.target);
         var filterValue = data.get('filter');
-        var searchValue = data.get('search');
         
         this.fetch(this.state.pagination, filterValue);     
 
@@ -227,14 +227,6 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             showReset: false,
             disabled: false,
         })
-    }
-
-    onChangeSearchFilter = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-        let data = {};
-        data[name] = value;
-        this.setState(data);
     }
 
     render(){        
@@ -452,12 +444,19 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                 ))}
                             </MapContainer>
 
-                            <div className="col-12 p-0 ">
-                                <form ref='form' onSubmit={this.onSearchFilterHandler} className="col-12 row align-items-center my-1 px-0 mx-0">
-                                    <div className="col-lg-3">
-                                        <Input name="search" onChange={this.onChangeSearchFilter} placeholder="--Nhập số giấy phép--" />
-                                    </div>
-                                    <div className="col-lg-2 p-0">
+                            <div className="col-12 p-0 row align-items-center">
+                                <div className="col-lg-3">
+                                    <Input.Search allowClear name="search" placeholder="--Nhập số giấy phép--" onSearch={nameSearch =>
+                                        nameSearch === '' ? this.fetch(this.state.pagination, 'all') :
+                                        this.setState({
+                                            dataSource: this.state.dataSource.filter(item =>
+                                                item.gp_sogiayphep.includes(nameSearch)
+                                            )
+                                            }) 
+                                    } />
+                                </div>
+                                <form ref='form' onSubmit={this.onFilterHandle} className="col-8 row align-items-center justify-content-end my-1 px-0 mx-0">
+                                    <div className="col-lg-3 p-0">
                                         <select name="filter" disabled={this.state.disabled} className="form-select font-13" defaultValue="all">
                                             <option value="all">Tất cả</option>
                                             <option value="conhieuluc">Còn hiệu lực</option>
@@ -466,9 +465,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                             <option value="saphethieuluc">Sắp hết hiệu lực</option>
                                         </select>
                                     </div>
-                                    <div className="col-lg-2 px-2"><input type="submit" disabled={this.state.disabled} className="col-8 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13" value="Tìm" /></div>
-                                    {this.state.showReset === true ?
-                                        <div className="col-lg-2 px-2"><input type="reset" className="col-8 fw-bold btn bg-danger d-flex align-items-center justify-content-center font-13" onClick={this.onReset} name="reset" value="Reset" /></div> : "" }
+                                    <div className="col-lg-2 px-2"><input type="submit" disabled={this.state.disabled} className="col-8 fw-bold btn bg-lightblue d-flex align-items-center justify-content-center font-13" value="Lọc" /></div>
                                 </form>
                                 <div className="table-responsive">
                                     <ConfigProvider locale={vnVN}>
