@@ -18,6 +18,11 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
             licenseData: [],
             giengData: [],
             activeModal: null,
+            enabledCheckBox: {
+                camket_dungsuthat: false,
+                camket_chaphanhdungquydinh: false,
+                camket_daguihoso: false,
+            },
             licensePostData:{
                 chugiayphep_ten: '',
                 gp_sogiayphep: '', 
@@ -152,15 +157,24 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
 				)
             })
     };
-    
+
+
+    // change data input setState
     changeHandler = e => {
         const { licensePostData } = this.state;
 		licensePostData[e.target.name] = e.target.value;
 		this.setState({ licensePostData });
     };
+
+    // change data checkbox setState
+    checkedHandle = (e) => {
+        const { enabledCheckBox } = this.state;
+		enabledCheckBox[e.target.name] = !enabledCheckBox[e.target.name];
+		this.setState({ enabledCheckBox });
+      };
     render(){
         const user = getUser();
-        console.log(this.state.licenseData.status);
+        console.log(this.state.enabledCheckBox);
         return(
 			<div className="p-0">
                 <Header headTitle="CHỈNH SỬA GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
@@ -342,7 +356,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                         <th className="text-center align-middle">Đến</th>
                                                         <th className="text-center align-middle">
                                                             <div className="w-100">
-                                                                <Button variant="link" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={event => this.clickHandler(event, "1")}><PlusSquareOutlined /></Button>
+                                                                <Button variant="link" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" Checked={event => this.clickHandler(event, "1")}><PlusSquareOutlined /></Button>
                                                                 <>
                                                                     <Modal 
                                                                         id="addInfoConstruction" 
@@ -503,7 +517,14 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             <div className="mb-2 d-flex alicn-items-center mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
-                                                        <input type="checkbox" defaultChecked={this.state.licenseData.camket_dungsuthat === 1 ? true : false} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                        <input
+                                                            type="checkbox"
+                                                            defaultChecked={this.state.enabledCheckBox.camket_dungsuthat}
+                                                            onChange={this.checkedHandle}
+                                                            required
+                                                            id="camket_dungsuthat"
+                                                            name="camket_dungsuthat"
+                                                        />
                                                         <label htmlFor="camket_dungsuthat"></label>
                                                     </div>
                                                 </div>
@@ -514,7 +535,14 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             <div className="mb-2 d-flex mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
-                                                        <input type="checkbox" defaultChecked={this.state.licenseData.camket_chaphanhdungquydinh === 1 ? true : false} required id="camket_chaphanhdayduquydinh" name="camket_chaphanhdayduquydinh" />
+                                                        <input
+                                                            type="checkbox"
+                                                            defaultChecked={this.state.enabledCheckBox.camket_chaphanhdayduquydinh}
+                                                            onChange={this.checkedHandle}
+                                                            required
+                                                            id="camket_chaphanhdayduquydinh"
+                                                            name="camket_chaphanhdayduquydinh"
+                                                        />
                                                         <label htmlFor="camket_chaphanhdayduquydinh"></label>
                                                     </div>
                                                 </div>
@@ -525,7 +553,14 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             <div className="mb-2 d-flex mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
-                                                        <input type="checkbox" defaultChecked={this.state.licenseData.camket_daguihosotoibtnmt === 1 ? true : false} id="camket_daguihosotoibtnmt" name="camket_daguihosotoibtnmt" />
+                                                        <input
+                                                            type="checkbox"
+                                                            defaultChecked={this.state.enabledCheckBox.camket_chaphanhdayduquydinh}
+                                                            onChange={this.checkedHandle}
+                                                            required
+                                                            id="camket_chaphanhdayduquydinh"
+                                                            name="camket_chaphanhdayduquydinh"
+                                                        />
                                                         <label htmlFor="camket_daguihosotoibtnmt"></label>
                                                     </div>
                                                 </div>
