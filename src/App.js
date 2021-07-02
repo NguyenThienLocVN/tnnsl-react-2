@@ -24,6 +24,7 @@ import QuanLyCapPhepDieuChinhKTSDNuocDuoiDat from './components/page/QuanLyCapPh
 import QuanLyCapPhepNuocDuoiDatKhaiThac from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/KhaiThac';
 import QuanLyCapPhepCapMoiGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/CapMoiKTNDD';
 import QuanLyCapPhepGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/QuanLyCapPhepGiayPhepKTNDD';
+import QuanLyCapPhepEditGiayPhepKTNDD from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/EditCapMoiKTNDD';
 // Xem thong tin
 import QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/XemThongTinChung';
 import QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinCongTrinh from './components/page/QuanLyCapPhep/NuocDuoiDat/KhaiThac/ThongTinCongTrinh/ThongTinCongTrinh';
@@ -128,6 +129,9 @@ function App() {
 
 				{/* Quan Ly Cap Moi Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" component={QuanLyCapPhepGiayPhepKTNDD} />
+
+				{/* Quan Ly Cap Moi Chinh Sua Giay Phep Khai Thac Nuoc Duoi Dat */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/:id" component={QuanLyCapPhepEditGiayPhepKTNDD} />
 				
 				{/* Xem Thong Tin GP Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung} />
