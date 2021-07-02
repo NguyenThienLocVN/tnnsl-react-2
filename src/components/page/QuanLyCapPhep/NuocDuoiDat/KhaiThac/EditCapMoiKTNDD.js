@@ -9,13 +9,13 @@ import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from 
 import { apiClient } from '../../../../common/api';
 
 
-export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
+export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
     constructor(props)
     {
         super(props)
         this.state = {
-            pagename: this.props.match.params.pagename,
             countLicense: [],
+            licenseData: [],
             activeModal: null,
             licensePostData:{
                 chugiayphep_ten: '',
@@ -48,6 +48,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                 tailieu_ketqua_ptcln: '',
                 tailieu_vanban_yccd: '',
                 tailieu_giaytokhac: '',
+                status: 0,
             },
         }
         this.clickHandler = this.clickHandler.bind(this);
@@ -61,7 +62,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         this.setState({ activeModal: null })
     }
     componentDidMount(){
-        document.title = "Nước dưới đất - cấp mới giấy phép";
+        document.title = "Cấp mới giấy phép khai thác nước dưới đất";
         trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
@@ -70,6 +71,22 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                 {
                     this.setState({
                         countLicense: response.data.gp_ktsdnuocduoidat,
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id_gp)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        licenseData: response.data,
+                        status: response.data.status,
                     });
                 }
             })
@@ -118,6 +135,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                         tailieu_ketqua_ptcln: this.state.licensePostData.tailieu_ketqua_ptcln,
                         tailieu_vanban_yccd: this.state.licensePostData.tailieu_vanban_yccd,
                         tailieu_giaytokhac: this.state.licensePostData.tailieu_giaytokhac,
+                        status: this.state.licensePostData.status,
 					})
 					.then((response) => {
 						if (response.status === 200) {
@@ -474,10 +492,10 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-12 p-0">
-                                    <div className="col-sm-12 row m-0 p-0">
+                                <div className="row m-0">
+                                    <div className="col-sm-6 row m-0 p-0">
                                         <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
-                                        <div className="col-sm-3 mt-2">
+                                        <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex alicn-items-center mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
@@ -488,7 +506,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <label htmlFor="camket_dungsuthat" className="form-label d-block m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
                                             </div>
                                         </div>
-                                        <div className="col-sm-3 mt-2">
+                                        <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
@@ -499,7 +517,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <label htmlFor="camket_chaphanhdayduquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6 mt-2">
+                                        <div className="col-sm-12 mt-2">
                                             <div className="mb-2 d-flex mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
@@ -509,6 +527,17 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 </div>
                                                 <label htmlFor="camket_daguihosotoibtnmt" className="form-label d-block m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6 row m-0 p-0">
+                                        <div>
+                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
+                                            <select onChange={this.changeHandler} name="status" className="form-control btn-outline-success" disabled defaultValue={0}>
+                                                <option value={0}>Nộp hồ sơ</option>
+                                                <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                                <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                <option value={1}>Đã được cấp phép</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

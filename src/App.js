@@ -131,7 +131,7 @@ function App() {
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" component={QuanLyCapPhepGiayPhepKTNDD} />
 
 				{/* Quan Ly Cap Moi Chinh Sua Giay Phep Khai Thac Nuoc Duoi Dat */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/:id" component={QuanLyCapPhepEditGiayPhepKTNDD} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/:id_gp" component={QuanLyCapPhepEditGiayPhepKTNDD} />
 				
 				{/* Xem Thong Tin GP Khai Thac Nuoc Duoi Dat */}
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/:id" component={QuanLyCapPhepKhaiThacNuocDuoiDatXemThongTinChung} />
