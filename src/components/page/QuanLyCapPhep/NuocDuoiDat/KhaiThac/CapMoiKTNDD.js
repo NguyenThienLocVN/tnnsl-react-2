@@ -82,8 +82,6 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     submitHandler = e => {
         e.preventDefault();
         e.target.className += " was-validated";
-
-        console.log(this.state.licensePostData.chugiayphep_email);
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(

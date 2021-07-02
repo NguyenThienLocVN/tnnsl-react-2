@@ -185,7 +185,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                     <>
                         <Form>
                             <Form.Group controlId={record.id}>
-                                <Form.Control disabled size="sm" as="select" defaultValue={record.status === 0 & record.status === 1 ? 0 : record.status}>
+                                <Form.Control disabled size="sm" as="select" defaultValue={record.status}>
                                     <option value={0}>Nộp hồ sơ</option>
                                     <option value={2}>Đang lấy ý kiến thẩm định</option>
                                     <option value={3}>Hoàn thành hồ sơ cấp phép</option>
@@ -201,7 +201,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                 key: 'action',
                 render: (text, record, i) => (
                     <>
-                        <Button variant="link" title="Chỉnh Sửa"><EditOutlined /></Button>
+                        <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link>
                         <Button onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
                     </>
                 )
