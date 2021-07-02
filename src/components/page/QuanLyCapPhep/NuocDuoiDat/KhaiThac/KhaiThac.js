@@ -44,8 +44,6 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            showReset: false,
-            disabled: false,
         }
 
         this.mapRef = React.createRef();
@@ -217,12 +215,21 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         this.fetch(this.state.pagination, e.target.value);   
     }
 
-    onReset = () => {
-        this.fetch(this.state.pagination, 'all');
-        this.setState({
-            showReset: false,
-            disabled: false,
-        })
+    // Function search
+    onSearchHandle = (value) => {
+        if(!value)
+        {   
+            this.fetch(this.state.pagination, 'all');
+        }
+        const filterResult = this.state.dataSource.filter(o =>
+            Object.keys(o).some(k =>
+                String(o[k])
+                .toLowerCase()
+                .includes(value.toLowerCase())
+            )
+        );
+
+        this.setState({ dataSource : filterResult });
     }
 
     render(){        
@@ -442,26 +449,17 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
                             <div className="col-12 py-1 row align-items-center">
                                 <div className="col-lg-4">
-                                    <Search allowClear id="search" name="search" placeholder="--Nhập số giấy phép--" onSearch={nameSearch =>
-                                        nameSearch === '' ? this.fetch(this.state.pagination, 'all') :
-                                        this.setState({
-                                            dataSource: this.state.dataSource.filter(item =>
-                                                item.gp_sogiayphep.includes(nameSearch)
-                                            )
-                                            }) 
-                                    } />
+                                    <Search allowClear id="search" name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                 </div>
-                                {/* <div className="col-9 row m-0 p-0 justify-content-end"> */}
-                                    <div className="col-3 p-0">
-                                        <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
-                                            <option value="all">Tất cả</option>
-                                            <option value="conhieuluc">Còn hiệu lực</option>
-                                            <option value="chuapheduyet">Chưa phê duyệt</option>
-                                            <option value="hethieuluc">Hết hiệu lực</option>
-                                            <option value="saphethieuluc">Sắp hết hiệu lực</option>
-                                        </select>
-                                    </div>
-                                {/* </div> */}
+                                <div className="col-3 p-0">
+                                    <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                        <option value="all">Tất cả</option>
+                                        <option value="conhieuluc">Còn hiệu lực</option>
+                                        <option value="chuapheduyet">Chưa phê duyệt</option>
+                                        <option value="hethieuluc">Hết hiệu lực</option>
+                                        <option value="saphethieuluc">Sắp hết hiệu lực</option>
+                                    </select>
+                                </div>
                                 <div className="table-responsive">
                                     <ConfigProvider locale={vnVN}>
                                         <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
