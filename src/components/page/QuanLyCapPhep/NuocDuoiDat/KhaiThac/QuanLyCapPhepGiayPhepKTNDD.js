@@ -74,7 +74,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
 							window.location.reload();
 						}
 					})
-					.catch((error) => {console.log(error);
+					.catch((error) => {
 						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
 					})
 				)

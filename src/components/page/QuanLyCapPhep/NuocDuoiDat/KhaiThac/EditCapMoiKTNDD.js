@@ -7,6 +7,9 @@ import configData from "../../../../../config.json";
 import { Dropdown, Modal, Button} from "react-bootstrap";
 import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { apiClient, getUser } from '../../../../common/api';
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 
 export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
@@ -15,7 +18,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
         super(props)
         this.state = {
             countLicense: [],
-            licenseData: [],
+            licenseData: {},
             giengData: [],
             activeModal: null,
             licensePostData:{
@@ -55,6 +58,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
         this.clickHandler = this.clickHandler.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
+
     clickHandler(e, index) {
         this.setState({ activeModal: index })
     }
@@ -62,6 +66,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
     hideModal() {
         this.setState({ activeModal: null })
     }
+
     componentDidMount(){
         document.title = "Chỉnh sửa giấy phép khai thác nước dưới đất";
         trackPromise(
@@ -79,6 +84,10 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+        
+    }
+
+    componentWillMount(){
         trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id_gp)
@@ -87,9 +96,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                 {
                     this.setState({
                         licenseData: response.data[0],
-                        licenseStatus: response.data[0].status,
                         giengData: response.data[0].hang_muc_ct[0],
-                        status: response.data.status,
                     });
                 }
             })
@@ -97,8 +104,8 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                 this.setState({msg: error.response})
             })
         )
-        
     }
+
     submitHandler = e => {
         e.preventDefault();
         e.target.className += " was-validated";
@@ -146,7 +153,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                             alert("Hãy điền đủ thông tin ở tất cả các trường nhập dữ liệu.")
                         }
 					})
-					.catch((error) => {console.log(error);
+					.catch((error) => {
 						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
 					})
 				)
@@ -158,9 +165,34 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
 		licensePostData[e.target.name] = e.target.value;
 		this.setState({ licensePostData });
     };
+
+    // Get curent status of license
+    getCurrentStatus = (status) => {
+        if(status === 1)
+        {
+            return 'Đã được cấp phép';
+        }else if (status === 2){
+            return 'Đang lấy ý kiến thẩm định';
+        }else if (status === 3)
+            return 'Hoàn thành hồ sơ cấp phép';
+        else{
+            return 'Nộp hồ sơ';
+        }
+    }
+
+    // Display class for each license status
+    statusClassName = (status) => {
+        if(status === 1)
+        {
+            return "fw-bold text-success";
+        }else{
+            return "fw-bold text-danger";
+        }
+    }
     render(){
         const user = getUser();
-        console.log(this.state.licenseData.status);
+        const { licenseData } = this.state;
+
         return(
 			<div className="p-0">
                 <Header headTitle="CHỈNH SỬA GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
@@ -238,33 +270,33 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân </label>
-                                        <input type="text" value={this.state.licenseData.chugiayphep_ten || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
+                                        <input type="text" value={licenseData.chugiayphep_ten || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_sogiayphep" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
-                                        <input type="text" value={this.state.licenseData.gp_sogiayphep || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="gp_sogiayphep" name="gp_sogiayphep" />
+                                        <input type="text" value={licenseData.gp_sogiayphep || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="gp_sogiayphep" name="gp_sogiayphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.3.Địa chỉ  </label>
-                                        <input type="text" value={this.state.licenseData.chugiayphep_diachi || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
+                                        <input type="text" value={licenseData.chugiayphep_diachi || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6 p-0 row m-0">
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.4.Điện thoại   </label>
-                                        <input type="text" value={this.state.licenseData.chugiayphep_phone || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
+                                        <input type="text" value={licenseData.chugiayphep_phone || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax   </label>
-                                        <input type="text" value={this.state.licenseData.chugiayphep_fax || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
+                                        <input type="text" value={licenseData.chugiayphep_fax || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email   </label>
-                                        <input type="email" value={this.state.licenseData.chugiayphep_email || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
+                                        <input type="email" value={licenseData.chugiayphep_email || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
                                     </div>
                                 </div>
                             </div>
@@ -273,43 +305,43 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Tên công trình khai thác </label>
-                                        <input type="text" value={this.state.licenseData.congtrinh_ten || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
+                                        <input type="text" value={licenseData.congtrinh_ten || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
-                                        <input type="text" value={this.state.licenseData.congtrinh_diachi || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="congtrinh_diachi" name="congtrinh_diachi" />
+                                        <input type="text" value={licenseData.congtrinh_diachi || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="congtrinh_diachi" name="congtrinh_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khai thác, sử dụng nước</label>
-                                        <input type="text" value={this.state.licenseData.mucdich_ktsd || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        <input type="text" value={licenseData.mucdich_ktsd || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tangchuanuoc_license" className="form-label fw-bold m-0">2.3.Tầng chứa nước khai thác  </label>
-                                        <input type="text" value={this.state.licenseData.tangchuanuoc_license || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
+                                        <input type="text" value={licenseData.tangchuanuoc_license || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Số giếng khai thác   </label>
-                                        <input type="text" value={this.state.licenseData.sogieng_quantrac || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
+                                        <input type="text" value={licenseData.sogieng_quantrac || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.5.Tổng lượng nước khai thác (m3/ngày đêm) </label>
-                                        <input type="text" value={this.state.licenseData.tongluuluong_ktsd_max || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
+                                        <input type="text" value={licenseData.tongluuluong_ktsd_max || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="date" value={this.state.licenseData.gp_thoigiancapphep || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
+                                        <input type="date" value={licenseData.gp_thoigiancapphep || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -503,7 +535,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             <div className="mb-2 d-flex alicn-items-center mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
-                                                        <input type="checkbox" defaultChecked={this.state.licenseData.camket_dungsuthat === 1 ? true : false} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                        <input type="checkbox" defaultChecked={licenseData.camket_dungsuthat === 1 ? true : false} required id="camket_dungsuthat" name="camket_dungsuthat" />
                                                         <label htmlFor="camket_dungsuthat"></label>
                                                     </div>
                                                 </div>
@@ -514,7 +546,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             <div className="mb-2 d-flex mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
-                                                        <input type="checkbox" defaultChecked={this.state.licenseData.camket_chaphanhdungquydinh === 1 ? true : false} required id="camket_chaphanhdayduquydinh" name="camket_chaphanhdayduquydinh" />
+                                                        <input type="checkbox" defaultChecked={licenseData.camket_chaphanhdungquydinh === 1 ? true : false} required id="camket_chaphanhdayduquydinh" name="camket_chaphanhdayduquydinh" />
                                                         <label htmlFor="camket_chaphanhdayduquydinh"></label>
                                                     </div>
                                                 </div>
@@ -525,7 +557,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             <div className="mb-2 d-flex mx-0">
                                                 <div className="d-flex justify-content-end pe-3">
                                                     <div className="round">
-                                                        <input type="checkbox" defaultChecked={this.state.licenseData.camket_daguihosotoibtnmt === 1 ? true : false} id="camket_daguihosotoibtnmt" name="camket_daguihosotoibtnmt" />
+                                                        <input type="checkbox" defaultChecked={licenseData.camket_daguihosotoibtnmt === 1 ? true : false} id="camket_daguihosotoibtnmt" name="camket_daguihosotoibtnmt" />
                                                         <label htmlFor="camket_daguihosotoibtnmt"></label>
                                                     </div>
                                                 </div>
@@ -536,12 +568,20 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                     <div className="col-sm-6 row m-0 p-0">
                                         <div>
                                             <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
-                                            <select onChange={this.changeHandler} defaultValue={this.state.licenseData.status} name="status" className="form-control text-success" disabled={user.role === "admin" ? false : true}>
-                                                <option value={0}>Nộp hồ sơ</option>
-                                                <option value={2}>Đang lấy ý kiến thẩm định</option>
-                                                <option value={3}>Hoàn thành hồ sơ cấp phép</option>
-                                                <option value={1}>Đã được cấp phép</option>
-                                            </select>
+                                            <span>Trạng thái hiện tại: <span className={this.statusClassName(licenseData.status)}>{this.getCurrentStatus(licenseData.status)}</span></span>
+                                            {user.role === "admin" ? 
+                                                <div className="d-flex my-2 align-items-center">
+                                                    <span>Sửa trạng thái thành : &nbsp;</span>
+                                                    <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.changeHandler} >
+                                                        <option value={0}>Nộp hồ sơ</option>
+                                                        <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                                        <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                        <option value={1}>Đã được cấp phép</option>
+                                                    </select>
+                                                </div>
+                                            : ""}
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
