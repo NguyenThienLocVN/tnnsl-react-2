@@ -588,11 +588,11 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                     <div className="round">
                                                         <input
                                                             type="checkbox"
-                                                            defaultChecked={this.state.enabledCheckBox.camket_chaphanhdayduquydinh}
+                                                            defaultChecked={this.state.enabledCheckBox.camket_daguihosotoibtnmt}
                                                             onChange={this.checkedHandle}
                                                             required
-                                                            id="camket_chaphanhdayduquydinh"
-                                                            name="camket_chaphanhdayduquydinh"
+                                                            id="camket_daguihosotoibtnmt"
+                                                            name="camket_daguihosotoibtnmt"
                                                         />
                                                         <label htmlFor="camket_daguihosotoibtnmt"></label>
                                                     </div>
