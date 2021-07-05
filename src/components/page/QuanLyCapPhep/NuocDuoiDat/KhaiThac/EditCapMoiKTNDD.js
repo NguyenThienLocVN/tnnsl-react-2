@@ -7,9 +7,6 @@ import configData from "../../../../../config.json";
 import { Dropdown, Modal, Button} from "react-bootstrap";
 import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { apiClient, getUser } from '../../../../common/api';
-import { Select } from 'antd';
-
-const { Option } = Select;
 
 
 export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
@@ -21,11 +18,6 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
             licenseData: {},
             giengData: [],
             activeModal: null,
-            enabledCheckBox: {
-                camket_dungsuthat: false,
-                camket_chaphanhdungquydinh: false,
-                camket_daguihoso: false,
-            },
             licensePostData:{
                 chugiayphep_ten: '',
                 gp_sogiayphep: '', 
@@ -58,10 +50,14 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                 tailieu_vanban_yccd: '',
                 tailieu_giaytokhac: '',
                 status: 0,
+                camket_dungsuthat: false,
+                camket_chaphanhdungquydinh: false,
+                camket_daguihoso: false,
             },
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.wrapper = React.createRef();
     }
 
     clickHandler(e, index) {
@@ -89,10 +85,6 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                 this.setState({msg: error.response})
             })
         )
-        
-    }
-
-    componentWillMount(){
         trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id_gp)
@@ -108,7 +100,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
             .catch((error) => {
                 this.setState({msg: error.response})
             })
-        )
+        )   
     }
 
     submitHandler = e => {
@@ -150,6 +142,9 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                         tailieu_vanban_yccd: this.state.licensePostData.tailieu_vanban_yccd,
                         tailieu_giaytokhac: this.state.licensePostData.tailieu_giaytokhac,
                         status: this.state.licensePostData.status,
+                        camket_dungsuthat: this.state.licensePostData.camket_dungsuthat,
+                        camket_chaphanhdungquydinh: this.state.licensePostData.camket_chaphanhdungquydinh,
+                        camket_daguihoso: this.state.licensePostData.camket_daguihoso,
 					})
 					.then((response) => {
 						if (response.status === 200) {
@@ -165,20 +160,16 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
             })
     };
 
-
-    // change data input setState
-    changeHandler = e => {
+    handleInputChange = event => {
         const { licensePostData } = this.state;
-		licensePostData[e.target.name] = e.target.value;
-		this.setState({ licensePostData });
-    };
-
-    // change data checkbox setState
-    checkedHandle = (e) => {
-        const { enabledCheckBox } = this.state;
-		enabledCheckBox[e.target.name] = !enabledCheckBox[e.target.name];
-		this.setState({ enabledCheckBox });
-      };
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        licensePostData[name] = value;
+        this.setState({
+            licensePostData
+        });
+      }
 
     // Get curent status of license
     getCurrentStatus = (status) => {
@@ -207,6 +198,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
         const user = getUser();
         const { licenseData } = this.state;
 
+        console.log(this.state.licensePostData);
 
         return(
 			<div className="p-0">
@@ -263,16 +255,8 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                             </div>
 
                             
-                            <Dropdown>
-                                <Dropdown.Toggle className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold text-dark" style={{backgroundColor: "#1EC0D7"}} id="CapMoiGiayPhep">
-                                    Cấp mới giấy phép
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu className="col-11" style={{backgroundColor: "#1EC0D7"}}>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi">Cấp mới giấy phép</Dropdown.Item>
-                                    <Dropdown.Item href="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi">Quản lý cấp phép</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
+                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/gia-han" style={{backgroundColor: "#41A59F"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn giấy phép</Link>
                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Điều chỉnh giấy phép</Link>
                             <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
@@ -285,33 +269,33 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân </label>
-                                        <input type="text" value={licenseData.chugiayphep_ten || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
+                                        <input type="text" defaultValue={licenseData.chugiayphep_ten || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_sogiayphep" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
-                                        <input type="text" value={licenseData.gp_sogiayphep || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="gp_sogiayphep" name="gp_sogiayphep" />
+                                        <input type="text" defaultValue={licenseData.gp_sogiayphep || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_sogiayphep" name="gp_sogiayphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.3.Địa chỉ  </label>
-                                        <input type="text" value={licenseData.chugiayphep_diachi || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
+                                        <input type="text" defaultValue={licenseData.chugiayphep_diachi || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6 p-0 row m-0">
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.4.Điện thoại   </label>
-                                        <input type="text" value={licenseData.chugiayphep_phone || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
+                                        <input type="text" defaultValue={licenseData.chugiayphep_phone || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax   </label>
-                                        <input type="text" value={licenseData.chugiayphep_fax || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
+                                        <input type="text" defaultValue={licenseData.chugiayphep_fax || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email   </label>
-                                        <input type="email" value={licenseData.chugiayphep_email || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
+                                        <input type="email" defaultValue={licenseData.chugiayphep_email || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
                                     </div>
                                 </div>
                             </div>
@@ -320,43 +304,43 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Tên công trình khai thác </label>
-                                        <input type="text" value={licenseData.congtrinh_ten || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
+                                        <input type="text" defaultValue={licenseData.congtrinh_ten || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
-                                        <input type="text" value={licenseData.congtrinh_diachi || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="congtrinh_diachi" name="congtrinh_diachi" />
+                                        <input type="text" defaultValue={licenseData.congtrinh_diachi || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diachi" name="congtrinh_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khai thác, sử dụng nước</label>
-                                        <input type="text" value={licenseData.mucdich_ktsd || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        <input type="text" defaultValue={licenseData.mucdich_ktsd || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tangchuanuoc_license" className="form-label fw-bold m-0">2.3.Tầng chứa nước khai thác  </label>
-                                        <input type="text" value={licenseData.tangchuanuoc_license || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
+                                        <input type="text" defaultValue={licenseData.tangchuanuoc_license || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Số giếng khai thác   </label>
-                                        <input type="text" value={licenseData.sogieng_quantrac || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
+                                        <input type="text" defaultValue={licenseData.sogieng_quantrac || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.5.Tổng lượng nước khai thác (m3/ngày đêm) </label>
-                                        <input type="text" value={licenseData.tongluuluong_ktsd_max || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
+                                        <input type="text" defaultValue={licenseData.tongluuluong_ktsd_max || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="date" value={licenseData.gp_thoigiancapphep || ''} onChange={this.changeHandler} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
+                                        <input type="date" defaultValue={licenseData.gp_thoigiancapphep || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -389,7 +373,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                         <th className="text-center align-middle">Đến</th>
                                                         <th className="text-center align-middle">
                                                             <div className="w-100">
-                                                                <Button variant="link" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" Checked={event => this.clickHandler(event, "1")}><PlusSquareOutlined /></Button>
+                                                                <Button variant="link" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={event => this.clickHandler(event, "1")}><PlusSquareOutlined /></Button>
                                                                 <>
                                                                     <Modal 
                                                                         id="addInfoConstruction" 
@@ -397,6 +381,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                                         onHide={this.hideModal} 
                                                                         size="md"
                                                                         centered
+                                                                        ref={this.wrapper}
                                                                     >
                                                                         <Modal.Body className="bg-light">
                                                                             <Button className="close-btn text-dark" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
@@ -465,34 +450,34 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.sohieu || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="sohieu" name="sohieu" />
+                                                            <input type="text" defaultValue={this.state.giengData.sohieu || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="sohieu" name="sohieu" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.x || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="x" name="x" />
+                                                            <input type="text" defaultValue={this.state.giengData.x || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="x" name="x" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.y || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="y" name="y" />
+                                                            <input type="text" defaultValue={this.state.giengData.y || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="y" name="y" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.luuluongkhaithac || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="luuluongkhaithac" name="luuluongkhaithac" />
+                                                            <input type="text" defaultValue={this.state.giengData.luuluongkhaithac || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="luuluongkhaithac" name="luuluongkhaithac" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.chedo_ktsd || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="chedo_ktsd" name="chedo_ktsd" />
+                                                            <input type="text" defaultValue={this.state.giengData.chedo_ktsd || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chedo_ktsd" name="chedo_ktsd" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.chieusau_doanthunuoctu || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_doanthunuoctu" name="chieusau_doanthunuoctu" />
+                                                            <input type="text" defaultValue={this.state.giengData.chieusau_doanthunuoctu || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuoctu" name="chieusau_doanthunuoctu" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.chieusau_doanthunuocden || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_doanthunuocden" name="chieusau_doanthunuocden" />
+                                                            <input type="text" defaultValue={this.state.giengData.chieusau_doanthunuocden || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuocden" name="chieusau_doanthunuocden" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.chieusau_mucnuoctinh || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_mucnuoctinh" name="chieusau_mucnuoctinh" />
+                                                            <input type="text" defaultValue={this.state.giengData.chieusau_mucnuoctinh || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuoctinh" name="chieusau_mucnuoctinh" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.chieusau_mucnuocdong_max || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="chieusau_mucnuocdong_max" name="chieusau_mucnuocdong_max" />
+                                                            <input type="text" defaultValue={this.state.giengData.chieusau_mucnuocdong_max || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuocdong_max" name="chieusau_mucnuocdong_max" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" value={this.state.giengData.tangchuanuoc || ''} onChange={this.changeHandler} className="form-control form-control-sm" id="tangchuanuoc_gieng" name="tangchuanuoc_gieng" />
+                                                            <input type="text" defaultValue={this.state.giengData.tangchuanuoc || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="tangchuanuoc_gieng" name="tangchuanuoc_gieng" />
                                                         </td>
                                                         <td className="d-flex">
                                                             <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-primary"><EditOutlined /></Button>
@@ -543,7 +528,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row m-0">
+                                <div className="row p-0 m-0">
                                     <div className="col-sm-6 row m-0 p-0">
                                         <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
                                         <div className="col-sm-12 mt-2">
@@ -552,8 +537,8 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                     <div className="round">
                                                         <input
                                                             type="checkbox"
-                                                            defaultChecked={this.state.enabledCheckBox.camket_dungsuthat}
-                                                            onChange={this.checkedHandle}
+                                                            defaultChecked={this.state.licensePostData.camket_dungsuthat}
+                                                            onChange={this.handleInputChange}
                                                             required
                                                             id="camket_dungsuthat"
                                                             name="camket_dungsuthat"
@@ -570,16 +555,16 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                     <div className="round">
                                                         <input
                                                             type="checkbox"
-                                                            defaultChecked={this.state.enabledCheckBox.camket_chaphanhdayduquydinh}
-                                                            onChange={this.checkedHandle}
+                                                            defaultChecked={this.state.licensePostData.camket_chaphanhdungquydinh}
+                                                            onChange={this.handleInputChange}
                                                             required
-                                                            id="camket_chaphanhdayduquydinh"
-                                                            name="camket_chaphanhdayduquydinh"
+                                                            id="camket_chaphanhdungquydinh"
+                                                            name="camket_chaphanhdungquydinh"
                                                         />
-                                                        <label htmlFor="camket_chaphanhdayduquydinh"></label>
+                                                        <label htmlFor="camket_chaphanhdungquydinh"></label>
                                                     </div>
                                                 </div>
-                                                <label htmlFor="camket_chaphanhdayduquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
+                                                <label htmlFor="camket_chaphanhdungquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
                                             </div>
                                         </div>
                                         <div className="col-sm-12 mt-2">
@@ -588,16 +573,16 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                     <div className="round">
                                                         <input
                                                             type="checkbox"
-                                                            defaultChecked={this.state.enabledCheckBox.camket_daguihosotoibtnmt}
-                                                            onChange={this.checkedHandle}
+                                                            defaultChecked={this.state.licensePostData.camket_daguihoso}
+                                                            onChange={this.handleInputChange}
                                                             required
-                                                            id="camket_daguihosotoibtnmt"
-                                                            name="camket_daguihosotoibtnmt"
+                                                            id="camket_daguihoso"
+                                                            name="camket_daguihoso"
                                                         />
-                                                        <label htmlFor="camket_daguihosotoibtnmt"></label>
+                                                        <label htmlFor="camket_daguihoso"></label>
                                                     </div>
                                                 </div>
-                                                <label htmlFor="camket_daguihosotoibtnmt" className="form-label d-block m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
+                                                <label htmlFor="camket_daguihoso" className="form-label d-block m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
                                             </div>
                                         </div>
                                     </div>
@@ -608,11 +593,11 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                             {user.role === "admin" ? 
                                                 <div className="d-flex my-2 align-items-center">
                                                     <span>Sửa trạng thái thành : &nbsp;</span>
-                                                    <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.changeHandler} >
-                                                        <option value={0}>Nộp hồ sơ</option>
-                                                        <option value={2}>Đang lấy ý kiến thẩm định</option>
-                                                        <option value={3}>Hoàn thành hồ sơ cấp phép</option>
-                                                        <option value={1}>Đã được cấp phép</option>
+                                                    <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.handleInputChange} >
+                                                        <option defaultValue={0}>Nộp hồ sơ</option>
+                                                        <option defaultValue={2}>Đang lấy ý kiến thẩm định</option>
+                                                        <option defaultValue={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                        <option defaultValue={1}>Đã được cấp phép</option>
                                                     </select>
                                                 </div>
                                             : ""}
