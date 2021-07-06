@@ -5,7 +5,7 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../../../config.json";
 import { Form, Button } from "react-bootstrap";
-import { getUser, apiClient} from '../../../../common/api';
+import { getUser, apiClient, getToken } from '../../../../common/api';
 import { ConfigProvider, Table, Input } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import vnVN from 'antd/lib/locale/vi_VN';
@@ -39,7 +39,9 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
         document.title = "Nước dưới đất - Cấp mới giấy phép";
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -68,7 +70,9 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
         apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-nhat-trang-thai-giay-phep/"+id_gp, { status:licenseStatus })
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-nhat-trang-thai-giay-phep/"+id_gp, { status:licenseStatus }, {
+                        headers: {'Authorization': 'Bearer ' + getToken()}
+                    })
                     .then((response) => {
 						if (response.status === 200) {
 							window.location.reload();
@@ -84,7 +88,9 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
         alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
             
-            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp)
+            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if (response.status === 200) {
                     window.location.reload();
@@ -105,7 +111,9 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-cap-moi-giay-phep-ktndd/"+user.id+"/"+filter)
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-cap-moi-giay-phep-ktndd/"+user.id+"/"+filter, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {

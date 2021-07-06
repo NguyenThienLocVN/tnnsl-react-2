@@ -6,7 +6,7 @@ import axios from "axios";
 import configData from "../../../../../config.json";
 import { Modal, Button} from "react-bootstrap";
 import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { apiClient, getUser } from '../../../../common/api';
+import { apiClient, getUser, getToken } from '../../../../common/api';
 
 
 export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
@@ -72,7 +72,9 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
         document.title = "Chỉnh sửa giấy phép khai thác nước dưới đất";
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -87,7 +89,9 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
         )
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id_gp)
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id_gp, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -145,7 +149,9 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                         camket_dungsuthat: this.state.licensePostData.camket_dungsuthat,
                         camket_chaphanhdungquydinh: this.state.licensePostData.camket_chaphanhdungquydinh,
                         camket_daguihoso: this.state.licensePostData.camket_daguihoso,
-					})
+					}, {
+                        headers: {'Authorization': 'Bearer ' + getToken()}
+                    })
 					.then((response) => {
 						if (response.status === 200) {
 							window.location.href = '/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi';
@@ -197,8 +203,6 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
     render(){
         const user = getUser();
         const { licenseData } = this.state;
-
-        console.log(this.state.licensePostData);
 
         return(
 			<div className="p-0">
@@ -450,34 +454,34 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.sohieu || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="sohieu" name="sohieu" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.sohieu : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="sohieu" name="sohieu" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.x || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="x" name="x" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.x : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="x" name="x" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.y || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="y" name="y" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.y : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="y" name="y" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.luuluongkhaithac || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="luuluongkhaithac" name="luuluongkhaithac" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.luuluongkhaithac : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="luuluongkhaithac" name="luuluongkhaithac" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.chedo_ktsd || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chedo_ktsd" name="chedo_ktsd" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chedo_ktsd : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chedo_ktsd" name="chedo_ktsd" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.chieusau_doanthunuoctu || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuoctu" name="chieusau_doanthunuoctu" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_doanthunuoctu : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuoctu" name="chieusau_doanthunuoctu" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.chieusau_doanthunuocden || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuocden" name="chieusau_doanthunuocden" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_doanthunuocden : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuocden" name="chieusau_doanthunuocden" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.chieusau_mucnuoctinh || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuoctinh" name="chieusau_mucnuoctinh" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_mucnuoctinh : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuoctinh" name="chieusau_mucnuoctinh" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.chieusau_mucnuocdong_max || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuocdong_max" name="chieusau_mucnuocdong_max" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_mucnuocdong_max : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuocdong_max" name="chieusau_mucnuocdong_max" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" defaultValue={this.state.giengData.tangchuanuoc || ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="tangchuanuoc_gieng" name="tangchuanuoc_gieng" />
+                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.tangchuanuoc : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="tangchuanuoc_gieng" name="tangchuanuoc_gieng" />
                                                         </td>
                                                         <td className="d-flex">
                                                             <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-primary"><EditOutlined /></Button>

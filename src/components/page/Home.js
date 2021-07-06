@@ -28,8 +28,8 @@ export default class Login extends React.Component {
     onLogoutHandler = () => {
         trackPromise(
         axios
-            .post(configData.API_URL + "/logout",{
-                token: getToken()
+            .post(configData.API_URL + "/logout", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
                 if(response.status === 200)

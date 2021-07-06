@@ -7,8 +7,9 @@ import axios from "axios";
 import configData from "../../../../../config.json";
 import { EyeOutlined, FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
-import { ConfigProvider, Table, Input, Modal } from 'antd';
+import { ConfigProvider, Table, Select, Input, Modal } from 'antd';
 import vnVN from 'antd/lib/locale/vi_VN';
+import { getToken } from '../../../../common/api';
 
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
@@ -23,7 +24,7 @@ let DefaultIcon = L.icon({
 const { Search } = Input;
 
 L.Marker.prototype.options.icon = DefaultIcon;
-  
+
 export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     constructor(props)
     {
@@ -56,10 +57,12 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
     componentDidMount(){
         document.title = "Khai thác nước dưới đất";
-    
+
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -75,7 +78,9 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -188,7 +193,9 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/loc-giay-phep/"+filter)
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/loc-giay-phep/"+filter, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {

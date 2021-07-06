@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../../../config.json";
+import { getToken } from '../../../../common/api';
 
 
 export default class QuanLyCapPhepDieuChinhKTSDNuocDuoiDat extends React.Component {
@@ -19,7 +20,9 @@ export default class QuanLyCapPhepDieuChinhKTSDNuocDuoiDat extends React.Compone
         document.title = "Nước dưới đất - gia hạn giấy phéo";
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {

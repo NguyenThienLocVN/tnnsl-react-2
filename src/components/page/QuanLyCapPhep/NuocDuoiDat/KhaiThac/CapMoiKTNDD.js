@@ -6,7 +6,7 @@ import axios from "axios";
 import configData from "../../../../../config.json";
 import { Modal, Button} from "react-bootstrap";
 import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { apiClient } from '../../../../common/api';
+import { apiClient, getToken } from '../../../../common/api';
 
 
 export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
@@ -67,7 +67,9 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         document.title = "Cấp mới giấy phép khai thác nước dưới đất";
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep")
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep", {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
             .then((response) => {
                 if(response.status === 200)
                 {
@@ -82,7 +84,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         )
         
     }
-    submitHandler = e => {
+    submitHandler = (e) => {
         e.preventDefault();
         e.target.className += " was-validated";
 		apiClient.get('/sanctum/csrf-cookie')
@@ -143,7 +145,17 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         this.setState({
             licensePostData
         });
-      }
+    }
+
+    // Function handle add construction item (them hang muc cong trinh)
+    addConstructionItem = (e) => {
+        const data = new FormData(e.target);
+        // var filterValue = data.get('filter');
+        console.log(data);    
+
+        e.preventDefault();
+    }
+
     render(){
         return(
 			<div className="p-0">
@@ -320,7 +332,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                             <div className="w-100">
                                                                 <Button variant="link" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={event => this.clickHandler(event, "1")}><PlusSquareOutlined /></Button>
                                                                 <>
-                                                                    <Modal 
+                                                                <Modal 
                                                                         id="addInfoConstruction" 
                                                                         show={this.state.activeModal === "1"} 
                                                                         onHide={this.hideModal} 
