@@ -122,6 +122,9 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                         tailieu_vanban_yccd: this.state.licensePostData.tailieu_vanban_yccd,
                         tailieu_giaytokhac: this.state.licensePostData.tailieu_giaytokhac,
                         status: this.state.licensePostData.status,
+                        camket_dungsuthat: this.style.licensePostData.camket_dungsuthat,
+                        camket_chaphanhdungquydinh: this.style.licensePostData.camket_chaphanhdungquydinh,
+                        camket_daguihoso: this.style.licensePostData.camket_daguihoso,
 					})
 					.then((response) => {
 						if (response.status === 200) {
@@ -155,6 +158,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
 
         e.preventDefault();
     }
+
 
     render(){
         return(
@@ -509,7 +513,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdayduquydinh" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
                                                             <label htmlFor="camket_chaphanhdungquydinh"></label>
                                                         </div>
                                                     </div>
