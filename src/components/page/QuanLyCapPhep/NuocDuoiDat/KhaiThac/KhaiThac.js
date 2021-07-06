@@ -7,7 +7,6 @@ import axios from "axios";
 import configData from "../../../../../config.json";
 import { EyeOutlined, FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
-import { Dropdown } from "react-bootstrap";
 import { ConfigProvider, Table, Input, Modal } from 'antd';
 import vnVN from 'antd/lib/locale/vi_VN';
 

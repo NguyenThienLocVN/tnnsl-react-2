@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../../../config.json";
-import {Dropdown} from "react-bootstrap";
 
 
 export default class QuanLyCapPhepGiaHanKTSDNuocDuoiDat extends React.Component {
