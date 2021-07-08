@@ -9,7 +9,6 @@ import configData from "../../../config.json";
 import { EyeOutlined, SearchOutlined, EditOutlined, DeleteOutlined, FilePdfOutlined, CloseOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import {Dropdown} from "react-bootstrap";
-import L from 'leaflet';
 
 export default class QuanLyCapPhepNuocDuoiDatHanhNgheKhoan extends React.Component {
     constructor(props)

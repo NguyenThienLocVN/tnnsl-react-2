@@ -4,28 +4,65 @@ import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
-import { Modal, Button} from "react-bootstrap";
-import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { apiClient, getUser, getToken } from '../../../Shared/Auth';
+import { Button} from "react-bootstrap";
+import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
+import { apiClient, getToken, getUser } from '../../../Shared/Auth';
 
+const GiengItem = () => {
+    return <tr>
+        <td>
+            <input required type="text" name="sohieu[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="x[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="y[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="luuluongkhaithac[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="chedo_ktsd[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="chieusau_doanthunuoctu[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="chieusau_doanthunuocden[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="chieusau_mucnuoctinh[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="chieusau_mucnuocdong_max[]" className="form-control form-control-sm" />
+        </td>
+        <td>
+            <input required type="text" name="tangchuanuoc[]" className="form-control form-control-sm" />
+        </td>
+        <td className="d-flex justify-content-center">
+            <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-danger"><DeleteOutlined /></Button>
+        </td>
+    </tr>
+}
 
-export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
+export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     constructor(props)
     {
         super(props)
         this.state = {
             countLicense: [],
-            licenseData: {},
-            giengData: [],
             activeModal: null,
+            licenseData: [],
+            giengData: [],
             licensePostData:{
                 chugiayphep_ten: '',
-                gp_sogiayphep: '', 
+                chugiayphep_sogiaydangkykinhdoanh: '', 
                 chugiayphep_diachi: '', 
                 chugiayphep_phone: '', 
                 chugiayphep_fax: '', 
                 chugiayphep_email: '', 
-                congtrinh_diachi: '',
+                congtrinh_diadiem: '',
                 congtrinh_ten: '',
                 mucdich_ktsd: '', 
                 tangchuanuoc_license: '', 
@@ -53,11 +90,18 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                 camket_dungsuthat: false,
                 camket_chaphanhdungquydinh: false,
                 camket_daguihoso: false,
+
             },
+            giengs: []
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.hideModal = this.hideModal.bind(this);
-        this.wrapper = React.createRef();
+    }
+
+    addGieng = () => {
+        this.setState({
+          giengs: [...this.state.giengs, <GiengItem />]
+        })
     }
 
     clickHandler(e, index) {
@@ -69,7 +113,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Chỉnh sửa giấy phép khai thác nước dưới đất";
+        document.title = "Cấp mới giấy phép khai thác nước dưới đất";
         trackPromise(
             axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/dem-giay-phep", {
@@ -104,24 +148,24 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
             .catch((error) => {
                 this.setState({msg: error.response})
             })
-        )   
-    }
+        )
 
-    submitHandler = e => {
+        
+    }
+    submitHandler = (e) => {
         e.preventDefault();
         e.target.className += " was-validated";
-        
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
 					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-moi-giay-phep", {
                         chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
-                        gp_sogiayphep: this.state.licensePostData.gp_sogiayphep, 
+                        chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
                         chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 
                         chugiayphep_phone: this.state.licensePostData.chugiayphep_phone, 
                         chugiayphep_fax: this.state.licensePostData.chugiayphep_fax, 
                         chugiayphep_email: this.state.licensePostData.chugiayphep_email, 
-                        congtrinh_diachi: this.state.licensePostData.congtrinh_diachi, 
+                        congtrinh_diadiem: this.state.licensePostData.congtrinh_diadiem, 
                         congtrinh_ten: this.state.licensePostData.congtrinh_ten, 
                         mucdich_ktsd: this.state.licensePostData.mucdich_ktsd, 
                         tangchuanuoc_license: this.state.licensePostData.tangchuanuoc_license, 
@@ -146,12 +190,7 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                         tailieu_vanban_yccd: this.state.licensePostData.tailieu_vanban_yccd,
                         tailieu_giaytokhac: this.state.licensePostData.tailieu_giaytokhac,
                         status: this.state.licensePostData.status,
-                        camket_dungsuthat: this.state.licensePostData.camket_dungsuthat,
-                        camket_chaphanhdungquydinh: this.state.licensePostData.camket_chaphanhdungquydinh,
-                        camket_daguihoso: this.state.licensePostData.camket_daguihoso,
-					}, {
-                        headers: {'Authorization': 'Bearer ' + getToken()}
-                    })
+					})
 					.then((response) => {
 						if (response.status === 200) {
 							window.location.href = '/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi';
@@ -159,13 +198,12 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                             alert("Hãy điền đủ thông tin ở tất cả các trường nhập dữ liệu.")
                         }
 					})
-					.catch((error) => {
+					.catch((error) => {console.log(error);
 						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
 					})
 				)
             })
     };
-
     handleInputChange = event => {
         const { licensePostData } = this.state;
         const target = event.target;
@@ -175,7 +213,16 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
         this.setState({
             licensePostData
         });
-      }
+    }
+
+    // Function handle add construction item (them hang muc cong trinh)
+    addConstructionItem = (e) => {
+        const data = new FormData(e.target);
+        // var filterValue = data.get('filter');
+        console.log(data);    
+
+        e.preventDefault();
+    }
 
     // Get curent status of license
     getCurrentStatus = (status) => {
@@ -200,13 +247,14 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
             return "fw-bold text-danger";
         }
     }
-    render(){
-        const user = getUser();
-        const { licenseData } = this.state;
 
+
+    render(){
+        const licenseData = this.state.licenseData;
+        const user = getUser();
         return(
 			<div className="p-0">
-                <Header headTitle="CHỈNH SỬA GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <div className="col-12 px-2 pb-4">
@@ -273,33 +321,33 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân </label>
-                                        <input type="text" defaultValue={licenseData.chugiayphep_ten || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten" value={licenseData.chugiayphep_ten || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_sogiayphep" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
-                                        <input type="text" defaultValue={licenseData.gp_sogiayphep || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_sogiayphep" name="gp_sogiayphep" />
+                                        <label htmlFor="chugiayphep_sogiaydangkykinhdoanh" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" value={licenseData.chugiayphep_sogiaydangkykinhdoanh || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.3.Địa chỉ  </label>
-                                        <input type="text" defaultValue={licenseData.chugiayphep_diachi || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" value={licenseData.chugiayphep_diachi || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6 p-0 row m-0">
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.4.Điện thoại   </label>
-                                        <input type="text" defaultValue={licenseData.chugiayphep_phone || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" value={licenseData.chugiayphep_phone || ''} />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax   </label>
-                                        <input type="text" defaultValue={licenseData.chugiayphep_fax || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" value={licenseData.chugiayphep_fax || ''} />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email   </label>
-                                        <input type="email" defaultValue={licenseData.chugiayphep_email || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
+                                        <input type="email" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" value={licenseData.chugiayphep_email || ''} />
                                     </div>
                                 </div>
                             </div>
@@ -308,43 +356,43 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Tên công trình khai thác </label>
-                                        <input type="text" defaultValue={licenseData.congtrinh_ten || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" value={licenseData.congtrinh_ten || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtrinh_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
-                                        <input type="text" defaultValue={licenseData.congtrinh_diachi || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diachi" name="congtrinh_diachi" />
+                                        <label htmlFor="congtrinh_diadiem" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" value={licenseData.congtrinh_diadiem || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khai thác, sử dụng nước</label>
-                                        <input type="text" defaultValue={licenseData.mucdich_ktsd || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" value={licenseData.mucdich_ktsd || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tangchuanuoc_license" className="form-label fw-bold m-0">2.3.Tầng chứa nước khai thác  </label>
-                                        <input type="text" defaultValue={licenseData.tangchuanuoc_license || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" value={licenseData.tangchuanuoc || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Số giếng khai thác   </label>
-                                        <input type="text" defaultValue={licenseData.sogieng_quantrac || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" value={licenseData.sogieng_quantrac || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.5.Tổng lượng nước khai thác (m3/ngày đêm) </label>
-                                        <input type="text" defaultValue={licenseData.tongluuluong_ktsd_max || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" value={licenseData.tongluuluong_ktsd_max || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="date" defaultValue={licenseData.gp_thoigiancapphep || ''} onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" value={licenseData.gp_thoigiancapphep || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -377,117 +425,13 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                                         <th className="text-center align-middle">Đến</th>
                                                         <th className="text-center align-middle">
                                                             <div className="w-100">
-                                                                <Button variant="link" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={event => this.clickHandler(event, "1")}><PlusSquareOutlined /></Button>
-                                                                <>
-                                                                    <Modal 
-                                                                        id="addInfoConstruction" 
-                                                                        show={this.state.activeModal === "1"} 
-                                                                        onHide={this.hideModal} 
-                                                                        size="md"
-                                                                        centered
-                                                                        ref={this.wrapper}
-                                                                    >
-                                                                        <Modal.Body className="bg-light">
-                                                                            <Button className="close-btn text-dark" variant="white" onClick={this.hideModal}><CloseOutlined /></Button>
-                                                                            <div className="text-dark">
-                                                                                <h4>Số hiệu, vị trí và thông số của công trình</h4>
-                                                                                <div className="mb-2">
-                                                                                    <label htmlFor="sohieu" className="form-label fw-bold">Số hiệu</label>
-                                                                                    <input type="text" className="form-control form-control-sm" />
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <div className="row">
-                                                                                        <div className="col-sm-6">
-                                                                                            <label htmlFor="x" className="form-label fw-bold">Tọa độ X</label>
-                                                                                            <input type="text" className="form-control form-control-sm" />
-                                                                                        </div>
-                                                                                        <div className="col-sm-6">
-                                                                                            <label htmlFor="y" className="form-label fw-bold">Tọa độ Y</label>
-                                                                                            <input type="text" className="form-control form-control-sm" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <label htmlFor="luuluongkhaithac" className="form-label fw-bold">Lưu lượng</label>
-                                                                                    <input type="text" className="form-control form-control-sm" />
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <label htmlFor="chedo_ktsd" className="form-label fw-bold">Chế độ khai thác</label>
-                                                                                    <input type="text" className="form-control form-control-sm" />
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <div className="row">
-                                                                                        <div className="col-sm-6">
-                                                                                            <label htmlFor="chieusau_doanthunuoctu" className="form-label fw-bold">Chiều sâu đoạn thu Nước từ</label>
-                                                                                            <input type="text" className="form-control form-control-sm" />
-                                                                                        </div>
-                                                                                        <div className="col-sm-6">
-                                                                                            <label htmlFor="chieusau_doanthunuocden" className="form-label fw-bold">Chiều sâu đoạn thu nước đến</label>
-                                                                                            <input type="text" className="form-control form-control-sm" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <label htmlFor="chieusau_mucnuoctinh" className="form-label fw-bold">Chiều sâu mực nước tĩnh</label>
-                                                                                    <input type="text" className="form-control form-control-sm" />
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <label htmlFor="chieusau_mucnuocdong_max" className="form-label fw-bold">Chiều sâu mực nước động lớn nhất</label>
-                                                                                    <input type="text" className="form-control form-control-sm" />
-                                                                                </div>
-                                                                                <div className="mb-2">
-                                                                                    <label htmlFor="tangchuanuoc_gieng" className="form-label fw-bold">Tầng chứa nước khai thác</label>
-                                                                                    <input type="text" className="form-control form-control-sm" />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="row m-0 justify-content-between">
-                                                                                <Button className="col-sm-5" variant="success" onClick={this.hideModal}>Thêm</Button>
-                                                                                <Button className="col-sm-5" variant="warning" onClick={this.hideModal}>Đóng</Button>
-                                                                            </div>
-                                                                        </Modal.Body>
-                                                                    </Modal>
-                                                                </>
+                                                                <Button variant="link" title="Tạo mới hạng mục" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={this.addGieng}><PlusSquareOutlined /></Button>
                                                             </div>
                                                         </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.sohieu : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="sohieu" name="sohieu" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.x : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="x" name="x" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.y : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="y" name="y" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.luuluongkhaithac : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="luuluongkhaithac" name="luuluongkhaithac" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chedo_ktsd : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chedo_ktsd" name="chedo_ktsd" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_doanthunuoctu : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuoctu" name="chieusau_doanthunuoctu" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_doanthunuocden : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_doanthunuocden" name="chieusau_doanthunuocden" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_mucnuoctinh : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuoctinh" name="chieusau_mucnuoctinh" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.chieusau_mucnuocdong_max : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="chieusau_mucnuocdong_max" name="chieusau_mucnuocdong_max" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" defaultValue={this.state.giengData !== undefined ? this.state.giengData.tangchuanuoc : ''} onChange={this.handleInputChange} className="form-control form-control-sm" id="tangchuanuoc_gieng" name="tangchuanuoc_gieng" />
-                                                        </td>
-                                                        <td className="d-flex">
-                                                            <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-primary"><EditOutlined /></Button>
-                                                            <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-danger"><DeleteOutlined /></Button>
-                                                        </td>
-                                                    </tr>
+                                                    {this.state.giengs}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -495,6 +439,12 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                 </div>
                                 <div className="col-sm-12 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Giấy tờ, tài liệu nộp kèm theo</p>
+                                    <div className="col-sm-6">
+                                        <div className="mb-2 d-flex mx-0">
+                                            <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
+                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
+                                        </div>
+                                    </div>
                                     <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Sơ đồ khu vực và vị trí công trình khai thác nước dưới đất</label>
@@ -532,83 +482,62 @@ export default class QuanLyCapPhepEditGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row p-0 m-0">
-                                    <div className="col-sm-6 row m-0 p-0">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
-                                        <div className="col-sm-12 mt-2">
-                                            <div className="mb-2 d-flex alicn-items-center mx-0">
-                                                <div className="d-flex justify-content-end pe-3">
-                                                    <div className="round">
-                                                        <input
-                                                            type="checkbox"
-                                                            defaultChecked={this.state.licensePostData.camket_dungsuthat}
-                                                            onChange={this.handleInputChange}
-                                                            required
-                                                            id="camket_dungsuthat"
-                                                            name="camket_dungsuthat"
-                                                        />
-                                                        <label htmlFor="camket_dungsuthat"></label>
-                                                    </div>
-                                                </div>
-                                                <label htmlFor="camket_dungsuthat" className="form-label d-block m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-12 mt-2">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <div className="d-flex justify-content-end pe-3">
-                                                    <div className="round">
-                                                        <input
-                                                            type="checkbox"
-                                                            defaultChecked={this.state.licensePostData.camket_chaphanhdungquydinh}
-                                                            onChange={this.handleInputChange}
-                                                            required
-                                                            id="camket_chaphanhdungquydinh"
-                                                            name="camket_chaphanhdungquydinh"
-                                                        />
-                                                        <label htmlFor="camket_chaphanhdungquydinh"></label>
-                                                    </div>
-                                                </div>
-                                                <label htmlFor="camket_chaphanhdungquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-12 mt-2">
-                                            <div className="mb-2 d-flex mx-0">
-                                                <div className="d-flex justify-content-end pe-3">
-                                                    <div className="round">
-                                                        <input
-                                                            type="checkbox"
-                                                            defaultChecked={this.state.licensePostData.camket_daguihoso}
-                                                            onChange={this.handleInputChange}
-                                                            required
-                                                            id="camket_daguihoso"
-                                                            name="camket_daguihoso"
-                                                        />
-                                                        <label htmlFor="camket_daguihoso"></label>
-                                                    </div>
-                                                </div>
-                                                <label htmlFor="camket_daguihoso" className="form-label d-block m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="row col-sm-12 p-0 m-0">
                                     <div className="col-sm-6 row m-0 p-0">
                                         <div>
-                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
-                                            <span>Trạng thái hiện tại: <span className={this.statusClassName(licenseData.status)}>{this.getCurrentStatus(licenseData.status)}</span></span>
-                                            {user.role === "admin" ? 
-                                                <div className="d-flex my-2 align-items-center">
-                                                    <span>Sửa trạng thái thành : &nbsp;</span>
-                                                    <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.handleInputChange} >
-                                                        <option defaultValue={0}>Nộp hồ sơ</option>
-                                                        <option defaultValue={2}>Đang lấy ý kiến thẩm định</option>
-                                                        <option defaultValue={3}>Hoàn thành hồ sơ cấp phép</option>
-                                                        <option defaultValue={1}>Đã được cấp phép</option>
-                                                    </select>
+                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
+                                            <div className="col-sm-12 mb-4">
+                                                <div className="mb-2 d-flex alicn-items-center mx-0">
+                                                    <div className="d-flex justify-content-end pe-3">
+                                                        <div className="round">
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_dungsuthat} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                            <label htmlFor="camket_dungsuthat"></label>
+                                                        </div>
+                                                    </div>
+                                                    <label htmlFor="camket_dungsuthat" className="form-label d-block m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
                                                 </div>
-                                            : ""}
-                                            
-                                            
+                                            </div>
+                                            <div className="col-sm-12 mb-4">
+                                                <div className="mb-2 d-flex mx-0">
+                                                    <div className="d-flex justify-content-end pe-3">
+                                                        <div className="round">
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
+                                                            <label htmlFor="camket_chaphanhdungquydinh"></label>
+                                                        </div>
+                                                    </div>
+                                                    <label htmlFor="camket_chaphanhdungquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-12 mb-4">
+                                                <div className="mb-2 d-flex mx-0">
+                                                    <div className="d-flex justify-content-end pe-3">
+                                                        <div className="round">
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_daguihoso} onChange={this.handleInputChange} id="camket_daguihoso" name="camket_daguihoso" />
+                                                            <label htmlFor="camket_daguihoso"></label>
+                                                        </div>
+                                                    </div>
+                                                    <label htmlFor="camket_daguihoso" className="form-label d-block m-0 font-13 fw-bold mx-2">Đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div className="col-sm-6 row m-0 p-0">
+                                            <div>
+                                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
+                                                <span>Trạng thái hiện tại: <span className={this.statusClassName(licenseData.status)}>{this.getCurrentStatus(licenseData.status)}</span></span>
+                                                {user.role === "admin" ? 
+                                                    <div className="d-flex my-2 align-items-center">
+                                                        <span>Sửa trạng thái thành : &nbsp;</span>
+                                                        <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.handleInputChange} >
+                                                            <option defaultValue={0}>Nộp hồ sơ</option>
+                                                            <option defaultValue={2}>Đang lấy ý kiến thẩm định</option>
+                                                            <option defaultValue={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                            <option defaultValue={1}>Đã được cấp phép</option>
+                                                        </select>
+                                                    </div>
+                                                : ""}
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                             <div className="pb-4 text-center col-sm-12">

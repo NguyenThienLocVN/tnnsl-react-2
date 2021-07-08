@@ -5,7 +5,7 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { CloseOutlined, PlusSquareOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import { apiClient, getToken } from '../../../Shared/Auth';
 
 const GiengItem = () => {
@@ -55,12 +55,12 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
             activeModal: null,
             licensePostData:{
                 chugiayphep_ten: '',
-                gp_sogiayphep: '', 
+                chugiayphep_sogiaydangkykinhdoanh: '', 
                 chugiayphep_diachi: '', 
                 chugiayphep_phone: '', 
                 chugiayphep_fax: '', 
                 chugiayphep_email: '', 
-                congtrinh_diachi: '',
+                congtrinh_diadiem: '',
                 congtrinh_ten: '',
                 mucdich_ktsd: '', 
                 tangchuanuoc_license: '', 
@@ -139,12 +139,12 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                 trackPromise(
 					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-moi-giay-phep", {
                         chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
-                        gp_sogiayphep: this.state.licensePostData.gp_sogiayphep, 
+                        chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
                         chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 
                         chugiayphep_phone: this.state.licensePostData.chugiayphep_phone, 
                         chugiayphep_fax: this.state.licensePostData.chugiayphep_fax, 
                         chugiayphep_email: this.state.licensePostData.chugiayphep_email, 
-                        congtrinh_diachi: this.state.licensePostData.congtrinh_diachi, 
+                        congtrinh_diadiem: this.state.licensePostData.congtrinh_diadiem, 
                         congtrinh_ten: this.state.licensePostData.congtrinh_ten, 
                         mucdich_ktsd: this.state.licensePostData.mucdich_ktsd, 
                         tangchuanuoc_license: this.state.licensePostData.tangchuanuoc_license, 
@@ -278,8 +278,8 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_sogiayphep" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_sogiayphep" name="gp_sogiayphep" />
+                                        <label htmlFor="chugiayphep_sogiaydangkykinhdoanh" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -313,8 +313,8 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtrinh_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diachi" name="congtrinh_diachi" />
+                                        <label htmlFor="congtrinh_diadiem" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -442,7 +442,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <div className="mb-2 d-flex alicn-items-center mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" required checked={this.state.licensePostData.camket_dungsuthat} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_dungsuthat} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
                                                             <label htmlFor="camket_dungsuthat"></label>
                                                         </div>
                                                     </div>
