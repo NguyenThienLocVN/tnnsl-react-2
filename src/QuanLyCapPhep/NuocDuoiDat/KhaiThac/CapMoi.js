@@ -268,7 +268,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="date" onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -401,7 +401,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                             </div>
                             <div className="pb-4 text-center col-sm-12">
                                 <hr />
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI GIẤY PHÉP</button>
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
                             </div>
                         </form>
                     </div>

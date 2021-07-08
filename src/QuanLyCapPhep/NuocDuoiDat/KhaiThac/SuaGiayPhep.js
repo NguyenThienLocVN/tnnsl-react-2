@@ -248,8 +248,6 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         const licenseData = this.state.licenseData;
         const giengData = this.state.giengData;
         const user = getUser();
-
-        console.log(giengData);
         return(
 			<div className="p-0">
                 <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
@@ -524,7 +522,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                             </div>
                             <div className="pb-4 text-center col-sm-12">
                                 <hr />
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI GIẤY PHÉP</button>
+                                {user.role === "admin" ? <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">SỬA GIẤY PHÉP</button> : <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI YÊU CẦU SỬA GIẤY PHÉP</button>}
                             </div>
                         </form>
                     </div>
