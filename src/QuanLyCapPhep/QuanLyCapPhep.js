@@ -3,7 +3,7 @@ import Header from '../Shared/Header';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import configData from "../config.json";
-import { SearchOutlined, DownloadOutlined, LineChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { DownloadOutlined, LineChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { trackPromise } from 'react-promise-tracker';
 
@@ -17,75 +17,7 @@ export default class QuanLyCapPhep extends React.Component {
             DemGPKTNuocDuoiDat:[],
             DemGPTDNuocDuoiDat:[],
             DemGPKhoanNuocDuoiDat:[],
-            barChartData: {
-                labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
-                datasets: [{
-                    label: 'Xả nước thải vào nguồn nước',
-                    data: [5, 7, 13, 5, 6, 9],
-                    stack: 1,
-                    backgroundColor: [
-                      'rgba(255, 159, 64)',
-                      'rgba(255, 159, 64)',
-                      'rgba(255, 159, 64)',
-                      'rgba(255, 159, 64)',
-                      'rgba(255, 159, 64)',
-                      'rgba(255, 159, 64)'
-                    ]
-                  },
-                  {
-                    label: 'KT, SD nước mặt',
-                    data: [5, 7, 13, 5, 6, 9],
-                    stack: 1,
-                    backgroundColor: [
-                      'rgb(97, 205, 187)',
-                      'rgb(97, 205, 187)',
-                      'rgb(97, 205, 187)',
-                      'rgb(97, 205, 187)',
-                      'rgb(97, 205, 187)',
-                      'rgb(97, 205, 187)'
-                    ]
-                  },
-                  {
-                    label: 'KT, SD nước dưới đất',
-                    data: [10, 11, 9, 5, 7, 3],
-                    stack: 1,
-                    backgroundColor: [
-                      'rgb(39, 194, 76)',
-                      'rgb(39, 194, 76)',
-                      'rgb(39, 194, 76)',
-                      'rgb(39, 194, 76)',
-                      'rgb(39, 194, 76)',
-                      'rgb(39, 194, 76)'
-                    ]
-                  },
-                  {
-                    label: 'TD nước dưới đất',
-                    data: [5, 9, 3, 15, 8, 4],
-                    stack: 1,
-                    backgroundColor: [
-                      'rgba(220, 172, 172, 0.77)',
-                      'rgba(220, 172, 172, 0.77)',
-                      'rgba(220, 172, 172, 0.77)',
-                      'rgba(220, 172, 172, 0.77)',
-                      'rgba(220, 172, 172, 0.77)',
-                      'rgba(220, 172, 172, 0.77)'
-                    ]
-                  },
-                  {
-                    label: 'Hành nghề khoan NDĐ',
-                    data: [10, 8, 6, 5, 4, 7],
-                    stack: 1,
-                    backgroundColor: [
-                      'rgba(226, 159, 106, 0.92)',
-                      'rgba(226, 159, 106, 0.92)',
-                      'rgba(226, 159, 106, 0.92)',
-                      'rgba(226, 159, 106, 0.92)',
-                      'rgba(226, 159, 106, 0.92)',
-                      'rgba(226, 159, 106, 0.92)'
-                    ]
-                  }
-                ] 
-            },
+            barChartData: {},
             doughnutData: {
                 labels: [
                     'MFA',
@@ -123,6 +55,91 @@ export default class QuanLyCapPhep extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+        trackPromise(
+            axios
+                .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai")
+                .then((response) => {
+                    if(response.status === 200)
+                    {
+                        this.setState({
+                            barChartData: {
+                                labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
+                                datasets: [
+                                {
+                                    label: 'KT, SD nước mặt',
+                                    data: response.data.gp_nuocmat,
+                                    stack: 1,
+                                    backgroundColor: [
+                                        'rgb(97, 205, 187)',
+                                        'rgb(97, 205, 187)',
+                                        'rgb(97, 205, 187)',
+                                        'rgb(97, 205, 187)',
+                                        'rgb(97, 205, 187)',
+                                        'rgb(97, 205, 187)'
+                                    ]
+                                },
+                                {
+                                    label: 'Khai thác nước dưới đất',
+                                    data: response.data.gp_ktnuocduoidat,
+                                    stack: 1,
+                                    backgroundColor: [
+                                        'rgb(39, 194, 76)',
+                                        'rgb(39, 194, 76)',
+                                        'rgb(39, 194, 76)',
+                                        'rgb(39, 194, 76)',
+                                        'rgb(39, 194, 76)',
+                                        'rgb(39, 194, 76)'
+                                    ]
+                                },
+                                {
+                                    label: 'Thăm dò nước dưới đất',
+                                    data: response.data.gp_tdnuocduoidat,
+                                    stack: 1,
+                                    backgroundColor: [
+                                        'rgba(220, 172, 172, 0.77)',
+                                        'rgba(220, 172, 172, 0.77)',
+                                        'rgba(220, 172, 172, 0.77)',
+                                        'rgba(220, 172, 172, 0.77)',
+                                        'rgba(220, 172, 172, 0.77)',
+                                        'rgba(220, 172, 172, 0.77)'
+                                    ]
+                                },
+                                {
+                                    label: 'Hành nghề khoan nước dưới đất',
+                                    data: response.data.gp_khoannuocduoidat,
+                                    stack: 1,
+                                    backgroundColor: [
+                                        'rgba(226, 159, 106, 0.92)',
+                                        'rgba(226, 159, 106, 0.92)',
+                                        'rgba(226, 159, 106, 0.92)',
+                                        'rgba(226, 159, 106, 0.92)',
+                                        'rgba(226, 159, 106, 0.92)',
+                                        'rgba(226, 159, 106, 0.92)'
+                                    ]
+                                },
+                                {
+                                    label: 'Xả thải',
+                                    data: response.data.gp_xathai,
+                                    stack: 1,
+                                    backgroundColor: [
+                                        'rgba(255, 159, 64)',
+                                        'rgba(255, 159, 64)',
+                                        'rgba(255, 159, 64)',
+                                        'rgba(255, 159, 64)',
+                                        'rgba(255, 159, 64)',
+                                        'rgba(255, 159, 64)'
+                                    ]
+                                },
+                                
+                                ] 
+                            }
+                        });
+                    }
+                })
+                .catch((error) => {
+                    this.setState({msg: error.response})
+                })
+            )
     }
 
     render(){
@@ -244,35 +261,6 @@ export default class QuanLyCapPhep extends React.Component {
                     <div className="col-12 col-lg-7 menu-home px-md-1">
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
                             <div className="card-header">Số lượng giấy phép công trình được cấp theo năm</div>
-                            <div className="col-12 row mx-0 pt-2">
-                                <div className="col-12 col-md-3 mb-2 px-3">
-                                    <span className="col-12 col-lg-2 fw-bold">Từ :</span>
-                                    <select className="mx-3 form-control form-control-sm">
-                                        <option defaultValue="2015">2015</option>
-                                        <option defaultValue="2016">2016</option>
-                                        <option defaultValue="2017">2017</option>
-                                        <option defaultValue="2018">2018</option>
-                                        <option defaultValue="2019">2019</option>
-                                        <option defaultValue="2020">2020</option>
-                                    </select>
-                                </div>
-                                <div className="col-12 col-md-3 mb-2 px-3">
-                                    <span className="col-12 col-lg-2 fw-bold">Đến :</span>
-                                    <select className="mx-3 form-control form-control-sm">
-                                        <option defaultValue="2015">2015</option>
-                                        <option defaultValue="2016">2016</option>
-                                        <option defaultValue="2017">2017</option>
-                                        <option defaultValue="2018">2018</option>
-                                        <option defaultValue="2019">2019</option>
-                                        <option defaultValue="2020">2020</option>
-                                    </select>
-                                </div>
-                                <div className="col-12 col-md-3 mb-2 px-3">
-                                    <span className="col-12 col-lg-2 fw-bold">&nbsp;</span>
-                                    <button className="btn btn-sm btn-primary d-flex align-items-center fw-bold mx-auto text-light"><SearchOutlined /> &nbsp; THỐNG KÊ </button>
-                                </div>
-                                
-                            </div>
                             <div className="card-body">
                                 <Bar height={350} width={75} data={this.state.barChartData} options={chartOptions} />
                             </div>
