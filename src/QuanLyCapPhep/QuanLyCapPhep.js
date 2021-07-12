@@ -14,7 +14,9 @@ export default class QuanLyCapPhep extends React.Component {
         super(props)
         this.state = {
             DemGPNuocMat:[],
-            DemGPKTSDNuocDuoiDat:[],
+            DemGPKTNuocDuoiDat:[],
+            DemGPTDNuocDuoiDat:[],
+            DemGPKhoanNuocDuoiDat:[],
             barChartData: {
                 labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
                 datasets: [{
@@ -111,7 +113,9 @@ export default class QuanLyCapPhep extends React.Component {
                 {
                     this.setState({
                         DemGPNuocMat: response.data.gp_nuocmat,
-                        DemGPKTSDNuocDuoiDat: response.data.gp_ktsdnuocduoidat,
+                        DemGPKTNuocDuoiDat: response.data.gp_ktnuocduoidat,
+                        DemGPTDNuocDuoiDat: response.data.gp_tdnuocduoidat,
+                        DemGPKhoanNuocDuoiDat: response.data.gp_khoannuocduoidat,
                     });
                 }
             })
@@ -244,6 +248,9 @@ export default class QuanLyCapPhep extends React.Component {
                                 <div className="col-12 col-md-3 mb-2 px-3">
                                     <span className="col-12 col-lg-2 fw-bold">Từ :</span>
                                     <select className="mx-3 form-control form-control-sm">
+                                        <option defaultValue="2015">2015</option>
+                                        <option defaultValue="2016">2016</option>
+                                        <option defaultValue="2017">2017</option>
                                         <option defaultValue="2018">2018</option>
                                         <option defaultValue="2019">2019</option>
                                         <option defaultValue="2020">2020</option>
@@ -252,14 +259,9 @@ export default class QuanLyCapPhep extends React.Component {
                                 <div className="col-12 col-md-3 mb-2 px-3">
                                     <span className="col-12 col-lg-2 fw-bold">Đến :</span>
                                     <select className="mx-3 form-control form-control-sm">
-                                        <option defaultValue="2018">2018</option>
-                                        <option defaultValue="2019">2019</option>
-                                        <option defaultValue="2020">2020</option>
-                                    </select>
-                                </div>
-                                <div className="col-12 col-md-3 mb-2 px-3">
-                                    <span className="col-12 col-lg-2 fw-bold">Huyện :</span>
-                                    <select className="mx-3 form-control form-control-sm">
+                                        <option defaultValue="2015">2015</option>
+                                        <option defaultValue="2016">2016</option>
+                                        <option defaultValue="2017">2017</option>
                                         <option defaultValue="2018">2018</option>
                                         <option defaultValue="2019">2019</option>
                                         <option defaultValue="2020">2020</option>
@@ -370,23 +372,23 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-euw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.tat_ca_giay_phep}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.tat_ca_giay_phep}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.con_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.sap_het_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.sap_het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.het_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">{this.state.DemGPKTSDNuocDuoiDat.chua_phe_duyet}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
@@ -398,23 +400,27 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-uwe-title-box rounded mb-2 p-2 fw-bold text-center">THĂM DÒ NƯỚC DƯỚI ĐẤT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.tat_ca_giay_phep}</p>
+                                    </div>
+                                    <div className="fw-bold col-12 d-flex px-2">
+                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
+                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.sap_het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">--</p>
                                     </div>
                                 </div>
 
@@ -422,23 +428,27 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-practise-title-box rounded mb-2 p-2 fw-bold text-center">HÀNH NGHỀ</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.tat_ca_giay_phep}</p>
+                                    </div>
+                                    <div className="fw-bold col-12 d-flex px-2">
+                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
+                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.sap_het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">1000</p>
+                                        <p className="col-3">--</p>
                                     </div>
                                 </div>
                             </div>
