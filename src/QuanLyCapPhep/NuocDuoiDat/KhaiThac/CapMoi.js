@@ -1,49 +1,12 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
+import axios from "axios";
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
-import { apiClient } from '../../../Shared/Auth';
+import { CloseOutlined, PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
-
-const GiengItem = () => {
-    return <tr>
-        <td>
-            <input required type="text" name="sohieu[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="x[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="y[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="luuluongkhaithac[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="chedo_ktsd[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="chieusau_doanthunuoctu[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="chieusau_doanthunuocden[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="chieusau_mucnuoctinh[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="chieusau_mucnuocdong_max[]" className="form-control form-control-sm" />
-        </td>
-        <td>
-            <input required type="text" name="tangchuanuoc[]" className="form-control form-control-sm" />
-        </td>
-        <td className="d-flex justify-content-center">
-            <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-danger"><DeleteOutlined /></Button>
-        </td>
-    </tr>
-}
+import { apiClient, getToken } from '../../../Shared/Auth';
 
 export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     constructor(props)
@@ -65,16 +28,6 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                 sogieng_quantrac: '', 
                 tongluuluong_ktsd_max: '', 
                 gp_thoigiancapphep: '', 
-                sohieu: '', 
-                x: '', 
-                y: '', 
-                luuluongkhaithac: '', 
-                chedo_ktsd: '', 
-                chieusau_doanthunuoctu: '', 
-                chieusau_doanthunuocden: '', 
-                chieusau_mucnuoctinh: '', 
-                chieusau_mucnuocdong_max: '', 
-                tangchuanuoc_gieng: '', 
                 tailieu_sodokhuvucvitricongtrinh: '',
                 tailieu_sodokhuvucvitricongtrinhkhaithac: '',
                 tailieu_baocaoketquathamdo: '',
@@ -87,32 +40,65 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                 camket_chaphanhdungquydinh: false,
                 camket_daguihoso: false,
             },
-            giengs: []
+            giengs: [{sohieu: "",
+            x: "",
+            y: "",
+            luuluongkhaithac: "",
+            chedo_ktsd: "",
+            chieusau_doanthunuoctu: "",
+            chieusau_doanthunuocden: "",
+            chieusau_mucnuoctinh: "",
+            tangchuanuoc: "",
+            chieusau_mucnuocdong_max: ""}]
         }
-        this.clickHandler = this.clickHandler.bind(this);
-        this.hideModal = this.hideModal.bind(this);
     }
 
-    addGieng = () => {
+    // Get well item on change event (Lay du lieu gieng khi thay doi gia tri)
+    handleChangeGieng = (i, e) => {
+        let giengs = [...this.state.giengs]
+        giengs[i][e.target.name] = e.target.value;
+        this.setState({ giengs });
+    };
+
+    // Add well item (them hang muc gieng)
+    handleAddGieng = (e) => {
         this.setState({
-          giengs: [...this.state.giengs, <GiengItem />]
+            giengs: [...this.state.giengs, {sohieu: "",
+            x: "",
+            y: "",
+            luuluongkhaithac: "",
+            chedo_ktsd: "",
+            chieusau_doanthunuoctu: "",
+            chieusau_doanthunuocden: "",
+            chieusau_mucnuoctinh: "",
+            tangchuanuoc: "",
+            chieusau_mucnuocdong_max: ""}],
         })
-    }
+    };
 
-    clickHandler(e, index) {
-        this.setState({ activeModal: index })
-    }
-    
-    hideModal() {
-        this.setState({ activeModal: null })
+    // Remove well item (xoa hang muc gieng)
+    handleRemoveSpecificRow = (idx) => () => {
+        const giengs = [...this.state.giengs]
+        giengs.splice(idx, 1)
+        this.setState({ giengs })
     }
 
     componentDidMount(){
         document.title = "Cấp mới giấy phép khai thác nước dưới đất";
     }
+
     submitHandler = (e) => {
         e.preventDefault();
         e.target.className += " was-validated";
+
+        const tailieu_sodokhuvucvitricongtrinh = document.querySelector('#tailieu_sodokhuvucvitricongtrinh');
+        const tailieu_donxincapphep = document.querySelector('#tailieu_donxincapphep');
+        const formdata = new FormData();
+        formdata.append('tailieu_sodokhuvucvitricongtrinh', tailieu_sodokhuvucvitricongtrinh.files[0]);
+        formdata.append('tailieu_donxincapphep', tailieu_donxincapphep.files[0]);
+
+        console.log( tailieu_donxincapphep.files[0]);
+
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
@@ -126,35 +112,16 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                         congtrinh_diadiem: this.state.licensePostData.congtrinh_diadiem, 
                         congtrinh_ten: this.state.licensePostData.congtrinh_ten, 
                         mucdich_ktsd: this.state.licensePostData.mucdich_ktsd, 
-                        tangchuanuoc_license: this.state.licensePostData.tangchuanuoc_license, 
+                        tangchuanuoc: this.state.licensePostData.tangchuanuoc_license, 
                         sogieng_quantrac: this.state.licensePostData.sogieng_quantrac, 
                         tongluuluong_ktsd_max: this.state.licensePostData.tongluuluong_ktsd_max, 
                         gp_thoigiancapphep: this.state.licensePostData.gp_thoigiancapphep, 
-                        sohieu: this.state.licensePostData.sohieu, 
-                        x: this.state.licensePostData.x, 
-                        y: this.state.licensePostData.y, 
-                        luuluongkhaithac: this.state.licensePostData.luuluongkhaithac, 
-                        chedo_ktsd: this.state.licensePostData.chedo_ktsd, 
-                        chieusau_doanthunuoctu: this.state.licensePostData.chieusau_doanthunuoctu, 
-                        chieusau_doanthunuocden: this.state.licensePostData.chieusau_doanthunuocden, 
-                        chieusau_mucnuoctinh: this.state.licensePostData.chieusau_mucnuoctinh, 
-                        chieusau_mucnuocdong_max: this.state.licensePostData.chieusau_mucnuocdong_max, 
-                        tangchuanuoc_gieng: this.state.licensePostData.tangchuanuoc_gieng, 
-                        tailieu_sodokhuvucvitricongtrinh: this.state.licensePostData.tailieu_sodokhuvucvitricongtrinh,
-                        tailieu_sodokhuvucvitricongtrinhkhaithac: this.state.licensePostData.tailieu_sodokhuvucvitricongtrinhkhaithac,
-                        tailieu_baocaoketquathamdo: this.state.licensePostData.tailieu_baocaoketquathamdo,
-                        tailieu_baocaohientrangkhaithac: this.state.licensePostData.tailieu_baocaohientrangkhaithac,
-                        tailieu_ketqua_ptcln: this.state.licensePostData.tailieu_ketqua_ptcln,
-                        tailieu_vanban_yccd: this.state.licensePostData.tailieu_vanban_yccd,
-                        tailieu_giaytokhac: this.state.licensePostData.tailieu_giaytokhac,
+                        giengs: this.state.giengs,
+                        formdata,
                         status: this.state.licensePostData.status,
 					})
 					.then((response) => {
-						if (response.status === 200) {
-							window.location.href = '/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi';
-						}else{
-                            alert("Hãy điền đủ thông tin ở tất cả các trường nhập dữ liệu.")
-                        }
+                        console.log(response);
 					})
 					.catch((error) => {console.log(error);
 						setTimeout(this.setState({errorMsg: error.response.data.error_message}), 3000);
@@ -162,24 +129,24 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
 				)
             })
     };
+
+    // Get value for license creation on change (Lay gia tri input de tao moi giay phep)
     handleInputChange = event => {
         const { licensePostData } = this.state;
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+        var value = "";
+        if(event.target.type === 'checkbox'){
+            value = event.target.checked
+        }else if(event.target.type === 'file'){
+            value = event.target.files[0].name
+        }
+        else{
+            value = event.target.value;
+        }
+        const name = event.target.name;
         licensePostData[name] = value;
         this.setState({
             licensePostData
         });
-    }
-
-    // Function handle add construction item (them hang muc cong trinh)
-    addConstructionItem = (e) => {
-        const data = new FormData(e.target);
-        // var filterValue = data.get('filter');
-        console.log(data);    
-
-        e.preventDefault();
     }
 
     render(){
@@ -274,7 +241,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tailieu_sodokhuvucvitricongtrinh" className="form-label d-block m-0 fw-bold">2.7.Sơ đồ khu vực và vị trí công trình khai thác nước kèm theo</label>
-                                       <input type="file" className="form-control form-control-sm" id="tailieu_sodokhuvucvitricongtrinh" name="tailieu_sodokhuvucvitricongtrinh" />
+                                       <input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm" id="tailieu_sodokhuvucvitricongtrinh" name="tailieu_sodokhuvucvitricongtrinh" />
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
@@ -301,13 +268,49 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                         <th className="text-center align-middle">Đến</th>
                                                         <th className="text-center align-middle">
                                                             <div className="w-100">
-                                                                <Button variant="link" title="Tạo mới hạng mục" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={this.addGieng}><PlusSquareOutlined /></Button>
+                                                                <Button variant="link" title="Tạo mới hạng mục" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={this.handleAddGieng}><PlusSquareOutlined /></Button>
                                                             </div>
                                                         </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {this.state.giengs}
+                                                    {this.state.giengs.map((item, i) => (
+                                                        <tr key={i}>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].sohieu} name="sohieu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].x} name="x" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].y} name="y" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].luuluongkhaithac} name="luuluongkhaithac" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].chedo_ktsd} name="chedo_ktsd" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].chieusau_doanthunuoctu} name="chieusau_doanthunuoctu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].chieusau_doanthunuocden} name="chieusau_doanthunuocden" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].chieusau_mucnuoctinh} name="chieusau_mucnuoctinh" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].chieusau_mucnuocdong_max} name="chieusau_mucnuocdong_max" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td>
+                                                                <input required type="text" value={this.state.giengs[i].tangchuanuoc} name="tangchuanuoc" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                            </td>
+                                                            <td className="d-flex justify-content-center">
+                                                                <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-danger" onClick={this.handleRemoveSpecificRow(i)}><DeleteOutlined /></Button>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -318,43 +321,43 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Sơ đồ khu vực và vị trí công trình khai thác nước dưới đất</label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">- Báo cáo kết quả thăm dò đánh giá trữ lượng nước dưới đất</label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Báo cáo hiện trạng khai thác </label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Phiếu kết quả phân tích chất lượng nguồn nước dưới đất </label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13">- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng  </label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_giaytokhac" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan </label>
-                                            <div className="w-25"><input type="file" className="form-control form-control-sm w-100" id="tailieu_giaytokhac" name="tailieu_giaytokhac" /></div>
+                                            <div className="w-25"><input type="file" accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_giaytokhac" name="tailieu_giaytokhac" /></div>
                                         </div>
                                     </div>
                                 </div>
