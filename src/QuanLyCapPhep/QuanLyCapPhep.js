@@ -18,19 +18,7 @@ export default class QuanLyCapPhep extends React.Component {
             DemGPTDNuocDuoiDat:[],
             DemGPKhoanNuocDuoiDat:[],
             barChartData: {},
-            doughnutData: {
-                labels: [
-                    'MFA',
-                    'NON-MFA'
-                ],
-                datasets: [{
-                    data: [5667, 2829],
-                    backgroundColor: [
-                    '#FF6384',
-                    '#36A2EB'
-                    ],
-                }]
-            }      
+            doughnutData: {}      
         }
     }
 
@@ -71,12 +59,7 @@ export default class QuanLyCapPhep extends React.Component {
                                     stack: 1,
                                     backgroundColor: [
                                         'rgb(97, 205, 187)',
-                                        'rgb(97, 205, 187)',
-                                        'rgb(97, 205, 187)',
-                                        'rgb(97, 205, 187)',
-                                        'rgb(97, 205, 187)',
-                                        'rgb(97, 205, 187)'
-                                    ]
+                                    ],
                                 },
                                 {
                                     label: 'Khai thác nước dưới đất',
@@ -84,12 +67,7 @@ export default class QuanLyCapPhep extends React.Component {
                                     stack: 1,
                                     backgroundColor: [
                                         'rgb(39, 194, 76)',
-                                        'rgb(39, 194, 76)',
-                                        'rgb(39, 194, 76)',
-                                        'rgb(39, 194, 76)',
-                                        'rgb(39, 194, 76)',
-                                        'rgb(39, 194, 76)'
-                                    ]
+                                    ],
                                 },
                                 {
                                     label: 'Thăm dò nước dưới đất',
@@ -97,12 +75,7 @@ export default class QuanLyCapPhep extends React.Component {
                                     stack: 1,
                                     backgroundColor: [
                                         'rgba(220, 172, 172, 0.77)',
-                                        'rgba(220, 172, 172, 0.77)',
-                                        'rgba(220, 172, 172, 0.77)',
-                                        'rgba(220, 172, 172, 0.77)',
-                                        'rgba(220, 172, 172, 0.77)',
-                                        'rgba(220, 172, 172, 0.77)'
-                                    ]
+                                    ],
                                 },
                                 {
                                     label: 'Hành nghề khoan nước dưới đất',
@@ -110,12 +83,7 @@ export default class QuanLyCapPhep extends React.Component {
                                     stack: 1,
                                     backgroundColor: [
                                         'rgba(226, 159, 106, 0.92)',
-                                        'rgba(226, 159, 106, 0.92)',
-                                        'rgba(226, 159, 106, 0.92)',
-                                        'rgba(226, 159, 106, 0.92)',
-                                        'rgba(226, 159, 106, 0.92)',
-                                        'rgba(226, 159, 106, 0.92)'
-                                    ]
+                                    ],
                                 },
                                 {
                                     label: 'Xả thải',
@@ -123,15 +91,26 @@ export default class QuanLyCapPhep extends React.Component {
                                     stack: 1,
                                     backgroundColor: [
                                         'rgba(255, 159, 64)',
-                                        'rgba(255, 159, 64)',
-                                        'rgba(255, 159, 64)',
-                                        'rgba(255, 159, 64)',
-                                        'rgba(255, 159, 64)',
-                                        'rgba(255, 159, 64)'
-                                    ]
+                                    ],
                                 },
                                 
                                 ] 
+                            },
+                            doughnutData: {
+                                labels: [
+                                    '2015','2016','2017','2018','2019','2020',
+                                ],
+                                datasets: [{
+                                    data: response.data.gp_nuocmat,
+                                    backgroundColor: [
+                                    '#FF6384',
+                                    '#36A2EB',
+                                    'orange',
+                                    'orangered',
+                                    'violet',
+                                    'green'
+                                    ],
+                                }]
                             }
                         });
                     }
@@ -183,7 +162,8 @@ export default class QuanLyCapPhep extends React.Component {
 			<div className="p-0">
                 <Header headTitle="QUẢN LÝ CẤP PHÉP TÀI NGUYÊN NƯỚC" previousLink="/" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
-                    <div className="col-12 col-lg-2 px-0 menu-home">
+                    {/* DesktopNav */}
+                    <div className="col-12 col-lg-2 px-0 menu-home" id="desktopNav">
                         <div className="row m-0">
                             <div className="col-lg-12 p-0">
                                 <ul className="nav flex-column nav-pills pl-2 pb-1 mx-auto my-3 rounded">
@@ -258,43 +238,144 @@ export default class QuanLyCapPhep extends React.Component {
                             </div>
                         </div>
                     </div>
+                    {/* mobileNav */}
+                    <nav id="mobileNav" role="navigation">
+                        <div id="menuToggle">
+                            <input type="checkbox" />
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            <ul id="menu">
+                                <ul className="nav flex-column nav-pills pl-2 pb-1 mx-auto my-3 rounded">
+                                    <div >
+                                        <p className="btn btn-outline-dark col-12 col-sm-11 mx-auto font-13 btn-sm d-flex justify-content-center align-items-center fw-bold"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="nav-link font-13 hover-link" href="#">Thủy Điện</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/ho-chua" className="nav-link font-13 hover-link">Hồ Chứa</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/tram-bom" className="nav-link font-13 hover-link">Trạm Bơm</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi" className="nav-link font-13 hover-link">Đập / Hệ Thống Thủy Lợi</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/cong" className="nav-link font-13 hover-link">Cống</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc" className="nav-link font-13 hover-link">Trạm Cấp Nước</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc" className="nav-link font-13 hover-link">Nhà Máy Nước</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-mat/cong-trinh-khac" className="nav-link font-13 hover-link">Công Trình Khác</Link>
+                                        </li>
+                                    </div>
+                                    <div >
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" className="nav-link font-13 hover-link">Khai Thác</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" className="nav-link font-13 hover-link">Thăm Dò</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan" className="nav-link font-13 hover-link">Hành Nghề Khoan</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac" className="nav-link font-13 hover-link">Công Trình Khác</Link>
+                                        </li>
+                                    </div>
+                                    <div >
+                                        <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">XẢ THẢI VÀO NGUỒN NƯỚC</p>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">SX KD Dịch Vụ</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">CS Bệnh Viện</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">Khu Dân Cư / Làng Nghề</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">Chăn Nuôi / NTTS</Link>
+                                        </li>
+                                        <li className="nav-item border-bottom py-0">
+                                            <Link to="#" className="nav-link font-13 hover-link">Công Trình Khác</Link>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </ul>
+                        </div>
+                    </nav>
                     <div className="col-12 col-lg-7 menu-home px-md-1">
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
-                            <div className="card-header">Số lượng giấy phép công trình được cấp theo năm</div>
+                            <div className="card-header">Biểu đồ số lượng giấy phép được cấp theo năm</div>
                             <div className="card-body">
-                                <Bar height={350} width={75} data={this.state.barChartData} options={chartOptions} />
+                                <Bar height={500} width={75} data={this.state.barChartData} options={chartOptions} />
                             </div>
                         </div>
 
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
+                            <div className="card-header">Số lượng giấy phép công trình được cấp theo năm</div>
                             <div className="card-body col-12 row mx-0">
-                                <div className="col-12 col-md-4 p-0">
-                                    <div className="form-group mb-2">
-                                        <label className="fw-bold m-0">Biểu đồ:</label>
-                                        <input type="text" className="form-control form-control-sm" />
-                                    </div>
+                                <div className="col-12 col-md-3 p-0">
                                     <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Đối tượng:</label>
-                                        <input type="text" className="form-control form-control-sm" />
+                                        <select className="form-select form-select-sm">
+                                            <option>Đối tượng 0</option>
+                                            <option>Đối tượng 1</option>
+                                            <option>Đối tượng 2</option>
+                                            <option>Đối tượng 3</option>
+                                            <option>Đối tượng 4</option>
+                                        </select>
                                     </div>
                                     <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Nhóm:</label>
-                                        <input type="text" className="form-control form-control-sm" />
+                                        <select className="form-select form-select-sm">
+                                            <option>Nhóm 0</option>
+                                            <option>Nhóm 1</option>
+                                            <option>Nhóm 2</option>
+                                            <option>Nhóm 3</option>
+                                            <option>Nhóm 4</option>
+                                        </select>
                                     </div>
                                     <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Giai đoạn:</label>
-                                        <input type="text" className="form-control form-control-sm" />
+                                        <select className="form-select form-select-sm">
+                                            <option>Giai đoạn 0</option>
+                                            <option>Giai đoạn 1</option>
+                                            <option>Giai đoạn 2</option>
+                                            <option>Giai đoạn 3</option>
+                                            <option>Giai đoạn 4</option>
+                                        </select>
                                     </div>
                                     <div className="form-group mb-2">
                                         <label className="fw-bold m-0">Chu kỳ:</label>
-                                        <input type="text" className="form-control form-control-sm" />
+                                        <select className="form-select form-select-sm">
+                                            <option>Chu kỳ 0</option>
+                                            <option>Chu kỳ 1</option>
+                                            <option>Chu kỳ 2</option>
+                                            <option>Chu kỳ 3</option>
+                                            <option>Chu kỳ 4</option>
+                                        </select>
                                     </div>
                                     <div className="form-group d-flex mb-2 justify-content-between">
                                         <button className="col-5 font-11 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> &nbsp; Xuất PDF</button>
                                         <button className="col-5 font-11 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> &nbsp; Thống kê</button>
                                     </div>
                                 </div>
-                                <div className="col-md-8 col-12">
+                                <div className="col-md-9 col-12">
                                     <Doughnut data={this.state.doughnutData} options={doughnutOptions} />
                                 </div>
                             </div>
