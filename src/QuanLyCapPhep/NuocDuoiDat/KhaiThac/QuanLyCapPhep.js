@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
@@ -128,7 +128,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
               key: 'gp_sogiayphep',
               width: '10%',
               render: (text, record, index) => (
-                <p className="cursor_pointer m-0">{record.gp_sogiayphep}</p>
+                <p className="cursor_pointer m-0">{record.gp_sogiayphep ? record.gp_sogiayphep : "--"}</p>
               ),
             },
             {
@@ -138,7 +138,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                 width: '30%',
                 sorter: (a, b) => a.congtrinh_ten.localeCompare(b.congtrinh_ten),
                 render: (text, record) => (
-                    <p className="text-primary m-0 cursor_pointer">{record.congtrinh_ten ? record.congtrinh_ten : "--"} </p>
+                    <p className="cursor_pointer m-0">{record.congtrinh_ten ? record.congtrinh_ten : "--"} </p>
                 )
             },
             {
@@ -211,7 +211,14 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                         pagination={{
                                         showTotal: (total, range) => `Tất cả ${total} bản ghi`,
                                             current: this.state.currentPage,
-                                            pageSize: 10}}/>
+                                            pageSize: 10
+                                        }}
+                                        onRow={(record) => {
+                                            return {
+                                                onClick: event => <Redirect push to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id}/>
+                                            };
+                                        }}
+                                        />
                                 </ConfigProvider>
                             </div>
                         </div>

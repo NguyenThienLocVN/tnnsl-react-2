@@ -278,11 +278,11 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             },
             {
                 title: 'Thời hạn',
-                dataIndex: 'gp_thoihangiayphep',
-                key: 'gp_thoihangiayphep',
+                dataIndex: 'gp_thoigiancapphep',
+                key: 'gp_thoigiancapphep',
                 sorter: (a, b) => {
-                    let year_a = a.gp_thoihangiayphep.split(" ");
-                    let year_b = b.gp_thoihangiayphep.split(" ");
+                    let year_a = a.gp_thoigiancapphep.split(" ");
+                    let year_b = b.gp_thoigiancapphep.split(" ");
                     return year_a[0] - year_b[0];
                 }
             },
