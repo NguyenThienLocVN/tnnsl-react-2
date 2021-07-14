@@ -112,10 +112,10 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Cấp mới giấy phép khai thác nước dưới đất";
+        document.title = "Sửa giấy phép khai thác nước dưới đất";
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/giay-phep-khai-thac/"+this.props.match.params.id_gp, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/giay-phep-khai-thac/"+this.props.match.params.id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -140,7 +140,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-moi-giay-phep", {
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi-giay-phep", {
                         chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
                         chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
                         chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 
@@ -502,22 +502,22 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                     <div className="col-sm-6 row m-0 p-0">
-                                            <div>
-                                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
-                                                <span>Trạng thái hiện tại: <span className={this.statusClassName(licenseData.status)}>{this.getCurrentStatus(licenseData.status)}</span></span>
-                                                {user.role === "admin" ? 
-                                                    <div className="d-flex my-2 align-items-center">
-                                                        <span>Sửa trạng thái thành : &nbsp;</span>
-                                                        <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.handleInputChange} >
-                                                            <option defaultValue={0}>Nộp hồ sơ</option>
-                                                            <option defaultValue={2}>Đang lấy ý kiến thẩm định</option>
-                                                            <option defaultValue={3}>Hoàn thành hồ sơ cấp phép</option>
-                                                            <option defaultValue={1}>Đã được cấp phép</option>
-                                                        </select>
-                                                    </div>
-                                                : ""}
-                                            </div>
+                                        <div>
+                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
+                                            <span>Trạng thái hiện tại: <span className={this.statusClassName(licenseData.status)}>{this.getCurrentStatus(licenseData.status)}</span></span>
+                                            {user.role === "admin" ? 
+                                                <div className="d-flex my-2 align-items-center">
+                                                    <span>Sửa trạng thái thành : &nbsp;</span>
+                                                    <select className="form-select font-13" name="status" style={{ width: 250 }} onChange={this.handleInputChange} >
+                                                        <option defaultValue={0}>Nộp hồ sơ</option>
+                                                        <option defaultValue={2}>Đang lấy ý kiến thẩm định</option>
+                                                        <option defaultValue={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                        <option defaultValue={1}>Đã được cấp phép</option>
+                                                    </select>
+                                                </div>
+                                            : ""}
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="pb-4 text-center col-sm-12">

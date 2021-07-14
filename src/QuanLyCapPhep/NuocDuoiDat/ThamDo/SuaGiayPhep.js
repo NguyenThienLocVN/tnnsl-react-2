@@ -1,11 +1,13 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
+import axios from "axios";
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
 import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
-import { apiClient } from '../../../Shared/Auth';
+import { apiClient, getToken, getUser } from '../../../Shared/Auth';
+
 
 export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     constructor(props)
@@ -13,6 +15,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         super(props)
         this.state = {
             activeModal: null,
+            licenseData: [],
             licensePostData:{
                 chugiayphep_ten: '',
                 chugiayphep_sogiaydangkykinhdoanh: '', 
@@ -83,7 +86,48 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Cấp mới giấy phép thăm dò nước dưới đất";
+        document.title = "Sửa giấy phép thăm dò nước dưới đất";
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/giay-phep-tham-do/"+this.props.match.params.id_gp, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        licenseData: response.data[0],
+                    });
+                }
+            })
+            .catch((error) => {
+                this.setState({msg: error.response})
+            })
+        )
+    }
+
+    // Get curent status of license
+    getCurrentStatus = (status) => {
+        if(status === 1)
+        {
+            return 'Đã được cấp phép';
+        }else if (status === 2){
+            return 'Đang lấy ý kiến thẩm định';
+        }else if (status === 3)
+            return 'Hoàn thành hồ sơ cấp phép';
+        else{
+            return 'Nộp hồ sơ';
+        }
+    }
+
+    // Display class for each license status
+    statusClassName = (status) => {
+        if(status === 1)
+        {
+            return "fw-bold text-success";
+        }else{
+            return "fw-bold text-danger";
+        }
     }
 
     submitHandler = (e) => {
@@ -149,9 +193,10 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     }
 
     render(){
+        const user = getUser();
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CẤP CHỈNH SỬA GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -163,72 +208,72 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
+                                        <input type="text" value={this.state.licenseData.chugiayphep_ten || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_sogiaydangkykinhdoanh" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" />
+                                        <input type="text" value={this.state.licenseData.chugiayphep_sogiaydangkykinhdoanh || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.3.Địa chỉ  </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
+                                        <input type="text" value={this.state.licenseData.chugiayphep_diachi || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6 p-0 row m-0">
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.4.Điện thoại   </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
+                                        <input type="text" value={this.state.licenseData.chugiayphep_phone || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax   </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
+                                        <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax</label>
+                                        <input type="text" value={this.state.licenseData.chugiayphep_fax || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email   </label>
-                                        <input type="email" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
+                                        <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email</label>
+                                        <input type="email" value={this.state.licenseData.chugiayphep_email || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12 row m-0 p-0">
-                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị cấp phép: </p>
+                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị cấp phép:</p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Vị trí công trình thăm dò</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
+                                        <input type="text" value={this.state.licenseData.congtrinh_diadiem || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_diadiem" className="form-label fw-bold m-0">2.2.Mục đích thăm dò</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" />
+                                        <input type="text" value={this.state.licenseData.chugiayphep_ten || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.3. Quy mô thăm dò</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        <input type="text" value={this.state.licenseData.quymothamdo || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tangchuanuoc_license" className="form-label fw-bold m-0">2.4.Tầng chứa nước thăm dò</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
+                                        <input type="text" value={this.state.licenseData.tangchuanuoc || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.5.Thời gian thi công</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
+                                        <input type="text" value={this.state.licenseData.thoigian_batdau_vanhanh || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
+                                        <input type="text" value={this.state.licenseData.gp_thoigiancapphep || ""} onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -270,34 +315,34 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                     {this.state.giengs.map((item, i) => (
                                                         <tr key={i}>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].sohieu} name="sohieu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].sohieu} name="sohieu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].x} name="x" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].x} name="x" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].y} name="y" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].y} name="y" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].luuluongkhaithac} name="luuluongkhaithac" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].luuluongkhaithac} name="luuluongkhaithac" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].chedo_ktsd} name="chedo_ktsd" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].chedo_ktsd} name="chedo_ktsd" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_doanthunuoctu} name="chieusau_doanthunuoctu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].chieusau_doanthunuoctu} name="chieusau_doanthunuoctu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_doanthunuocden} name="chieusau_doanthunuocden" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].chieusau_doanthunuocden} name="chieusau_doanthunuocden" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_mucnuoctinh} name="chieusau_mucnuoctinh" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].chieusau_mucnuoctinh} name="chieusau_mucnuoctinh" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_mucnuocdong_max} name="chieusau_mucnuocdong_max" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].chieusau_mucnuocdong_max} name="chieusau_mucnuocdong_max" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td>
-                                                                <input required type="text" value={this.state.giengs[i].tangchuanuoc} name="tangchuanuoc" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
+                                                                <input required type="text" value={this.state.licenseData.chugiayphep_ten} value={this.state.giengs[i].tangchuanuoc} name="tangchuanuoc" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
                                                             </td>
                                                             <td className="d-flex justify-content-center">
                                                                 <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-danger" onClick={this.handleRemoveSpecificRow(i)}><DeleteOutlined /></Button>
@@ -309,33 +354,33 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-6 row m-0 p-0">
+                                <div className="col-sm-12 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Giấy tờ, tài liệu nộp kèm theo</p>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Sơ đồ khu vực và vị trí công trình thăm dò nước dưới đất</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">- Báo cáo đề án thăm dò nước dưới đất</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Thiết kế thăm dò</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
@@ -350,7 +395,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <div className="mb-2 d-flex alicn-items-center mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_dungsuthat} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_dungsuthat || ""} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
                                                             <label htmlFor="camket_dungsuthat"></label>
                                                         </div>
                                                     </div>
@@ -361,7 +406,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh || ""} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
                                                             <label htmlFor="camket_chaphanhdungquydinh"></label>
                                                         </div>
                                                     </div>
@@ -372,7 +417,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_daguihoso} onChange={this.handleInputChange} id="camket_daguihoso" name="camket_daguihoso" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_daguihoso || ""} onChange={this.handleInputChange} id="camket_daguihoso" name="camket_daguihoso" />
                                                             <label htmlFor="camket_daguihoso"></label>
                                                         </div>
                                                     </div>
@@ -380,6 +425,23 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-6 row m-0 p-0">
+                                    <div>
+                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
+                                        <span>Trạng thái hiện tại: <span className={this.statusClassName(this.state.licenseData.status)}>{this.getCurrentStatus(this.state.licenseData.status)}</span></span>
+                                        {user.role === "admin" ? 
+                                            <div className="d-flex my-2 align-items-center">
+                                                <span>Sửa trạng thái thành : &nbsp;</span>
+                                                <select className="form-select font-13" name="status" style={{ width: 250 } || ""} onChange={this.handleInputChange} >
+                                                    <option defaultValue={0}>Nộp hồ sơ</option>
+                                                    <option defaultValue={2}>Đang lấy ý kiến thẩm định</option>
+                                                    <option defaultValue={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                    <option defaultValue={1}>Đã được cấp phép</option>
+                                                </select>
+                                            </div>
+                                        : ""}
                                     </div>
                                 </div>
                             </div>

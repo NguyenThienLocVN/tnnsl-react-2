@@ -101,7 +101,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-moi-giay-phep", {
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi-giay-phep", {
                         chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
                         chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
                         chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 

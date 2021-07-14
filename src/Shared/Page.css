@@ -208,6 +208,13 @@
   }
 
 
+  /* input[type=text]{
+    background-color: #CCF1F3D1;
+  } */
+  .form-control{
+    background-color: #CCF1F3D1 !important;
+  }
+
   #desktopNav{display: none;}
 
   /* Mibile Nav */

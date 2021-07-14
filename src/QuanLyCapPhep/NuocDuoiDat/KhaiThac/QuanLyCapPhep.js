@@ -36,7 +36,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
     }
     
     componentDidMount(){
-        document.title = "Nước dưới đất - Cấp mới giấy phép";
+        document.title = "Quản lý cấp mới giấy phép nước dưới đất";
         this.fetch(this.state.pagination, 'all');
     }
 
@@ -49,7 +49,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
         alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
             
-            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp, {
+            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -72,7 +72,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/danh-sach-cap-moi-giay-phep-ktndd/"+user.id+"/"+filter, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/danh-sach-cap-moi-giay-phep-ktndd/"+user.id+"/"+filter, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {

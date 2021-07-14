@@ -5,9 +5,10 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
-import { EyeOutlined, FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal } from 'antd';
+import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
@@ -42,6 +43,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
             pagination: {},
             search: '',
             filter: '',
+            
         }
 
         this.mapRef = React.createRef();
@@ -60,7 +62,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh", {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/thong-tin-ban-do-cong-trinh", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -153,13 +155,13 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
 
     checkStatus(hieulucgiayphep){
         if(hieulucgiayphep === "chuaduocduyet"){
-            return <div className="license_status" style={{color: "#fff", backgroundColor: "gray"}}> Chưa duyệt </div>;
+            return <div className="license_status" style={{color: "gray", backgroundColor: "#f0f0f0", border: "1px solid gray"}}> Chưa duyệt </div>;
         }else if(hieulucgiayphep === "saphethieuluc"){
-            return <div className="license_status" style={{color: "#fff", backgroundColor: "orange"}}> Sắp hết hiệu lực </div>;
+            return <div className="license_status" style={{color: "orange", backgroundColor: "#ffd591", border: "1px solid orange"}}> Sắp hết hiệu lực </div>;
         }else if(hieulucgiayphep === "conhieuluc"){
-            return <div className="license_status" style={{color: "#fff", backgroundColor: "green"}}> Còn hiệu lực </div>;
+            return <div className="license_status" style={{color: "green", backgroundColor: "#b7eb8f", border: "1px solid green"}}> Còn hiệu lực </div>;
         }else if(hieulucgiayphep === "hethieuluc"){
-            return <div className="license_status" style={{color: "#fff", backgroundColor: "red"}}> Hết hiệu lực </div>;
+            return <div className="license_status" style={{color: "red", backgroundColor: "#ffa39e", border: "1px solid red"}}> Hết hiệu lực </div>;
         }
     }
 
@@ -216,6 +218,22 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
         );
 
         this.setState({ dataSource : filterResult });
+    }
+
+    //  Destroy License
+    handlerDestroyLicense = (id_gp) =>{
+        alert('Có chắc bạn muốn xóa giấy phép')
+        trackPromise(
+            
+            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    window.location.reload();
+                }
+            })
+        );
     }
 
     render(){        
@@ -298,7 +316,10 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                 title: '',
                 key: 'action',
                 render: (text, record) => (
-                    <div><Link className="text-primary" title="Xem GP" to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+record.id}><EyeOutlined /></Link>&nbsp; &nbsp;<Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi" title="Sửa"><EditOutlined /></Link>&nbsp; &nbsp;<span title="Xóa" className="text-danger"><DeleteOutlined /></span></div>
+                    <div className="d-flex align-items-center justify-content-center">
+                        <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link>
+                        <Button onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
+                    </div>
                 )
             },
         ];
