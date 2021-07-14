@@ -1,12 +1,11 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
-import axios from "axios";
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { CloseOutlined, PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
-import { apiClient, getToken } from '../../../Shared/Auth';
+import { apiClient } from '../../../Shared/Auth';
 
 export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
     constructor(props)

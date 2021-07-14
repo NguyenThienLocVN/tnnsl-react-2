@@ -233,7 +233,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
               render: (text, record, index) => (
                 <>
                     <p className="text-primary cursor_pointer m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
-                    <Modal className="modal-view-file-pdf" title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
+                    <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
                             {record.tai_lieu_nuoc_duoi_dat && record.tai_lieu_nuoc_duoi_dat[0] !== undefined ?
                             <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep+".pdf"}></iframe>
@@ -348,7 +348,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
                                                 </tr>
                                                 <tr className="col-12 d-flex p-0">
                                                     <td className="col-4 py-1">Ngày cấp</td>
-                                                    <td className="col-8 py-1">{this.formatDate(marker.gp_thoigiancapphep)}</td>
+                                                    <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
                                                 </tr>
                                                 <tr className="col-12 d-flex p-0">
                                                     <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>

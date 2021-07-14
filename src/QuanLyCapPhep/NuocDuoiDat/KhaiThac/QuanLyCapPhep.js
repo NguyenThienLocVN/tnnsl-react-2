@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
-import { Link,Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
@@ -176,7 +176,6 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                 )
             },
         ];
-
         return(
 			<div className="p-0">
                 <Header headTitle="QUẢN LÝ CẤP MỚI GIẤY PHÉP  KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
@@ -194,7 +193,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                 <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
                                         <option value="all">Tất cả</option>
                                         <option value={0}>Nộp hồ sơ</option>
-                                        <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                        <option value={2}>Đang lấy ý kiến thẩm định</option>  
                                         <option value={3}>Hoàn thành hồ sơ cấp phép</option>
                                         <option value={1}>Đã được cấp phép</option>
                                     </select>
@@ -207,7 +206,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                         loading={this.state.loading}
                                         onChange={() => this.handleTableChange}
                                         dataSource={this.state.dataNewLicenseManagement}
-                                        rowKey="id" 
+                                        rowKey="id"
                                         pagination={{
                                         showTotal: (total, range) => `Tất cả ${total} bản ghi`,
                                             current: this.state.currentPage,
@@ -215,7 +214,7 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                         }}
                                         onRow={(record) => {
                                             return {
-                                                onClick: event => <Redirect push to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id}/>
+                                                onClick: () => { window.location.href = "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id }
                                             };
                                         }}
                                         />
