@@ -213,7 +213,7 @@ export default class QuanLyCapPhep extends React.Component {
                                     <div className="exploit-surfacewater">
                                         <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">XẢ THẢI VÀO NGUỒN NƯỚC</p>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-khu-cum-cong-nghiep-tap-trung" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
                                         <li className="nav-item">
                                             <Link to="#" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>
@@ -293,7 +293,7 @@ export default class QuanLyCapPhep extends React.Component {
                                     <div >
                                         <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">XẢ THẢI VÀO NGUỒN NƯỚC</p>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-khu-cum-cong-nghiep-tap-trung" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
                                             <Link to="#" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>

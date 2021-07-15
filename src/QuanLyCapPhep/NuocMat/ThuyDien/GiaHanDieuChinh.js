@@ -3,11 +3,11 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
 
-export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
+export default class QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien extends React.Component {
     constructor(props)
     {
         super(props)
@@ -83,7 +83,7 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Cấp mới giấy phép thăm dò nước dưới đất";
+        document.title = "Cấp mới giấy phép khai thác nước dưới đất";
     }
 
     submitHandler = (e) => {
@@ -101,7 +101,7 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cap-moi-giay-phep", {
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi-giay-phep", {
                         chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
                         chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
                         chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 
@@ -151,7 +151,7 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ ĐỀ NGHỊ GIA HẠN/ ĐIỀU CHỈNH GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -194,123 +194,209 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
                                 </div>
                             </div>
                             <div className="col-12 row m-0 p-0">
-                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị cấp phép: </p>
+                                <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Thông tin về công trình khai thác, sử dụng nước</p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtrinh_ten" className="form-label fw-bold font-13 m-0">2.1.Vị trí công trình thăm dò</label>
+                                        <label htmlFor="congtrinh_ten" className="form-label fw-bold font-13 m-0">2.1.Tên công trình khai thác </label>
                                         <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.2.Mục đích thăm dò</label>
+                                        <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.2.Loại hình công trình, phương thức khai thác nước</label>
                                         <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.3. Quy mô thăm dò</label>
+                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình</label>
                                         <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tangchuanuoc_license" className="form-label fw-bold font-13 m-0">2.4.Tầng chứa nước thăm dò</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" />
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="mb-2">
-                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold font-13 m-0">2.5.Thời gian thi công</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" />
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="mb-2">
-                                        <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold font-13 m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" />
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="mb-2">
-                                        <label htmlFor="tailieu_donxincapphep" className="form-label fw-bold font-13 m-0">2.7.Sơ đồ khu vực và vị trí công trình thăm dò kèm theo</label>
-                                        <input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" />
+                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.4.Hiện trạng công trình</label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
-                                    <div className="mb-2 row m-0">
-                                        <label className="form-label fw-bold font-13 col-12 p-0">2.8.Số hiệu, vị trí và thông số của công trình khai thác</label>
+                                    <div className="mb-2">
+                                        <p className="form-label fw-bold font-13 m-0">2.5.Vị trí các hạng mục chính của công trình khai thác sử dụng nước</p>
                                         <div className="col-sm-12 p-0 table-responsive">
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center align-middle" rowSpan="2">Số hiệu</th>
-                                                        <th className="text-center align-middle" colSpan="2">Tọa độ (VN2000, kinh tuyến trục,...múi chiếu,...)</th>
-                                                        <th className="text-center align-middle" rowSpan="2">Lưu lượng(m3/ngày đêm)</th>
-                                                        <th className="text-center align-middle" rowSpan="2">Chế độ khai thác (giờ/ngày đêm)</th>
-                                                        <th className="text-center align-middle" colSpan="2">Chiều sâu đoạn thu nước(m)</th>
-                                                        <th className="text-center align-middle" rowSpan="2">Chiều sâu mực nước tĩnh(m)</th>
-                                                        <th className="text-center align-middle" rowSpan="2">Chiều sâu mực nước động lớn nhất cho phép (m)</th>
-                                                        <th className="text-center align-middle" rowSpan="2">Tầng chứa nước khai thác</th>
-                                                        <th className="text-center align-middle text-nowrap">Thao Tác</th>
+                                                        <th className="text-center align-middle" rowSpan="2">TT</th>
+                                                        <th className="text-center align-middle" rowSpan="2">Hạng mục</th>
+                                                        <th className="text-center align-middle" colSpan="2">Tọa độ</th>
+                                                        <th className="text-center align-middle" rowSpan="2">
+                                                            <Button variant="link" title="Tạo mới hạng mục" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center"><PlusSquareOutlined /></Button>
+                                                        </th>
                                                     </tr>
                                                     <tr>
                                                         <th className="text-center align-middle">X</th>
                                                         <th className="text-center align-middle">Y</th>
-                                                        <th className="text-center align-middle">Từ</th>
-                                                        <th className="text-center align-middle">Đến</th>
-                                                        <th className="text-center align-middle">
-                                                            <div className="w-100">
-                                                                <Button variant="link" title="Tạo mới hạng mục" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={this.handleAddGieng}><PlusSquareOutlined /></Button>
-                                                            </div>
-                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {this.state.giengs.map((item, i) => (
-                                                        <tr key={i}>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].sohieu} name="sohieu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].x} name="x" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].y} name="y" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].luuluongkhaithac} name="luuluongkhaithac" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].chedo_ktsd} name="chedo_ktsd" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_doanthunuoctu} name="chieusau_doanthunuoctu" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_doanthunuocden} name="chieusau_doanthunuocden" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_mucnuoctinh} name="chieusau_mucnuoctinh" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].chieusau_mucnuocdong_max} name="chieusau_mucnuocdong_max" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td>
-                                                                <input required type="text" value={this.state.giengs[i].tangchuanuoc} name="tangchuanuoc" onChange={(e) => this.handleChangeGieng(i, e)} className="form-control form-control-sm" />
-                                                            </td>
-                                                            <td className="d-flex justify-content-center">
-                                                                <Button size="sm" variant="link" className="d-flex justify-content-center align-items-center text-danger" onClick={this.handleRemoveSpecificRow(i)}><DeleteOutlined /></Button>
-                                                            </td>
-                                                        </tr>
-                                                    ))}
+                                                    <tr>
+                                                        <th className="text-center align-middle"> 
+                                                            1
+                                                        </th>
+                                                        <td> 
+                                                            <input type="text" className="form-control form-control-sm" />  
+                                                        </td>
+                                                        <td> 
+                                                            <input type="text" className="form-control form-control-sm" />  
+                                                        </td>
+                                                        <td> 
+                                                            <input type="text" className="form-control form-control-sm" />  
+                                                        </td>
+                                                        <td> 
+                                                             
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-sm-12">
+                                    <div className="mb-2">
+                                        <p className="form-label fw-bold font-13 m-0">2.6.Các thông số của công trình </p>
+                                        <div className="col-sm-12 p-0 table-responsive">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="text-center align-middle">Tên công trình</th>
+                                                        <th className="text-center align-middle">Công suất lắp máy (MW)</th>
+                                                        <th className="text-center align-middle">Lưu lượng lớn nhất qua nhà máy thủy điện (m3/s)</th>
+                                                        <th className="text-center align-middle">Mực nước dâng bình thường (m)</th>
+                                                        <th className="text-center align-middle">Mực nước chết (m)</th>
+                                                        <th className="text-center align-middle">Mực nước cao nhất trước lũ (m)</th>
+                                                        <th className="text-center align-middle">Mực nước đón lũ (m)</th>
+                                                        <th className="text-center align-middle">Dung tích hữu ích (triệu m3)</th>
+                                                        <th className="text-center align-middle">Dung tích toàn bộ (triệu m3)</th>
+                                                        <th className="text-center align-middle">Lưu lượng xả dòng chảy tối thiểu (m3/s)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                        <td className="text-center align-middle"> 
+                                                            <input type="text" className="form-control form-control-sm" /> 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-12 row m-0 p-0">
+                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Nội dung đề nghị cấp phép</p>
+                                    <div className="col-sm-6">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.1.Nguồn nước khai thác, sử dụng</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.2.Vị trí lấy nước</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.3.Mục đích khai thác, sử dụng nước</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6 p-0">
+                                        <div className="mb-2 row mx-0">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.4.Lượng nước khai thác, sử dụng</label>
+                                            <div className="col-sm-6">
+                                                <div className="mb-2 row m-0">
+                                                    <label htmlFor="mucdich_ktsd" className="form-label w-50 fw-bold font-13 m-0">Công suất lắp máy  MW</label>
+                                                    <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm w-50" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                                </div>
+                                            </div>
+                                            <div className="col-sm-6">
+                                                <div className="mb-2 row m-0">
+                                                    <label htmlFor="mucdich_ktsd" className="form-label w-50 fw-bold font-13 m-0">Qmax NMTĐ (m3/s)</label>
+                                                    <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm w-50" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-9">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.5.Chế độ khai thác, sử dụng</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-3">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-7">
+                                        <div className="mb-2 d-flex mx-0">
+                                            <label htmlFor="tailieu_donxincapphep" className="form-label fw-bold d-block w-75 m-0 font-13">3.7.Sơ đồ khu vực và vị trí công trình khai thác nước kèm theo</label>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-12 row m-0 p-0">
+                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Lý do đề nghị gia hạn/ điều chỉnh giấy phép</p>
+                                    <div className="col-sm-12">
+                                        <textarea rows="4" className="form-control" />
+                                    </div>
+                                </div>
+                                <div className="col-sm-12 row m-0 p-0">
+                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Thời gian đề nghị gia hạn/nội dung đề nghị điều chỉnh giấy phép</p>
+                                    <div className="col-sm-12">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">5.1.Thời hạn đề nghị gia hạn</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-12">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">5.2.Nội dung đề nghị điều chỉnh</label>
+                                            <textarea rows="4" className="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="col-sm-6 row m-0 p-0">
-                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Giấy tờ, tài liệu nộp kèm theo</p>
+                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">6.Giấy tờ, tài liệu nộp kèm theo</p>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
@@ -319,34 +405,40 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Sơ đồ khu vực và vị trí công trình thăm dò nước dưới đất</label>
+                                            <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">Đề án/ báo cáo khai thác, sử dụng nước </label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">- Báo cáo đề án thăm dò nước dưới đất</label>
+                                            <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">Kết quả phân tích chất lượng nguồn nước </label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Thiết kế thăm dò</label>
+                                            <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13"> Báo cáo hiện trạng khai thác </label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan</label>
+                                            <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-12">
+                                        <div className="mb-2 d-flex mx-0">
+                                            <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13"> Các giấy tờ, tài liệu khác có liên quan</label>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row col-sm-6 p-0 m-0">
                                     <div className="col-sm-12 row m-0 p-0">
                                         <div>
-                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
-                                            <div className="col-sm-12">
+                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">7.Cam kết của tổ chức/cá nhân đề nghị cấp phép</p>
+                                            <div className="col-sm-12 mb-2">
                                                 <div className="mb-2 d-flex alicn-items-center mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
@@ -357,7 +449,7 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
                                                     <label htmlFor="camket_dungsuthat" className="form-label d-block m-0 font-13 fw-bold mx-2">Đúng sự thật</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-12">
+                                            <div className="col-sm-12 mb-2">
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
@@ -368,7 +460,7 @@ export default class QuanLyCapPhepThamDoCapMoiNDD extends React.Component {
                                                     <label htmlFor="camket_chaphanhdungquydinh" className="form-label d-block m-0 font-13 fw-bold mx-2">Chấp hành đúng, đầy đủ các quy định</label>
                                                 </div>
                                             </div>
-                                            <div className="col-sm-12">
+                                            <div className="col-sm-12 mb-2">
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">

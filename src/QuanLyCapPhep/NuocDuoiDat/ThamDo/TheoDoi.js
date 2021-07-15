@@ -21,37 +21,37 @@ export default class QuanLyCapPhepTheoDoiGiayPhepThamDoNDD extends React.Compone
                                     <div className="row m-0">
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên tổ chức/cá nhân</label>
+                                                <label htmlFor="chugiayphep_ten" className="form-label fw-bold font-13 m-0">1.1.Tên tổ chức/cá nhân</label>
                                                 <input type="text" required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                    <label htmlFor="chugiayphep_sogiaykangkykinhdoanh" className="form-label fw-bold m-0">1.2.Số Giấy đăng ký kinh doanh</label>
+                                                    <label htmlFor="chugiayphep_sogiaykangkykinhdoanh" className="form-label fw-bold font-13 m-0">1.2.Số Giấy đăng ký kinh doanh</label>
                                                     <input type="text" required className="form-control form-control-sm" id="chugiayphep_sogiaykangkykinhdoanh" name="chugiayphep_sogiaykangkykinhdoanh"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="mb-2">
-                                                    <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.3.Địa chỉ</label>
+                                                    <label htmlFor="chugiayphep_diachi" className="form-label fw-bold font-13 m-0">1.3.Địa chỉ</label>
                                                     <input type="text" required className="form-control form-control-sm" id="chugiayphep_diachi" name="chugiayphep_diachi"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-2">
                                                 <div className="mb-2">
-                                                    <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.4.Điện thoại</label>
+                                                    <label htmlFor="chugiayphep_phone" className="form-label fw-bold font-13 m-0">1.4.Điện thoại</label>
                                                     <input type="text" required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-2">
                                                 <div className="mb-2">
-                                                    <label htmlFor="chugiayphep_fax" className="form-label fw-bold m-0">1.5.Fax</label>
+                                                    <label htmlFor="chugiayphep_fax" className="form-label fw-bold font-13 m-0">1.5.Fax</label>
                                                     <input type="text" required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-2">
                                                 <div className="mb-2">
-                                                    <label htmlFor="chugiayphep_email" className="form-label fw-bold m-0">1.6.Email</label>
+                                                    <label htmlFor="chugiayphep_email" className="form-label fw-bold font-13 m-0">1.6.Email</label>
                                                     <input type="email" required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email"  />
                                                 </div>
                                             </div>
@@ -62,49 +62,49 @@ export default class QuanLyCapPhepTheoDoiGiayPhepThamDoNDD extends React.Compone
                                     <div className="row m-0">
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Tên công trình thăm dò</label>
+                                                <label htmlFor="congtrinh_ten" className="form-label fw-bold font-13 m-0">2.1.Tên công trình thăm dò</label>
                                                 <input type="text" required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích thăm dò, sử dụng nước</label>
+                                                <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.2.Mục đích thăm dò, sử dụng nước</label>
                                                 <input type="text" required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="congtrinh_diadiem" className="form-label fw-bold m-0">2.3.Vị trí công trình thăm dò nước dưới đất</label>
+                                                <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình thăm dò nước dưới đất</label>
                                                 <input type="text" required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.4.Tầng chứa nước thăm dò</label>
+                                                <label htmlFor="tangchuanuoc" className="form-label fw-bold font-13 m-0">2.4.Tầng chứa nước thăm dò</label>
                                                 <input type="text" required className="form-control form-control-sm" id="tangchuanuoc" name="tangchuanuoc"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.5.Số giếng thăm dò</label>
+                                                <label htmlFor="sogieng_quantrac" className="form-label fw-bold font-13 m-0">2.5.Số giếng thăm dò</label>
                                                 <input type="text" required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.6.Tổng lượng nước thăm dò (m3/ngày đêm)</label>
+                                                <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold font-13 m-0">2.6.Tổng lượng nước thăm dò (m3/ngày đêm)</label>
                                                 <input type="email" required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.7.Thời hạn giấy phép</label>
+                                                <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">2.7.Thời hạn giấy phép</label>
                                                 <input type="email" required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="tiencapquyen_khaithac" className="form-label fw-bold m-0">2.8.Tiền cấp quyền thăm dò</label>
+                                                <label htmlFor="tiencapquyen_khaithac" className="form-label fw-bold font-13 m-0">2.8.Tiền cấp quyền thăm dò</label>
                                                 <input type="email" required className="form-control form-control-sm" id="tiencapquyen_khaithac" name="tiencapquyen_khaithac"  />
                                             </div>
                                         </div>
@@ -115,31 +115,31 @@ export default class QuanLyCapPhepTheoDoiGiayPhepThamDoNDD extends React.Compone
                                     <div className="row m-0">
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="thanhtra_tendot" className="form-label fw-bold m-0">3.1.Tên đợt thanh tra</label>
+                                                <label htmlFor="thanhtra_tendot" className="form-label fw-bold font-13 m-0">3.1.Tên đợt thanh tra</label>
                                                 <input type="text" required className="form-control form-control-sm" id="thanhtra_tendot" name="thanhtra_tendot"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="thanhtra_tentruongdoan" className="form-label fw-bold m-0">3.2.Tên trưởng đoàn</label>
+                                                <label htmlFor="thanhtra_tentruongdoan" className="form-label fw-bold font-13 m-0">3.2.Tên trưởng đoàn</label>
                                                 <input type="text" required className="form-control form-control-sm" id="thanhtra_tentruongdoan" name="thanhtra_tentruongdoan"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="thanhtra_thoigianthuchien" className="form-label fw-bold m-0">3.3.Thời gian thực hiện thanh tra</label>
+                                                <label htmlFor="thanhtra_thoigianthuchien" className="form-label fw-bold font-13 m-0">3.3.Thời gian thực hiện thanh tra</label>
                                                 <input type="text" required className="form-control form-control-sm" id="thanhtra_thoigianthuchien" name="thanhtra_thoigianthuchien"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="thanhtra_thanhphandoan" className="form-label fw-bold m-0">3.4.Thành phần đoàn thanh tra</label>
+                                                <label htmlFor="thanhtra_thanhphandoan" className="form-label fw-bold font-13 m-0">3.4.Thành phần đoàn thanh tra</label>
                                                 <input type="text" required className="form-control form-control-sm" id="thanhtra_thanhphandoan" name="thanhtra_thanhphandoan"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-12">
                                             <div className="mb-2">
-                                                <label htmlFor="thanhtra_ketluan" className="form-label fw-bold m-0">3.5.Kết luận thanh tra</label>
+                                                <label htmlFor="thanhtra_ketluan" className="form-label fw-bold font-13 m-0">3.5.Kết luận thanh tra</label>
                                                 <textarea rows="5" className="form-control form-control-sm" id="thanhtra_ketluan" name="thanhtra_ketluan" />
                                             </div>
                                         </div>
@@ -151,13 +151,13 @@ export default class QuanLyCapPhepTheoDoiGiayPhepThamDoNDD extends React.Compone
                                         <div className="row m-0">
                                             <div className="col-sm-6">
                                                 <div className="mb-2">
-                                                    <label htmlFor="theodoisaucp_vanbanso" className="form-label fw-bold m-0">4.1.Văn bản số</label>
+                                                    <label htmlFor="theodoisaucp_vanbanso" className="form-label fw-bold font-13 m-0">4.1.Văn bản số</label>
                                                     <input type="text" required className="form-control form-control-sm" id="theodoisaucp_vanbanso" name="theodoisaucp_vanbanso"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="mb-2">
-                                                    <label htmlFor="thepdoisaucp_noidung" className="form-label fw-bold m-0">4.2.Nội dung</label>
+                                                    <label htmlFor="thepdoisaucp_noidung" className="form-label fw-bold font-13 m-0">4.2.Nội dung</label>
                                                     <input type="text" required className="form-control form-control-sm" id="thepdoisaucp_noidung" name="thepdoisaucp_noidung"  />
                                                 </div>
                                             </div>
@@ -168,19 +168,19 @@ export default class QuanLyCapPhepTheoDoiGiayPhepThamDoNDD extends React.Compone
                                         <div className="row m-0">
                                             <div className="col-sm-4">
                                                 <div className="mb-2">
-                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_tudong" className="form-label fw-bold m-0">5.1.Tự động</label>
+                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_tudong" className="form-label fw-bold font-13 m-0">5.1.Tự động</label>
                                                     <input type="text" required className="form-control form-control-sm" id="theodoiquatrinh_ketnoi_giamsat_tudong" name="theodoiquatrinh_ketnoi_giamsat_tudong"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-4">
                                                 <div className="mb-2">
-                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_tructuyen" className="form-label fw-bold m-0">5.2.Trực tuyến</label>
+                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_tructuyen" className="form-label fw-bold font-13 m-0">5.2.Trực tuyến</label>
                                                     <input type="text" required className="form-control form-control-sm" id="theodoiquatrinh_ketnoi_giamsat_tructuyen" name="theodoiquatrinh_ketnoi_giamsat_tructuyen"  />
                                                 </div>
                                             </div>
                                             <div className="col-sm-4">
                                                 <div className="mb-2">
-                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_dinhky" className="form-label fw-bold m-0">5.3.Định kỳ</label>
+                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_dinhky" className="form-label fw-bold font-13 m-0">5.3.Định kỳ</label>
                                                     <input type="text" required className="form-control form-control-sm" id="theodoiquatrinh_ketnoi_giamsat_dinhky" name="theodoiquatrinh_ketnoi_giamsat_dinhky"  />
                                                 </div>
                                             </div>

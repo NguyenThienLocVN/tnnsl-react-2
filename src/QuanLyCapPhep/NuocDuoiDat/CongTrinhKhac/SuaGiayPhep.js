@@ -115,7 +115,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
         document.title = "Sửa giấy phép khai thác nước dưới đất";
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/giay-phep-khai-thac/"+this.props.match.params.id_gp, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac/giay-phep-cong-trinh-khac/"+this.props.match.params.id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -140,7 +140,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/cap-moi-giay-phep", {
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac/cap-moi-giay-phep", {
                         chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
                         chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
                         chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 
@@ -175,7 +175,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
 					})
 					.then((response) => {
 						if (response.status === 200) {
-							window.location.href = '/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi';
+							window.location.href = '/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac/quan-ly-cap-moi';
 						}else{
                             alert("Hãy điền đủ thông tin ở tất cả các trường nhập dữ liệu.")
                         }
@@ -250,7 +250,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
         const user = getUser();
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHAI THÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ SỬA GIẤY PHÉP CÔNG TRÌNH KHÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />

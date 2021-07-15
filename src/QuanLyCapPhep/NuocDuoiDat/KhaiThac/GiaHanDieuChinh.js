@@ -58,7 +58,7 @@ export default class QuanLyCapPhepKhaiThacGiaHanDieuChinhNDD extends React.Compo
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ GIA HẠN, điều chỉnh GIẤY PHÉP  KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ GIA HẠN, ĐIỀU CHỈNH GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -69,36 +69,36 @@ export default class QuanLyCapPhepKhaiThacGiaHanDieuChinhNDD extends React.Compo
                                 <p className="fw-bold w-100 text-violet p-2 m-0 font-15">1.Tổ chức, cá nhân đề nghị cấp phép</p>
                                 <div className="col-sm-5">
                                     <div className="mb-2">
-                                        <label htmlFor="chugiayphep_ten" className="form-label fw-bold m-0">1.1.Tên chủ giấy phép</label>
+                                        <label htmlFor="chugiayphep_ten" className="form-label fw-bold font-13 m-0">1.1.Tên chủ giấy phép</label>
                                         <input type="text" className="form-control form-control-sm" id="chugiayphep_ten" />
                                     </div>
                                 </div>
                                 <div className="col-sm-4">
                                     <div className="mb-2">
-                                        <label htmlFor="chugiayphep_diachi" className="form-label fw-bold m-0">1.2.Địa chỉ</label>
+                                        <label htmlFor="chugiayphep_diachi" className="form-label fw-bold font-13 m-0">1.2.Địa chỉ</label>
                                         <input type="text" className="form-control form-control-sm" id="chugiayphep_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-3">
                                     <div className="mb-2">
-                                        <label htmlFor="chugiayphep_phone" className="form-label fw-bold m-0">1.3.Điện thoại</label>
+                                        <label htmlFor="chugiayphep_phone" className="form-label fw-bold font-13 m-0">1.3.Điện thoại</label>
                                         <input type="text" className="form-control form-control-sm" id="chugiayphep_phone" />
                                     </div>
                                 </div>
                                 <div className="mb-2 col-sm-3">
-                                    <label htmlFor="gp_sogiayphep" className="form-label fw-bold m-0">1.4.Số Giấy phép</label>
+                                    <label htmlFor="gp_sogiayphep" className="form-label fw-bold font-13 m-0">1.4.Số Giấy phép</label>
                                     <input type="text" className="form-control form-control-sm" id="gp_sogiayphep" />
                                 </div>
                                 <div className="mb-2 col-sm-2">
-                                    <label htmlFor="gp_ngayky" className="form-label fw-bold m-0">1.5.Ngày ký</label>
+                                    <label htmlFor="gp_ngayky" className="form-label fw-bold font-13 m-0">1.5.Ngày ký</label>
                                     <input type="text" className="form-control form-control-sm" id="gp_ngayky" />
                                 </div>
                                 <div className="mb-2 col-sm-5">
-                                    <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">1.6.Tên công trình</label>
+                                    <label htmlFor="congtrinh_ten" className="form-label fw-bold font-13 m-0">1.6.Tên công trình</label>
                                     <input type="mail" className="form-control form-control-sm" id="congtrinh_ten" />
                                 </div>
                                 <div className="mb-2 col-sm-2">
-                                    <label htmlFor="gp_ngayhieuluc" className="form-label fw-bold m-0">1.7.Hiệu lực từ ngày</label>
+                                    <label htmlFor="gp_ngayhieuluc" className="form-label fw-bold font-13 m-0">1.7.Hiệu lực từ ngày</label>
                                     <input type="mail" className="form-control form-control-sm" id="gp_ngayhieuluc" />
                                 </div>
                             </div>
@@ -106,49 +106,49 @@ export default class QuanLyCapPhepKhaiThacGiaHanDieuChinhNDD extends React.Compo
                                 <p className="fw-bold w-100 text-violet p-2 m-0 font-15">2.Nội dung đề nghị gia hạn, điều chỉnh giấy phép: </p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtring_diachi" className="form-label fw-bold m-0">2.1.Vị trí công trình khai thác </label>
+                                        <label htmlFor="congtring_diachi" className="form-label fw-bold font-13 m-0">2.1.Vị trí công trình khai thác </label>
                                         <input type="text" className="form-control form-control-sm" id="congtring_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khai thác, sử dụng nước</label>
+                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.2.Mục đích khai thác, sử dụng nước</label>
                                         <input type="text" className="form-control form-control-sm" id="mucdich_ktsd" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.3.Tầng chứa nước khai thác  </label>
+                                        <label htmlFor="tangchuanuoc" className="form-label fw-bold font-13 m-0">2.3.Tầng chứa nước khai thác  </label>
                                         <input type="text" className="form-control form-control-sm" id="tangchuanuoc" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.4.Số giếng khai thác   </label>
+                                        <label htmlFor="sogieng_quantrac" className="form-label fw-bold font-13 m-0">2.4.Số giếng khai thác   </label>
                                         <input type="text" className="form-control form-control-sm" id="sogieng_quantrac" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.5.Tổng lượng nước khai thác (m3/ngày đêm) </label>
+                                        <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold font-13 m-0">2.5.Tổng lượng nước khai thác (m3/ngày đêm) </label>
                                         <input type="text" className="form-control form-control-sm" id="tongluuluong_ktsd_max" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.6.Thời gian đề nghị cấp phép</label>
+                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">2.6.Thời gian đề nghị cấp phép</label>
                                         <input type="text" className="form-control form-control-sm" id="gp_thoigiancapphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.7.Lý do đề nghị gia hạn, điều chỉnh giấy phép</label>
+                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">2.7.Lý do đề nghị gia hạn, điều chỉnh giấy phép</label>
                                         <input type="text" className="form-control form-control-sm" id="gp_thoigiancapphep" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold m-0">2.8.Nội dung đề nghị gia hạn, điều chỉnh giấy phép</label>
+                                        <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">2.8.Nội dung đề nghị gia hạn, điều chỉnh giấy phép</label>
                                         <input type="text" className="form-control form-control-sm" id="gp_thoigiancapphep" />
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@ export default class QuanLyCapPhepKhaiThacGiaHanDieuChinhNDD extends React.Compo
                                 </div>
                                 <div className="col-sm-12">
                                     <div className="mb-2 row m-0">
-                                        <label className="form-label fw-bold col-12 p-0">2.10.Số hiệu, vị trí và thông số của công trình khai thác</label>
+                                        <label className="form-label fw-bold font-13 col-12 p-0">2.10.Số hiệu, vị trí và thông số của công trình khai thác</label>
                                         <div className="col-sm-12 p-0 table-responsive">
                                             <table className="table table-bordered">
                                                 <thead>

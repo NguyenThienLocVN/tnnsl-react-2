@@ -8,7 +8,7 @@ export default class QuanLyCapPhepKhaiThacTheoDoiGiayPhepNDD extends React.Compo
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THAC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP CÔNG TRÌNH KHÁC NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
