@@ -5,7 +5,7 @@ import { Button} from "react-bootstrap";
 import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 
 
-export default class QuanLyCapPhepNuocDuoiDatKhaiThacGiaHanDieuChinh extends React.Component {
+export default class QuanLyCapPhepKhaiThacGiaHanDieuChinhNDD extends React.Component {
     constructor(props)
     {
         super(props)

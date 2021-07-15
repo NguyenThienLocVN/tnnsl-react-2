@@ -3,7 +3,7 @@ import Header from '../../../Shared/Header';
 import DemGiayPhep from './DemGiayPhep';
 import { Button } from 'react-bootstrap';
 
-export default class QuanLyCapPhepNuocDuoiDatKhaiThacTheoDoiGiayPhep extends React.Component {
+export default class QuanLyCapPhepKhaiThacTheoDoiGiayPhepNDD extends React.Component {
 
     render(){
         return(

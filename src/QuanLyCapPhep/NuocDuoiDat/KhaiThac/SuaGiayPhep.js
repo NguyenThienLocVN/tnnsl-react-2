@@ -46,7 +46,7 @@ const GiengItem = () => {
     </tr>
 }
 
-export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
+export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component {
     constructor(props)
     {
         super(props)

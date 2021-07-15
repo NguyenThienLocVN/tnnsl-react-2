@@ -12,7 +12,7 @@ import vnVN from 'antd/lib/locale/vi_VN';
 import DemGiayPhep from './DemGiayPhep';
 
 const user = getUser();
-export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Component {
+export default class QuanLyCapPhepKhaiThacQuanLyGiayPhepNDD extends React.Component {
     constructor(props)
     {
         super(props)

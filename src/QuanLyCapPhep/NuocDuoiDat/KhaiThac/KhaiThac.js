@@ -27,7 +27,7 @@ const { Search } = Input;
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default class QuanLyCapPhepNuocDuoiDatKhaiThac extends React.Component {
+export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
     constructor(props)
     {
         super(props)
