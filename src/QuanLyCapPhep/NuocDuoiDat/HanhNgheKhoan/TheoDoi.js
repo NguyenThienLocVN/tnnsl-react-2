@@ -3,12 +3,12 @@ import Header from '../../../Shared/Header';
 import DemGiayPhep from './DemGiayPhep';
 import { Button } from 'react-bootstrap';
 
-export default class QuanLyCapPhepNuocDuoiDatKhaiThacTheoDoiGiayPhep extends React.Component {
+export default class QuanLyCapPhepTheoDoiGiayPhepKhoanNDD extends React.Component {
 
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THAC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHOAN NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/hanh-nghe-khoan/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -62,37 +62,37 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThacTheoDoiGiayPhep extends Rea
                                     <div className="row m-0">
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Tên công trình khai thác</label>
+                                                <label htmlFor="congtrinh_ten" className="form-label fw-bold m-0">2.1.Tên công trình khoan</label>
                                                 <input type="text" required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khai thác, sử dụng nước</label>
+                                                <label htmlFor="mucdich_ktsd" className="form-label fw-bold m-0">2.2.Mục đích khoan, sử dụng nước</label>
                                                 <input type="text" required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="congtrinh_diadiem" className="form-label fw-bold m-0">2.3.Vị trí công trình khai thác nước dưới đất</label>
+                                                <label htmlFor="congtrinh_diadiem" className="form-label fw-bold m-0">2.3.Vị trí công trình khoan nước dưới đất</label>
                                                 <input type="text" required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.4.Tầng chứa nước khai thác</label>
+                                                <label htmlFor="tangchuanuoc" className="form-label fw-bold m-0">2.4.Tầng chứa nước khoan</label>
                                                 <input type="text" required className="form-control form-control-sm" id="tangchuanuoc" name="tangchuanuoc"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.5.Số giếng khai thác</label>
+                                                <label htmlFor="sogieng_quantrac" className="form-label fw-bold m-0">2.5.Số giếng khoan</label>
                                                 <input type="text" required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac"  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.6.Tổng lượng nước khai thác (m3/ngày đêm)</label>
+                                                <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold m-0">2.6.Tổng lượng nước khoan (m3/ngày đêm)</label>
                                                 <input type="email" required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max"  />
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@ export default class QuanLyCapPhepNuocDuoiDatKhaiThacTheoDoiGiayPhep extends Rea
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="tiencapquyen_khaithac" className="form-label fw-bold m-0">2.8.Tiền cấp quyền khai thác</label>
+                                                <label htmlFor="tiencapquyen_khaithac" className="form-label fw-bold m-0">2.8.Tiền cấp quyền khoan</label>
                                                 <input type="email" required className="form-control form-control-sm" id="tiencapquyen_khaithac" name="tiencapquyen_khaithac"  />
                                             </div>
                                         </div>

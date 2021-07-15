@@ -215,11 +215,6 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                             current: this.state.currentPage,
                                             pageSize: 10
                                         }}
-                                        onRow={(record) => {
-                                            return {
-                                                // onClick: () => { window.location.href = "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id }
-                                            };
-                                        }}
                                         />
                                 </ConfigProvider>
                             </div>

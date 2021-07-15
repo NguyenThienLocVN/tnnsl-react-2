@@ -12,7 +12,7 @@ import vnVN from 'antd/lib/locale/vi_VN';
 import DemGiayPhep from './DemGiayPhep';
 
 const user = getUser();
-export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Component {
+export default class QuanLyCapPhepThamDoQuanLyGiayPhepNDD extends React.Component {
     constructor(props)
     {
         super(props)
@@ -214,11 +214,6 @@ export default class QuanLyCapPhepQuanLyCapPhepGiayPhepKTNDD extends React.Compo
                                         showTotal: (total, range) => `Tất cả ${total} bản ghi`,
                                             current: this.state.currentPage,
                                             pageSize: 10
-                                        }}
-                                        onRow={(record) => {
-                                            return {
-                                                onClick: () => { window.location.href = "/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/chinh-sua/"+record.id }
-                                            };
                                         }}
                                         />
                                 </ConfigProvider>

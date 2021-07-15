@@ -7,7 +7,7 @@ import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
 
-export default class QuanLyCapPhepNuocDuoiDatThamDoGiaHanDieuChinh extends React.Component {
+export default class QuanLyCapPhepThamDoGiaHanDieuChinhNDD extends React.Component {
     constructor(props)
     {
         super(props)
@@ -151,7 +151,7 @@ export default class QuanLyCapPhepNuocDuoiDatThamDoGiaHanDieuChinh extends React
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />

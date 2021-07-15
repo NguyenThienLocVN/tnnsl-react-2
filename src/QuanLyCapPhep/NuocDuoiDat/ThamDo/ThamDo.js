@@ -27,7 +27,7 @@ const { Search } = Input;
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default class QuanLyCapPhepNuocDuoiDatThamDo extends React.Component {
+export default class QuanLyCapPhepThamDoNDD extends React.Component {
     constructor(props)
     {
         super(props)
@@ -317,7 +317,7 @@ export default class QuanLyCapPhepNuocDuoiDatThamDo extends React.Component {
                 key: 'action',
                 render: (text, record) => (
                     <div className="d-flex align-items-center justify-content-center">
-                        <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link>
+                        <Link to={"/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link>
                         <Button onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
                     </div>
                 )
@@ -384,7 +384,7 @@ export default class QuanLyCapPhepNuocDuoiDatThamDo extends React.Component {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <Link to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        <Link to={'/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
                                     </div>
                                     </Popup>
                                 </Marker> : ""

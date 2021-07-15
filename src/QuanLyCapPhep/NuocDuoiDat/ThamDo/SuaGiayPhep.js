@@ -9,7 +9,7 @@ import DemGiayPhep from './DemGiayPhep';
 import { apiClient, getToken, getUser } from '../../../Shared/Auth';
 
 
-export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
+export default class QuanLyCapPhepThamDoSuaGiayPhepNDD extends React.Component {
     constructor(props)
     {
         super(props)
@@ -196,7 +196,7 @@ export default class QuanLyCapPhepCapMoiGiayPhepKTNDD extends React.Component {
         const user = getUser();
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP CHỈNH SỬA GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CẤP CHỈNH SỬA GIẤY PHÉP THĂM DÒ NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/tham-do/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
