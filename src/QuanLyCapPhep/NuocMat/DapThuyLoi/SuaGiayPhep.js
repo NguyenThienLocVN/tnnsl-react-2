@@ -7,7 +7,7 @@ import { PlusSquareOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
 
-export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component {
+export default class QuanLyCapPhepNuocMatDapThuyLoi extends React.Component {
     constructor(props)
     {
         super(props)
@@ -83,7 +83,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
     }
 
     componentDidMount(){
-        document.title = "Cấp mới giấy phép khai thác nước dưới đất";
+        document.title = "Cấp mới giấy phép nước mặt - đập thủy lợi";
     }
 
     submitHandler = (e) => {
@@ -151,7 +151,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="ĐỀ NGHỊ CHỈNH SỬA GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH ĐẬP THỦY LỢI" previousLink="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -269,28 +269,16 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                                 <thead>
                                                     <tr>
                                                         <th className="text-center align-middle">Tên công trình</th>
-                                                        <th className="text-center align-middle">Công suất lắp máy (MW)</th>
-                                                        <th className="text-center align-middle">Lưu lượng lớn nhất qua nhà máy thủy điện (m3/s)</th>
-                                                        <th className="text-center align-middle">Mực nước dâng bình thường (m)</th>
-                                                        <th className="text-center align-middle">Mực nước chết (m)</th>
-                                                        <th className="text-center align-middle">Mực nước cao nhất trước lũ (m)</th>
-                                                        <th className="text-center align-middle">Mực nước đón lũ (m)</th>
-                                                        <th className="text-center align-middle">Dung tích hữu ích (triệu m3)</th>
-                                                        <th className="text-center align-middle">Dung tích toàn bộ (triệu m3)</th>
-                                                        <th className="text-center align-middle">Lưu lượng xả dòng chảy tối thiểu (m3/s)</th>
+                                                        <th className="text-center align-middle">Số hồ cấp nước</th>
+                                                        <th className="text-center align-middle">Cao trình đỉnh đập (m)</th>
+                                                        <th className="text-center align-middle">Chiều cao đập (m)</th>
+                                                        <th className="text-center align-middle">Chiều dài đập (m)</th>
+                                                        <th className="text-center align-middle">Chiều rộng đập (m)</th>
+                                                        <th className="text-center align-middle">Diện tích nuôi trồng (ha)</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td className="text-center align-middle"> 
-                                                            <input type="text" className="form-control form-control-sm" /> 
-                                                        </td>
-                                                        <td className="text-center align-middle"> 
-                                                            <input type="text" className="form-control form-control-sm" /> 
-                                                        </td>
-                                                        <td className="text-center align-middle"> 
-                                                            <input type="text" className="form-control form-control-sm" /> 
-                                                        </td>
                                                         <td className="text-center align-middle"> 
                                                             <input type="text" className="form-control form-control-sm" /> 
                                                         </td>
@@ -320,50 +308,62 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                 </div>
                                 <div className="col-sm-12 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Nội dung đề nghị cấp phép</p>
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-4">
                                         <div className="mb-2">
                                             <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.1.Nguồn nước khai thác, sử dụng</label>
                                             <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                         </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-4">
                                         <div className="mb-2">
-                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.2.Vị trí lấy nước</label>
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.2.Mục đích khai thác, sử dụng nước</label>
                                             <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                         </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-4">
                                         <div className="mb-2">
-                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.3.Mục đích khai thác, sử dụng nước</label>
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.3.Lưu lượng nước khai thác, sử dụng (m3/s)</label>
                                             <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                         </div>
                                     </div>
-                                    <div className="col-sm-6 p-0">
+                                    <div className="col-sm-4 p-0">
                                         <div className="mb-2 row mx-0">
-                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.4.Lượng nước khai thác, sử dụng</label>
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.4.Vị trí khai thác sử dụng nước (theo tọa độ VN2000)</label>
                                             <div className="col-sm-6">
                                                 <div className="mb-2 row m-0">
-                                                    <label htmlFor="mucdich_ktsd" className="form-label w-50 fw-bold font-13 m-0">Công suất lắp máy  MW</label>
+                                                    <label htmlFor="mucdich_ktsd" className="form-label w-50 fw-bold font-13 m-0 text-end pe-2">Tọa độ X:</label>
                                                     <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm w-50" id="mucdich_ktsd" name="mucdich_ktsd" />
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="mb-2 row m-0">
-                                                    <label htmlFor="mucdich_ktsd" className="form-label w-50 fw-bold font-13 m-0">Qmax NMTĐ (m3/s)</label>
+                                                    <label htmlFor="mucdich_ktsd" className="form-label w-50 fw-bold font-13 m-0 text-end pe-2">Tọa độ Y:</label>
                                                     <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm w-50" id="mucdich_ktsd" name="mucdich_ktsd" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-9">
+                                    <div className="col-sm-4">
                                         <div className="mb-2">
                                             <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.5.Chế độ khai thác, sử dụng</label>
                                             <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                         </div>
                                     </div>
+                                    <div className="col-sm-4">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.6.Lưu lượng xả DCTT (m3/s)</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-9">
+                                        <div className="mb-2">
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.7.Phương thức khai thác, sử dụng</label>
+                                            <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
+                                        </div>
+                                    </div>
                                     <div className="col-sm-3">
                                         <div className="mb-2">
-                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
+                                            <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">3.8.Thời gian đề nghị cấp phép</label>
                                             <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" />
                                         </div>
                                     </div>
@@ -378,7 +378,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Giấy tờ, tài liệu nộp kèm theo</p>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
+                                            <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">Đơn xin cấp phép</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
                                         </div>
                                     </div>
@@ -456,7 +456,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                             </div>
                             <div className="pb-4 text-center col-sm-12">
                                 <hr />
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI YÊU CẦU CHỈNH SỬA GIẤY PHÉP</button>
                             </div>
                         </form>
                     </div>

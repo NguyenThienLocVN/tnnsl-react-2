@@ -23,24 +23,61 @@ import QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien from './QuanLyCapPhep/NuocMat/Th
 import QuanLyCapPhepSuaGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/SuaGiayPhep';
 import QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/TheoDoi';
 
+// <==================================================Quan ly cap phep nuoc mat - Ho Chua=================================================================================>
+
+import QuanLyCapPhepNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/HoChua';
+import QuanLyCapPhepGiaHanDieuChinhNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/GiaHanDieuChinh';
+import QuanLyCapPhepCapMoiNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/CapMoi';
+import QuanLyCapPhepQuanLyCapMoiNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/QuanLyCapPhep';
+import QuanLyCapPhepSuaGiayPhepNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/SuaGiayPhep';
+import QuanLyCapPhepTheoDoiGiayPhepNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/TheoDoi';
+
+// <==================================================Quan ly cap phep nuoc mat - Tram Bom=================================================================================>
+
+import QuanLyCapPhepNuocMatTramBom from './QuanLyCapPhep/NuocMat/TramBom/TramBom';
+import QuanLyCapPhepGiaHanDieuChinhNuocMatTramBom from './QuanLyCapPhep/NuocMat/TramBom/GiaHanDieuChinh';
+import QuanLyCapPhepCapMoiNuocMatTramBom from './QuanLyCapPhep/NuocMat/TramBom/CapMoi';
+import QuanLyCapPhepQuanLyCapMoiNuocMatTramBom from './QuanLyCapPhep/NuocMat/TramBom/QuanLyCapPhep';
+import QuanLyCapPhepSuaGiayPhepNuocMatTramBom from './QuanLyCapPhep/NuocMat/TramBom/SuaGiayPhep';
+import QuanLyCapPhepTheoDoiGiayPhepNuocMatTramBom from './QuanLyCapPhep/NuocMat/TramBom/TheoDoi';
+
+// <==================================================Quan ly cap phep nuoc mat - Dap Thuy Loi=================================================================================>
+
+import QuanLyCapPhepNuocMatDapThuyLoi from './QuanLyCapPhep/NuocMat/DapThuyLoi/DapThuyLoi';
+import QuanLyCapPhepGiaHanDieuChinhNuocMatDapThuyLoi from './QuanLyCapPhep/NuocMat/DapThuyLoi/GiaHanDieuChinh';
+import QuanLyCapPhepCapMoiNuocMatDapThuyLoi from './QuanLyCapPhep/NuocMat/DapThuyLoi/CapMoi';
+import QuanLyCapPhepQuanLyCapMoiNuocMatDapThuyLoi from './QuanLyCapPhep/NuocMat/DapThuyLoi/QuanLyCapPhep';
+import QuanLyCapPhepSuaGiayPhepNuocMatDapThuyLoi from './QuanLyCapPhep/NuocMat/DapThuyLoi/SuaGiayPhep';
+import QuanLyCapPhepTheoDoiGiayPhepNuocMatDapThuyLoi from './QuanLyCapPhep/NuocMat/DapThuyLoi/TheoDoi';
+
+// <==================================================Quan ly cap phep nuoc mat - Cong=================================================================================>
+
+import QuanLyCapPhepNuocMatCong from './QuanLyCapPhep/NuocMat/Cong/Cong';
+import QuanLyCapPhepGiaHanDieuChinhNuocMatCong from './QuanLyCapPhep/NuocMat/Cong/GiaHanDieuChinh';
+import QuanLyCapPhepCapMoiNuocMatCong from './QuanLyCapPhep/NuocMat/Cong/CapMoi';
+import QuanLyCapPhepQuanLyCapMoiNuocMatCong from './QuanLyCapPhep/NuocMat/Cong/QuanLyCapPhep';
+import QuanLyCapPhepSuaGiayPhepNuocMatCong from './QuanLyCapPhep/NuocMat/Cong/SuaGiayPhep';
+import QuanLyCapPhepTheoDoiGiayPhepNuocMatCong from './QuanLyCapPhep/NuocMat/Cong/TheoDoi';
+
+// <==================================================Quan ly cap phep nuoc mat - Tram Cap Nuoc=================================================================================>
+
+import QuanLyCapPhepNuocMatTramCapNuoc from './QuanLyCapPhep/NuocMat/TramCapNuoc/TramCapNuoc';
+import QuanLyCapPhepGiaHanDieuChinhNuocMatTramCapNuoc from './QuanLyCapPhep/NuocMat/TramCapNuoc/GiaHanDieuChinh';
+import QuanLyCapPhepCapMoiNuocMatTramCapNuoc from './QuanLyCapPhep/NuocMat/TramCapNuoc/CapMoi';
+import QuanLyCapPhepQuanLyCapMoiNuocMatTramCapNuoc from './QuanLyCapPhep/NuocMat/TramCapNuoc/QuanLyCapPhep';
+import QuanLyCapPhepSuaGiayPhepNuocMatTramCapNuoc from './QuanLyCapPhep/NuocMat/TramCapNuoc/SuaGiayPhep';
+import QuanLyCapPhepTheoDoiGiayPhepNuocMatTramCapNuoc from './QuanLyCapPhep/NuocMat/TramCapNuoc/TheoDoi';
+
+// <==================================================Quan ly cap phep nuoc mat - Nha May Nuoc=================================================================================>
+
+import QuanLyCapPhepNuocMatNhaMayNuoc from './QuanLyCapPhep/NuocMat/NhaMayNuoc/NhaMayNuoc';
+import QuanLyCapPhepGiaHanDieuChinhNuocMatNhaMayNuoc from './QuanLyCapPhep/NuocMat/NhaMayNuoc/GiaHanDieuChinh';
+import QuanLyCapPhepCapMoiNuocMatNhaMayNuoc from './QuanLyCapPhep/NuocMat/NhaMayNuoc/CapMoi';
+import QuanLyCapPhepQuanLyCapMoiNuocMatNhaMayNuoc from './QuanLyCapPhep/NuocMat/NhaMayNuoc/QuanLyCapPhep';
+import QuanLyCapPhepSuaGiayPhepNuocMatNhaMayNuoc from './QuanLyCapPhep/NuocMat/NhaMayNuoc/SuaGiayPhep';
+import QuanLyCapPhepTheoDoiGiayPhepNuocMatNhaMayNuoc from './QuanLyCapPhep/NuocMat/NhaMayNuoc/TheoDoi';
 
 
-// <==================================================Quan ly cap phep nuoc mat - Thuy Dien=================================================================================>
-import QuanLyCapPhepNuocMatCongTrinhHoChua from './QuanLyCapPhep/NuocMat/CongTrinhHoChua';
-import QuanLyCapPhepNuocMatCongTrinhTramBom from './QuanLyCapPhep/NuocMat/CongTrinhTramBom';
-import QuanLyCapPhepNuocMatCongTrinhDap from './QuanLyCapPhep/NuocMat/CongTrinhDap';
-import QuanLyCapPhepNuocMatCongTrinhCong from './QuanLyCapPhep/NuocMat/CongTrinhCong';
-import QuanLyCapPhepNuocMatCongTrinhTramCapNuoc from './QuanLyCapPhep/NuocMat/CongTrinhTramCapNuoc';
-import QuanLyCapPhepNuocMatCongTrinhNhaMayNuoc from './QuanLyCapPhep/NuocMat/CongTrinhNhaMayNuoc';
-
-// <==================================================Xem thong tin cong trinh nuoc mat=================================================================================>
-
-import QuanLyCapPhepNuocMatThongTinXemThongTinChung from './QuanLyCapPhep/NuocMat/ThongTinCongTrinh/XemThongTinChung';
-import QuanLyCapPhepNuocMatThongTinXemThongTinCongTrinh from './QuanLyCapPhep/NuocMat/ThongTinCongTrinh/ThongTinCongTrinh';
-import QuanLyCapPhepNuocMatThongTinThongTinCongTrinhChiTiet from './QuanLyCapPhep/NuocMat/ThongTinCongTrinh/ThongTinCongTrinhChiTiet';
-import QuanLyCapPhepNuocMatThongTinGiamSatKhaiThacSuDung from './QuanLyCapPhep/NuocMat/ThongTinCongTrinh/GiamSatKhaiThacSuDung';
-import QuanLyCapPhepNuocMatThongTinChatLuongNuocMat from './QuanLyCapPhep/NuocMat/ThongTinCongTrinh/ChatLuongNuocMat';
-import QuanLyCapPhepNuocMatThongTinHoSoCapPhep from './QuanLyCapPhep/NuocMat/ThongTinCongTrinh/HoSoCapPhep';
 
 // <==================================================Quan ly cap phep khai thac nuoc duoi dat=================================================================================>
 
@@ -80,7 +117,7 @@ import QuanLyCapPhepTheoDoiGiayPhepCongTrinhKhacNDD from './QuanLyCapPhep/NuocDu
 
 // <==================================================Quanly cap phep xathai khu/cum cn tap trung=================================================================================>
 
-import QuanLyCapPhepXaThaiKhuCumCNTapTrung from './QuanLyCapPhep/NuocMat/ThuyDien/ThuyDien';
+import QuanLyCapPhepXaThaiKhuCumCNTapTrung from './QuanLyCapPhep/XaThai/KhuCumCNTapTrung/KhuCumCNTapTrung';
 import QuanLyCapPhepGiaHanDieuChinhXaThaiKhuCumCNTapTrung from './QuanLyCapPhep/XaThai/KhuCumCNTapTrung/GiaHanDieuChinh';
 import QuanLyCapPhepCapMoiXaThaiKhuCumCNTapTrung from './QuanLyCapPhep/XaThai/KhuCumCNTapTrung/CapMoi';
 import QuanLyCapPhepQuanLyCapMoiXaThaiKhuCumCNTapTrung from './QuanLyCapPhep/XaThai/KhuCumCNTapTrung/QuanLyCapPhep';
@@ -142,34 +179,128 @@ function App() {
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien} />
 
 
-
-
 				{/* ==================================================Cong Trinh Ho Chua================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua" component={QuanLyCapPhepNuocMatCongTrinhHoChua} />
+
+				{/* ==================================================Gia Han Dieu Chinh Nuoc Mat - Ho Chua================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua" component={QuanLyCapPhepNuocMatHoChua} />
+
+				{/* ==================================================Nuoc Mat - Ho Chua================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatHoChua} />
+
+				{/* ==================================================Cap Moi Nuoc Mat - Ho Chua================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua/cap-moi" component={QuanLyCapPhepCapMoiNuocMatHoChua} />
+
+				{/* ==================================================Quan Ly Cap Moi Nuoc Mat - Ho Chua================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatHoChua} />
+
+				{/* ==================================================Quan Ly Cap Moi Chinh Sua Giay Phep Nuoc Mat - Ho Chua================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatHoChua} />
+
+				{/* ==================================================Quan Ly Cap Moi Theo Doi Giay Phep Nuoc Mat - Ho Chua================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-chua/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatHoChua} />
+
 
 				{/* ==================================================Cong Trinh Tram Bom================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom" component={QuanLyCapPhepNuocMatCongTrinhTramBom} />
 
-				{/* ==================================================Cong Trinh Dap================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi" component={QuanLyCapPhepNuocMatCongTrinhDap} />
+				{/* ==================================================Gia Han Dieu Chinh Nuoc Mat - Tram Bom================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom" component={QuanLyCapPhepNuocMatTramBom} />
+
+				{/* ==================================================Nuoc Mat - Tram Bom================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatTramBom} />
+
+				{/* ==================================================Cap Moi Nuoc Mat - Tram Bom================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom/cap-moi" component={QuanLyCapPhepCapMoiNuocMatTramBom} />
+
+				{/* ==================================================Quan Ly Cap Moi Nuoc Mat - Tram Bom================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatTramBom} />
+
+				{/* ==================================================Quan Ly Cap Moi Chinh Sua Giay Phep Nuoc Mat - Tram Bom================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatTramBom} />
+
+				{/* ==================================================Quan Ly Cap Moi Theo Doi Giay Phep Nuoc Mat - Tram Bom================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-bom/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatTramBom} />
+
+
+				{/* ==================================================Cong Trinh Dap Thuy Loi================================================== */}
+
+				{/* ==================================================Gia Han Dieu Chinh Nuoc Mat - Dap Thuy Loi================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi" component={QuanLyCapPhepNuocMatDapThuyLoi} />
+
+				{/* ==================================================Nuoc Mat - Dap Thuy Loi================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatDapThuyLoi} />
+
+				{/* ==================================================Cap Moi Nuoc Mat - Dap Thuy Loi================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi/cap-moi" component={QuanLyCapPhepCapMoiNuocMatDapThuyLoi} />
+
+				{/* ==================================================Quan Ly Cap Moi Nuoc Mat - Dap Thuy Loi================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatDapThuyLoi} />
+
+				{/* ==================================================Quan Ly Cap Moi Chinh Sua Giay Phep Nuoc Mat - Dap Thuy Loi================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatDapThuyLoi} />
+
+				{/* ==================================================Quan Ly Cap Moi Theo Doi Giay Phep Nuoc Mat - Dap Thuy Loi================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/dap-thuy-loi/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatDapThuyLoi} />
+
 
 				{/* ==================================================Cong Trinh Cong================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong" component={QuanLyCapPhepNuocMatCongTrinhCong} />
+
+				{/* ==================================================Gia Han Dieu Chinh Nuoc Mat - Cong================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong" component={QuanLyCapPhepNuocMatCong} />
+
+				{/* ==================================================Nuoc Mat - Cong================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatCong} />
+
+				{/* ==================================================Cap Moi Nuoc Mat - Cong================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong/cap-moi" component={QuanLyCapPhepCapMoiNuocMatCong} />
+
+				{/* ==================================================Quan Ly Cap Moi Nuoc Mat - Cong================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatCong} />
+
+				{/* ==================================================Quan Ly Cap Moi Chinh Sua Giay Phep Nuoc Mat - Cong================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatCong} />
+
+				{/* ==================================================Quan Ly Cap Moi Theo Doi Giay Phep Nuoc Mat - Cong================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/cong/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatCong} />
 
 				{/* ==================================================Cong Trinh Tram Cap Nuoc================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc" component={QuanLyCapPhepNuocMatCongTrinhTramCapNuoc} />
+
+				{/* ==================================================Gia Han Dieu Chinh Nuoc Mat - Tram Cap Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc" component={QuanLyCapPhepNuocMatTramCapNuoc} />
+
+				{/* ==================================================Nuoc Mat - Tram Cap Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatTramCapNuoc} />
+
+				{/* ==================================================Cap Moi Nuoc Mat - Tram Cap Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/cap-moi" component={QuanLyCapPhepCapMoiNuocMatTramCapNuoc} />
+
+				{/* ==================================================Quan Ly Cap Moi Nuoc Mat - Tram Cap Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatTramCapNuoc} />
+
+				{/* ==================================================Quan Ly Cap Moi Chinh Sua Giay Phep Nuoc Mat - Tram Cap Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatTramCapNuoc} />
+
+				{/* ==================================================Quan Ly Cap Moi Theo Doi Giay Phep Nuoc Mat - Tram Cap Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatTramCapNuoc} />
 
 				{/* ==================================================Cong Trinh Nha May Nuoc================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc" component={QuanLyCapPhepNuocMatCongTrinhNhaMayNuoc} />
-				
-				{/* ==================================================Xem Thong Tin GP Nuoc Mat================================================== */}
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-chung/:id" component={QuanLyCapPhepNuocMatThongTinXemThongTinChung} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-cong-trinh/:id" component={QuanLyCapPhepNuocMatThongTinXemThongTinCongTrinh} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/xem-thong-tin-cong-trinh/chi-tiet/:id" component={QuanLyCapPhepNuocMatThongTinThongTinCongTrinhChiTiet} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/giam-sat-khai-thac-su-dung/:id" component={QuanLyCapPhepNuocMatThongTinGiamSatKhaiThacSuDung} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/chat-luong-nuoc-mat/:id" component={QuanLyCapPhepNuocMatThongTinChatLuongNuocMat} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/ho-so-cap-phep/:id" component={QuanLyCapPhepNuocMatThongTinHoSoCapPhep} />
 
+				{/* ==================================================Gia Han Dieu Chinh Nuoc Mat - Nha May Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc" component={QuanLyCapPhepNuocMatNhaMayNuoc} />
+
+				{/* ==================================================Nuoc Mat - Nha May Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatNhaMayNuoc} />
+
+				{/* ==================================================Cap Moi Nuoc Mat - Nha May Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/cap-moi" component={QuanLyCapPhepCapMoiNuocMatNhaMayNuoc} />
+
+				{/* ==================================================Quan Ly Cap Moi Nuoc Mat - Nha May Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatNhaMayNuoc} />
+
+				{/* ==================================================Quan Ly Cap Moi Chinh Sua Giay Phep Nuoc Mat - Nha May Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatNhaMayNuoc} />
+
+				{/* ==================================================Quan Ly Cap Moi Theo Doi Giay Phep Nuoc Mat - Nha May Nuoc================================================== */}
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatNhaMayNuoc} />
 
 
 

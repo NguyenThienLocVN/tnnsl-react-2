@@ -3,12 +3,12 @@ import Header from '../../../Shared/Header';
 import DemGiayPhep from './DemGiayPhep';
 import { Button } from 'react-bootstrap';
 
-export default class QuanLyCapPhepKhaiThacTheoDoiGiayPhepNDD extends React.Component {
+export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatTramBom extends React.Component {
 
     render(){
         return(
 			<div className="p-0">
-                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC DƯỚI ĐẤT" previousLink="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CÔNG TRÌNH NHÀ MÁY NƯỚC" previousLink="/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -74,7 +74,7 @@ export default class QuanLyCapPhepKhaiThacTheoDoiGiayPhepNDD extends React.Compo
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
-                                                <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình khai thác nước dưới đất</label>
+                                                <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình khai thác nước mặt</label>
                                                 <input type="text" required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem"  />
                                             </div>
                                         </div>

@@ -7,7 +7,7 @@ import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
 
-export default class QuanLyCapPhepKhaiThacCapMoiNDD extends React.Component {
+export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Component {
     constructor(props)
     {
         super(props)

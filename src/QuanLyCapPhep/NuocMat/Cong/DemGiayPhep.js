@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import configData from "../../../config.json";
 import { getToken } from '../../../Shared/Auth';
 
-export default class DemGiayPhepThuyDien extends React.Component {
+export default class DemGiayPhepCong extends React.Component {
     constructor(props)
     {
         super(props)
@@ -23,7 +23,7 @@ export default class DemGiayPhepThuyDien extends React.Component {
                 if(response.status === 200)
                 {
                     this.setState({
-                        countLicense: response.data.thuy_dien,
+                        countLicense: response.data.cong,
                     });
                 }
             })
@@ -39,13 +39,13 @@ export default class DemGiayPhepThuyDien extends React.Component {
             <div className="col-12 px-2 pb-4">
                 <div className="col-10 py-2 m-auto row m-0 justify-content-center text-center">
                         <div className="col-12 text-center p-0">
-                            <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> thủy điện </p>
+                            <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> cống </p>
                         </div>
                         <div className="col-6 text-center p-0">
-                            <p className="font-30 m-0 fw-bold">{this.state.countLicense.allgp}</p>
+                            <p className="font-30 m-0 fw-bold">{this.state.countLicense.allgp ? this.state.countLicense.allgp : 0}</p>
                         </div>
                         <div className="col-6 text-center p-0">
-                            <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-icon border border-secondary my-auto mx-3" alt="dap-thuy-dien" />
+                            <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-icon border border-secondary my-auto mx-3" alt="dap-cong" />
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@ export default class DemGiayPhepThuyDien extends React.Component {
                             <p className="fw-bold m-0">Tổng số công trình (TSCT)  đã vận hành</p>
                             <p className="font-18 m-0 fw-bold text-danger">{this.state.countLicense.tat_ca_giay_phep} / {this.state.countLicense.tat_ca_giay_phep}</p>
                         </div>
-                        <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="dap-thuy-dien" />
+                        <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="dap-cong" />
                     </div>
                     <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
                         <div className="col-9 text-start p-0">
@@ -86,9 +86,9 @@ export default class DemGiayPhepThuyDien extends React.Component {
                     </div>
 
                     
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/cap-moi" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn, điều chỉnh giấy phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/cong/cap-moi" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/cong/quan-ly-cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/cong/gia-han-dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn, điều chỉnh giấy phép</Link>
                     <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                 </div>
         )
