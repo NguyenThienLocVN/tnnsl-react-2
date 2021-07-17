@@ -10,7 +10,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
-import { getToken } from '../../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
 
 import * as L from 'leaflet';
@@ -74,6 +74,10 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                }
                 this.setState({msg: error.response})
             })
         )
@@ -194,6 +198,11 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
                 this.setState({msg: error.response})
             })
     };
@@ -254,7 +263,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                     <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
                             {record.tai_lieu_nuoc_duoi_dat && record.tai_lieu_nuoc_duoi_dat[0] !== undefined ?
-                            <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep}></iframe>
+                            <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep+".pdf"}></iframe>
                             : "Không có tài liệu"
                             }
                         </div>

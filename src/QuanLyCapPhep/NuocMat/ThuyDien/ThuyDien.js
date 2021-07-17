@@ -10,7 +10,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
-import { getToken } from '../../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
 
 import * as L from 'leaflet';
@@ -60,9 +60,10 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     componentDidMount(){
         document.title = "Nươc mặt - Công trình thủy điện";
 
+        var pageName = this.props.match.path.split("/").pop();
         trackPromise(
             axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/thuy-dien/thong-tin-ban-do-cong-trinh", {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/"+pageName+"/thong-tin-ban-do-cong-trinh", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -74,6 +75,11 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
                 this.setState({msg: error.response})
             })
         )
@@ -176,8 +182,10 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
 
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
+
+        var pageName = this.props.match.path.split("/").pop();
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/thuy-dien/loc-giay-phep/"+filter, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/"+pageName+"/loc-giay-phep/"+filter, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -194,6 +202,11 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
                 this.setState({msg: error.response})
             })
     };
@@ -345,7 +358,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                 <BasemapLayer name="ImageryLabels" />
 
                                 {this.state.dataSource.map((marker, key) => (
-                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
+                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
                                     <Popup>
                                     <div>
                                         <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>

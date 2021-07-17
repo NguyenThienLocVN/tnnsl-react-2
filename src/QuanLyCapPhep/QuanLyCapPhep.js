@@ -6,6 +6,7 @@ import configData from "../config.json";
 import { DownloadOutlined, LineChartOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { trackPromise } from 'react-promise-tracker';
+import { removeUserSession } from '../Shared/Auth';
 
 
 export default class QuanLyCapPhep extends React.Component {
@@ -40,6 +41,11 @@ export default class QuanLyCapPhep extends React.Component {
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
                 this.setState({msg: error.response})
             })
         )
@@ -116,6 +122,11 @@ export default class QuanLyCapPhep extends React.Component {
                     }
                 })
                 .catch((error) => {
+                    if(error.response.status === 401)
+                    {
+                        removeUserSession();
+                        window.location.reload();
+                    }
                     this.setState({msg: error.response})
                 })
             )

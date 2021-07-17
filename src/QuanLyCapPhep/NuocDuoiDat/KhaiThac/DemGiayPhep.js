@@ -3,7 +3,7 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import configData from "../../../config.json";
-import { getToken } from '../../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 export default class DemGiayPhepKhaiThac extends React.Component {
     constructor(props)
@@ -28,6 +28,11 @@ export default class DemGiayPhepKhaiThac extends React.Component {
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
                 this.setState({msg: error.response})
             })
         )
