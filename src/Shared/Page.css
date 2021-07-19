@@ -127,6 +127,13 @@
 }
 
 .table-data-license tr:nth-child(even){background-color: #f2f2f2;}
+.table-responsive{padding: 0 !important;}
+.modal_quantrac{
+  max-height: 65vh;
+  height: 65vh;
+  overflow-y: scroll;
+}
+table{margin-bottom: 0 !important;}
 
 /* Tong Quan Cong Trinh */
 .cursor_pointer{cursor: pointer;}
@@ -205,6 +212,16 @@
   
   .round input[type="checkbox"]:checked + label:after {
     opacity: 1;
+  }
+
+  .quantrac_item img{
+    height: 60px;
+    width: 60px;
+  }
+
+  .quantrac_title{
+    height: 42px;
+    line-height: 14px;
   }
 
 

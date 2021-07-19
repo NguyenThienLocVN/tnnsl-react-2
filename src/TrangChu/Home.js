@@ -74,7 +74,7 @@ export default class Login extends React.Component {
                                 </Link>
                             </div>
                             <div className="col-12 col-md-6 col-lg-12 px-0 pt-3 pb-0 d-flex">
-                                <Link to="#" className="col-6 text-center">
+                                <Link to="he-thong-quan-trac" className="col-6 text-center">
                                     <img className="grid-item-image" src={process.env['PUBLIC_URL'] + '/images/TRANG_CHU/ANH_HETHONGQUANTRAC.png'} alt="he-thong-quan-trac" />
                                     <p className="grid-item-text fw-bold">Hệ thống quan trắc</p>
                                 </Link>

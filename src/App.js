@@ -135,6 +135,15 @@ import QuanLyCapPhepTheoDoiGiayPhepXaThaiKhuCumCNTapTrung from './QuanLyCapPhep/
 
 import GioiThieuChung from './GioiThieuChung/GioiThieuChung';
 
+
+// <==================================================He thong quan trac=================================================================================>
+
+import HeThongQuanTrac from './HeThongQuanTrac/HeThongQuanTrac';
+
+// <==================================================He thong quan trac - giam sat mua=================================================================================>
+
+import HeThongQuanTracNuocMatMua from './HeThongQuanTrac/QuanTracMua/Mua';
+
 // <==================================================He thong giam sat=================================================================================>
 
 import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
@@ -431,6 +440,14 @@ function App() {
 				{/* ==================================================Gioi thieu chung================================================== */}
 				<ProtectedRoute exact path="/gioi-thieu-chung" component={GioiThieuChung} />
 
+
+				{/* ==================================================He Thong Quan Trac================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac" component={HeThongQuanTrac} />
+
+				{/* ==================================================He Thong Quan Trac================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/mua" component={HeThongQuanTracNuocMatMua} />
+
+				{/* ==================================================He Thong Giam Sat================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat" component={HeThongGiamSat} />
 
 				{/* ==================================================Bao Cao Bieu Mau================================================== */}

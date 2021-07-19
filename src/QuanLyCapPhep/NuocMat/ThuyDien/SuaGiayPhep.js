@@ -3,7 +3,7 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
 
