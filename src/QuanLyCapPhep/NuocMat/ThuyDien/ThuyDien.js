@@ -357,7 +357,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                 <BasemapLayer name="ImageryLabels" />
 
                                 {this.state.dataSource.map((marker, key) => (
-                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].longitude, marker.hang_muc_ct[0].latitude]} key={key} >
+                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
                                     <Popup>
                                     <div>
                                         <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
