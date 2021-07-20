@@ -42,7 +42,7 @@ export default class DemGiayTramBom extends React.Component {
                             <p className="fw-bold font-20 text-primary col-sm-12 mb-1">Tổng số công trình <br /> nhà máy nước </p>
                         </div>
                         <div className="col-6 text-center p-0">
-                            <p className="font-30 m-0 fw-bold">{this.state.countLicense.allgp}</p>
+                            <p className="font-30 m-0 fw-bold">{this.state.countLicense.tat_ca_giay_phep}</p>
                         </div>
                         <div className="col-6 text-center p-0">
                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/NuocDuoiDat/anhkhaithacnuocduoidat.png'} className="p-0 hydroelectric-icon border border-secondary my-auto mx-3" alt="dap-tram-cap-nuoc" />
