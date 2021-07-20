@@ -14,8 +14,7 @@ export default class DemGiayPhepKhoan extends React.Component {
         }
     }
     componentDidMount(){
-        trackPromise(
-            axios
+        trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khoan/dem-giay-phep", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })

@@ -113,8 +113,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
 
     componentDidMount(){
         document.title = "Sửa giấy phép khai thác nước dưới đất";
-        trackPromise(
-            axios
+        trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac/giay-phep-cong-trinh-khac/"+this.props.match.params.id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })

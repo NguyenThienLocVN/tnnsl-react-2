@@ -49,8 +49,7 @@ export default class QuanLyCapPhep extends React.Component {
                 this.setState({msg: error.response})
             })
         )
-        trackPromise(
-            axios
+        trackPromise(axios
                 .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai")
                 .then((response) => {
                     if(response.status === 200)

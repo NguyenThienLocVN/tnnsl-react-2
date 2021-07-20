@@ -60,8 +60,7 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
     componentDidMount(){
         document.title = "Nươc mặt - Công trình trạm bơm";
 
-        trackPromise(
-            axios
+        trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/nha-may-nuoc/thong-tin-ban-do-cong-trinh", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
@@ -222,10 +221,8 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
 
     //  Destroy License
     handlerDestroyLicense = (id_gp) =>{
-        alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
-            
-            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp, {
+            axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -253,8 +250,8 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
                     <p className="text-primary cursor_pointer m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
                     <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
-                            {record.tai_lieu_nuoc_duoi_dat && record.tai_lieu_nuoc_duoi_dat[0] !== undefined ?
-                            <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_loaigiayphep+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_nam+"/"+record.tai_lieu_nuoc_duoi_dat[0].tailieu_giayphep}></iframe>
+                            {record.tai_lieu && record.tai_lieu[0] !== undefined ?
+                            <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+record.tai_lieu[0].tailieu_loaigiayphep+"/"+record.tai_lieu[0].tailieu_nam+"/"+record.tai_lieu[0].tailieu_giayphep}></iframe>
                             : "Không có tài liệu"
                             }
                         </div>
@@ -392,7 +389,7 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
                                 ))}
                             </MapContainer>
 
-                            <div className="col-12 py-1 row align-items-center">
+                            <div className="col-12 py-1 row mx-0 align-items-center">
                                 <div className="col-lg-4">
                                     <Search allowClear id="search" name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                 </div>

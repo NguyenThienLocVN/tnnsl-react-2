@@ -46,9 +46,7 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatCong extends React.Componen
         });
     }
     handlerDestroyLicense = (id_gp) =>{
-        alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
-            
             axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })

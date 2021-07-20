@@ -60,8 +60,7 @@ export default class QuanLyCapPhepThamDoNDD extends React.Component {
     componentDidMount(){
         document.title = "Thăm dò nước dưới đất";
 
-        trackPromise(
-            axios
+        trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/thong-tin-ban-do-cong-trinh", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
@@ -222,9 +221,7 @@ export default class QuanLyCapPhepThamDoNDD extends React.Component {
 
     //  Destroy License
     handlerDestroyLicense = (id_gp) =>{
-        alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
-            
             axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })

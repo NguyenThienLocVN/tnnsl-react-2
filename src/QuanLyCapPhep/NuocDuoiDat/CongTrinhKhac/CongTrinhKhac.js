@@ -60,8 +60,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
     componentDidMount(){
         document.title = "Khai thác nước dưới đất";
 
-        trackPromise(
-            axios
+        trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/thong-tin-ban-do-cong-trinh", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
@@ -222,9 +221,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
 
     //  Destroy License
     handlerDestroyLicense = (id_gp) =>{
-        alert('Có chắc bạn muốn xóa giấy phép')
         trackPromise(
-            
             axios.get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
@@ -392,7 +389,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                 ))}
                             </MapContainer>
 
-                            <div className="col-12 py-1 row align-items-center">
+                            <div className="col-12 py-1 row mx-0 align-items-center">
                                 <div className="col-lg-4">
                                     <Search allowClear id="search" name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                 </div>

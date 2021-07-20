@@ -61,8 +61,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
         document.title = "Nươc mặt - Công trình thủy điện";
 
         var pageName = this.props.match.path.split("/").pop();
-        trackPromise(
-            axios
+        trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/"+pageName+"/thong-tin-ban-do-cong-trinh", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
@@ -236,7 +235,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     //  Destroy License
     handlerDestroyLicense = (id_gp) =>{
         trackPromise(
-            
             axios.get(configData.API_URL + "quan-ly-cap-phep/nuoc-mat/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })

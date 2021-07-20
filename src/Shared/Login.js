@@ -39,8 +39,7 @@ export default class Login extends React.Component{
         e.preventDefault();
             apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
-                trackPromise(
-                    apiClient.post(configData.API_URL + "/login", {
+                trackPromise(        apiClient.post(configData.API_URL + "/login", {
                         username: this.state.username,
                         password: this.state.password,
                     })
