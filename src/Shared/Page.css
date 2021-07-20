@@ -163,6 +163,35 @@ table{margin-bottom: 0 !important;}
 .hover-bg:hover{background-color: lightgray; transition-duration: 500ms;}
 
 
+/* He thong quan trac */
+.modal-quantrac .ant-modal-header{
+  background-color: #00b4fa !important;
+  padding: 5px !important;
+}
+.modal-quantrac .ant-modal-header .ant-modal-title{
+  color: #fff !important;
+}
+.modal-quantrac .ant-modal-close-x {
+  width: 33px !important;
+  height: 33px !important;
+  line-height: 33px !important;
+}
+.modal-quantrac .ant-modal-body {
+  padding: 10px !important;
+}
+
+.ant-modal-close-x{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform .7s ease-in-out;
+}
+
+.ant-modal-close-x:hover{
+  transform: rotate(180deg);
+  transition-duration: 500ms;
+}
+
 /* search box styles */
 .ant-input-search-button{
     display: flex !important;

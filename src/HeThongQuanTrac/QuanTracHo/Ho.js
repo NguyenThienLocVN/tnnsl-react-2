@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../../Shared/Header";
-import Table from 'react-bootstrap/Table';
+import Table from 'react-bootstrap/Table'
 import { MoreOutlined } from "@ant-design/icons";
 import { Modal, Tabs, Button } from 'antd';
 
@@ -61,7 +61,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
           };
         return(
             <div className="p-0">
-                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / MƯA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / HỒ CHỨA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="row justify-content-between mx-0">
@@ -81,20 +81,18 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                         <Table striped bordered hover responsive>
                             <thead className="bg-lightblue">
                                 <tr>
-                                    <th className="text-center text-nowrap align-center">Tên Trạm</th>
-                                    <th className="text-center text-nowrap align-center">Hiện Tại</th>
-                                    <th className="text-center text-nowrap align-center">Ngày 1</th>
-                                    <th className="text-center text-nowrap align-center">Ngày 3</th>
+                                    <th className="text-center text-nowrap align-center">Tên Hồ</th>
+                                    <th className="text-center text-nowrap align-center" style={{width:110}}>Mực Nước</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr className="cursor_pointer">
                                     <td>
-                                        <div className="m-0 fw-bold">
+                                        <p className="m-0 fw-bold">
                                             <span className="stt_table_quantrac">1. </span>
                                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                                             <p className="text-primary">
-                                                Thuan Chau - Son La - Thuan Chau - Son La 
+                                                Nà Bó
                                                 <span className="d-inline-block">
                                                     <span className="p-1 d-flex align-items-center justify-content-center" onClick={(e) => this.clickHandler(e, 1)}>
                                                         <MoreOutlined />
@@ -102,7 +100,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                     <Modal
                                                         className="modal-quantrac"
                                                         scrollableBody={true}
-                                                        title="SỐ LIỆU QUAN TRẮC TRẠM - TÊN TRẠM"
+                                                        title="THÔNG TIN QUAN TRẮC"
                                                         footer={[<Button type="primary" onClick={this.hideModal}> Cập Nhật </Button>]}
                                                         width={1500}
                                                         visible={this.state.activeModal === 1} 
@@ -294,38 +292,26 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                     </Modal>
                                                 </span>
                                             </p>
-                                        </div>
+                                        </p>
                                         <p className="m-0 text-warning">
                                             Nguồn: Author
                                         </p>
                                     </td>
-                                    <td>
+                                    <td className="bg-warning">
                                         <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">0</p>
-                                            <p className="text-center text-nowrap mb-0">(mm)</p>
-                                            <p className="text-center text-nowrap mb-0">Cập nhật < br /> 07:00</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">0</p>
-                                            <p className="text-center text-nowrap mb-0">(mm)</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">0</p>
-                                            <p className="text-center text-nowrap mb-0">(mm)</p>
+                                            <p className="text-center text-nowrap fw-bold mb-0">735.8</p>
+                                            <p className="text-center text-nowrap mb-0">(m)</p>
+                                            <p className="text-center mb-0">Cập nhật <br /> 07:00</p>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr className="cursor_pointer">
                                     <td>
-                                        <div className="m-0 fw-bold">
+                                        <p className="m-0 fw-bold">
                                             <span className="stt_table_quantrac">2. </span>
                                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                                             <p className="text-primary">
-                                                Thuan Chau - Son La - Thuan Chau - Son La 
+                                                Xum Lo
                                                 <span className="d-inline-block">
                                                     <span className="p-1 d-flex align-items-center justify-content-center" onClick={(e) => this.clickHandler(e, 2)}>
                                                         <MoreOutlined />
@@ -333,7 +319,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                     <Modal
                                                         className="modal-quantrac"
                                                         scrollableBody={true}
-                                                        title="SỐ LIỆU QUAN TRẮC TRẠM - TÊN TRẠM"
+                                                        title="THÔNG TIN QUAN TRẮC"
                                                         footer={[<Button type="primary" onClick={this.hideModal}> Cập Nhật </Button>]}
                                                         width={1500}
                                                         visible={this.state.activeModal === 2} 
@@ -525,28 +511,16 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                     </Modal>
                                                 </span>
                                             </p>
-                                        </div>
+                                        </p>
                                         <p className="m-0 text-warning">
                                             Nguồn: Author
                                         </p>
                                     </td>
-                                    <td>
+                                    <td className="bg-warning">
                                         <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">0</p>
-                                            <p className="text-center text-nowrap mb-0">(mm)</p>
-                                            <p className="text-center text-nowrap mb-0">Cập nhật < br /> 07:00</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">0</p>
-                                            <p className="text-center text-nowrap mb-0">(mm)</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">0</p>
-                                            <p className="text-center text-nowrap mb-0">(mm)</p>
+                                            <p className="text-center text-nowrap fw-bold mb-0">715.3</p>
+                                            <p className="text-center text-nowrap mb-0">(m)</p>
+                                            <p className="text-center mb-0">Cập nhật <br /> 07:00</p>
                                         </div>
                                     </td>
                                 </tr>

@@ -144,6 +144,10 @@ import HeThongQuanTrac from './HeThongQuanTrac/HeThongQuanTrac';
 
 import HeThongQuanTracNuocMatMua from './HeThongQuanTrac/QuanTracMua/Mua';
 
+// <==================================================He thong quan trac - giam sat ho chua=================================================================================>
+
+import HeThongQuanTracNuocMatHoChua from './HeThongQuanTrac/QuanTracHo/Ho';
+
 // <==================================================He thong giam sat=================================================================================>
 
 import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
@@ -444,8 +448,11 @@ function App() {
 				{/* ==================================================He Thong Quan Trac================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac" component={HeThongQuanTrac} />
 
-				{/* ==================================================He Thong Quan Trac================================================== */}
+				{/* ==================================================He Thong Quan Trac Mua================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/mua" component={HeThongQuanTracNuocMatMua} />
+
+				{/* ==================================================He Thong Quan Trac Ho Chua================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/ho-chua" component={HeThongQuanTracNuocMatHoChua} />
 
 				{/* ==================================================He Thong Giam Sat================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat" component={HeThongGiamSat} />
