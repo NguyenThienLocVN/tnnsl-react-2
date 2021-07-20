@@ -66,18 +66,16 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="row justify-content-between mx-0">
-                            <div className="col-sm-4 p-1">
+                            <div className="col-sm-4">
                                 <label className="fw-bold" htmlFor="from_date">Từ ngày</label>
                                 <input id="from_date" type="date" className="form-control form-control-sm" />
                             </div>
-                            <div className="col-sm-4 p-1">
+                            <div className="col-sm-4">
                                 <label className="fw-bold" htmlFor="to_date">Đến ngày</label>
                                 <input id="to_date" type="date" className="form-control form-control-sm" />
                             </div>
-                            <div className="col-sm-3 p-1 row align-items-end">
+                            <div className="col-sm-3 m-1 row align-items-end">
                                 <button className="btn btn-primary btn-sm"> Lọc </button>
-                            </div>
-                            <div className="col-sm-1 p-1">
                             </div>
                         </div>
                         <div className="row m-0 p-0 surfacewater-usage">
