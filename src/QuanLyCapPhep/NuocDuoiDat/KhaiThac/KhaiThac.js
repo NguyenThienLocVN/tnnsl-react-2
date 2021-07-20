@@ -398,7 +398,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                 ))}
                             </MapContainer>
 
-                            <div className="col-12 py-1 row align-items-center">
+                            <div className="col-12 py-1 row mx-0 align-items-center">
                                 <div className="col-lg-4">
                                     <Search allowClear id="search" name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                 </div>
