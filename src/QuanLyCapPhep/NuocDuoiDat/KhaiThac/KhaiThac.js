@@ -5,7 +5,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
-import { FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal } from 'antd';
 import { Button } from "react-bootstrap";
@@ -43,7 +43,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            
+            showLegend: false
         }
 
         this.mapRef = React.createRef();
@@ -382,12 +382,8 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                                     <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
                                                 </tr>
                                                 <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
-                                                    <td className="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
-                                                    <td className="col-8 py-1"></td>
+                                                    <td className="col-4 py-1">Chủ giấy phép</td>
+                                                    <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -396,6 +392,18 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                     </Popup>
                                 </Marker> : ""
                                 ))}
+
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showLegend: !this.state.showLegend})}><BlockOutlined /></button>
+                                {this.state.showLegend &&
+                                    <div className="map-legend position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="normal-checkbox" />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="danger-checkbox" />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><input type="checkbox" id="very-danger-checkbox" />&nbsp;<span className="font-weight-bold">Chưa có giấy phép</span> </li>
+                                        </ul>
+                                    </div>
+                                }
                             </MapContainer>
 
                             <div className="col-12 py-1 row mx-0 align-items-center">

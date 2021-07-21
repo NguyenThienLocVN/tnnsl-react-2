@@ -358,7 +358,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                     marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
                                     <Popup>
                                     <div>
-                                        <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                        <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
                                         <table className="table table-striped table-hover mb-2">
                                             <tbody>
                                                 <tr className="col-12 d-flex p-0">
@@ -386,12 +386,8 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                                     <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
                                                 </tr>
                                                 <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
-                                                    <td className="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
-                                                    <td className="col-8 py-1"></td>
+                                                    <td className="col-4 py-1">Chủ giấy phép</td>
+                                                    <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
