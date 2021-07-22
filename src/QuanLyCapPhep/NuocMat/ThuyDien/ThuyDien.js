@@ -58,7 +58,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Nươc mặt - Công trình thủy điện";
+        document.title = "Nước mặt - Công trình thủy điện";
 
         var pageName = this.props.match.path.split("/").pop();
         trackPromise(axios
