@@ -251,7 +251,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
               width: '10%',
               render: (text, record, index) => (
                 <>
-                    <p className="text-primary cursor_pointer text-nowrap m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
+                    <p className="text-primary cursor_pointer text-nowrap m-0 d-flex align-items-center" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
                     <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
                             {record.tai_lieu_nuoc_duoi_dat && record.tai_lieu_nuoc_duoi_dat[0] !== undefined ?

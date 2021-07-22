@@ -203,6 +203,12 @@ table{margin-bottom: 0 !important;}
   white-space: nowrap;
 }
 
+.ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 /* search box styles */
 .ant-input-search-button{
     display: flex !important;
