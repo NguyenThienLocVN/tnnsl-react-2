@@ -5,7 +5,7 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
 import { Form, Button } from "react-bootstrap";
-import { getUser, getToken } from '../../../Shared/Auth';
+import { getUser, getToken, removeUserSession } from '../../../Shared/Auth';
 import { ConfigProvider, Table, Input } from 'antd';
 import { EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import vnVN from 'antd/lib/locale/vi_VN';
@@ -87,6 +87,11 @@ export default class QuanLyCapPhepKhaiThacQuanLyGiayPhepNDD extends React.Compon
                 }
             })
             .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
                 this.setState({msg: error.response})
             })
     };
@@ -114,19 +119,15 @@ export default class QuanLyCapPhepKhaiThacQuanLyGiayPhepNDD extends React.Compon
     }
 
     render(){
+
         const columns = [
-            {
-              title: '#',
-              dataIndex: 'id',
-              key: 'id',
-            },
             {
               title: 'Số GP',
               dataIndex: 'gp_sogiayphep',
               key: 'gp_sogiayphep',
               width: '10%',
               render: (text, record, index) => (
-                <p className="cursor_pointer m-0">{record.gp_sogiayphep ? record.gp_sogiayphep : "--"}</p>
+                <p className="cursor_pointer text-nowrap m-0">{record.gp_sogiayphep ? record.gp_sogiayphep : "--"}</p>
               ),
             },
             {
@@ -136,13 +137,16 @@ export default class QuanLyCapPhepKhaiThacQuanLyGiayPhepNDD extends React.Compon
                 width: '30%',
                 sorter: (a, b) => a.congtrinh_ten.localeCompare(b.congtrinh_ten),
                 render: (text, record) => (
-                    <p className="cursor_pointer m-0">{record.congtrinh_ten ? record.congtrinh_ten : "--"} </p>
+                    <p className="cursor_pointer text-2-wrap m-0">{record.congtrinh_ten ? record.congtrinh_ten : "--"} </p>
                 )
             },
             {
                 title: 'Tổ chức được cấp phép',
                 dataIndex: 'chugiayphep_ten',
                 key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.chugiayphep_ten ? record.chugiayphep_ten : "--"} </p>
+                )
             },
             {
                 title: 'Trạng thái',

@@ -116,11 +116,6 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatTramBom extends React.Co
     render(){
         const columns = [
             {
-              title: '#',
-              dataIndex: 'id',
-              key: 'id',
-            },
-            {
               title: 'Số GP',
               dataIndex: 'gp_sogiayphep',
               key: 'gp_sogiayphep',
@@ -142,7 +137,9 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatTramBom extends React.Co
             {
                 title: 'Tổ chức được cấp phép',
                 dataIndex: 'chugiayphep_ten',
-                key: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.chugiayphep_ten ? record.chugiayphep_ten : "--"} </p>
+                )
             },
             {
                 title: 'Trạng thái',

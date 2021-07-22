@@ -103,7 +103,7 @@ export default class QuanLyCapPhep extends React.Component {
                             },
                             doughnutData: {
                                 labels: [
-                                    '2015','2016','2017','2018','2019','2020',
+                                    'Năm 2015','Năm 2016','Năm 2017','Năm 2018','Năm 2019','Năm 2020',
                                 ],
                                 datasets: [{
                                     data: response.data.gp_nuocmat,
@@ -416,10 +416,6 @@ export default class QuanLyCapPhep extends React.Component {
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">{this.state.DemGPNuocMat.chua_phe_duyet}</p>
                                     </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3"> -- </p>
-                                    </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-success">
@@ -428,7 +424,10 @@ export default class QuanLyCapPhep extends React.Component {
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
                                         <p className="col-3">1000</p>
                                     </div>
-                                    
+                                    <div className="fw-bold col-12 d-flex px-2">
+                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
+                                        <p className="col-3">1000</p>
+                                    </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
                                         <p className="col-3">1000</p>
@@ -439,10 +438,6 @@ export default class QuanLyCapPhep extends React.Component {
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">1000</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
                                         <p className="col-3">1000</p>
                                     </div>
                                 </div>
@@ -469,10 +464,6 @@ export default class QuanLyCapPhep extends React.Component {
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">{this.state.DemGPKTNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">--</p>
-                                    </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-danger">
@@ -497,10 +488,6 @@ export default class QuanLyCapPhep extends React.Component {
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">{this.state.DemGPTDNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">--</p>
-                                    </div>
                                 </div>
 
                                 <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-secondary">
@@ -524,10 +511,6 @@ export default class QuanLyCapPhep extends React.Component {
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
                                         <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.chua_phe_duyet}</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa có GP thay thế: </p>
-                                        <p className="col-3">--</p>
                                     </div>
                                 </div>
                             </div>

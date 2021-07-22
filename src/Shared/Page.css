@@ -192,6 +192,17 @@ table{margin-bottom: 0 !important;}
   transition-duration: 500ms;
 }
 
+.text-2-wrap{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+.ant-table-thead > tr > th{
+  white-space: nowrap;
+}
+
 /* search box styles */
 .ant-input-search-button{
     display: flex !important;

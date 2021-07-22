@@ -160,7 +160,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
         if(hieulucgiayphep === "chuaduocduyet"){
             return <div className="license_status" style={{color: "gray", backgroundColor: "#f0f0f0", border: "1px solid gray"}}> Chưa duyệt </div>;
         }else if(hieulucgiayphep === "saphethieuluc"){
-            return <div className="license_status" style={{color: "orange", backgroundColor: "#ffd591", border: "1px solid orange"}}> Sắp hết hiệu lực </div>;
+            return <div className="license_status" style={{color: "#d09114", backgroundColor: "#ffd591", border: "1px solid orange"}}> Sắp hết hiệu lực </div>;
         }else if(hieulucgiayphep === "conhieuluc"){
             return <div className="license_status" style={{color: "green", backgroundColor: "#b7eb8f", border: "1px solid green"}}> Còn hiệu lực </div>;
         }else if(hieulucgiayphep === "hethieuluc"){
@@ -245,18 +245,13 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
     render(){        
         const columns = [
             {
-              title: '#',
-              dataIndex: 'id',
-              key: 'id',
-            },
-            {
               title: 'Số GP',
               dataIndex: 'gp_sogiayphep',
               key: 'gp_sogiayphep',
               width: '10%',
               render: (text, record, index) => (
                 <>
-                    <p className="text-primary cursor_pointer m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
+                    <p className="text-primary cursor_pointer text-nowrap m-0" onClick={(record) => this.clickHandler(record, index)}>{record.gp_sogiayphep} &nbsp;<FilePdfOutlined /></p>
                     <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={record.gp_sogiayphep} width={1000} footer={null} id={record.gp_sogiayphep} visible={this.state.activeModal === index} onCancel={this.hideModal}>
                         <div>
                             {record.tai_lieu_nuoc_duoi_dat && record.tai_lieu_nuoc_duoi_dat[0] !== undefined ?
@@ -284,13 +279,16 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                 width: '30%',
                 sorter: (a, b) => a.congtrinh_ten.localeCompare(b.congtrinh_ten),
                 render: (text, record) => (
-                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].latitude, record.hang_muc_ct[0].longitude) : null} className="text-primary m-0 cursor_pointer">{record.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
+                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].latitude, record.hang_muc_ct[0].longitude) : null} className="text-primary m-0 text-2-wrap cursor_pointer">{record.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
                 )
             },
             {
                 title: 'Tổ chức được cấp phép',
                 dataIndex: 'chugiayphep_ten',
                 key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.chugiayphep_ten ? record.chugiayphep_ten : "--"} </p>
+                )
             },
             {
                 title: 'Ngày có hiệu lực',
