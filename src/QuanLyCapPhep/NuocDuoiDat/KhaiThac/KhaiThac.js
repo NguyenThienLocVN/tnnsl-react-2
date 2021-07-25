@@ -391,12 +391,8 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                                     <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
                                                 </tr>
                                                 <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
-                                                    <td className="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
-                                                    <td className="col-8 py-1"></td>
+                                                    <td className="col-4 py-1">Chủ giấy phép</td>
+                                                    <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
