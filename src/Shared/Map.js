@@ -2,6 +2,7 @@ import React from 'react';
 import { MapContainer } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import * as esri from 'esri-leaflet';
+import ReactLeafletKml from 'react-leaflet-kml';
 
 export default class Map extends React.Component {
 	constructor(props) {
@@ -9,6 +10,7 @@ export default class Map extends React.Component {
 		this.state = {
 			center: [21.529737201190642, 103.9692398828125],
 			zoom: 8,
+			kml: null
 		};
 
 		this.mapRef = React.createRef();
@@ -41,6 +43,17 @@ export default class Map extends React.Component {
         }
 	}
 
+	componentDidMount(){
+		fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
+	}
+
     render() {
 		return (
 			<>
@@ -54,6 +67,8 @@ export default class Map extends React.Component {
 			<MapContainer className="h-100 w-100 position-relative" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
 				<BasemapLayer name="Imagery" />
 				<BasemapLayer name="ImageryLabels" />
+
+				{this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
 			</MapContainer>
 			</>
 		);

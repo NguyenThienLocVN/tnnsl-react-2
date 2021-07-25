@@ -12,6 +12,7 @@ import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
+import ReactLeafletKml from 'react-leaflet-kml';
 
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
@@ -43,7 +44,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            
+            kml: null
         }
 
         this.mapRef = React.createRef();
@@ -76,6 +77,15 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+
+        fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
 
         this.fetch(this.state.pagination, 'all');
     }
@@ -384,6 +394,8 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                     </Popup>
                                 </Marker> : ""
                                 ))}
+
+                                {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
                             </MapContainer>
 
                             <div className="col-12 py-1 row mx-0 align-items-center">

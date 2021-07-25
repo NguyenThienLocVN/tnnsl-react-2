@@ -5,13 +5,14 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
-import { FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken, removeUserSession } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
+import ReactLeafletKml from 'react-leaflet-kml';
 
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
@@ -43,7 +44,8 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            
+            showLegend: false,
+            kml: null
         }
 
         this.mapRef = React.createRef();
@@ -80,6 +82,15 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+
+        fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
 
         this.fetch(this.state.pagination, 'all');
     }
@@ -242,7 +253,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
         );
     }
 
-    render(){        
+    render(){
         const columns = [
             {
               title: 'Số GP',
@@ -394,6 +405,20 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                     </Popup>
                                 </Marker> : ""
                                 ))}
+
+                                {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
+
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showLegend: !this.state.showLegend})}><BlockOutlined /></button>
+                                {this.state.showLegend &&
+                                    <div className="map-legend position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="normal-checkbox" />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="danger-checkbox" />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><input type="checkbox" id="very-danger-checkbox" />&nbsp;<span className="font-weight-bold">Chưa có giấy phép</span> </li>
+                                        </ul>
+                                    </div>
+                                }
                             </MapContainer>
 
                             <div className="col-12 py-1 row mx-0 align-items-center">
