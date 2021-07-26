@@ -212,10 +212,11 @@ export default class QuanLyCapPhepKhaiThacQuanLyGiayPhepNDD extends React.Compon
                                         onChange={() => this.handleTableChange}
                                         dataSource={this.state.dataNewLicenseManagement}
                                         rowKey="id"
+                                        bordered
                                         pagination={{
                                         showTotal: (total, range) => `Tất cả ${total} bản ghi`,
                                             current: this.state.currentPage,
-                                            pageSize: 10
+                                            pageSize: 10,
                                         }}
                                         />
                                 </ConfigProvider>

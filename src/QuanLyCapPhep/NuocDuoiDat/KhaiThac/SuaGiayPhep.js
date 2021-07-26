@@ -52,7 +52,6 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
         super(props)
         this.state = {
             activeModal: null,
-            licenseData: [],
             giengData: [],
             licensePostData:{
                 chugiayphep_ten: '',
@@ -121,7 +120,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                 if(response.status === 200)
                 {
                     this.setState({
-                        licenseData: response.data[0],
+                        licensePostData: response.data[0],
                         giengData: response.data[0].hang_muc_ct,
                     });
                 }
@@ -188,24 +187,19 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
     // Khi doi du lieu trong o input setState
     handleInputChange = event => {
         const { licensePostData } = this.state;
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+        var value = "";
+        if(event.target.type === 'checkbox'){
+            value = event.target.checked
+        }else if(event.target.type === 'file'){
+            value = event.target.files[0].name
+        }
+        else{
+            value = event.target.value;
+        }
+        const name = event.target.name;
         licensePostData[name] = value;
         this.setState({
             licensePostData
-        });
-    }
-
-    // Khi click checkbox doi state checkbox
-    handleClickChangeCheckbox = (e) => {
-        const { licenseData } = this.state;
-        const target = e.target;
-        const value = target.checked;
-        const name = target.name;
-        licenseData[name] = value;
-        this.setState({
-            licenseData
         });
     }
 
@@ -244,7 +238,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
 
 
     render(){
-        const licenseData = this.state.licenseData;
+        const licensePostData = this.state.licensePostData;
         const giengData = this.state.giengData;
         const user = getUser();
         return(
@@ -261,33 +255,33 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_ten" className="form-label fw-bold font-13 m-0">1.1.Tên tổ chức/cá nhân </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten" value={licenseData.chugiayphep_ten || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten" value={licensePostData.chugiayphep_ten || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_sogiaydangkykinhdoanh" className="form-label fw-bold font-13 m-0">1.2.Số Giấy đăng ký kinh doanh </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" value={licenseData.chugiayphep_sogiaydangkykinhdoanh || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" value={licensePostData.chugiayphep_sogiaydangkykinhdoanh || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="chugiayphep_diachi" className="form-label fw-bold font-13 m-0">1.3.Địa chỉ  </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" value={licenseData.chugiayphep_diachi || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" value={licensePostData.chugiayphep_diachi || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6 p-0 row m-0">
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_phone" className="form-label fw-bold font-13 m-0">1.4.Điện thoại   </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" value={licenseData.chugiayphep_phone || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" value={licensePostData.chugiayphep_phone || ''} />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_fax" className="form-label fw-bold font-13 m-0">1.5.Fax   </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" value={licenseData.chugiayphep_fax || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" value={licensePostData.chugiayphep_fax || ''} />
                                     </div>
                                     <div className="mb-2 col-sm-4">
                                         <label htmlFor="chugiayphep_email" className="form-label fw-bold font-13 m-0">1.6.Email   </label>
-                                        <input type="email" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" value={licenseData.chugiayphep_email || ''} />
+                                        <input type="email" onChange={this.handleInputChange} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" value={licensePostData.chugiayphep_email || ''} />
                                     </div>
                                 </div>
                             </div>
@@ -296,43 +290,43 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_ten" className="form-label fw-bold font-13 m-0">2.1.Tên công trình khai thác </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" value={licenseData.congtrinh_ten || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" value={licensePostData.congtrinh_ten || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.1.Vị trí công trình khai thác </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" value={licenseData.congtrinh_diadiem || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" value={licensePostData.congtrinh_diadiem || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.2.Mục đích khai thác, sử dụng nước</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" value={licenseData.mucdich_ktsd || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" value={licensePostData.mucdich_ktsd || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tangchuanuoc_license" className="form-label fw-bold font-13 m-0">2.3.Tầng chứa nước khai thác  </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" value={licenseData.tangchuanuoc || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tangchuanuoc_license" name="tangchuanuoc_license" value={licensePostData.tangchuanuoc || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="sogieng_quantrac" className="form-label fw-bold font-13 m-0">2.4.Số giếng khai thác   </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" value={licenseData.sogieng_quantrac || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="sogieng_quantrac" name="sogieng_quantrac" value={licensePostData.sogieng_quantrac || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold font-13 m-0">2.5.Tổng lượng nước khai thác (m3/ngày đêm) </label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" value={licenseData.tongluuluong_ktsd_max || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max" value={licensePostData.tongluuluong_ktsd_max || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
                                         <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">2.6.Thời gian đề nghị cấp phép</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" value={licenseData.gp_thoigiancapphep || ''} />
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" value={licensePostData.gp_thoigiancapphep || ''} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
@@ -469,7 +463,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                                                 <div className="mb-2 d-flex alicn-items-center mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" onClick={this.handleClickChangeCheckbox} checked={licenseData.camket_dungsuthat || ''} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                            <input type="checkbox" onClick={this.handleInputChange} checked={licensePostData.camket_dungsuthat || ''} onChange={this.handleInputChange} required id="camket_dungsuthat" name="camket_dungsuthat" />
                                                             <label htmlFor="camket_dungsuthat"></label>
                                                         </div>
                                                     </div>
@@ -480,7 +474,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" onClick={this.handleClickChangeCheckbox} checked={licenseData.camket_chaphanhdungquydinh || ''} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
+                                                            <input type="checkbox" onClick={this.handleInputChange} checked={licensePostData.camket_chaphanhdungquydinh || ''} onChange={this.handleInputChange} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
                                                             <label htmlFor="camket_chaphanhdungquydinh"></label>
                                                         </div>
                                                     </div>
@@ -491,7 +485,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" onClick={this.handleClickChangeCheckbox} checked={licenseData.camket_daguihoso || ''} onChange={this.handleInputChange} id="camket_daguihoso" name="camket_daguihoso" />
+                                                            <input type="checkbox" onClick={this.handleInputChange} checked={licensePostData.camket_daguihoso || ''} onChange={this.handleInputChange} id="camket_daguihoso" name="camket_daguihoso" />
                                                             <label htmlFor="camket_daguihoso"></label>
                                                         </div>
                                                     </div>
@@ -503,7 +497,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
                                     <div className="col-sm-6 row m-0 p-0">
                                         <div>
                                             <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Tình trạng hồ sơ đề nghị cấp phép</p>
-                                            <span>Trạng thái hiện tại: <span className={this.statusClassName(licenseData.status)}>{this.getCurrentStatus(licenseData.status)}</span></span>
+                                            <span>Trạng thái hiện tại: <span className={this.statusClassName(licensePostData.status)}>{this.getCurrentStatus(licensePostData.status)}</span></span>
                                             {user.role === "admin" ? 
                                                 <div className="d-flex my-2 align-items-center">
                                                     <span>Sửa trạng thái thành : &nbsp;</span>

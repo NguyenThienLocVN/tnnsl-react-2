@@ -407,6 +407,7 @@ export default class QuanLyCapPhepNuocMatHoChua extends React.Component {
                                             onChange={() => this.handleTableChange}
                                             dataSource={this.state.dataSource}
                                             rowKey="id" 
+                                            bordered                                           
                                             pagination={{
                                             showTotal: (total, range) => `Tất cả ${total} bản ghi`,
                                                 current: this.state.currentPage,

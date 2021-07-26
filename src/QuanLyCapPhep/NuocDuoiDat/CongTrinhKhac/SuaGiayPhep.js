@@ -189,7 +189,7 @@ export default class QuanLyCapPhepKhaiThacSuaGiayPhepNDD extends React.Component
     handleInputChange = event => {
         const { licensePostData } = this.state;
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value =  target.value;
         const name = target.name;
         licensePostData[name] = value;
         this.setState({

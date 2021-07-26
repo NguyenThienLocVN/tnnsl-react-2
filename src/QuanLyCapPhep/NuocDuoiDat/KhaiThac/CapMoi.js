@@ -19,7 +19,7 @@ export default class QuanLyCapPhepKhaiThacCapMoiNDD extends React.Component {
                 chugiayphep_diachi: '', 
                 chugiayphep_phone: '', 
                 chugiayphep_fax: '', 
-                chugiayphep_email: '', 
+                chugiayphep_email: '',
                 congtrinh_diadiem: '',
                 congtrinh_ten: '',
                 mucdich_ktsd: '', 

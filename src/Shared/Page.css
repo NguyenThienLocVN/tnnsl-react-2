@@ -171,16 +171,27 @@ table{margin-bottom: 0 !important;}
 .modal-quantrac .ant-modal-header .ant-modal-title{
   color: #fff !important;
 }
+
+.modal-quantrac .ant-modal-body {
+  padding: 10px !important;
+}
+
+/* rotate colse btn */
 .modal-quantrac .ant-modal-close-x {
   width: 33px !important;
   height: 33px !important;
   line-height: 33px !important;
 }
-.modal-quantrac .ant-modal-body {
-  padding: 10px !important;
+
+.leaflet-popup-close-button {
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 20px !important;
+  padding: 0 !important;
 }
 
-.ant-modal-close-x{
+
+.ant-modal-close-x, .leaflet-popup-close-button{
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -188,6 +199,11 @@ table{margin-bottom: 0 !important;}
 }
 
 .ant-modal-close-x:hover{
+  transform: rotate(180deg);
+  transition-duration: 500ms;
+}
+
+.leaflet-popup-close-button:hover{
   transform: rotate(180deg);
   transition-duration: 500ms;
 }
