@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 import { MoreOutlined } from "@ant-design/icons";
 import { Modal, Tabs, Button } from 'antd';
 
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 
 import Map from '../../Shared/Map';
@@ -12,7 +12,7 @@ import Map from '../../Shared/Map';
 
 const { TabPane } = Tabs;
 
-export default class HeThongQuanTracNuocMatMua extends React.Component{
+export default class HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -61,20 +61,27 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
           };
         return(
             <div className="p-0">
-                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / HỒ CHỨA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / LƯU LƯỢNG XẢ QUA NHÀ MÁY " previousLink="/he-thong-quan-trac" showHeadImage={true} layoutfull={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="row justify-content-between mx-0">
                             <div className="col-sm-4">
-                                <label className="fw-bold" htmlFor="from_date">Từ ngày</label>
+                                <div className="form-group">
+                                    <label htmlFor="loai_ho" className="fw-bold" >Loại hồ</label>
+                                    <select className="form-select form-select-sm" id="loai_ho">
+                                        <option>Tất cả</option>
+                                        <option>Hồ thủy điện</option>
+                                        <option>Hồ thủy lợi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="col-sm-4">
+                                <label className="fw-bold form-label" htmlFor="from_date">Từ ngày</label>
                                 <input id="from_date" type="date" className="form-control form-control-sm" />
                             </div>
                             <div className="col-sm-4">
-                                <label className="fw-bold" htmlFor="to_date">Đến ngày</label>
+                                <label className="fw-bold form-label" htmlFor="to_date">Đến ngày</label>
                                 <input id="to_date" type="date" className="form-control form-control-sm" />
-                            </div>
-                            <div className="col-sm-3 m-1 row align-items-end">
-                                <button className="btn btn-primary btn-sm"> Lọc </button>
                             </div>
                         </div>
                         <div className="row m-0 p-0 surfacewater-usage">
@@ -82,13 +89,14 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                             <thead className="bg-lightblue">
                                 <tr>
                                     <th className="text-center text-nowrap align-center">Tên Hồ</th>
-                                    <th className="text-center text-nowrap align-center" style={{width:110}}>Mực Nước</th>
+                                    <th className="text-center text-nowrap align-center">Q <sub>đến</sub></th>
+                                    <th className="text-center text-nowrap align-center">Q <sub>xả</sub> NM</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr className="cursor_pointer">
                                     <td>
-                                        <p className="m-0 fw-bold">
+                                        <div className="m-0 fw-bold">
                                             <span className="stt_table_quantrac">1. </span>
                                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                                             <p className="text-primary">
@@ -104,213 +112,281 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                         width={1500}
                                                         visible={this.state.activeModal === 1} 
                                                         onCancel={this.hideModal}
+                                                        footer={null}
                                                     >
                                                         <div className="modal_quantrac">
-                                                            <div className="row m-0">
-                                                                <span className="fw-bold">Số liệu quan trắc mưa</span> 
-                                                                <div>
-                                                                    <div className="row justify-content-end mx-0">
-                                                                        <div className="col-sm-2 p-1">
-                                                                            <label className="fw-bold" htmlFor="from_date">Từ ngày</label>
-                                                                            <input id="from_date" type="date" className="form-control form-control-sm" />
-                                                                        </div>
-                                                                        <div className="col-sm-2 p-1">
-                                                                            <label className="fw-bold" htmlFor="to_date">Đến ngày</label>
-                                                                            <input id="to_date" type="date" className="form-control form-control-sm" />
-                                                                        </div>
-                                                                        <div className="col-sm-2 m-1 row align-items-end">
-                                                                            <button className="btn btn-primary col-sm-12 btn-sm"> Xem </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <Tabs defaultActiveKey="1" type="card">
                                                                 <TabPane tab="Biểu Đồ" key="1">
-                                                                    <Bar width={600} height={180} data={data} options={options} />      
+                                                                    <div className="row m-0">
+                                                                        <span className="fw-bold col-sm-4">SỐ LIỆU QUAN TRẮC MỰC NƯỚC HỒ</span> 
+                                                                        <div className="col-sm-8">
+                                                                            <div className="row justify-content-end mx-0">
+                                                                                <div className="col-sm-4 row jistify-content-end align-items-center m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-label text-end" htmlFor="from_date">Từ ngày: </label>
+                                                                                    <input id="from_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                                <div className="col-sm-4 row jistify-content-end m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-labe text-end" htmlFor="to_date">Đến ngày: </label>
+                                                                                    <input id="to_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Line width={600} height={200} data={data} options={options} />      
                                                                 </TabPane>
                                                                 <TabPane tab="Bảng Biểu" key="2">
-                                                                    <Table striped bordered hover>
+                                                                    <div className="row m-0">
+                                                                        <span className="fw-bold col-sm-4">SỐ LIỆU QUAN TRẮC MỰC NƯỚC HỒ</span> 
+                                                                        <div className="col-sm-8">
+                                                                            <div className="row justify-content-end mx-0">
+                                                                                <div className="col-sm-4 row jistify-content-end align-items-center m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-label text-end" htmlFor="from_date">Từ ngày: </label>
+                                                                                    <input id="from_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                                <div className="col-sm-4 row jistify-content-end m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-labe text-end" htmlFor="to_date">Đến ngày: </label>
+                                                                                    <input id="to_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Table className="table_quantrac" striped bordered hover>
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>#</th>
-                                                                                <th>Ngày</th>
-                                                                                <th>Giờ</th>
-                                                                                <th>Lượng mưa (mm)</th>
+                                                                                <th>Thời gian</th>
+                                                                                <th>Q<sub>đến</sub> (m³/s)</th>
+                                                                                <th>Q<sub>xả</sub> qua NM (m³/s)</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>1</td>
-                                                                                <td>19/07/2021</td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </Table>
+                                                                </TabPane>
+                                                                <TabPane tab="Cập nhật" key="3">
+                                                                    <p className="fw-bold m-0"> THÊM MỚI SỐ LIỆU QUAN TRẮC </p>
+                                                                    <div className="row col-sm-12 mx-0 p-0 mb-2">
+                                                                        <div className="col-sm-12 row m-0 p-0">
+                                                                            <div className="col-sm-8 row m-0 p-0">
+                                                                                <div className="col-sm-6 row m-0 p-2 align-items-center">
+                                                                                    <label className="fw-bold w-50 form-label" htmlFor="to_date">Hồ chứa: </label>
+                                                                                    <input id="ho_chua" type="text" className="form-control w-50 form-control-sm" />
+                                                                                </div>
+                                                                                <div className="col-sm-6 row m-0 p-2 align-items-center">
+                                                                                    <label className="fw-bold w-50 form-label" htmlFor="to_date">Ngày: </label>
+                                                                                    <input id="ngay" type="date" className="form-control w-50 form-control-sm" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-sm-4 p-0">
+                                                                                <p className="fw-bold m-0"> TRUNG BÌNH NGÀY </p>
+                                                                                <div className="col-sm-12 row m-0 p-2 align-items-center">
+                                                                                    <label className="fw-bold w-50 form-label" htmlFor="to_date">Mực nước hồ: </label>
+                                                                                    <input id="ho_chua" type="text" className="form-control w-50 form-control-sm" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-sm-12 row justufy-content-start m-0 p-0">
+                                                                            <div>
+                                                                                <button className="btn btn-sm btn-success col-sm-1 mx-1" type="button"> Nhập file XLS </button>
+                                                                                <button className="btn btn-sm btn-danger col-sm-1 mx-1" type="reset"> Xóa </button>
+                                                                                <button className="btn btn-sm btn-primary col-sm-1 mx-1" type="button"> Cập nhật </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="fw-bold m-0">CHI TIẾT</p>
+                                                                    <Table className="table_quantrac" striped bordered hover>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Thời gian</th>
+                                                                                <th>Q<sub>đến</sub> (m³/s)</th>
+                                                                                <th>Q<sub>xả</sub> qua NM (m³/s)</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                                <td>1</td>
                                                                                 <td>00:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>2</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>01:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>3</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>02:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>4</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>03:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>5</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>04:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>6</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>05:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>7</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>06:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>8</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>07:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>9</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>08:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>10</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>09:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>11</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>10:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>12</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>11:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>13</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>12:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>14</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>13:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>15</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>14:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>16</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>15:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>17</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>16:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>18</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>17:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>19</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>18:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>20</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>19:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>21</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>20:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>22</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>21:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>23</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>22:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>24</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>23:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                         </tbody>
-                                                                    </Table>
+                                                                    </Table>     
                                                                 </TabPane>
                                                             </Tabs>
                                                         </div>
                                                     </Modal>
                                                 </span>
                                             </p>
-                                        </p>
+                                        </div>
                                         <p className="m-0 text-warning">
                                             Nguồn: Author
                                         </p>
                                     </td>
-                                    <td className="bg-warning">
+                                    <td>
                                         <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">735.8</p>
-                                            <p className="text-center text-nowrap mb-0">(m)</p>
-                                            <p className="text-center mb-0">Cập nhật <br /> 07:00</p>
+                                            <p className="text-center text-nowrap fw-bold mb-0"> - </p>
+                                            <p className="text-center text-nowrap mb-0">(m³/s)</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p className="text-center text-nowrap fw-bold mb-0"> - </p>
+                                            <p className="text-center text-nowrap mb-0">(m³/s)</p>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr className="cursor_pointer">
-                                    <td>
-                                        <p className="m-0 fw-bold">
+                                <td>
+                                        <div className="m-0 fw-bold">
                                             <span className="stt_table_quantrac">2. </span>
                                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                                             <p className="text-primary">
-                                                Xum Lo
+                                                Nà Bó
                                                 <span className="d-inline-block">
                                                     <span className="p-1 d-flex align-items-center justify-content-center" onClick={(e) => this.clickHandler(e, 2)}>
                                                         <MoreOutlined />
@@ -322,203 +398,271 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                         width={1500}
                                                         visible={this.state.activeModal === 2} 
                                                         onCancel={this.hideModal}
+                                                        footer={null}
                                                     >
                                                         <div className="modal_quantrac">
-                                                            <div className="row m-0">
-                                                                <span className="fw-bold">Số liệu quan trắc mưa</span> 
-                                                                <div>
-                                                                    <div className="row justify-content-end mx-0">
-                                                                        <div className="col-sm-2 p-1">
-                                                                            <label className="fw-bold" htmlFor="from_date">Từ ngày</label>
-                                                                            <input id="from_date" type="date" className="form-control form-control-sm" />
-                                                                        </div>
-                                                                        <div className="col-sm-2 p-1">
-                                                                            <label className="fw-bold" htmlFor="to_date">Đến ngày</label>
-                                                                            <input id="to_date" type="date" className="form-control form-control-sm" />
-                                                                        </div>
-                                                                        <div className="col-sm-2 m-1 row align-items-end">
-                                                                            <button className="btn btn-primary col-sm-12 btn-sm"> Xem </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <Tabs defaultActiveKey="1" type="card">
                                                                 <TabPane tab="Biểu Đồ" key="1">
-                                                                    <Bar width={600} height={180} data={data} options={options} />      
+                                                                    <div className="row m-0">
+                                                                        <span className="fw-bold col-sm-4">SỐ LIỆU QUAN TRẮC MỰC NƯỚC HỒ</span> 
+                                                                        <div className="col-sm-8">
+                                                                            <div className="row justify-content-end mx-0">
+                                                                                <div className="col-sm-4 row jistify-content-end align-items-center m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-label text-end" htmlFor="from_date">Từ ngày: </label>
+                                                                                    <input id="from_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                                <div className="col-sm-4 row jistify-content-end m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-labe text-end" htmlFor="to_date">Đến ngày: </label>
+                                                                                    <input id="to_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Line width={600} height={200} data={data} options={options} />      
                                                                 </TabPane>
                                                                 <TabPane tab="Bảng Biểu" key="2">
-                                                                    <Table striped bordered hover>
+                                                                    <div className="row m-0">
+                                                                        <span className="fw-bold col-sm-4">SỐ LIỆU QUAN TRẮC MỰC NƯỚC HỒ</span> 
+                                                                        <div className="col-sm-8">
+                                                                            <div className="row justify-content-end mx-0">
+                                                                                <div className="col-sm-4 row jistify-content-end align-items-center m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-label text-end" htmlFor="from_date">Từ ngày: </label>
+                                                                                    <input id="from_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                                <div className="col-sm-4 row jistify-content-end m-0 p-1">
+                                                                                    <label className="fw-bold w-50 form-labe text-end" htmlFor="to_date">Đến ngày: </label>
+                                                                                    <input id="to_date" type="date" className="form-control form-control-sm w-50" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Table className="table_quantrac" striped bordered hover>
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>#</th>
-                                                                                <th>Ngày</th>
-                                                                                <th>Giờ</th>
-                                                                                <th>Lượng mưa (mm)</th>
+                                                                                <th>Thời gian</th>
+                                                                                <th>Q<sub>đến</sub> (m³/s)</th>
+                                                                                <th>Q<sub>xả</sub> qua NM (m³/s)</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>1</td>
-                                                                                <td>19/07/2021</td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </Table>
+                                                                </TabPane>
+                                                                <TabPane tab="Cập nhật" key="3">
+                                                                    <p className="fw-bold m-0"> THÊM MỚI SỐ LIỆU QUAN TRẮC </p>
+                                                                    <div className="row col-sm-12 mx-0 p-0 mb-2">
+                                                                        <div className="col-sm-12 row m-0 p-0">
+                                                                            <div className="col-sm-8 row m-0 p-0">
+                                                                                <div className="col-sm-6 row m-0 p-2 align-items-center">
+                                                                                    <label className="fw-bold w-50 form-label" htmlFor="to_date">Hồ chứa: </label>
+                                                                                    <input id="ho_chua" type="text" className="form-control w-50 form-control-sm" />
+                                                                                </div>
+                                                                                <div className="col-sm-6 row m-0 p-2 align-items-center">
+                                                                                    <label className="fw-bold w-50 form-label" htmlFor="to_date">Ngày: </label>
+                                                                                    <input id="ngay" type="date" className="form-control w-50 form-control-sm" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-sm-4 p-0">
+                                                                                <p className="fw-bold m-0"> TRUNG BÌNH NGÀY </p>
+                                                                                <div className="col-sm-12 row m-0 p-2 align-items-center">
+                                                                                    <label className="fw-bold w-50 form-label" htmlFor="to_date">Mực nước hồ: </label>
+                                                                                    <input id="ho_chua" type="text" className="form-control w-50 form-control-sm" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-sm-12 row justufy-content-start m-0 p-0">
+                                                                            <div>
+                                                                                <button className="btn btn-sm btn-success col-sm-1 mx-1" type="button"> Nhập file XLS </button>
+                                                                                <button className="btn btn-sm btn-danger col-sm-1 mx-1" type="reset"> Xóa </button>
+                                                                                <button className="btn btn-sm btn-primary col-sm-1 mx-1" type="button"> Cập nhật </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="fw-bold m-0">CHI TIẾT</p>
+                                                                    <Table className="table_quantrac" striped bordered hover>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Thời gian</th>
+                                                                                <th>Q<sub>đến</sub> (m³/s)</th>
+                                                                                <th>Q<sub>xả</sub> qua NM (m³/s)</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                                <td>1</td>
                                                                                 <td>00:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>2</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>01:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>3</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>02:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>4</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>03:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>5</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>04:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>6</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>05:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>7</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>06:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>8</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>07:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>9</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>08:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>10</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>09:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>11</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>10:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>12</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>11:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>13</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>12:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>14</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>13:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>15</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>14:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>16</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>15:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>17</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>16:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>18</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>17:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>19</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>18:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>20</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>19:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>21</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>20:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>22</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>21:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>23</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>22:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>24</td>
-                                                                                <td>19/07/2021</td>
                                                                                 <td>23:00</td>
+                                                                                <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                                 <td><input type="text" className="form-control form-control-sm" value="0" /></td>
                                                                             </tr>
                                                                         </tbody>
-                                                                    </Table>
+                                                                    </Table>     
                                                                 </TabPane>
                                                             </Tabs>
                                                         </div>
                                                     </Modal>
                                                 </span>
                                             </p>
-                                        </p>
+                                        </div>
                                         <p className="m-0 text-warning">
                                             Nguồn: Author
                                         </p>
                                     </td>
-                                    <td className="bg-warning">
+                                    <td>
                                         <div>
-                                            <p className="text-center text-nowrap fw-bold mb-0">715.3</p>
-                                            <p className="text-center text-nowrap mb-0">(m)</p>
-                                            <p className="text-center mb-0">Cập nhật <br /> 07:00</p>
+                                            <p className="text-center text-nowrap fw-bold mb-0"> - </p>
+                                            <p className="text-center text-nowrap mb-0">(m³/s)</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p className="text-center text-nowrap fw-bold mb-0"> - </p>
+                                            <p className="text-center text-nowrap mb-0">(m³/s)</p>
                                         </div>
                                     </td>
                                 </tr>

@@ -5,7 +5,7 @@
 }
 
 #switch-basemaps {
-    z-index: 9999;
+    z-index: 999;
     right: 15px;
     top: 20px;
 }
@@ -129,11 +129,23 @@
 .table-data-license tr:nth-child(even){background-color: #f2f2f2;}
 .table-responsive{padding: 0 !important;}
 .modal_quantrac{
-  max-height: 65vh;
-  height: 65vh;
+  max-height: 82vh;
+  height: 82vh;
   overflow-y: scroll;
+} 
+.modal_quantrac .table_quantrac {
+  /* Not required only for visualizing */
+  border-collapse: collapse;
+  width: 100%;
 }
-table{margin-bottom: 0 !important;}
+
+.modal_quantrac .table_quantrac thead tr th {
+  /* Important */
+  position: sticky;
+  z-index: 100;
+  top: 0;
+}
+.modal_quantrac .table_quantrac{margin-bottom: 0 !important;}
 
 /* Tong Quan Cong Trinh */
 .cursor_pointer{cursor: pointer;}
@@ -429,7 +441,7 @@ input[type='checkbox'] {
     .menu-home {height: calc(100vh - 169px);overflow-y: auto;}
     .menu-page {height: calc(100vh - 35px);overflow-y: auto;}
     .img__sea_lever{height: 61px;}
-    .ant-modal{top: 100px !important;}
+    .ant-modal{top: 50px !important; z-index: 9999;}
     .modal-view-file-pdf iframe{height: 600px !important;}
 
 

@@ -148,6 +148,21 @@ import HeThongQuanTracNuocMatMua from './HeThongQuanTrac/QuanTracMua/Mua';
 
 import HeThongQuanTracNuocMatHoChua from './HeThongQuanTrac/QuanTracHo/Ho';
 
+// <==================================================He thong quan trac - luu luong den ho=================================================================================>
+
+import HeThongQuanTracNuocMatLuuLuongDenHo from './HeThongQuanTrac/QuanTracLuuLuongDenHo/LuuLuongDenHo';
+
+// <==================================================He thong quan trac - luu luong xa qua nha may=================================================================================>
+
+import HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay from './HeThongQuanTrac/QuanTracLuuLuongXaQuaNhaMay/LuuLuongXaQuaNhaMay';
+
+// <==================================================He thong quan trac - luu luong xa tran=================================================================================>
+
+import HeThongQuanTracNuocMatLuuLuongXaTran from './HeThongQuanTrac/QuanTracLuuLuongXaTran/LuuLuongXaTran';
+
+// <==================================================He thong quan trac - luu luong xa toi thieu=================================================================================>
+import HeThongQuanTracNuocMatLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTracLuuLuongXaToiThieu/LuuLuongXaToiThieu';
+
 // <==================================================He thong giam sat=================================================================================>
 
 import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
@@ -155,6 +170,7 @@ import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
 // <==================================================Bao cao bieu mau=================================================================================>
 
 import BaoCaoBieuMau from './BaoCaoBieuMau/BaoCaoBieuMau';
+
 
 
 function App() {
@@ -453,6 +469,21 @@ function App() {
 
 				{/* ==================================================He Thong Quan Trac Ho Chua================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/ho-chua" component={HeThongQuanTracNuocMatHoChua} />
+
+				{/* ==================================================He Thong Quan Trac Ho Chua================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-den-ho" component={HeThongQuanTracNuocMatLuuLuongDenHo} />
+
+				{/* ==================================================He Thong Quan Trac Ho Chua================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-nha-may" component={HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay} />
+
+				{/* ==================================================He Thong Quan Trac Xa Tran================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-tran" component={HeThongQuanTracNuocMatLuuLuongXaTran} />
+
+				{/* ==================================================He Thong Quan Trac Xa Toi Thieu================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-toi-thieu" component={HeThongQuanTracNuocMatLuuLuongXaToiThieu} />
+
+
+
 
 				{/* ==================================================He Thong Giam Sat================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat" component={HeThongGiamSat} />

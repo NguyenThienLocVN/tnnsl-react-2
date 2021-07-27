@@ -61,7 +61,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
           };
         return(
             <div className="p-0">
-                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / MƯA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / MƯA " previousLink="/he-thong-quan-trac" showHeadImage={true} layoutfull={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="row justify-content-between mx-0">
@@ -103,7 +103,6 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                         className="modal-quantrac"
                                                         scrollableBody={true}
                                                         title="SỐ LIỆU QUAN TRẮC TRẠM - TÊN TRẠM"
-                                                        footer={[<Button type="primary" onClick={this.hideModal}> Cập Nhật </Button>]}
                                                         width={1500}
                                                         visible={this.state.activeModal === 1} 
                                                         onCancel={this.hideModal}
@@ -334,7 +333,6 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                         className="modal-quantrac"
                                                         scrollableBody={true}
                                                         title="SỐ LIỆU QUAN TRẮC TRẠM - TÊN TRẠM"
-                                                        footer={[<Button type="primary" onClick={this.hideModal}> Cập Nhật </Button>]}
                                                         width={1500}
                                                         visible={this.state.activeModal === 2} 
                                                         onCancel={this.hideModal}
