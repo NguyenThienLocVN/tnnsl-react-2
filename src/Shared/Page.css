@@ -410,8 +410,16 @@
     transform: none;
   }
 
-.map-legend { z-index: 9999; right: 50px; top: 55px; }
+.map-layer { z-index: 9999; right: 50px; top: 55px; }
+.map-legend { z-index: 9999; right: 50px; top: 90px; }
 .btn-map-layer { z-index: 9999; right: 15px; top: 55px; }
+.btn-map-legend { z-index: 9999; right: 15px; top: 90px; }
+
+.dot { width: 15px; height: 15px; }
+.bg-conhieuluc { background: #35ca21; }
+.bg-hethieuluc { background: #dc3545; }
+.bg-saphethieuluc { background: #fbc773; }
+.bg-chuaduocduyet { background: #cecfd0; }
 
 input[type='checkbox']:checked {
   background: #275EFE;

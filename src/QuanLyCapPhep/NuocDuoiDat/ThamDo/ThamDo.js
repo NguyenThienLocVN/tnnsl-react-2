@@ -17,16 +17,21 @@ import ReactLeafletKml from 'react-leaflet-kml';
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
 
-import icon from '../../../Shared/marker.png';
+import yellowMarker from '../../../Shared/marker-yellow.png';
+import greenMarker from '../../../Shared/marker-green.png';
 
-let DefaultIcon = L.icon({
-    iconUrl: icon,
+const { Search } = Input;
+let YellowIcon = L.icon({
+    iconUrl: yellowMarker,
 	iconSize: [15, 15],
     iconAnchor: [10, 15]
 });
-const { Search } = Input;
 
-L.Marker.prototype.options.icon = DefaultIcon;
+let GreenIcon = L.icon({
+    iconUrl: greenMarker,
+	iconSize: [15, 15],
+    iconAnchor: [10, 15]
+});
 
 export default class QuanLyCapPhepThamDoNDD extends React.Component {
     constructor(props)

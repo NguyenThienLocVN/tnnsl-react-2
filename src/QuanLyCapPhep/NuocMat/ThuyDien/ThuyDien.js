@@ -5,27 +5,24 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
-import { FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken, removeUserSession } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
+import ReactLeafletKml from 'react-leaflet-kml';
 
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
 
-import icon from '../../../Shared/marker.png';
+import yellowMarker from '../../../Shared/marker-yellow.png';
+import greenMarker from '../../../Shared/marker-green.png';
+import redMarker from '../../../Shared/marker-red.png';
+import grayMarker from '../../../Shared/marker-gray.png';
 
-let DefaultIcon = L.icon({
-    iconUrl: icon,
-	iconSize: [15, 15],
-    iconAnchor: [10, 15]
-});
 const { Search } = Input;
-
-L.Marker.prototype.options.icon = DefaultIcon;
 
 export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -43,7 +40,9 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            
+            showMapLayer: false,
+            showMapLegend: false,
+            kml: null
         }
 
         this.mapRef = React.createRef();
@@ -82,6 +81,15 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 this.setState({msg: error.response})
             })
         )
+
+        fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
 
         this.fetch(this.state.pagination, 'all');
     }
@@ -246,6 +254,43 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
         );
     }
 
+    // Check license type to display marker color
+    markerColor = (type) => {
+        const YellowIcon = L.icon({
+            iconUrl: yellowMarker,
+            iconSize: [15, 15],
+            iconAnchor: [10, 15]
+        });
+        
+        const GreenIcon = L.icon({
+            iconUrl: greenMarker,
+            iconSize: [15, 15],
+            iconAnchor: [10, 15]
+        });
+
+        const RedIcon = L.icon({
+            iconUrl: redMarker,
+            iconSize: [15, 15],
+            iconAnchor: [10, 15]
+        });
+
+        const GrayIcon = L.icon({
+            iconUrl: grayMarker,
+            iconSize: [15, 15],
+            iconAnchor: [10, 15]
+        });
+
+        if(type === "conhieuluc"){
+            return GreenIcon;
+        }else if(type === "saphethieuluc"){
+            return YellowIcon;
+        }else if(type === "hethieuluc"){
+            return RedIcon;
+        }else{
+            return GrayIcon;
+        }
+    }
+
     render(){        
         const columns = [
             {
@@ -352,7 +397,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                 <BasemapLayer name="ImageryLabels" />
 
                                 {this.state.dataSource.map((marker, key) => (
-                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
+                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={this.markerColor(marker.hieulucgiayphep)} >
                                     <Popup>
                                     <div>
                                         <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
@@ -393,6 +438,35 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                     </Popup>
                                 </Marker> : ""
                                 ))}
+
+                                {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
+
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer})}><BlockOutlined /></button>
+                                {this.state.showMapLayer &&
+                                    <div className="map-layer position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="normal-checkbox" defaultChecked />&nbsp;<span className="font-weight-bold">Tất cả</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="normal-checkbox" />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="danger-checkbox" />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="danger-checkbox" />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><input type="checkbox" id="very-danger-checkbox" />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                        </ul>
+                                    </div>
+                                }
+
+                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend})}><QuestionCircleOutlined /></button>
+                                {this.state.showMapLegend &&
+                                    <div className="map-legend position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CHÚ GIẢI</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-conhieuluc rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-hethieuluc rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-saphethieuluc rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><span className="dot bg-chuaduocduyet rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                        </ul>
+                                    </div>
+                                }
                             </MapContainer>
 
                             <div className="col-12 py-1 row mx-0 align-items-center mx-0">
