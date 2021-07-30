@@ -7,7 +7,7 @@ import axios from "axios";
 import configData from "../../../config.json";
 import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
-import { ConfigProvider, Table, Input, Modal } from 'antd';
+import { ConfigProvider, Table, Input, Modal, Checkbox } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken, removeUserSession } from '../../../Shared/Auth';
@@ -16,12 +16,40 @@ import ReactLeafletKml from 'react-leaflet-kml';
 
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
+
 import yellowMarker from '../../../Shared/marker-yellow.png';
 import greenMarker from '../../../Shared/marker-green.png';
 import redMarker from '../../../Shared/marker-red.png';
 import grayMarker from '../../../Shared/marker-gray.png';
 
 const { Search } = Input;
+const YellowIcon = L.icon({
+    iconUrl: yellowMarker,
+    iconSize: [15, 15],
+    iconAnchor: [10, 15],
+    className: 'yellowMarker',
+});
+
+const GreenIcon = L.icon({
+    iconUrl: greenMarker,
+    iconSize: [15, 15],
+    iconAnchor: [10, 15],
+    className: 'greenMarker',
+});
+
+const RedIcon = L.icon({
+    iconUrl: redMarker,
+    iconSize: [15, 15],
+    iconAnchor: [10, 15],
+    className: 'redMarker',
+});
+
+const GrayIcon = L.icon({
+    iconUrl: grayMarker,
+    iconSize: [15, 15],
+    iconAnchor: [10, 15],
+    className: 'grayMarker',
+});
 
 export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
     constructor(props)
@@ -41,7 +69,11 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
             filter: '',
             showMapLayer: false,
             showMapLegend: false,
-            kml: null
+            kml: null,
+            yellowMarker: true,
+            greenMarker: true,
+            redMarker: true,
+            grayMarker: true,
         }
 
         this.mapRef = React.createRef();
@@ -249,43 +281,6 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
         );
     }
 
-    // Check license type to display marker color
-    markerColor = (type) => {
-        const YellowIcon = L.icon({
-            iconUrl: yellowMarker,
-            iconSize: [15, 15],
-            iconAnchor: [10, 15]
-        });
-        
-        const GreenIcon = L.icon({
-            iconUrl: greenMarker,
-            iconSize: [15, 15],
-            iconAnchor: [10, 15]
-        });
-
-        const RedIcon = L.icon({
-            iconUrl: redMarker,
-            iconSize: [15, 15],
-            iconAnchor: [10, 15]
-        });
-
-        const GrayIcon = L.icon({
-            iconUrl: grayMarker,
-            iconSize: [15, 15],
-            iconAnchor: [10, 15]
-        });
-
-        if(type === "conhieuluc"){
-            return GreenIcon;
-        }else if(type === "saphethieuluc"){
-            return YellowIcon;
-        }else if(type === "hethieuluc"){
-            return RedIcon;
-        }else{
-            return GrayIcon;
-        }
-    }
-
     render(){
         const columns = [
             {
@@ -392,74 +387,214 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                 <BasemapLayer name="Imagery" />
                                 <BasemapLayer name="ImageryLabels" />
 
-                                {this.state.dataSource.map((marker, key) => (
-                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={this.markerColor(marker.hieulucgiayphep)} >
-                                    <Popup>
-                                    <div>
-                                        <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
-                                        <table className="table table-striped table-hover mb-2">
-                                            <tbody>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Tọa độ X</td>
-                                                    <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Tọa độ Y</td>
-                                                    <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Địa điểm</td>
-                                                    <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Số GP</td>
-                                                    <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Ngày cấp</td>
-                                                    <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
-                                                    <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Chủ giấy phép</td>
-                                                    <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <Link to={'/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
-                                    </div>
-                                    </Popup>
-                                </Marker> : ""
-                                ))}
+                                {/* Diem cong trinh con hieu luc */}
+                                {this.state.greenMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "conhieuluc" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={GreenIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {/* Diem cong trinh sap het hieu luc */}
+                                {this.state.yellowMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "saphethieuluc" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={YellowIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {/* Diem cong trinh het hieu luc */}
+                                {this.state.redMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "hethieuluc" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={RedIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {/* Diem cong trinh het hieu luc */}
+                                {this.state.grayMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "chuaduocduyet" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={GrayIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
 
                                 {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
 
-                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer})}><BlockOutlined /></button>
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer, showMapLegend: false})}><BlockOutlined /></button>
                                 {this.state.showMapLayer &&
                                     <div className="map-layer position-absolute bg-white">
                                         <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
                                         <ul className="p-2 m-0">
-                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="normal-checkbox" />&nbsp;<span className="font-weight-bold">Tất cả</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="normal-checkbox" />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="danger-checkbox" />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><input type="checkbox" id="danger-checkbox" />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-1 align-items-center"><input type="checkbox" id="very-danger-checkbox" />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
                                         </ul>
                                     </div>
                                 }
 
-                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend})}><QuestionCircleOutlined /></button>
+                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend, showMapLayer: false})}><QuestionCircleOutlined /></button>
                                 {this.state.showMapLegend &&
                                     <div className="map-legend position-absolute bg-white">
                                         <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CHÚ GIẢI</span></p>
                                         <ul className="p-2 m-0">
-                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-success rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-danger rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-warning rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-1 align-items-center"><span className="dot bg-secondary rounded-circle border-secondary"></span>&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-conhieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-hethieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-saphethieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><span className="dot bg-chuaduocduyet rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
                                         </ul>
                                     </div>
                                 }
