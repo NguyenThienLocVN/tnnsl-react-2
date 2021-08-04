@@ -167,6 +167,14 @@ import HeThongQuanTracNuocMatLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTrac
 
 import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
 
+// <==================================================He thong giam sat phat dienlon hon 2mw=================================================================================>
+
+import HeThongGiamSatPhatDienLonHon2MW from './HeThongGiamSat/PhatDienLonHon2MW/PhatDienLonHon2MW';
+
+// <==================================================He thong giam sat phat dienlon hon 2mw=================================================================================>
+
+import HeThongGiamSatKhaiThacNDD from './HeThongGiamSat/KhaiThacNDD/KhaiThacNDD';
+
 // <==================================================Bao cao bieu mau=================================================================================>
 
 import BaoCaoBieuMau from './BaoCaoBieuMau/BaoCaoBieuMau';
@@ -487,6 +495,12 @@ function App() {
 
 				{/* ==================================================He Thong Giam Sat================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat" component={HeThongGiamSat} />
+
+				{/* ==================================================He Thong Giam Sat phat dien lon hon 2mw================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/phat-dien-lon-hon-2mw" component={HeThongGiamSatPhatDienLonHon2MW} />
+
+				{/* ==================================================He Thong Giam Sat phat dien lon hon 2mw================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/khai-thac-nuoc-duoi-dat" component={HeThongGiamSatKhaiThacNDD} />
 
 				{/* ==================================================Bao Cao Bieu Mau================================================== */}
 				<ProtectedRoute exact path="/bao-cao-bieu-mau" component={BaoCaoBieuMau} />
