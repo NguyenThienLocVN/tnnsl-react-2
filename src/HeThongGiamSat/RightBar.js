@@ -20,9 +20,11 @@ export default class RightBar extends React.Component {
             ]
         };
         const pieOptions = {
-            legend:{
-                display:true,
-                position:'bottom'
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
             },
             elements: {
               arc: {
@@ -37,11 +39,11 @@ export default class RightBar extends React.Component {
                     <p className="fw-bold font-12 row mx-0"><span className="d-block col-8">Tổng số </span><span className="d-block col-4">60</span></p>
                     <p className="fw-bold font-12 row mx-0"><span className="d-block col-8">Khai thác nước mặt  </span><span className="d-block col-4">30</span></p>
                     <p className="fw-bold font-12 row mx-0"><span className="d-block col-8">Khai thác NDD  </span><span className="d-block col-4">20</span></p>
-                    <p className="fw-bold font-12 row mx-0"><span className="d-block col-8">Xả thải vào NN </span><span className="d-block col-4">10</span></p>
+                    <p className="fw-bold font-12 row mx-0 mb-2 pb-3"><span className="d-block col-8">Xả thải vào NN </span><span className="d-block col-4">10</span></p>
                 </div>
                 <div className="pb-2 row mx-0 mb-2 bg-greenyellow">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-center text-violet font-12">Khai thác nước mặt</p>
-                    <div className="col-sm-8">
+                    <div className="col-sm-8 pt-2">
                         <Pie
                             data={pieData}
                             options={pieOptions}
@@ -53,7 +55,7 @@ export default class RightBar extends React.Component {
                 </div>
                 <div className="pb-2 row mx-0 mb-2 bg-greenyellow">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-center text-violet font-12">Khai thác nước dưới đất</p>
-                    <div className="col-sm-8">
+                    <div className="col-sm-8 pt-2">
                         <Pie
                             data={pieData}
                             options={pieOptions}
@@ -63,9 +65,9 @@ export default class RightBar extends React.Component {
                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATRAN.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATRAN" width="100%" />
                     </div>
                 </div>
-                <div className="pb-2 row mx-0 mb-2 bg-greenyellow">
+                <div className="pb-2 row mx-0 bg-greenyellow">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-center text-violet font-12">Xả thải vào nguồn nước</p>
-                    <div className="col-sm-8">
+                    <div className="col-sm-8 pt-2">
                         <Pie
                             data={pieData}
                             options={pieOptions}

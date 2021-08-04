@@ -284,7 +284,7 @@ export default class LeftBar extends React.Component {
                         </Link>
                     </div>
                 </div>
-                <div className="row m-0 p-0 border border-light mb-2">
+                <div className="row m-0 p-0 border border-light">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-start font-12">GIÁM SÁT ĐỊNH KỲ</p>
                     <div className="col-sm-12 row m-0 bg-greenyellow pt-2">
                         <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">

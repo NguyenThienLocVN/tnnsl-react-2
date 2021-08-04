@@ -153,7 +153,7 @@ export default class HeThongGiamSat extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-brownyellow mb-2">
+                        <div className="bg-brownyellow">
                             <p className="exploit-surfacewater-title m-0 d-flex p-2 font-12">
                                 <span className="fw-bold d-block col-6">TRA CỨU DỮ LIỆU</span>
                                 <span className="d-block col-6 text-end">Tính đến 04:43:52 01/07/2021</span>
@@ -180,7 +180,7 @@ export default class HeThongGiamSat extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="border border-light p-1 row mx-0 mb-3">
+                            <div className="border border-light p-1 row m-0">
                                 <div className="row mx-0">
                                     <div className="col-7 row mx-0 align-items-center">
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Xả thải vào nguồn nước</p>
