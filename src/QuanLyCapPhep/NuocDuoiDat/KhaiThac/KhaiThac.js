@@ -218,7 +218,8 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
 
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
-        axios
+        trackPromise(
+            axios
             .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/loc-giay-phep/"+filter, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
@@ -243,6 +244,7 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                 }
                 this.setState({msg: error.response})
             })
+        )
     };
 
     // Function handle filter feature

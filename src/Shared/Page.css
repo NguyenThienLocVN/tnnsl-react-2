@@ -425,6 +425,8 @@
 .bg-saphethieuluc { background: #fbc773; }
 .bg-chuaduocduyet { background: #cecfd0; }
 
+.legend-title-secondary { border-bottom: 1px solid #6c757d; }
+
 @media screen and (min-width: 768px){
     .top-bar { height: 35px; line-height: 35px; }
     #dams-num { left: 46px; top: 17px; }
