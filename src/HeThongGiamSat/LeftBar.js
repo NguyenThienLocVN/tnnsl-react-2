@@ -22,7 +22,7 @@ export default class LeftBar extends React.Component {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
+                        <Link to="/he-thong-giam-sat/san-xuat-nong-nghiep" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border border-light p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">SXNN - NTTS {'>'} 2m3/s</p>
                                 <div className="row mx-0">

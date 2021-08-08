@@ -6,10 +6,10 @@ export default class RightBar extends React.Component {
         const pieData = {
             maintainAspectRatio: false,
             responsive: false,
-            labels: ["Mất kết nối", "Bình thường", "Chưa gửi dữ liệu"],
+            labels: ["(30) Mất kết nối", "(20) Bình thường", "(10) Chưa gửi dữ liệu"],
             datasets: [
               {
-                data: [200, 150, 20],
+                data: [30, 20, 10],
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
@@ -23,14 +23,16 @@ export default class RightBar extends React.Component {
             plugins: {
                 legend: {
                     display: true,
-                    position: 'bottom'
-                }
+                    position: 'bottom',
+                    align:'start',
+                },
             },
             elements: {
               arc: {
                 borderWidth: 0
               }
-            }
+            },
+            
           };
         return(
             <>
@@ -43,37 +45,37 @@ export default class RightBar extends React.Component {
                 </div>
                 <div className="pb-2 row mx-0 mb-2 bg-greenyellow">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-center text-violet font-12">Khai thác nước mặt</p>
-                    <div className="col-sm-8 pt-2">
+                    <div className="col-sm-6 pt-2">
                         <Pie
                             data={pieData}
                             options={pieOptions}
                         />
                     </div>
-                    <div className="col-sm-4 row m-0 align-items-center">
+                    <div className="col-sm-6 row m-0 align-items-center">
                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATRAN.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATRAN" width="100%" />
                     </div>
                 </div>
                 <div className="pb-2 row mx-0 mb-2 bg-greenyellow">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-center text-violet font-12">Khai thác nước dưới đất</p>
-                    <div className="col-sm-8 pt-2">
+                    <div className="col-sm-6 pt-2">
                         <Pie
                             data={pieData}
                             options={pieOptions}
                         />
                     </div>
-                    <div className="col-sm-4 row m-0 align-items-center">
+                    <div className="col-sm-6 row m-0 align-items-center">
                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATRAN.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATRAN" width="100%" />
                     </div>
                 </div>
                 <div className="pb-2 row mx-0 bg-greenyellow">
                     <p className="exploit-surfacewater-title mb-0 p-2 fw-bold text-center text-violet font-12">Xả thải vào nguồn nước</p>
-                    <div className="col-sm-8 pt-2">
+                    <div className="col-sm-6 pt-2">
                         <Pie
                             data={pieData}
                             options={pieOptions}
                         />
                     </div>
-                    <div className="col-sm-4 row m-0 align-items-center">
+                    <div className="col-sm-6 row m-0 align-items-center">
                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATRAN.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATRAN" width="100%" />
                     </div>
                 </div>

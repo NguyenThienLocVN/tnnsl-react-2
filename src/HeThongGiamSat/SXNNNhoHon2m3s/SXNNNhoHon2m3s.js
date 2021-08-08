@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import Header from '../../Shared/Header';
 import '../../Shared/Page.css';
@@ -7,7 +6,7 @@ import { Table, Input } from 'antd';
 import { Link } from 'react-router-dom';
 
 
-export default class PhatDienLonHon2MW extends React.Component {
+export default class SXNNNhoHon2m3s extends React.Component {
 
     componentDidMount(){
         document.title = "Hệ thống giám sát | Giám sát tài nguyên nước Sơn La";
@@ -19,14 +18,14 @@ export default class PhatDienLonHon2MW extends React.Component {
                 key: '1',
                 gp_sogiayphep: '86/GPTNMT',
                 gp_ngayky: '15/05/2005',
-                congtrinh_ten: 'Thủy điện suối tân',
+                congtrinh_ten: 'Công trình 1',
                 chugiayphep_ten: '',
                 gp_ngayhieuluc: '',
                 gp_thoihan: '',
                 status: '',
                 gp_thoigianguigannhat: '',
                 connect_status: '',
-                view_history: '1',
+                view_history: 'a',
             },
           ];
           
@@ -77,25 +76,24 @@ export default class PhatDienLonHon2MW extends React.Component {
                 key: 'connect_status',
             },
             {
-                title: '',
+                title: 'Xem lịch sử',
+                dataIndex: 'view_history',
                 key: 'view_history',
-                render: (text, record) => (
-                    <>
-                        <Link to={"/he-thong-giam-sat/phat-dien-lon-hon-2mw/lich-su/"+record.view_history}>Xem lịch sử</Link>
-                    </>
-                ),
+                render() {
+                    <Link>Xem lịch sử</Link>
+                }
             },
           ];
         return(
             <div className="pt-1 px-1">
-                <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN LỚN HƠN 2MW" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="CÔNG TRÌNH CÓ QUY MÔ TỪ 2m3/s TRỞ LÊ CẤP CHO SẢN XUẤT NÔNG NGHIỆP, NUÔI TRỒNG THỦY SẢN" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-4 px-0 menu-home">
                         <LeftBar />
                     </div>
                     <div className="col-12 col-lg-8 px-0 menu-home">
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                            <div className=" mb-1 col-lg-9 ">
+                            <div className=" mb-1 col-lg-3">
                                 <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                             </div>
                             <div className="col-lg-3 mb-2">
@@ -105,6 +103,11 @@ export default class PhatDienLonHon2MW extends React.Component {
                                     <option value={1}>Mất kết nối</option>  
                                     <option value={2}>Chưa gửi dữ liệu</option>
                                 </select>
+                            </div>
+                            <div className="col-lg-6 row mx-0 mb-2">
+                                <div className="col-sm-4 border">Bình thường: <span className="p-2 bg-success">152</span></div>
+                                <div className="col-sm-4 border">Mất kết nối: <span className="p-2 bg-warning">152</span></div>
+                                <div className="col-sm-4 border">Chưa gửi dữ liệu: <span className="p-2 bg-secondary">152</span></div>
                             </div>
                         </div>
                         <div className="table-responsive px-2">

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "../../Shared/Header";
 import Table from 'react-bootstrap/Table';
 import { MoreOutlined } from "@ant-design/icons";
-import { Modal, Tabs, Button } from 'antd';
+import { Modal, Tabs } from 'antd';
 
 import { Bar } from 'react-chartjs-2';
 

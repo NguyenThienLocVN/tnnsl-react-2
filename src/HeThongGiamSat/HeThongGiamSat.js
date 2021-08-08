@@ -86,7 +86,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Khai thác nước mặt</p>
                                         <p className="mb-0 w-100 text-center fw-bold p-0"><span>3</span>/<span>63</span> CT mất kết nối </p>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXA.png'} alt="HE_THONG_GIAM_SAT/ANH_QXA" width="100%" />
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Khai thác nước dưới đất</p>
                                         <p className="mb-0 w-100 text-center fw-bold p-0"><span>3</span>/<span>63</span> CT mất kết nối </p>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_LUULUONGKHAITHACNUOCDUOIDAT.png'} alt="HE_THONG_GIAM_SAT/ANH_LUULUONGKHAITHACNUOCDUOIDAT" width="100%" />
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Xả thải vào nguồn nước</p>
                                         <p className="mb-0 w-100 text-center fw-bold p-0"><span>3</span>/<span>63</span> CT mất kết nối </p>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATOITHIEU.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATOITHIEU" width="100%" />
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Khai thác nước mặt</p>
                                         <p className="mb-0 w-100 text-center fw-bold p-0"><span>3</span>/<span>63</span> Chưa gửi dữ liệu </p>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXA.png'} alt="HE_THONG_GIAM_SAT/ANH_QXA" width="100%" />
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Khai thác nước dưới đất</p>
                                         <p className="mb-0 w-100 text-center fw-bold p-0"><span>3</span>/<span>63</span> Chưa gửi dữ liệu </p>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_LUULUONGKHAITHACNUOCDUOIDAT.png'} alt="HE_THONG_GIAM_SAT/ANH_LUULUONGKHAITHACNUOCDUOIDAT" width="100%" />
                                     </div>
                                 </div>
@@ -147,7 +147,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Xả thải vào nguồn nước</p>
                                         <p className="mb-0 w-100 text-center fw-bold p-0"><span>3</span>/<span>63</span> Chưa gửi dữ liệu </p>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATOITHIEU.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATOITHIEU" width="100%" />
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Khai thác nước mặt</p>
                                         <Link to="#" className="text-danger fw-bold text-center">Xem</Link>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXA.png'} alt="HE_THONG_GIAM_SAT/ANH_QXA" width="100%" />
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Khai thác nước dưới đất</p>
                                         <Link to="#" className="text-danger fw-bold text-center">Xem</Link>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_LUULUONGKHAITHACNUOCDUOIDAT.png'} alt="HE_THONG_GIAM_SAT/ANH_LUULUONGKHAITHACNUOCDUOIDAT" width="100%" />
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ export default class HeThongGiamSat extends React.Component {
                                         <p className="mb-0 col-12 text-center fw-bold text-blue quantrac_title">Xả thải vào nguồn nước</p>
                                         <Link to="#" className="text-danger fw-bold text-center">Xem</Link>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-5 px-2 px-sm-5">
                                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATOITHIEU.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATOITHIEU" width="100%" />
                                     </div>
                                 </div>
