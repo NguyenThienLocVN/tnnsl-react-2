@@ -2,13 +2,28 @@ import React from 'react';
 import Header from "../../Shared/Header";
 import Table from 'react-bootstrap/Table'
 import { MoreOutlined } from "@ant-design/icons";
-import { Modal, Tabs, Button } from 'antd';
+import { Modal, Tabs } from 'antd';
 
 import { Bar } from 'react-chartjs-2';
 
+import { MapContainer, Marker, Popup } from "react-leaflet";
+import { BasemapLayer } from "react-esri-leaflet";
+import axios from "axios";
+import configData from "../../config.json";
+import { trackPromise } from 'react-promise-tracker';
+import ReactLeafletKml from 'react-leaflet-kml';
+import { getToken, removeUserSession } from '../../Shared/Auth';
 
-import Map from '../../Shared/Map';
+import * as L from 'leaflet';
 
+import pinkMarker from '../../Shared/marker-pink.png';
+
+const pinkIcon = L.icon({
+    iconUrl: pinkMarker,
+    iconSize: [15, 15],
+    iconAnchor: [10, 15],
+    className: 'pinkMarker',
+});
 
 const { TabPane } = Tabs;
 
@@ -16,11 +31,66 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
+            center: [21.529737201190642, 103.9692398828125],
+			zoom: 8,
             visible: false,
             activeModal: null,
+            dataSource: [],
+            pagination: {},
+            loading: false,
+            showMapLayer: false,
+            showMapLegend: true,
+            kml: null,
         };
-        
+
+        this.mapRef = React.createRef();
     }
+
+    componentDidMount(){
+        document.title = "Hệ thống quan trắc | Hồ chứa | Giám sát tài nguyên nước Sơn La";
+
+        fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
+
+        this.fetch(this.state.pagination, 'all');
+    }
+
+    fetch = (params = {}, filter) => {
+        this.setState({ loading: true });
+        trackPromise(
+            axios
+            .get(configData.API_URL + "/he-thong-quan-trac/loc-dia-diem/"+filter, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        loading: false,
+                        dataSource: response.data,
+                        pagination: {
+                            ...params.pagination,
+                            total: response.data.length
+                        },
+                    });
+                }
+            })
+            .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
+                this.setState({msg: error.response})
+            })
+        )
+    };
 
     clickHandler = (e, index) => {
         this.setState({ activeModal: index })
@@ -61,7 +131,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
           };
         return(
             <div className="p-0">
-                <Header headTitle="HỆ THỐNG QUAN TRẮC/ NƯỚC MẶT / HỒ CHỨA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC | NƯỚC MẶT | HỒ CHỨA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="row justify-content-between mx-0">
@@ -527,7 +597,24 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                         </div>
                     </div>
                     <div className="col-12 col-lg-9 map-container px-md-0 position-relative">
-                        <Map />
+                        <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
+                            <BasemapLayer name="Imagery" />
+                            <BasemapLayer name="ImageryLabels" />
+
+                            {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
+
+                            {/* Diem mua*/}
+                            { this.state.dataSource.map((marker, key) => (
+                                    marker.location_type === "muc-nuoc-ho" ? <Marker position={[marker.latitude, marker.longitude]} key={key} icon={pinkIcon} >
+                                    <Popup>
+                                    <div>
+                                        <h5 className="card-title fw-bold font-13">Mưa - {marker.location_name}</h5>
+                                    </div>
+                                    </Popup>
+                                </Marker> : ""
+                                ))
+                            }
+                        </MapContainer>
                     </div>
                 </main>
             </div>
