@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
-import Header from '../../../Shared/Header';
-import '../../../Shared/Page.css';
-import LeftBar from '../../LeftBar';
+import Header from '../../../../Shared/Header';
+import '../../../../Shared/Page.css';
+import LeftBar from '../../../LeftBar';
 import { Table, Input, Button } from 'antd';
 
 

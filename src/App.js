@@ -169,19 +169,30 @@ import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
 
 // <==================================================He thong giam sat phat dien lon hon 2mw=================================================================================>
 
-import HeThongGiamSatPhatDienLonHon2MW from './HeThongGiamSat/PhatDienLonHon2MW/PhatDienLonHon2MW';
+import HeThongGiamSatPhatDienLonHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienLonHon2MW/PhatDienLonHon2MW';
 
 // <==================================================He thong giam sat lichsu phat dien lon hon 2mw=================================================================================>
 
-import HeThongGiamSatLichSuPhatDienLonHon2MW from './HeThongGiamSat/PhatDienLonHon2MW/LichSuPhatDienLonHon2MW/LichSuPhatDienLonHon2MW';
+import HeThongGiamSatLichSuPhatDienLonHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienLonHon2MW/LichSuPhatDienLonHon2MW/LichSuPhatDienLonHon2MW';
+
+// <==================================================He thong giam sat SXNN nho hon 2m3s=================================================================================>
+
+import HeThongGiamSatSXNNNhoHon2m3s from './HeThongGiamSat/QuanLyGiamSat/SXNNNhoHon2m3s/SXNNNhoHon2m3s';
 
 // <==================================================He thong giam sat khai thac NDD=================================================================================>
+import HeThongGiamSatKhaiThacNDD from './HeThongGiamSat/QuanLyGiamSat/KhaiThacNDD/KhaiThacNDD';
 
-import HeThongGiamSatSXNNNhoHon2m3s from './HeThongGiamSat/SXNNNhoHon2m3s/SXNNNhoHon2m3s';
+// <==================================================He thong giam sat muc dich khac > 50.000m3/ngdem=================================================================================>
 
-// <==================================================He thong giam sat khai thac NDD=================================================================================>
+import HeThongGiamSatMucDichKhacLonHon50000m3ngdem from './HeThongGiamSat/QuanLyGiamSat/MucDichKhacLonHon50000m3ngdem/MucDichKhacLonHon50000m3ngdem';
 
-import HeThongGiamSatKhaiThacNDD from './HeThongGiamSat/KhaiThacNDD/KhaiThacNDD';
+// <==================================================He thong giam sat xa thai lon hon 3000m3ngdem=================================================================================>
+
+import HeThongGiamSatXaThaiLonHon3000m3ngdem from './HeThongGiamSat/QuanLyGiamSat/XaThaiLonHon3000m3ngdem/XaThaiLonHon3000m3ngdem';
+
+// <==================================================He thong giam sat xa thai lon hon 3000m3ngdem=================================================================================>
+
+import HeThongGiamSatXaThaiNTTSLonHon3000m3ngdem from './HeThongGiamSat/QuanLyGiamSat/XaThaiNTTSLonHon3000m3ngdem/XaThaiNTTSLonHon3000m3ngdem';
 
 // <==================================================Bao cao bieu mau=================================================================================>
 
@@ -513,8 +524,17 @@ function App() {
 				{/* ==================================================He Thong Giam Sat lich su phat dien lon hon 2mw================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat/san-xuat-nong-nghiep" component={HeThongGiamSatSXNNNhoHon2m3s} />
 
-				{/* ==================================================He Thong Giam Sat phat dien lon hon 2mw================================================== */}
+				{/* ==================================================He Thong Giam Sat khai thac nuoc duoi dat================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat/khai-thac-nuoc-duoi-dat" component={HeThongGiamSatKhaiThacNDD} />
+
+				{/* ==================================================Muc dich khac lon hon 50.000 m3/ngdem================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/muc-dich-khac-lon-hon-50000-m3ngdem" component={HeThongGiamSatMucDichKhacLonHon50000m3ngdem} />
+
+				{/* ==================================================Muc dich khac lon hon 50.000 m3/ngdem================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-lon-hon-3000-m3ngdem" component={HeThongGiamSatXaThaiLonHon3000m3ngdem} />
+
+				{/* ==================================================Muc dich khac lon hon 50.000 m3/ngdem================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-nuoi-trong-thuy-san-lon-hon-3000-m3ngdem" component={HeThongGiamSatXaThaiNTTSLonHon3000m3ngdem} />
 
 				{/* ==================================================Bao Cao Bieu Mau================================================== */}
 				<ProtectedRoute exact path="/bao-cao-bieu-mau" component={BaoCaoBieuMau} />
