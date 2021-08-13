@@ -39,6 +39,18 @@ export default class MucDichKhacLonHon50000m3ngdem extends React.Component {
                 gp_thoigianguigannhat: '',
                 connect_status: '',
                 view_history: '1',
+            },{
+                key: '2',
+                gp_sogiayphep: '103/GPTNMT',
+                gp_ngayky: '15/05/2005',
+                congtrinh_ten: 'Công Trình 2',
+                chugiayphep_ten: '',
+                gp_ngayhieuluc: '',
+                gp_thoihan: '',
+                hieulucgiayphep: 'saphethieuluc',
+                gp_thoigianguigannhat: '',
+                connect_status: '',
+                view_history: '1',
             },
           ];
           
@@ -91,7 +103,7 @@ export default class MucDichKhacLonHon50000m3ngdem extends React.Component {
                 dataIndex: 'connect_status',
                 key: 'connect_status',
                 render: (text, record) => (
-                    <div className="d-flex">
+                    <div className="d-flex justify-content-center">
                         <div className="license_status bg-success px-3"> 1 </div>
                         <div className="license_status bg-warning px-3"> 1 </div>
                         <div className="license_status bg-secondary px-3"> 19 </div>
@@ -103,7 +115,7 @@ export default class MucDichKhacLonHon50000m3ngdem extends React.Component {
                 key: 'view_history',
                 render: (text, record) => (
                     <>
-                        <Link to={"/he-thong-giam-sat/phat-dien-lon-hon-2mw/lich-su/"+record.view_history}>Xem lịch sử</Link>
+                        <Link to={"/he-thong-giam-sat/phat-dien-lon-hon-2mw/lich-su/"+record.view_history} className="text-center">Xem lịch sử</Link>
                     </>
                 ),
             },
@@ -112,10 +124,10 @@ export default class MucDichKhacLonHon50000m3ngdem extends React.Component {
             <div className="pt-1 px-1">
                 <Header headTitle="CÔNG TRÌNH KHAI THÁC SỬ DỤNG NƯỚC CÓ QUY MÔ TỪ 50.000 m3/ng.đêm" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
-                    <div className="col-12 col-lg-4 px-0 menu-home">
+                    <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
                     </div>
-                    <div className="col-12 col-lg-8 px-0 menu-home">
+                    <div className="col-12 col-lg-9 px-0 menu-home">
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
                                 <div className=" mb-1 col-lg-3">
                                     <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />

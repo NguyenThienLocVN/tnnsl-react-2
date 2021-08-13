@@ -115,10 +115,10 @@ export default class LichSuPhatDienLonHon2MW extends React.Component {
             <div className="pt-1 px-1">
                 <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN LỚN HƠN 2MW - LỊCH SỬ" previousLink="/he-thong-giam-sat/phat-dien-lon-hon-2mw" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
-                    <div className="col-12 col-lg-4 px-0 menu-home">
+                    <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
                     </div>
-                    <div className="col-12 col-lg-8 px-0 menu-home">
+                    <div className="col-12 col-lg-9 px-0 menu-home">
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
                             <div className=" mb-2 col-lg-4 ">
                                 <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select form-select-sm font-13" defaultValue="all">
