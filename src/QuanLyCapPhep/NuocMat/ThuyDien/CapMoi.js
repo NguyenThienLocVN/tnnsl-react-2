@@ -27,6 +27,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                 chugiayphep_email: '', 
                 congtrinh_ten: '',
                 congtrinh_diadiem: '',
+                congtrinh_loaihinh_ktsd: '',
                 phuongthuc_kt: '',
                 congtrinh_hientrang : '',
                 mucdich_ktsd: '', 
@@ -100,6 +101,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
 
     submitHandler = (e) => {
         e.preventDefault();
+        var loaiHinhKTSD = this.props.match.path.split('/');
 
         let formData = new FormData();    //formdata object
 
@@ -147,6 +149,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
         formData.append("chugiayphep_email", chugiayphep_email);
         formData.append("congtrinh_ten", congtrinh_ten);
         formData.append("congtrinh_diadiem", congtrinh_diadiem);
+        formData.append("congtrinh_loaihinh_ktsd", loaiHinhKTSD[3]);
         formData.append("phuongthuc_kt", phuongthuc_kt);
         formData.append("congtrinh_hientrang", congtrinh_hientrang);
         formData.append("hangmuc", JSON.stringify(this.state.hangmuc));
@@ -483,7 +486,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                     </div>
                                     <div className="col-sm-3">
                                         <div className="mb-2">
-                                            <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép (năm)</label>
+                                            <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
                                             <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
                                         </div>
                                     </div>

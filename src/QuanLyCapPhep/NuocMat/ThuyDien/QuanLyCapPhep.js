@@ -69,8 +69,9 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
 
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
+        user ?
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac/danh-sach-cap-moi-giay-phep-ktndd/"+user.id+"/"+filter, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/yeu-cau/"+user.id+"/"+filter, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -88,7 +89,7 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
             })
             .catch((error) => {
                 this.setState({msg: error.response})
-            })
+            }) : window.location.reload(); 
     };
 
     // Function handle filter feature
