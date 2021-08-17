@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
 function ProtectedRoute({ component: Component, ...restOfProps }) {
-  const isAuthenticated = sessionStorage.getItem("user");
+  const isAuthenticated = localStorage.getItem("user");
 
   return (
     <Route

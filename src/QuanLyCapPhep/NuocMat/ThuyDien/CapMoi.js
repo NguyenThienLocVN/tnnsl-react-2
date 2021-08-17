@@ -44,7 +44,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                 vitri_laynuoc: '',
                 luuluongnuoc_ktsd: '',
                 che_do_kt: '',
-                gp_thoigiancapphep: '',
+                gp_thoihangiayphep: '',
                 tailieu_sodovitrikhuvuc_congtrinh_khaithac: '',
                 tailieu_donxincapphep: '',
                 tailieu_baocaodean_ktsd: '',
@@ -129,7 +129,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
         var vitri_laynuoc = document.querySelector('#vitri_laynuoc').value;
         var luuluongnuoc_ktsd = document.querySelector('#luuluongnuoc_ktsd').value;
         var che_do_kt = document.querySelector('#che_do_kt').value;
-        var gp_thoigiancapphep = document.querySelector('#gp_thoigiancapphep').value;
+        var gp_thoihangiayphep = document.querySelector('#gp_thoihangiayphep').value;
         var tailieu_sodovitrikhuvuc_congtrinh_khaithac = document.querySelector('#tailieu_sodovitrikhuvuc_congtrinh_khaithac').files[0];
         var tailieu_donxincapphep = document.querySelector('#tailieu_donxincapphep').files[0];
         var tailieu_baocaodean_ktsd = document.querySelector('#tailieu_baocaodean_ktsd').files[0];
@@ -167,7 +167,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
         formData.append("vitri_laynuoc", vitri_laynuoc);
         formData.append("luuluongnuoc_ktsd", luuluongnuoc_ktsd);
         formData.append("che_do_kt", che_do_kt);
-        formData.append("gp_thoigiancapphep", gp_thoigiancapphep);
+        formData.append("gp_thoihangiayphep", gp_thoihangiayphep);
         formData.append("tailieu_sodovitrikhuvuc_congtrinh_khaithac", tailieu_sodovitrikhuvuc_congtrinh_khaithac);
         formData.append("tailieu_donxincapphep", tailieu_donxincapphep);
         formData.append("tailieu_baocaodean_ktsd", tailieu_baocaodean_ktsd);
@@ -208,7 +208,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
             vitri_laynuoc: this.state.licensePostData.vitri_laynuoc,
             luuluongnuoc_ktsd: this.state.licensePostData.luuluongnuoc_ktsd,
             che_do_kt: this.state.licensePostData.che_do_kt,
-            gp_thoigiancapphep: this.state.licensePostData.gp_thoigiancapphep,
+            gp_thoihangiayphep: this.state.licensePostData.gp_thoihangiayphep,
             tailieu_sodovitrikhuvuc_congtrinh_khaithac: this.state.licensePostData.tailieu_sodovitrikhuvuc_congtrinh_khaithac,
             tailieu_donxincapphep: this.state.licensePostData.tailieu_donxincapphep,
             tailieu_baocaodean_ktsd: this.state.licensePostData.tailieu_baocaodean_ktsd,
@@ -486,8 +486,8 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                     </div>
                                     <div className="col-sm-3">
                                         <div className="mb-2">
-                                            <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
-                                            <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" />
+                                            <label htmlFor="gp_thoihangiayphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
+                                            <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoihangiayphep" name="gp_thoihangiayphep" />
                                         </div>
                                     </div>
                                     <div className="col-sm-7">

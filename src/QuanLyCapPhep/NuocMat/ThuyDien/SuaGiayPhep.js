@@ -28,7 +28,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                 chugiayphep_fax: '', 
                 chugiayphep_email: '', 
                 congtrinh_ten: '',
-                congtrinh_diadiem: '',
+                phuongthuc_kt: '',
                 congtrinh_loaihinh_ktsd: '',
                 phuongthuc_kt: '',
                 congtrinh_hientrang : '',
@@ -46,7 +46,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                 vitri_laynuoc: '',
                 luuluongnuoc_ktsd: '',
                 che_do_kt: '',
-                gp_thoigiancapphep: '',
+                gp_thoihangiayphep: '',
                 tailieu_sodovitrikhuvuc_congtrinh_khaithac: '',
                 tailieu_donxincapphep: '',
                 tailieu_baocaodean_ktsd: '',
@@ -253,20 +253,20 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.2.Loại hình công trình, phương thức khai thác nước</label>
+                                        <label htmlFor="phuongthuc_kt" className="form-label fw-bold font-13 m-0">2.2.Loại hình công trình, phương thức khai thác nước</label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="phuongthuc_kt" name="phuongthuc_kt" value={licensePostData.phuongthuc_kt} />
+                                    </div>
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="mb-2">
+                                        <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình</label>
                                         <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" value={licensePostData.congtrinh_diadiem} />
                                     </div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" value={licensePostData.mucdich_ktsd} />
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="mb-2">
-                                        <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.4.Hiện trạng công trình</label>
-                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" value={licensePostData.mucdich_ktsd} />
+                                        <label htmlFor="congtrinh_hientrang" className="form-label fw-bold font-13 m-0">2.4.Hiện trạng công trình</label>
+                                        <input type="text" onChange={this.handleInputChange} required className="form-control form-control-sm" id="congtrinh_hientrang" name="congtrinh_hientrang" value={licensePostData.congtrinh_hientrang} />
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
@@ -402,8 +402,8 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                     </div>
                                     <div className="col-sm-3">
                                         <div className="mb-2">
-                                            <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
-                                            <input type="text" required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" value={licensePostData.gp_thoigiancapphep} />
+                                            <label htmlFor="gp_thoihangiayphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
+                                            <input type="text" required className="form-control form-control-sm" id="gp_thoihangiayphep" name="gp_thoihangiayphep" value={licensePostData.gp_thoihangiayphep} />
                                         </div>
                                     </div>
                                     <div className="col-sm-7">
