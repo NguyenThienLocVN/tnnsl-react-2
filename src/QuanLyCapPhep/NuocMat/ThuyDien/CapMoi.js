@@ -183,46 +183,6 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
             headers: { 'content-type': 'multipart/form-data' }
         }
 
-        const data = {
-            chugiayphep_ten: this.state.licensePostData.chugiayphep_ten,
-            chugiayphep_sogiaydangkykinhdoanh: this.state.licensePostData.chugiayphep_sogiaydangkykinhdoanh, 
-            chugiayphep_diachi: this.state.licensePostData.chugiayphep_diachi, 
-            chugiayphep_phone: this.state.licensePostData.chugiayphep_phone, 
-            chugiayphep_fax: this.state.licensePostData.chugiayphep_fax, 
-            chugiayphep_email: this.state.licensePostData.chugiayphep_email, 
-            congtrinh_ten: this.state.licensePostData.congtrinh_ten,
-            congtrinh_diadiem: this.state.licensePostData.congtrinh_diadiem,
-            phuongthuc_kt: this.state.licensePostData.phuongthuc_kt,
-            congtrinh_hientrang : this.state.licensePostData.congtrinh_hientrang,
-            mucdich_ktsd: this.state.licensePostData.mucdich_ktsd, 
-            congsuat_lapmay: this.state.licensePostData.congsuat_lapmay, 
-            luuluonglonnhat_quathuydien: this.state.licensePostData.luuluonglonnhat_quathuydien, 
-            mucnuocdang_binhthuong: this.state.licensePostData.mucnuocdang_binhthuong, 
-            mucnuoc_chet: this.state.licensePostData.mucnuoc_chet, 
-            mucnuoccaonhat_truoclu: this.state.licensePostData.mucnuoccaonhat_truoclu,
-            mucnuoc_donlu: this.state.licensePostData.mucnuoc_donlu,
-            dungtich_huuich: this.state.licensePostData.dungtich_huuich,
-            dungtich_toanbo: this.state.licensePostData.dungtich_toanbo,
-            luuluong_xadongchay_toithieu: this.state.licensePostData.luuluong_xadongchay_toithieu,
-            nguonnuoc_ktsd: this.state.licensePostData.nguonnuoc_ktsd,
-            vitri_laynuoc: this.state.licensePostData.vitri_laynuoc,
-            luuluongnuoc_ktsd: this.state.licensePostData.luuluongnuoc_ktsd,
-            che_do_kt: this.state.licensePostData.che_do_kt,
-            gp_thoihangiayphep: this.state.licensePostData.gp_thoihangiayphep,
-            tailieu_sodovitrikhuvuc_congtrinh_khaithac: this.state.licensePostData.tailieu_sodovitrikhuvuc_congtrinh_khaithac,
-            tailieu_donxincapphep: this.state.licensePostData.tailieu_donxincapphep,
-            tailieu_baocaodean_ktsd: this.state.licensePostData.tailieu_baocaodean_ktsd,
-            tailieu_ketqua_ptcln: this.state.licensePostData.tailieu_ketqua_ptcln,
-            tailieu_baocaohientrangkhaithac: this.state.licensePostData.tailieu_baocaohientrangkhaithac,
-            tailieu_vanban_yccd: this.state.licensePostData.tailieu_vanban_yccd,
-            tailieu_giaytokhac: this.state.licensePostData.tailieu_giaytokhac,
-            hangmuc: this.state.hangmuc,
-            status: 0,
-            camket_dungsuthat: this.state.licensePostData.camket_dungsuthat,
-            camket_chaphanhdungquydinh: this.state.licensePostData.camket_chaphanhdungquydinh,
-            camket_daguihoso: this.state.licensePostData.camket_daguihoso,
-        }
-
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
@@ -544,7 +504,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                                 <div className="mb-2 d-flex alicn-items-center mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_dungsuthat} onChange={(e) => this.handleInputChange(e)} required id="camket_dungsuthat" name="camket_dungsuthat" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_dungsuthat} value={this.state.licensePostData.camket_dungsuthat} onChange={(e) => this.handleInputChange(e)} required id="camket_dungsuthat" name="camket_dungsuthat" />
                                                             <label htmlFor="camket_dungsuthat"></label>
                                                         </div>
                                                     </div>
@@ -555,7 +515,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh} onChange={(e) => this.handleInputChange(e)} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_chaphanhdungquydinh} value={this.state.licensePostData.camket_chaphanhdungquydinh} onChange={(e) => this.handleInputChange(e)} required id="camket_chaphanhdungquydinh" name="camket_chaphanhdungquydinh" />
                                                             <label htmlFor="camket_chaphanhdungquydinh"></label>
                                                         </div>
                                                     </div>
@@ -566,7 +526,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                                 <div className="mb-2 d-flex mx-0">
                                                     <div className="d-flex justify-content-end pe-3">
                                                         <div className="round">
-                                                            <input type="checkbox" checked={this.state.licensePostData.camket_daguihoso} onChange={(e) => this.handleInputChange(e)} id="camket_daguihoso" name="camket_daguihoso" />
+                                                            <input type="checkbox" checked={this.state.licensePostData.camket_daguihoso} value={this.state.licensePostData.camket_daguihoso} onChange={(e) => this.handleInputChange(e)} id="camket_daguihoso" name="camket_daguihoso" />
                                                             <label htmlFor="camket_daguihoso"></label>
                                                         </div>
                                                     </div>

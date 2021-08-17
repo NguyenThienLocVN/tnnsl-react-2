@@ -425,7 +425,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                 </div>
                                 <div className="col-sm-6 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Giấy tờ, tài liệu kèm theo</p>
-                                    {licensePostData.tai_lieu && licensePostData.tai_lieu[0].tailieu_giayphep &&
+                                    {licensePostData.status === 1 &&
                                         <>
                                             <div className="col-sm-12">
                                                 <div className="mb-2 d-flex mx-0">
@@ -447,37 +447,37 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
-                                            <div className="w-25"><input type="file" disabled={typeof licensePostData.gp_thoihangiayphep !== '' } onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Đề án/ báo cáo khai thác, sử dụng nước </label>
-                                            <div className="w-25"><input type="file" disabled={typeof licensePostData.tailieu_sodokhuvucvitricongtrinhkhaithac !== '' } onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
+                                            <label htmlFor="tailieu_baocaodean_ktsd" className="form-label d-block w-75 m-0 font-13">- Đề án/ báo cáo khai thác, sử dụng nước </label>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaodean_ktsd" name="tailieu_baocaodean_ktsd" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">- Kết quả phân tích chất lượng nguồn nước </label>
-                                            <div className="w-25"><input type="file" disabled={typeof licensePostData.tailieu_baocaoketquathamdo !== '' } onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
+                                            <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Kết quả phân tích chất lượng nguồn nước </label>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Báo cáo hiện trạng khai thác </label>
-                                            <div className="w-25"><input type="file" disabled={typeof licensePostData.tailieu_baocaohientrangkhaithac !== '' } onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng</label>
-                                            <div className="w-25"><input type="file" disabled={typeof licensePostData.tailieu_ketqua_ptcln !== '' } onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
+                                            <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13">- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng</label>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan</label>
-                                            <div className="w-25"><input type="file" disabled={typeof licensePostData.tailieu_vanban_yccd !== '' } onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
+                                            <label htmlFor="tailieu_giaytokhac" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan</label>
+                                            <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_giaytokhac" name="tailieu_giaytokhac" /></div>
                                         </div>
                                     </div>
                                 </div>
