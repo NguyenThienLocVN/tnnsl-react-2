@@ -206,7 +206,6 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <h6 className="px-2 pt-2 d-flex align-items-center fw-bold">Công trình: {licensePostData.congtrinh_ten} - <span className={licensePostData.status === 1 ? "text-success" : "text-primary"}>&nbsp; {this.statusText(licensePostData.status)}</span>&nbsp; <Popover placement="bottomLeft" content={statusBox} title="Trạng thái giấy phép" ><QuestionCircleOutlined /></Popover></h6>
-                        <p className="px-2">Thời gian gửi hồ sơ: {this.formatDate(licensePostData.created_at)}</p>
                         <div className="px-2"><hr /></div>
                         <form className="needs-validation" onSubmit={this.submitHandler} noValidate>
                             <div className="col-12 row m-0 p-0">

@@ -68,7 +68,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
             search: '',
             filter: '',
             showMapLayer: false,
-            showMapLegend: false,
+            showMapLegend: true,
             kml: null,
             yellowMarker: true,
             greenMarker: true,
@@ -342,11 +342,11 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
             },
             {
                 title: 'Thời hạn',
-                dataIndex: 'gp_thoigiancapphep',
-                key: 'gp_thoigiancapphep',
+                dataIndex: 'gp_thoihangiayphep',
+                key: 'gp_thoihangiayphep',
                 sorter: (a, b) => {
-                    let year_a = a.gp_thoigiancapphep.split(" ");
-                    let year_b = b.gp_thoigiancapphep.split(" ");
+                    let year_a = a.gp_thoihangiayphep.split(" ");
+                    let year_b = b.gp_thoihangiayphep.split(" ");
                     return year_a[0] - year_b[0];
                 }
             },
@@ -576,20 +576,20 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
 
                                 {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
 
-                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer})}><BlockOutlined /></button>
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer, showMapLegend: false})}><BlockOutlined /></button>
                                 {this.state.showMapLayer &&
                                     <div className="map-layer position-absolute bg-white">
                                         <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
                                         <ul className="p-2 m-0">
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span>  &nbsp; <img style={{width: "15px"}} src={greenMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> &nbsp; <img style={{width: "15px"}} src={redMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> &nbsp; <img style={{width: "15px"}} src={yellowMarker} /> </li>
+                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> &nbsp; <img style={{width: "15px"}} src={grayMarker} /> </li>
                                         </ul>
                                     </div>
                                 }
 
-                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend})}><QuestionCircleOutlined /></button>
+                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend, showMapLayer: false})}><QuestionCircleOutlined /></button>
                                 {this.state.showMapLegend &&
                                     <div className="map-legend position-absolute bg-white">
                                         <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CHÚ GIẢI</span></p>
