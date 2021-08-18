@@ -319,22 +319,22 @@ export default class QuanLyCapPhep extends React.Component {
                                             <Link to="/quan-ly-cap-phep/xa-thai-khu-cum-cong-nghiep-tap-trung" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-cssx-tieu-thu-cn" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">SX KD Dịch Vụ</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-cssx-kinh-doanh-dich-vu" className="nav-link font-13 hover-link">SX KD Dịch Vụ</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">CS Bệnh Viện</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-cs-benh-vien" className="nav-link font-13 hover-link">CS Bệnh Viện</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">Khu Dân Cư / Làng Nghề</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-khu-dan-cu" className="nav-link font-13 hover-link">Khu Dân Cư / Làng Nghề</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">Chăn Nuôi / NTTS</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-chan-nuoi" className="nav-link font-13 hover-link">Chăn Nuôi / NTTS</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="#" className="nav-link font-13 hover-link">Công Trình Khác</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-khac" className="nav-link font-13 hover-link">Công Trình Khác</Link>
                                         </li>
                                     </div>
                                 </ul>
