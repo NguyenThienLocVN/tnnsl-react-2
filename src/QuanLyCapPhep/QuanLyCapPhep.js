@@ -230,7 +230,7 @@ export default class QuanLyCapPhep extends React.Component {
             plugins: {
                 legend: {
                     display: true,
-                    position: 'right'
+                    position: 'top'
                 }
             },
             scales: {
@@ -378,7 +378,7 @@ export default class QuanLyCapPhep extends React.Component {
                                             <Link to="/quan-ly-cap-phep/nuoc-mat/cong-trinh-khac" className="nav-link font-13 hover-link">Công Trình Khác</Link>
                                         </li>
                                     </div>
-                                    <div >
+                                    <div className="exploit-surfacewater">
                                         <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
                                         <li className="nav-item border-bottom py-0">
                                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/khai-thac" className="nav-link font-13 hover-link">Khai Thác</Link>
@@ -393,28 +393,28 @@ export default class QuanLyCapPhep extends React.Component {
                                             <Link to="/quan-ly-cap-phep/nuoc-duoi-dat/cong-trinh-khac" className="nav-link font-13 hover-link">Công Trình Khác</Link>
                                         </li>
                                     </div>
-                                    <div >
+                                    <div className="exploit-surfacewater">
                                         <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">XẢ THẢI VÀO NGUỒN NƯỚC</p>
                                         <li className="nav-item border-bottom py-0">
                                             <Link to="/quan-ly-cap-phep/xa-thai-khu-cum-cong-nghiep-tap-trung" className="nav-link font-13 hover-link">Khu / Cụm CN  Tập Trung</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-cssx-tieu-thu-cn" className="nav-link font-13 hover-link">SX Tiểu Thủ CN</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">SX KD Dịch Vụ</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-cssx-kinh-doanh-dich-vu" className="nav-link font-13 hover-link">SX KD Dịch Vụ</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">CS Bệnh Viện</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-cs-benh-vien" className="nav-link font-13 hover-link">CS Bệnh Viện</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">Khu Dân Cư / Làng Nghề</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-khu-dan-cu" className="nav-link font-13 hover-link">Khu Dân Cư / Làng Nghề</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">Chăn Nuôi / NTTS</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-chan-nuoi" className="nav-link font-13 hover-link">Chăn Nuôi / NTTS</Link>
                                         </li>
                                         <li className="nav-item border-bottom py-0">
-                                            <Link to="#" className="nav-link font-13 hover-link">Công Trình Khác</Link>
+                                            <Link to="/quan-ly-cap-phep/xa-thai-khac" className="nav-link font-13 hover-link">Công Trình Khác</Link>
                                         </li>
                                     </div>
                                 </ul>
@@ -427,62 +427,66 @@ export default class QuanLyCapPhep extends React.Component {
                             <div>
                                 <form>
                                     <div className="row m-0 p-0">
-                                        <div className="col-auto row g-3 align-items-center">
-                                            <div className="col-auto">
-                                                <label className="col-form-label">Từ năm: </label>
+                                        <div className="d-flex col-auto p-0 mb-2">
+                                            <div className="col-auto row mx-0 px-0 align-items-center">
+                                                <div className="col-md-auto col-12">
+                                                    <label className="col-form-label">Từ năm: </label>
+                                                </div>
+                                                <div className="col-md-auto col-12">
+                                                    <select name="startYear" defaultValue={this.state.startYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
+                                                        <option value={2013}>2013</option>
+                                                        <option value={2014}>2014</option>
+                                                        <option value={2015}>2015</option>
+                                                        <option value={2016}>2016</option>
+                                                        <option value={2017}>2017</option>
+                                                        <option value={2018}>2018</option>
+                                                        <option value={2019}>2019</option>
+                                                        <option value={2020}>2020</option>
+                                                        <option value={2021}>2021</option>
+                                                        <option value={2022}>2022</option>
+                                                        <option value={2023}>2023</option>
+                                                        <option value={2024}>2024</option>
+                                                        <option value={2025}>2025</option>
+                                                        <option value={2026}>2026</option>
+                                                        <option value={2027}>2027</option>
+                                                        <option value={2028}>2028</option>
+                                                        <option value={2029}>2029</option>
+                                                        <option value={2030}>2030</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div className="col-auto">
-                                                <select name="startYear" defaultValue={this.state.startYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
-                                                    <option value={2013}>2013</option>
-                                                    <option value={2014}>2014</option>
-                                                    <option value={2015}>2015</option>
-                                                    <option value={2016}>2016</option>
-                                                    <option value={2017}>2017</option>
-                                                    <option value={2018}>2018</option>
-                                                    <option value={2019}>2019</option>
-                                                    <option value={2020}>2020</option>
-                                                    <option value={2021}>2021</option>
-                                                    <option value={2022}>2022</option>
-                                                    <option value={2023}>2023</option>
-                                                    <option value={2024}>2024</option>
-                                                    <option value={2025}>2025</option>
-                                                    <option value={2026}>2026</option>
-                                                    <option value={2027}>2027</option>
-                                                    <option value={2028}>2028</option>
-                                                    <option value={2029}>2029</option>
-                                                    <option value={2030}>2030</option>
-                                                </select>
+                                            <div className="col-auto row mx-0 px-0 align-items-center">
+                                                <div className="col-md-auto col-12">
+                                                    <label className="col-form-label">Đến năm: </label>
+                                                </div>
+                                                <div className="col-md-auto col-12">
+                                                    <select name="endYear" defaultValue={this.state.endYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
+                                                        <option value={2013}>2013</option>
+                                                        <option value={2014}>2014</option>
+                                                        <option value={2015}>2015</option>
+                                                        <option value={2016}>2016</option>
+                                                        <option value={2017}>2017</option>
+                                                        <option value={2018}>2018</option>
+                                                        <option value={2019}>2019</option>
+                                                        <option value={2020}>2020</option>
+                                                        <option value={2021}>2021</option>
+                                                        <option value={2022}>2022</option>
+                                                        <option value={2023}>2023</option>
+                                                        <option value={2024}>2024</option>
+                                                        <option value={2025}>2025</option>
+                                                        <option value={2026}>2026</option>
+                                                        <option value={2027}>2027</option>
+                                                        <option value={2028}>2028</option>
+                                                        <option value={2029}>2029</option>
+                                                        <option value={2030}>2030</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="col-auto row g-3 align-items-center">
-                                            <div className="col-auto">
-                                                <label className="col-form-label">Đến năm: </label>
+                                        <div className="col-auto row mx-0 px-0 align-items-center mb-2">
+                                            <div className="col-md-auto col-12">
+                                                <Button onClick={this.handlerFillterYear}> Lọc </Button>
                                             </div>
-                                            <div className="col-auto">
-                                                <select name="endYear" defaultValue={this.state.endYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
-                                                    <option value={2013}>2013</option>
-                                                    <option value={2014}>2014</option>
-                                                    <option value={2015}>2015</option>
-                                                    <option value={2016}>2016</option>
-                                                    <option value={2017}>2017</option>
-                                                    <option value={2018}>2018</option>
-                                                    <option value={2019}>2019</option>
-                                                    <option value={2020}>2020</option>
-                                                    <option value={2021}>2021</option>
-                                                    <option value={2022}>2022</option>
-                                                    <option value={2023}>2023</option>
-                                                    <option value={2024}>2024</option>
-                                                    <option value={2025}>2025</option>
-                                                    <option value={2026}>2026</option>
-                                                    <option value={2027}>2027</option>
-                                                    <option value={2028}>2028</option>
-                                                    <option value={2029}>2029</option>
-                                                    <option value={2030}>2030</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="col-auto row g-3 align-items-center">
-                                            <Button onClick={this.handlerFillterYear}> Lọc </Button>
                                         </div>
                                     </div>
                                 </form>
@@ -547,7 +551,7 @@ export default class QuanLyCapPhep extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-3 px-0 menu-home">
+                    <div className="col-12 col- mx-0 px-0lpx-0 menu-home">
                         <div className="row m-0">
                             <div className="col-lg-12 p-0">
                                 <div className="d-block col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-sw-content-box">
