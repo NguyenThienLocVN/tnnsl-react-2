@@ -198,11 +198,6 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
 					.catch((error) => {
                         this.setState({toastError: error.response.data.error_message});
                         this.notifyError();
-                        if(error.response.status === 401)
-                        {
-                            removeUserSession();
-                            window.location.reload();
-                        }
 					})
 				)
             })
