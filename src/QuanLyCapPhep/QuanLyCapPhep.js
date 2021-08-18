@@ -551,9 +551,9 @@ export default class QuanLyCapPhep extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col- mx-0 px-0 menu-home">
+                    <div className="col-12 col-lg-3 mx-0 px-0 menu-home">
                         <div className="row m-0">
-                            <div className="col-lg-3 p-0">
+                            <div className="col-lg-12 p-0">
                                 <div className="d-block col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-sw-content-box">
                                     <p className="bg-sw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
