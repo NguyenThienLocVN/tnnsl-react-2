@@ -7,6 +7,7 @@ import { DownloadOutlined, LineChartOutlined, InfoCircleOutlined } from '@ant-de
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { trackPromise } from 'react-promise-tracker';
 import { removeUserSession } from '../Shared/Auth';
+import { Button } from 'antd';
 
 
 export default class QuanLyCapPhep extends React.Component {
@@ -19,7 +20,9 @@ export default class QuanLyCapPhep extends React.Component {
             DemGPTDNuocDuoiDat:[],
             DemGPKhoanNuocDuoiDat:[],
             barChartData: {},
-            doughnutData: {}      
+            doughnutData: {},
+            startYear: '2016',
+            endYear: '2020',
         }
     }
 
@@ -50,85 +53,175 @@ export default class QuanLyCapPhep extends React.Component {
             })
         )
         trackPromise(axios
-                .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai")
-                .then((response) => {
-                    if(response.status === 200)
-                    {
-                        this.setState({
-                            barChartData: {
-                                labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
-                                datasets: [
-                                {
-                                    label: 'KT, SD nước mặt',
-                                    data: response.data.gp_nuocmat,
-                                    stack: 1,
-                                    backgroundColor: [
-                                        'rgb(97, 205, 187)',
-                                    ],
-                                },
-                                {
-                                    label: 'Khai thác nước dưới đất',
-                                    data: response.data.gp_ktnuocduoidat,
-                                    stack: 1,
-                                    backgroundColor: [
-                                        'rgb(39, 194, 76)',
-                                    ],
-                                },
-                                {
-                                    label: 'Thăm dò nước dưới đất',
-                                    data: response.data.gp_tdnuocduoidat,
-                                    stack: 1,
-                                    backgroundColor: [
-                                        'rgba(220, 172, 172, 0.77)',
-                                    ],
-                                },
-                                {
-                                    label: 'Hành nghề khoan nước dưới đất',
-                                    data: response.data.gp_khoannuocduoidat,
-                                    stack: 1,
-                                    backgroundColor: [
-                                        'rgba(226, 159, 106, 0.92)',
-                                    ],
-                                },
-                                {
-                                    label: 'Xả thải',
-                                    data: response.data.gp_xathai,
-                                    stack: 1,
-                                    backgroundColor: [
-                                        'rgba(255, 159, 64)',
-                                    ],
-                                },
-                                
-                                ] 
-                            },
-                            doughnutData: {
-                                labels: [
-                                    'Năm 2015','Năm 2016','Năm 2017','Năm 2018','Năm 2019','Năm 2020',
+            .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai/"+this.state.startYear+"/"+this.state.endYear)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        barChartData: {
+                            labels: response.data.label,
+                            datasets: [
+                            {
+                                label: 'KT, SD nước mặt',
+                                data: response.data.data.gp_nuocmat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgb(97, 205, 187)',
                                 ],
-                                datasets: [{
-                                    data: response.data.gp_nuocmat,
-                                    backgroundColor: [
-                                    '#FF6384',
-                                    '#36A2EB',
-                                    'orange',
-                                    'orangered',
-                                    'violet',
-                                    'green'
-                                    ],
-                                }]
-                            }
-                        });
-                    }
-                })
-                .catch((error) => {
-                    if(error.response.status === 401)
-                    {
-                        removeUserSession();
-                        window.location.reload();
-                    }
-                    this.setState({msg: error.response})
-                })
-            )
+                            },
+                            {
+                                label: 'Khai thác nước dưới đất',
+                                data: response.data.data.gp_ktnuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgb(39, 194, 76)',
+                                ],
+                            },
+                            {
+                                label: 'Thăm dò nước dưới đất',
+                                data: response.data.data.gp_tdnuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(220, 172, 172, 0.77)',
+                                ],
+                            },
+                            {
+                                label: 'Hành nghề khoan nước dưới đất',
+                                data: response.data.data.gp_khoannuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(226, 159, 106, 0.92)',
+                                ],
+                            },
+                            {
+                                label: 'Xả thải',
+                                data: response.data.data.gp_xathai,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(255, 159, 64)',
+                                ],
+                            },
+                            
+                            ] 
+                        }
+                    });
+                }
+            })
+            .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
+                this.setState({msg: error.response})
+            })
+        )
+        trackPromise(axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai/2016/2020")
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        doughnutData: {
+                            labels: [
+                                'Năm 2015','Năm 2016','Năm 2017','Năm 2018','Năm 2019','Năm 2020',
+                            ],
+                            datasets: [{
+                                data: response.data.data.gp_nuocmat,
+                                backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                'orange',
+                                'orangered',
+                                'violet',
+                                'green'
+                                ],
+                            }]
+                        }
+                    });
+                }
+            })
+            .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
+                this.setState({msg: error.response})
+            })
+        )
+    }
+    
+    handlerChangeYear = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        })
+    }
+    handlerFillterYear = () => {
+        trackPromise(axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai/"+this.state.startYear+"/"+this.state.endYear)
+            .then((response) => {
+                if(response.status === 200)
+                {
+                    this.setState({
+                        barChartData: {
+                            labels: response.data.label,
+                            datasets: [
+                            {
+                                label: 'KT, SD nước mặt',
+                                data: response.data.data.gp_nuocmat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgb(97, 205, 187)',
+                                ],
+                            },
+                            {
+                                label: 'Khai thác nước dưới đất',
+                                data: response.data.data.gp_ktnuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgb(39, 194, 76)',
+                                ],
+                            },
+                            {
+                                label: 'Thăm dò nước dưới đất',
+                                data: response.data.data.gp_tdnuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(220, 172, 172, 0.77)',
+                                ],
+                            },
+                            {
+                                label: 'Hành nghề khoan nước dưới đất',
+                                data: response.data.data.gp_khoannuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(226, 159, 106, 0.92)',
+                                ],
+                            },
+                            {
+                                label: 'Xả thải',
+                                data: response.data.data.gp_xathai,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(255, 159, 64)',
+                                ],
+                            },
+                            
+                            ] 
+                        }
+                    });
+                }
+            })
+            .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
+                this.setState({msg: error.response})
+            })
+        )
     }
 
     render(){
@@ -331,6 +424,69 @@ export default class QuanLyCapPhep extends React.Component {
                     <div className="col-12 col-lg-7 menu-home px-md-1">
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
                             <div className="card-header">Biểu đồ số lượng giấy phép được cấp theo năm</div>
+                            <div>
+                                <form>
+                                    <div className="row m-0 p-0">
+                                        <div className="col-auto row g-3 align-items-center">
+                                            <div className="col-auto">
+                                                <label className="col-form-label">Từ năm: </label>
+                                            </div>
+                                            <div className="col-auto">
+                                                <select name="startYear" defaultValue={this.state.startYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
+                                                    <option value={2013}>2013</option>
+                                                    <option value={2014}>2014</option>
+                                                    <option value={2015}>2015</option>
+                                                    <option value={2016}>2016</option>
+                                                    <option value={2017}>2017</option>
+                                                    <option value={2018}>2018</option>
+                                                    <option value={2019}>2019</option>
+                                                    <option value={2020}>2020</option>
+                                                    <option value={2021}>2021</option>
+                                                    <option value={2022}>2022</option>
+                                                    <option value={2023}>2023</option>
+                                                    <option value={2024}>2024</option>
+                                                    <option value={2025}>2025</option>
+                                                    <option value={2026}>2026</option>
+                                                    <option value={2027}>2027</option>
+                                                    <option value={2028}>2028</option>
+                                                    <option value={2029}>2029</option>
+                                                    <option value={2030}>2030</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-auto row g-3 align-items-center">
+                                            <div className="col-auto">
+                                                <label className="col-form-label">Đến năm: </label>
+                                            </div>
+                                            <div className="col-auto">
+                                                <select name="endYear" defaultValue={this.state.endYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
+                                                    <option value={2013}>2013</option>
+                                                    <option value={2014}>2014</option>
+                                                    <option value={2015}>2015</option>
+                                                    <option value={2016}>2016</option>
+                                                    <option value={2017}>2017</option>
+                                                    <option value={2018}>2018</option>
+                                                    <option value={2019}>2019</option>
+                                                    <option value={2020}>2020</option>
+                                                    <option value={2021}>2021</option>
+                                                    <option value={2022}>2022</option>
+                                                    <option value={2023}>2023</option>
+                                                    <option value={2024}>2024</option>
+                                                    <option value={2025}>2025</option>
+                                                    <option value={2026}>2026</option>
+                                                    <option value={2027}>2027</option>
+                                                    <option value={2028}>2028</option>
+                                                    <option value={2029}>2029</option>
+                                                    <option value={2030}>2030</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-auto row g-3 align-items-center">
+                                            <Button onClick={this.handlerFillterYear}> Lọc </Button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div className="card-body">
                                 <Bar height={500} width={75} data={this.state.barChartData} options={chartOptions} />
                             </div>
