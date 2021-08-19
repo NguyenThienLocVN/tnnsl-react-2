@@ -52,7 +52,7 @@ export default class Login extends React.Component {
             return <Redirect to="/login" push={true} />;
         }
         return(
-            <div className="pt-1 px-1">
+            <div>
                 <Header headTitle="TÀI NGUYÊN NƯỚC" isHomepage={true} showHeadImage={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-4 px-0 menu-home discharge-water">

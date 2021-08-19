@@ -414,10 +414,10 @@
     transform: none;
   }
 
-.map-layer { z-index: 9999; right: 50px; top: 55px; }
-.map-legend { z-index: 9999; right: 50px; top: 90px; }
-.btn-map-layer { z-index: 9999; right: 15px; top: 55px; }
-.btn-map-legend { z-index: 9999; right: 15px; top: 90px; }
+.map-layer { z-index: 9999; right: 50px; top: 10px; }
+.map-legend { z-index: 9999; right: 50px; top: 40px; }
+.btn-map-layer { z-index: 9999; right: 15px; top: 10px; }
+.btn-map-legend { z-index: 9999; right: 15px; top: 40px; }
 
 .dot { width: 15px; height: 15px; }
 .bg-conhieuluc { background: #35ca21; }

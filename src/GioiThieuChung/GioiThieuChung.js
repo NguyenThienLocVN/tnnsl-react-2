@@ -22,7 +22,7 @@ export default class Login extends React.Component {
 
     render(){
         return(
-            <div className="pt-1 px-1">
+            <div>
                 <Header headTitle="GIỚI THIỆU CHUNG" previousLink="/" showHeadImage={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-4 menu-home discharge-water">
