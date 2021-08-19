@@ -5,7 +5,7 @@ import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
 import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
-import { apiClient, removeUserSession } from '../../../Shared/Auth';
+import { apiClient, removeUserSession, getToken } from '../../../Shared/Auth';
 import { Redirect } from 'react-router';
 
 // Alert library
@@ -179,14 +179,15 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
         formData.append("camket_chaphanhdungquydinh", camket_chaphanhdungquydinh);
         formData.append("camket_daguihoso", camket_daguihoso);
 
-        const config = {     
-            headers: { 'content-type': 'multipart/form-data' }
-        }
-
 		apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/cap-moi-giay-phep", formData, config)
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/cap-moi-giay-phep", formData, {
+                        headers: {
+                            'content-type': 'multipart/form-data',
+                            'Authorization': 'Bearer ' + getToken()
+                        } 
+                    })
 					.then((response) => {
                         this.setState({toastSuccess: response.data.success_message});
                         this.notifySuccess();
@@ -198,6 +199,11 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
 					.catch((error) => {
                         this.setState({toastError: error.response.data.error_message});
                         this.notifyError();
+                        if(error.response.status === 401)
+                        {
+                            removeUserSession();
+                            window.location.reload();
+                        }
 					})
 				)
             })

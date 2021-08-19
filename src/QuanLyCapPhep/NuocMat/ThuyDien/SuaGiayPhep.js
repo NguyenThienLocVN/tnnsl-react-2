@@ -6,9 +6,8 @@ import { Button } from "react-bootstrap";
 import { PlusSquareOutlined, QuestionCircleOutlined, DeleteOutlined, CheckCircleOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { Popover, Modal } from 'antd';
 import DemGiayPhep from './DemGiayPhep';
-import { apiClient } from '../../../Shared/Auth';
+import { apiClient, getToken, removeUserSession } from '../../../Shared/Auth';
 import axios from "axios";
-import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 // Alert library
 import { ToastContainer, toast } from 'react-toastify';
@@ -192,14 +191,15 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
         formData.append("camket_chaphanhdungquydinh", camket_chaphanhdungquydinh);
         formData.append("camket_daguihoso", camket_daguihoso);
 
-        const config = {     
-            headers: { 'content-type': 'multipart/form-data' }
-        }
-
         apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
                 trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/sua-giay-phep/"+idGP, formData, config)
+					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/sua-giay-phep/"+idGP, formData, {
+                        headers: {
+                            'content-type': 'multipart/form-data',
+                            'Authorization': 'Bearer ' + getToken()
+                        } 
+                    })
 					.then((response) => {
                         this.setState({toastSuccess: response.data.success_message});
                         this.notifySuccess();
@@ -207,6 +207,11 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
 					.catch((error) => {
                         this.setState({toastError: error.response.data.error_message});
                         this.notifyError();
+                        if(error.response.status === 401)
+                        {
+                            removeUserSession();
+                            window.location.reload();
+                        }
 					})
 				)
             })
