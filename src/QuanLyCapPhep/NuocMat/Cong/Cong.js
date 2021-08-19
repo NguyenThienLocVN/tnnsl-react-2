@@ -13,24 +13,7 @@ import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
 
-import * as L from 'leaflet';
-import * as esri from 'esri-leaflet';
-
-import yellowMarker from '../../../Shared/marker-yellow.png';
-import greenMarker from '../../../Shared/marker-green.png';
-
 const { Search } = Input;
-let YellowIcon = L.icon({
-    iconUrl: yellowMarker,
-	iconSize: [15, 15],
-    iconAnchor: [10, 15]
-});
-
-let GreenIcon = L.icon({
-    iconUrl: greenMarker,
-	iconSize: [15, 15],
-    iconAnchor: [10, 15]
-});
 
 export default class QuanLyCapPhepNuocMatCong extends React.Component {
     constructor(props)
@@ -87,60 +70,6 @@ export default class QuanLyCapPhepNuocMatCong extends React.Component {
 
     clickToZoom = (lat, long) => {
         this.mapRef.current.flyTo([lat, long], 16);
-    }
-
-    changeBasemap = (event) => {
-        // Change basemap follow select option
-        var basemap = event.target.value
-        var map = this.mapRef.current;
-
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
-        });
-    
-        var layer = esri.basemapLayer(basemap);
-    
-        map.addLayer(layer);
-    
-        if (basemap === 'ShadedRelief'
-        || basemap === 'Oceans'
-        || basemap === 'Gray'
-        ) {
-            var layerLabels = esri.basemapLayer(basemap + 'Labels');
-            map.addLayer(layerLabels);
-        } else if (basemap === 'Imagery') {
-            var imagery = esri.basemapLayer('Imagery');
-            var imageryLabels = esri.basemapLayer('ImageryLabels');
-            map.addLayer(imagery);
-            map.addLayer(imageryLabels);
-        }
-
-        // Add marker
-        var markerStyle = {
-            radius: 7,
-            fillColor: "yellow",
-            color: "yellow",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 1,
-            className: 'marker'
-        };
-
-        // Draw circle each point
-        L.geoJSON(this.state.contructionInfoForMap, {
-        onEachFeature: this.onEachFeature,
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, markerStyle);
-        }
-        }).addTo(map);
-    }
-
-    // Click to show popup
-    onEachFeature = (feature, layer) => {
-        if (feature.properties && feature.properties.hoverContent) {
-            layer.on('click', function() { layer.bindPopup(feature.properties.detailContent, {closeOnClick: true, autoClose: false}).openPopup()});
-            layer.on('mouseover', function() { layer.bindPopup(feature.properties.hoverContent).openPopup()});
-        }
     }
 
     formatDate(date) {
@@ -332,13 +261,6 @@ export default class QuanLyCapPhepNuocMatCong extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50 position-relative">
-                            <select defaultValue="Imagery" id="switch-basemaps" className="position-absolute" onChange={this.changeBasemap}>
-                                <option value="Imagery">Bản đồ vệ tinh</option>
-                                <option value="Topographic">Bản đồ địa hình</option>
-                                <option value="Streets">Bản đồ đường</option>
-                                <option value="NationalGeographic">Bản đồ địa lý</option>
-                                <option value="Gray">Bản đồ xám</option>
-                            </select>
                             <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
                                 <BasemapLayer name="Imagery" />
                                 <BasemapLayer name="ImageryLabels" />

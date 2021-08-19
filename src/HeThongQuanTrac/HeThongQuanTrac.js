@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Shared/Header";
 import { Link } from "react-router-dom";
 
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup, LayersControl, TileLayer, ZoomControl } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../config.json";
@@ -13,7 +13,6 @@ import { Checkbox } from 'antd';
 import { getToken, removeUserSession } from '../Shared/Auth';
 
 import * as L from 'leaflet';
-import * as esri from 'esri-leaflet';
 
 import yellowMarker from '../Shared/marker-yellow.png';
 import greenMarker from '../Shared/marker-green.png';
@@ -152,10 +151,6 @@ export default class HeThongQuanTrac extends React.Component{
             arrowDeepBlue: true,
             arrowGray: true,
 
-            yellowMarker: true,
-            greenMarker: true,
-            redMarker: true,
-            grayMarker: true,
             blueMarker: true,
             pinkMarker: true,
             orangeMarker: true,
@@ -211,60 +206,6 @@ export default class HeThongQuanTrac extends React.Component{
         )
         
     };
-
-    changeBasemap = (event) => {
-        // Change basemap follow select option
-        var basemap = event.target.value
-        var map = this.mapRef.current;
-
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
-        });
-    
-        var layer = esri.basemapLayer(basemap);
-    
-        map.addLayer(layer);
-    
-        if (basemap === 'ShadedRelief'
-        || basemap === 'Oceans'
-        || basemap === 'Gray'
-        ) {
-            var layerLabels = esri.basemapLayer(basemap + 'Labels');
-            map.addLayer(layerLabels);
-        } else if (basemap === 'Imagery') {
-            var imagery = esri.basemapLayer('Imagery');
-            var imageryLabels = esri.basemapLayer('ImageryLabels');
-            map.addLayer(imagery);
-            map.addLayer(imageryLabels);
-        }
-
-        // Add marker
-        var markerStyle = {
-            radius: 7,
-            fillColor: "yellow",
-            color: "yellow",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 1,
-            className: 'marker'
-        };
-
-        // Draw circle each point
-        L.geoJSON(this.state.contructionInfoForMap, {
-        onEachFeature: this.onEachFeature,
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, markerStyle);
-        }
-        }).addTo(map);
-    }
-
-    // Click to show popup
-    onEachFeature = (feature, layer) => {
-        if (feature.properties && feature.properties.hoverContent) {
-            layer.on('click', function() { layer.bindPopup(feature.properties.detailContent, {closeOnClick: true, autoClose: false}).openPopup()});
-            layer.on('mouseover', function() { layer.bindPopup(feature.properties.hoverContent).openPopup()});
-        }
-    }
 
     render(){
         return(
@@ -472,9 +413,38 @@ export default class HeThongQuanTrac extends React.Component{
                             <option value="NationalGeographic">Bản đồ địa lý</option>
                             <option value="Gray">Bản đồ xám</option>
                         </select>
-                        <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
-                            <BasemapLayer name="Imagery" />
+                        <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false}>
                             <BasemapLayer name="ImageryLabels" />
+
+                            <LayersControl position="topleft">
+                                <LayersControl.BaseLayer checked name="Bản đồ vệ tinh">
+                                    <TileLayer
+                                    attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                                    />
+                                </LayersControl.BaseLayer>
+                                <LayersControl.BaseLayer name="Bản đồ địa lý">
+                                    <TileLayer
+                                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    />
+                                </LayersControl.BaseLayer>
+                                <LayersControl.BaseLayer name="Bản đồ địa hình">
+                                    <TileLayer
+                                    attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+                                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                                    />
+                                </LayersControl.BaseLayer>
+                                <LayersControl.BaseLayer name="Bản đồ xám">
+                                    <TileLayer
+                                    attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+                                    url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                                    maxZoom = "16"
+                                    />
+                                </LayersControl.BaseLayer>
+                            </LayersControl>
+
+                            <ZoomControl position="bottomleft" />
 
                             {/* ========================= NUOC THAI ========================= */}
                             {/* Diem Q xa thai*/}
@@ -664,31 +634,31 @@ export default class HeThongQuanTrac extends React.Component{
                                         <span className="bg-secondary text-white d-inline-block pt-1 px-2">NƯỚC MẶT</span>
                                     </div>
                                     <ul className="p-2 m-0">
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.blueMarker} onChange={() => this.setState({blueMarker: !this.state.blueMarker})} />&nbsp;<span className="font-weight-bold">Mưa</span> &nbsp; <img style={{width: "15px"}} src={blueMarker} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.pinkMarker} onChange={() => this.setState({pinkMarker: !this.state.pinkMarker})} />&nbsp;<span className="font-weight-bold">Mực nước hồ</span> &nbsp; <img style={{width: "15px"}} src={pinkMarker} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.grayMarker} onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Q đến hồ</span> &nbsp; <img style={{width: "15px"}} src={grayMarker} /> </li>
-                                        <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked={this.state.greenMarker} onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Q xả qua nhà máy</span> &nbsp; <img style={{width: "15px"}} src={greenMarker} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.orangeMarker} onChange={() => this.setState({orangeMarker: !this.state.orangeMarker})} />&nbsp;<span className="font-weight-bold">Q xả qua tràn</span> &nbsp; <img style={{width: "15px"}} src={orangeMarker} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.brownMarker} onChange={() => this.setState({brownMarker: !this.state.brownMarker})} />&nbsp;<span className="font-weight-bold">Q khai thác</span> &nbsp; <img style={{width: "15px"}} src={brownMarker} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.redMarker} onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Q xả tối thiểu</span> &nbsp; <img style={{width: "15px"}} src={redMarker} /> </li>
-                                        <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked={this.state.yellowMarker} onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> &nbsp; <img style={{width: "15px"}} src={yellowMarker} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.blueMarker} onChange={() => this.setState({blueMarker: !this.state.blueMarker})} />&nbsp;<span className="font-weight-bold">Mưa</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={blueMarker} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.pinkMarker} onChange={() => this.setState({pinkMarker: !this.state.pinkMarker})} />&nbsp;<span className="font-weight-bold">Mực nước hồ</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={pinkMarker} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.grayMarker} onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Q đến hồ</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={grayMarker} /> </li>
+                                        <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked={this.state.greenMarker} onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Q xả qua nhà máy</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={greenMarker} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.orangeMarker} onChange={() => this.setState({orangeMarker: !this.state.orangeMarker})} />&nbsp;<span className="font-weight-bold">Q xả qua tràn</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={orangeMarker} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.brownMarker} onChange={() => this.setState({brownMarker: !this.state.brownMarker})} />&nbsp;<span className="font-weight-bold">Q khai thác</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={brownMarker} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.redMarker} onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Q xả tối thiểu</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={redMarker} /> </li>
+                                        <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked={this.state.yellowMarker} onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={yellowMarker} /> </li>
                                     </ul>
 
                                     <div className="legend-title-secondary pt-2">
                                         <span className="bg-secondary text-white d-inline-block pt-1 px-2">NƯỚC DƯỚI ĐẤT</span>
                                     </div>
                                     <ul className="p-2 m-0">
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.arrowBlue} onChange={() => this.setState({arrowBlue: !this.state.arrowBlue})} />&nbsp;<span className="font-weight-bold">Lưu lượng khai thác NDD</span> &nbsp; <img style={{width: "15px"}} src={arrowBlue} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.arrowDeepBlue} onChange={() => this.setState({arrowDeepBlue: !this.state.arrowDeepBlue})} />&nbsp;<span className="font-weight-bold">Mực nước trong giếng</span> &nbsp; <img style={{width: "15px"}} src={arrowDeepBlue} /> </li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.arrowGray} onChange={() => this.setState({arrowGray: !this.state.arrowGray})} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> &nbsp; <img style={{width: "15px"}} src={arrowGray} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.arrowBlue} onChange={() => this.setState({arrowBlue: !this.state.arrowBlue})} />&nbsp;<span className="font-weight-bold">Lưu lượng khai thác NDD</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={arrowBlue} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.arrowDeepBlue} onChange={() => this.setState({arrowDeepBlue: !this.state.arrowDeepBlue})} />&nbsp;<span className="font-weight-bold">Mực nước trong giếng</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={arrowDeepBlue} /> </li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.arrowGray} onChange={() => this.setState({arrowGray: !this.state.arrowGray})} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={arrowGray} /> </li>
                                     </ul>
 
                                     <div className="legend-title-secondary pt-2">
                                         <span className="bg-secondary text-white d-inline-block pt-1 px-2">XẢ THẢI</span>
                                     </div>
                                     <ul className="p-2 m-0">
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.triangleYellow} onChange={() => this.setState({triangleYellow: !this.state.triangleYellow})} />&nbsp;<span className="font-weight-bold">Q xả thải</span> &nbsp; <img style={{width: "15px"}} src={triangleYellow} /></li>
-                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.triangleBrown} onChange={() => this.setState({triangleBrown: !this.state.triangleBrown})} />&nbsp;<span className="font-weight-bold">Chất lượng nước thải</span> &nbsp; <img style={{width: "15px"}} src={triangleBrown} /></li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.triangleYellow} onChange={() => this.setState({triangleYellow: !this.state.triangleYellow})} />&nbsp;<span className="font-weight-bold">Q xả thải</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={triangleYellow} /></li>
+                                        <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked={this.state.triangleBrown} onChange={() => this.setState({triangleBrown: !this.state.triangleBrown})} />&nbsp;<span className="font-weight-bold">Chất lượng nước thải</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={triangleBrown} /></li>
                                     </ul>
                                 </div>
                             }
@@ -701,31 +671,31 @@ export default class HeThongQuanTrac extends React.Component{
                                         <span className="bg-secondary text-white d-inline-block pt-1 px-2">NƯỚC MẶT</span>
                                     </div>
                                     <ul className="p-2 m-0">
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={blueMarker} />&nbsp;<span className="font-weight-bold">Mưa</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={pinkMarker} />&nbsp;<span className="font-weight-bold">Mực nước hồ</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={grayMarker} />&nbsp;<span className="font-weight-bold">Q đến hồ</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={greenMarker} />&nbsp;<span className="font-weight-bold">Q xả qua nhà máy</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={orangeMarker} />&nbsp;<span className="font-weight-bold">Q xả qua tràn</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={brownMarker} />&nbsp;<span className="font-weight-bold">Q khai thác</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={redMarker} />&nbsp;<span className="font-weight-bold">Q xả tối thiểu</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "16px"}} src={yellowMarker} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={blueMarker} />&nbsp;<span className="font-weight-bold">Mưa</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={pinkMarker} />&nbsp;<span className="font-weight-bold">Mực nước hồ</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={grayMarker} />&nbsp;<span className="font-weight-bold">Q đến hồ</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={greenMarker} />&nbsp;<span className="font-weight-bold">Q xả qua nhà máy</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={orangeMarker} />&nbsp;<span className="font-weight-bold">Q xả qua tràn</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={brownMarker} />&nbsp;<span className="font-weight-bold">Q khai thác</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={redMarker} />&nbsp;<span className="font-weight-bold">Q xả tối thiểu</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "16px"}} src={yellowMarker} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> </li>
                                     </ul> 
 
                                     <div className="legend-title-secondary pt-2">
                                         <span className="bg-secondary text-white d-inline-block pt-1 px-2">NƯỚC DƯỚI ĐẤT</span>
                                     </div>
                                     <ul className="p-2 m-0">
-                                        <li className="d-flex mb-2 align-items-center"><img style={{width: "18px"}} src={arrowBlue} />&nbsp;<span className="font-weight-bold">Lưu lượng khai thác NDD</span> </li>
-                                        <li className="d-flex mb-2 align-items-center"><img style={{width: "18px"}} src={arrowDeepBlue} />&nbsp;<span className="font-weight-bold">Mực nước trong giếng</span> </li>
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "18px"}} src={arrowGray} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> </li>
+                                        <li className="d-flex mb-2 align-items-center"><img alt="marker" style={{width: "18px"}} src={arrowBlue} />&nbsp;<span className="font-weight-bold">Lưu lượng khai thác NDD</span> </li>
+                                        <li className="d-flex mb-2 align-items-center"><img alt="marker" style={{width: "18px"}} src={arrowDeepBlue} />&nbsp;<span className="font-weight-bold">Mực nước trong giếng</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "18px"}} src={arrowGray} />&nbsp;<span className="font-weight-bold">Chất lượng nước</span> </li>
                                     </ul>
 
                                     <div className="legend-title-secondary pt-2">
                                         <span className="bg-secondary text-white d-inline-block pt-1 px-2">XẢ THẢI</span>
                                     </div>
                                     <ul className="p-2 m-0">
-                                        <li className="d-flex mb-1 align-items-center"><img style={{width: "18px"}} src={triangleYellow} />&nbsp;<span className="font-weight-bold">Q xả thải</span> </li>
-                                        <li className="d-flex mb-2 align-items-center"><img style={{width: "18px"}} src={triangleBrown} />&nbsp;<span className="font-weight-bold">Chất lượng nước thải</span> </li>
+                                        <li className="d-flex mb-1 align-items-center"><img alt="marker" style={{width: "18px"}} src={triangleYellow} />&nbsp;<span className="font-weight-bold">Q xả thải</span> </li>
+                                        <li className="d-flex mb-2 align-items-center"><img alt="marker" style={{width: "18px"}} src={triangleBrown} />&nbsp;<span className="font-weight-bold">Chất lượng nước thải</span> </li>
                                     </ul>
                                 </div>
                             }

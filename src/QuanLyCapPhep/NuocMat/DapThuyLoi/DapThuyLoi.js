@@ -16,21 +16,7 @@ import DemGiayPhep from './DemGiayPhep';
 import * as L from 'leaflet';
 import * as esri from 'esri-leaflet';
 
-import yellowMarker from '../../../Shared/marker-yellow.png';
-import greenMarker from '../../../Shared/marker-green.png';
-
 const { Search } = Input;
-let YellowIcon = L.icon({
-    iconUrl: yellowMarker,
-	iconSize: [15, 15],
-    iconAnchor: [10, 15]
-});
-
-let GreenIcon = L.icon({
-    iconUrl: greenMarker,
-	iconSize: [15, 15],
-    iconAnchor: [10, 15]
-});
 
 export default class QuanLyCapPhepNuocMatDapThuyLoi extends React.Component {
     constructor(props)

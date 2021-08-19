@@ -15,7 +15,6 @@ import DemGiayPhep from './DemGiayPhep';
 import ReactLeafletKml from 'react-leaflet-kml';
 
 import * as L from 'leaflet';
-import * as esri from 'esri-leaflet';
 
 import yellowMarker from '../../../Shared/marker-yellow.png';
 import greenMarker from '../../../Shared/marker-green.png';
@@ -268,7 +267,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 width: '30%',
                 sorter: (a, b) => a.congtrinh_ten.localeCompare(b.congtrinh_ten),
                 render: (text, record) => (
-                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].latitude, record.hang_muc_ct[0].longitude) : null} className="text-primary text-2-wrap m-0 cursor_pointer">{record.congtrinh_ten} <img  src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
+                    <p title="Xem bản đồ" onClick={record.hang_muc_ct ? () => this.clickToZoom(record.hang_muc_ct[0].latitude, record.hang_muc_ct[0].longitude) : null} className="text-primary text-2-wrap m-0 cursor_pointer">{record.congtrinh_ten} <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" /></p>
                 )
             },
             {
@@ -354,7 +353,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                         maxZoom = "16"
                                         />
                                     </LayersControl.BaseLayer>
-                                    
                                 </LayersControl>
 
                                 <ZoomControl position="bottomleft" />
@@ -550,10 +548,10 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                     <div className="map-layer position-absolute bg-white">
                                         <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
                                         <ul className="p-2 m-0">
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span>  &nbsp; <img style={{width: "15px"}} src={greenMarker} /> </li>
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> &nbsp; <img style={{width: "15px"}} src={redMarker} /> </li>
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> &nbsp; <img style={{width: "15px"}} src={yellowMarker} /> </li>
-                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> &nbsp; <img style={{width: "15px"}} src={grayMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span>  &nbsp; <img alt="marker" style={{width: "15px"}} src={greenMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={redMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={yellowMarker} /> </li>
+                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={grayMarker} /> </li>
                                         </ul>
                                     </div>
                                 }
