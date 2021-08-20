@@ -9,7 +9,11 @@ export default class Map extends React.Component {
 		this.state = {
 			center: [21.529737201190642, 103.9692398828125],
 			zoom: 8,
-			kml: null
+			kml: null,
+			maxBounds: [
+				[22.716233, 102.127487],
+				[20.161321, 106.096565]
+			]
 		};
 
 		this.mapRef = React.createRef();
@@ -28,7 +32,7 @@ export default class Map extends React.Component {
 
     render() {
 		return (
-			<MapContainer className="h-100 w-100 position-relative" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false}>
+			<MapContainer className="h-100 w-100 position-relative" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false} maxZoom={14} maxBounds={this.state.maxBounds}>
 				<BasemapLayer name="ImageryLabels" />
 
 				<LayersControl position="topleft">

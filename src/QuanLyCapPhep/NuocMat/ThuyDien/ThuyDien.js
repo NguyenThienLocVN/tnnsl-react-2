@@ -73,6 +73,11 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
             greenMarker: true,
             redMarker: true,
             grayMarker: true,
+
+            maxBounds: [
+				[22.716233, 102.127487],
+				[20.161321, 106.096565]
+			]
         }
 
         this.mapRef = React.createRef();
@@ -324,7 +329,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50 position-relative">
-                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false}>
+                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false} maxZoom={14} maxBounds={this.state.maxBounds}>
                                 <BasemapLayer name="ImageryLabels" />
 
                                 <LayersControl position="topleft">
