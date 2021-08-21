@@ -279,10 +279,10 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
 
         const statusBox = (
             <div>
-              <p className={licensePostData.status === 0 ? "bg-lightgreen m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>1. Đã gửi hồ sơ {licensePostData.status === 0 && <CheckCircleOutlined />}</p>
-              <p className={licensePostData.status === 2 ? "bg-lightgreen m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>2. Đang lấy ý kiến thẩm định {licensePostData.status === 2 && <CheckCircleOutlined />}</p>
-              <p className={licensePostData.status === 3 ? "bg-lightgreen m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>3. Hoàn thành hồ sơ cấp phép {licensePostData.status === 3 && <CheckCircleOutlined />}</p>
-              <p className={licensePostData.status === 1 ? "bg-lightgreen m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>4. Đã được cấp phép {licensePostData.status === 1 && <CheckCircleOutlined />}</p>
+              <p className={licensePostData.status === 0 ? "bg-success text-white m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>1. Đã gửi hồ sơ {licensePostData.status === 0 && <CheckCircleOutlined />}</p>
+              <p className={licensePostData.status === 2 ? "bg-success text-white m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>2. Đang lấy ý kiến thẩm định {licensePostData.status === 2 && <CheckCircleOutlined />}</p>
+              <p className={licensePostData.status === 3 ? "bg-success text-white m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>3. Hoàn thành hồ sơ cấp phép {licensePostData.status === 3 && <CheckCircleOutlined />}</p>
+              <p className={licensePostData.status === 1 ? "bg-success text-white m-0 p-1 d-flex align-items-center justify-content-between": "m-0 p-1 d-flex align-items-center"}>4. Đã được cấp phép {licensePostData.status === 1 && <CheckCircleOutlined />}</p>
             </div>
         );
         
@@ -296,7 +296,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <h6 className="px-2 pt-2 d-flex align-items-center fw-bold">Công trình: {licensePostData.congtrinh_ten} - <span className={licensePostData.status === 1 ? "text-success" : "text-primary"}>&nbsp; {this.statusText(licensePostData.status)}</span>&nbsp; <Popover placement="bottomLeft" content={statusBox} title="Trạng thái giấy phép" ><QuestionCircleOutlined /></Popover></h6>
                         {licensePostData.status === 1 &&
-                            <p className="px-2">Số giấy phép: {licensePostData.gp_sogiayphep}</p>
+                            <p className="px-2">Số giấy phép: <span><u>{licensePostData.gp_sogiayphep}</u></span></p>
                         }
                         <div className="px-2"><hr /></div>
                         <form action="" onSubmit={(e) => this.submitHandler(e)} noValidate>
