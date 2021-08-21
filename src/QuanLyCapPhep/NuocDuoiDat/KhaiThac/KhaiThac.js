@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
 import { Link } from 'react-router-dom';
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup, LayersControl, TileLayer, ZoomControl } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
@@ -25,29 +25,29 @@ import grayMarker from '../../../Shared/marker-gray.png';
 const { Search } = Input;
 const YellowIcon = L.icon({
     iconUrl: yellowMarker,
-    iconSize: [15, 15],
-    iconAnchor: [10, 15],
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
     className: 'yellowMarker',
 });
 
 const GreenIcon = L.icon({
     iconUrl: greenMarker,
-    iconSize: [15, 15],
-    iconAnchor: [10, 15],
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
     className: 'greenMarker',
 });
 
 const RedIcon = L.icon({
     iconUrl: redMarker,
-    iconSize: [15, 15],
-    iconAnchor: [10, 15],
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
     className: 'redMarker',
 });
 
 const GrayIcon = L.icon({
     iconUrl: grayMarker,
-    iconSize: [15, 15],
-    iconAnchor: [10, 15],
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
     className: 'grayMarker',
 });
 
@@ -68,12 +68,17 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
             search: '',
             filter: '',
             showMapLayer: false,
-            showMapLegend: false,
+            showMapLegend: true,
             kml: null,
             yellowMarker: true,
             greenMarker: true,
             redMarker: true,
             grayMarker: true,
+
+            maxBounds: [
+				[22.716233, 102.127487],
+				[20.161321, 106.096565]
+			]
         }
 
         this.mapRef = React.createRef();
@@ -378,16 +383,38 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50 position-relative">
-                            <select defaultValue="Imagery" id="switch-basemaps" className="position-absolute" onChange={this.changeBasemap}>
-                                <option value="Imagery">Bản đồ vệ tinh</option>
-                                <option value="Topographic">Bản đồ địa hình</option>
-                                <option value="Streets">Bản đồ đường</option>
-                                <option value="NationalGeographic">Bản đồ địa lý</option>
-                                <option value="Gray">Bản đồ xám</option>
-                            </select>
-                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
-                                <BasemapLayer name="Imagery" />
+                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false} maxZoom={14} maxBounds={this.state.maxBounds}>
                                 <BasemapLayer name="ImageryLabels" />
+
+                                <LayersControl position="topleft">
+                                    <LayersControl.BaseLayer checked name="Bản đồ vệ tinh">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ địa lý">
+                                        <TileLayer
+                                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ địa hình">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ xám">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                                        maxZoom = "16"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                </LayersControl>
+
+                                <ZoomControl position="bottomleft" />
 
                                 {/* Diem cong trinh con hieu luc */}
                                 {this.state.greenMarker && 
@@ -580,10 +607,10 @@ export default class QuanLyCapPhepKhaiThacNDD extends React.Component {
                                     <div className="map-layer position-absolute bg-white">
                                         <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
                                         <ul className="p-2 m-0">
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
-                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span>&nbsp; <img alt="marker" style={{width: "15px"}} src={greenMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={redMarker} /></li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={yellowMarker} /> </li>
+                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={grayMarker} /> </li>
                                         </ul>
                                     </div>
                                 }
