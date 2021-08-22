@@ -75,8 +75,8 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
             grayMarker: true,
 
             maxBounds: [
-				[22.716233, 102.127487],
-				[20.161321, 106.096565]
+				[23.928100, 101.498900],
+				[19.629882, 106.971813]
 			]
         }
 

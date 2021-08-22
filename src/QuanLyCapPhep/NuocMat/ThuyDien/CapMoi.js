@@ -3,7 +3,7 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { PlusSquareOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, DeleteOutlined, FilePdfOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient, removeUserSession, getToken } from '../../../Shared/Auth';
 import { Redirect } from 'react-router';
@@ -538,9 +538,15 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                     </div>
                                 </div>
                             </div>
-                            <div className="pb-4 text-center col-sm-12">
-                                <hr />
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
+                            <div className="my-3 p-1"></div>
+                            <div className="pb-4 text-center col-sm-12 d-flex">
+                                <div className="col-3">
+                                    <button type="submit" className="btn btn-outline-primary mx-2 fw-bold font-14 d-flex align-items-center"><FilePdfOutlined /> &nbsp; IN PDF</button>
+                                </div>
+                                <div className="col-6 d-flex justify-content-center">
+                                    <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
+                                </div>
+                                <div className="col-3"></div>
                             </div>
                         </form>
                     </div>
