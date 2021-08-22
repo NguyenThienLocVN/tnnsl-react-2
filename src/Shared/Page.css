@@ -132,11 +132,7 @@
 
 .table-data-license tr:nth-child(even){background-color: #f2f2f2;}
 .table-responsive{padding: 0 !important;}
-.modal_quantrac{
-  max-height: 82vh;
-  height: 82vh;
-  overflow-y: scroll;
-} 
+
 .modal_quantrac .table_quantrac {
   /* Not required only for visualizing */
   border-collapse: collapse;
@@ -439,6 +435,12 @@
     .menu-page {height: calc(100vh - 35px);overflow-y: auto;}
     .img__sea_lever{height: 61px;}
     .ant-modal{top: 50px !important; z-index: 9999;}
+
+    .modal_quantrac{
+      max-height: 75vh;
+      height: 75vh;
+      /* overflow-y: scroll; */
+    } 
     .modal-view-file-pdf iframe{height: 600px !important;}
 
 
