@@ -2,15 +2,55 @@ import React from 'react';
 import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { PlusSquareOutlined, DeleteOutlined, FilePdfOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient, removeUserSession, getToken } from '../../../Shared/Auth';
 import { Redirect } from 'react-router';
+import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
 
 // Alert library
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+// Font
+import Roboto from '../../../Shared/fonts/Roboto-Light.ttf';
+import RobotoBold from '../../../Shared/fonts/Roboto-Bold.ttf';
+import RobotoItalic from '../../../Shared/fonts/Roboto-LightItalic.ttf';
+
+Font.register({
+    family: "Roboto",
+    src: Roboto
+});
+
+Font.register({
+    family: "RobotoBold",
+    src: RobotoBold
+});
+
+Font.register({
+    family: "RobotoItalic",
+    src: RobotoItalic
+});
+
+const styles = StyleSheet.create({
+    page: {
+        margin: 15,
+        padding: 15,
+        fontFamily: "Roboto"
+    },
+    displayFlexRow: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    displayFlexColumn: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    textEnd: {
+        textAlign: 'right'
+    }
+});
 
 export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -243,6 +283,119 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
     }
 
     render(){
+        const GenerateRequestFile = ({data}) => (
+            <Document>
+                <Page size="A4" style={styles.page} >
+                    <View style={[styles.textEnd]}>
+                        <Text style={{ fontSize: 12, paddingRight: 15, paddingBottom: 10, fontFamily: 'RobotoBold' }}>Mẫu 05</Text>
+                    </View>
+                    <View style={{ textAlign: 'center', fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12 }}>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Text>
+                        <Text style={{ fontSize: 12 }}>Độc lập - Tự do - Hạnh phúc</Text>
+                        <Text style={{ fontSize: 12 }}>--------------</Text>
+                    </View>
+                    <View style={{ height: 20 }}></View>
+                    <View style={{ textAlign: 'center', fontFamily: 'RobotoBold', marginBottom: 10 }}>
+                        <Text style={{ fontSize: 12, marginBottom: 5}}>ĐƠN ĐỀ NGHỊ CẤP GIẤY PHÉP KHAI THÁC, SỬ DỤNG NƯỚC MẶT</Text>
+                        <Text style={{ fontSize: 12 }}>Kính gửi: ........................................... (1)</Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3}}>1. Tổ chức/cá nhân đề nghị cấp phép: </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.1. Tên tổ chức/cá nhân: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Công ty A </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11, marginBottom: 3 }]}>1.2. Số Giấy đăng ký kinh doanh, nơi cấp, ngày cấp hoặc số Quyết định thành lập, cơ quan ký quyết định: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> 2858697092 </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.3. Địa chỉ: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Xã Mường Lầm - Huyện Sông Mã - Tỉnh Sơn La</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.4. Điện thoại: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>0968786543 </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>Fax: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>Email: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> </Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3}}>2. Thông tin chung về công trình khai thác, sử dụng nước: </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.1. Tên công trình: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Thủy điện Tà Niết </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.2. Loại hình công trình, phương thức khai thác nước: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Thủy điện Tà Niết (2)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.3. Vị trí công trình: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> xã Chiềng Khoa- huyện Mộc Châu- tỉnh Sơn La (3)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.4. Hiện trạng công trình: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>(3)</Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3}}>3. Nội dung đề nghị cấp phép: </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.1. Nguồn nước khai thác, sử dụng: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (5)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.2. Vị trí lấy nước: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (6)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.3. Mục đích khai thác, sử dụng nước: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (7)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.4. Lượng nước khai thác, sử dụng: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (8)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.5. Chế độ khai thác, sử dụng: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (9)</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.6. Thời gian đề nghị cấp phép: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> </Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3 }}>4. Giấy tờ, tài liệu nộp kèm theo Đơn này gồm có: </Text>
+                    </View>
+                    <View style={{ marginBottom: 3, paddingRight: 15 }}>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Đề án khai thác, sử dụng nước; Báo cáo hiện trạng khai thác, sử dụng nước kèm theo quy trình vận hành. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Kết quả phân tích chất lượng nguồn nước. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Sơ đồ vị trí công trình khai thác nước. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Các giấy tờ, tài liệu khác có liên quan. </Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3 }}>5. Cam kết của tổ chức/cá nhân đề nghị cấp phép: </Text>
+                    </View>
+                    <View style={{ marginBottom: 3, paddingRight: 15 }}>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- (Tên tổ chức/cá nhân đề nghị cấp phép) cam đoan các nội dung, thông tin trong Đơn này và các giấy tờ, tài liệu gửi kèm theo là đúng sự thật và xin hoàn toàn chịu trách nhiệm trước pháp luật. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- (Tên tổ chức/cá nhân đề nghị cấp phép) cam kết chấp hành đúng, đầy đủ các quy định của giấy phép và thực hiện đầy đủ các nghĩa vụ quy định tại Khoản 2 Điều 43 của Luật tài nguyên nước và quy định của pháp luật có liên quan. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- (Tên tổ chức/cá nhân đề nghị cấp phép) đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường tỉnh Sơn La (10). </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>Đề nghị (tên cơ quan cấp phép) xem xét, cấp giấy phép khai thác sử dụng nước mặt cho (tổ chức/cá nhân đề nghị cấp phép)./. </Text>
+                    </View>
+                    <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', paddingRight: 15, textAlign: 'center' }}>
+                        <Text style={{ fontSize: 11, marginBottom: 3, fontFamily: 'RobotoItalic' }}> ........ ngày....... tháng....... năm........ </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}> Tổ chức, cá nhân đề nghị cấp phép </Text>
+                        <Text style={{ fontSize: 10, marginBottom: 3, fontFamily: 'RobotoItalic' }}> Ký, ghi rõ họ tên (đóng dấu nếu có) </Text>
+                    </View>
+                </Page>
+            </Document>
+        )
+
         return(
             this.state.redirectSuccess ?  <Redirect to='/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi' /> :
 			<div className="p-0">
@@ -541,7 +694,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                             <div className="my-3 p-1"></div>
                             <div className="pb-4 text-center col-sm-12 d-flex">
                                 <div className="col-3">
-                                    <button type="submit" className="btn btn-outline-primary mx-2 fw-bold font-14 d-flex align-items-center"><FilePdfOutlined /> &nbsp; IN PDF</button>
+                                    <PDFDownloadLink document={<GenerateRequestFile data={this.state.licensePostData} />} className="col-4 btn btn-outline-primary mx-2 fw-bold font-14 d-flex align-items-center justify-content-center" fileName="Don-de-nghi-cap-phep-nuoc-mat.pdf"><FilePdfOutlined /> &nbsp; IN PDF</PDFDownloadLink>
                                 </div>
                                 <div className="col-6 d-flex justify-content-center">
                                     <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
