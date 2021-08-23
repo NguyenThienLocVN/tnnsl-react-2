@@ -304,69 +304,69 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.1. Tên tổ chức/cá nhân: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Công ty A </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_ten}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11, marginBottom: 3 }]}>1.2. Số Giấy đăng ký kinh doanh, nơi cấp, ngày cấp hoặc số Quyết định thành lập, cơ quan ký quyết định: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> 2858697092 </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_sogiaydangkykinhdoanh}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.3. Địa chỉ: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Xã Mường Lầm - Huyện Sông Mã - Tỉnh Sơn La</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_diachi}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.4. Điện thoại: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>0968786543 </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>Fax: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>Email: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_phone}</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; Fax: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_fax}</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; Email: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_email}</Text>
                     </View>
                     <View style={{ fontFamily: 'RobotoBold' }}>
                         <Text style={{ fontSize: 12, marginBottom: 3}}>2. Thông tin chung về công trình khai thác, sử dụng nước: </Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.1. Tên công trình: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Thủy điện Tà Niết </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.congtrinh_ten}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.2. Loại hình công trình, phương thức khai thác nước: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> Thủy điện Tà Niết (2)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.phuongthuc_kt}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.3. Vị trí công trình: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> xã Chiềng Khoa- huyện Mộc Châu- tỉnh Sơn La (3)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.congtrinh_diadiem}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>2.4. Hiện trạng công trình: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>(3)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.congtrinh_hientrang}</Text>
                     </View>
                     <View style={{ fontFamily: 'RobotoBold' }}>
                         <Text style={{ fontSize: 12, marginBottom: 3}}>3. Nội dung đề nghị cấp phép: </Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.1. Nguồn nước khai thác, sử dụng: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (5)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.nguonnuoc_ktsd}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.2. Vị trí lấy nước: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (6)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.vitri_laynuoc}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.3. Mục đích khai thác, sử dụng nước: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (7)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.mucdich_ktsd}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.4. Lượng nước khai thác, sử dụng: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (8)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.luuluongnuoc_ktsd}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.5. Chế độ khai thác, sử dụng: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> (9)</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.che_do_kt}</Text>
                     </View>
                     <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
                         <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>3.6. Thời gian đề nghị cấp phép: </Text>
-                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.gp_thoihangiayphep}</Text>
                     </View>
                     <View style={{ fontFamily: 'RobotoBold' }}>
                         <Text style={{ fontSize: 12, marginBottom: 3 }}>4. Giấy tờ, tài liệu nộp kèm theo Đơn này gồm có: </Text>
