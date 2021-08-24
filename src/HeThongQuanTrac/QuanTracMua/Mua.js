@@ -1,7 +1,15 @@
 import React from 'react';
+
 import Header from "../../Shared/Header";
+
+
 import { FileExcelOutlined, SearchOutlined, UploadOutlined } from "@ant-design/icons";
 import { Modal, Tabs, Button, Table, Form, Select, DatePicker, Input } from 'antd';
+import { ResizableBox } from "react-resizable";
+
+import DragM from "dragm";
+import "antd/dist/antd.css";
+
 
 import { Bar } from 'react-chartjs-2';
 
@@ -25,6 +33,25 @@ const blueIcon = L.icon({
 });
 
 const { TabPane } = Tabs;
+
+class BuildTitle extends React.Component {
+    updateTransform = transformStr => {
+      this.modalDom.style.transform = transformStr;
+    };
+    componentDidMount() {
+      this.modalDom = document.getElementsByClassName(
+        "ant-modal-wrap" //modal的class是ant-modal
+      )[0];
+    }
+    render() {
+      const { title } = this.props;
+      return (
+        <DragM updateTransform={this.updateTransform}>
+          <div>{title}</div>
+        </DragM>
+      );
+    }
+  }
 
 export default class HeThongQuanTracNuocMatMua extends React.Component{
     constructor(props){
@@ -126,15 +153,21 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 }
             },
             scales: {
-                x: {
+                xAxes: {
                     display: true,
+                    gridLines: { 
+                        display: false 
+                    },
                     title: {
                         display: true,
                         text: 'Ngày & giờ'
                     },
                 },
-                y: {
+                yAxes: {
                     display: true,
+                    gridLines: { 
+                        display: false 
+                    },
                     title: {
                         display: true,
                         text: 'Lượng mưa'
@@ -250,110 +283,129 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                 </span>
                                 <Modal
                                     className="modal-quantrac"
-                                    scrollableBody={true}
-                                    title={"SỐ LIỆU QUAN TRẮC MƯA - "+record.tentram}
-                                    width={1000}
+                                    title={title}
+                                    centered={true}
+                                    width="min-content"
                                     visible={this.state.activeModal === record.id} 
                                     onCancel={this.hideModal}
                                     footer={false}
+                                    destroyOnClose={true}
+                                    mask={false}
+                                    style={{ pointerEvents: "all" }}
+                                    wrapProps={{ style: { pointerEvents: "none" } }}
+                                    afterClose={() => {
+                                        try {
+                                        document.getElementsByClassName(
+                                            "ant-modal-wrap"
+                                        )[0].style.transform =
+                                            "translate(0px, 0px)";
+                                        } catch (e) {}
+                                    }}
                                 >
-                                    <div className="modal_quantrac">
-                                        <div className="row p-0 m-0">
-                                            <div className="row p-0 mx-0 m-2 align-items-center ">
-                                                <div className="d-flex align-items-center col-sm-4">
-                                                    <div style={{fontSize:30, fontWeight:"bold"}}>&sum;</div>
-                                                    <div className="row col-auto m-0 p-0">
-                                                        <span className="col-12 text-nowrap p-0">mưa</span>
-                                                        <span className="col-12 text-nowrap p-0">thực đo</span>
+                                    <ResizableBox
+                                        width={1290}
+                                        height={750}
+                                        minConstraints={[750, 550]}
+                                        maxConstraints={[1290, 800]}
+                                    >
+                                        <div className="modal_quantrac">
+                                            <div className="row p-0 m-0">
+                                                <div className="row p-0 mx-0 m-2 align-items-center ">
+                                                    <div className="d-flex align-items-center col-sm-4">
+                                                        <div style={{fontSize:30, fontWeight:"bold"}}>&sum;</div>
+                                                        <div className="row col-auto m-0 p-0">
+                                                            <span className="col-12 text-nowrap p-0">mưa</span>
+                                                            <span className="col-12 text-nowrap p-0">thực đo</span>
+                                                        </div>
+                                                        <div>
+                                                            <span className="d-flex"> = <span className="fw-bold text-primary">0</span>(mm)</span>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <span> = <span className="fw-bold text-primary">0</span>(mm)</span>
-                                                    </div>
+                                                    <Form className="col-sm-8">
+                                                        <div className="d-flex justify-content-end">
+                                                            <Form.Item className="px-2 mb-0" label="Từ ngày: ">
+                                                                <DatePicker placeholder=" Chọn ngày " />
+                                                            </Form.Item>
+                                                            <Form.Item className="px-2 mb-0" label="Đến ngày: ">
+                                                                <DatePicker placeholder=" Chọn ngày " />
+                                                            </Form.Item>
+                                                            <Form.Item className="px-2 mb-0 d-flex justify-content-end align-items-end">
+                                                                <div className="d-flex justify-content-end align-items-end">
+                                                                    <Button className="d-flex justify-content-center align-items-center">
+                                                                        <SearchOutlined />
+                                                                        Tìm kiếm
+                                                                    </Button>
+                                                                </div>
+                                                            </Form.Item>
+                                                        </div>
+                                                    </Form>
                                                 </div>
-                                                <Form className="col-sm-8">
-                                                    <div className="d-flex justify-content-end">
-                                                        <Form.Item className="px-2 mb-0" label="Từ ngày: ">
-                                                            <DatePicker placeholder=" Chọn ngày " />
-                                                        </Form.Item>
-                                                        <Form.Item className="px-2 mb-0" label="Đến ngày: ">
-                                                            <DatePicker placeholder=" Chọn ngày " />
-                                                        </Form.Item>
-                                                        <Form.Item className="px-2 mb-0">
+                                            </div>
+                                            <Tabs defaultActiveKey="1" type="card">
+                                                <TabPane tab="Biểu Đồ" key="1">
+                                                    <div className="d-flex align-items-end">
+                                                        <Bar width={600} height={400} data={dataBar} options={optionBar} />
+                                                    </div>
+                                                </TabPane>
+                                                <TabPane tab="Bảng Biểu" key="2">
+                                                    <Form>
+                                                        <div className="row m-0 p-0">
+                                                            <div className="col-sm-6 p-2">
+                                                                <Table bordered 
+                                                                dataSource={dataBangBieuLuongMua1} 
+                                                                columns={columnBangBieuLuongMua}
+                                                                pagination={false}
+                                                                />
+                                                            </div>
+                                                            <div className="col-sm-6 p-2">
+                                                                <Table bordered 
+                                                                dataSource={dataBangBieuLuongMua2} 
+                                                                columns={columnBangBieuLuongMua}
+                                                                pagination={false}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="d-flex p-2 justify-content-end">
                                                             <div className="d-flex justify-content-end">
-                                                                <Button className="d-flex justify-content-center align-items-center">
-                                                                    <SearchOutlined />
-                                                                    Tìm kiếm
+                                                                <Button type="primary" className="d-flex justify-content-center align-items-center">
+                                                                    <FileExcelOutlined />
+                                                                    Xuất file excel
                                                                 </Button>
                                                             </div>
-                                                        </Form.Item>
-                                                    </div>
-                                                </Form>
-                                            </div>
-                                        </div>
-                                        <Tabs defaultActiveKey="1" type="card">
-                                            <TabPane tab="Biểu Đồ" key="1">
-                                                <div className="d-flex align-items-end">
-                                                    <Bar width={600} height={500} data={dataBar} options={optionBar} />
-                                                </div>
-                                            </TabPane>
-                                            <TabPane tab="Bảng Biểu" key="2">
-                                                <Form>
-                                                    <div className="row m-0 p-0">
-                                                        <div className="col-sm-6 p-2">
-                                                            <Table bordered 
-                                                            dataSource={dataBangBieuLuongMua1} 
-                                                            columns={columnBangBieuLuongMua}
-                                                            pagination={false}
-                                                            />
                                                         </div>
-                                                        <div className="col-sm-6 p-2">
-                                                            <Table bordered 
-                                                            dataSource={dataBangBieuLuongMua2} 
-                                                            columns={columnBangBieuLuongMua}
-                                                            pagination={false}
-                                                            />
+                                                    </Form>
+                                                </TabPane>
+                                                <TabPane tab="Cập Nhật" key="3">
+                                                    <Form>
+                                                        <div className="row m-0 p-0">
+                                                            <div className="col-sm-6 p-2">
+                                                                <Table bordered 
+                                                                dataSource={dataBangBieuLuongMua1} 
+                                                                columns={columnCapNhatLuongMua}
+                                                                pagination={false}
+                                                                />
+                                                            </div>
+                                                            <div className="col-sm-6 p-2">
+                                                                <Table bordered 
+                                                                dataSource={dataBangBieuLuongMua2} 
+                                                                columns={columnCapNhatLuongMua}
+                                                                pagination={false}
+                                                                />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="d-flex p-2 justify-content-end">
-                                                        <div className="d-flex justify-content-end">
-                                                            <Button type="primary" className="d-flex justify-content-center align-items-center">
-                                                                <FileExcelOutlined />
-                                                                Xuất file excel
-                                                            </Button>
+                                                        <div className="d-flex p-2 justify-content-end">
+                                                            <div className="d-flex justify-content-end">
+                                                                <Button type="primary" className="d-flex justify-content-center align-items-center">
+                                                                    <UploadOutlined />
+                                                                    Cập Nhật
+                                                                </Button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </Form>
-                                            </TabPane>
-                                            <TabPane tab="Cập Nhật" key="3">
-                                                <Form>
-                                                    <div className="row m-0 p-0">
-                                                        <div className="col-sm-6 p-2">
-                                                            <Table bordered 
-                                                            dataSource={dataBangBieuLuongMua1} 
-                                                            columns={columnCapNhatLuongMua}
-                                                            pagination={false}
-                                                            />
-                                                        </div>
-                                                        <div className="col-sm-6 p-2">
-                                                            <Table bordered 
-                                                            dataSource={dataBangBieuLuongMua2} 
-                                                            columns={columnCapNhatLuongMua}
-                                                            pagination={false}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div className="d-flex p-2 justify-content-end">
-                                                        <div className="d-flex justify-content-end">
-                                                            <Button type="primary" className="d-flex justify-content-center align-items-center">
-                                                                <UploadOutlined />
-                                                                Cập Nhật
-                                                            </Button>
-                                                        </div>
-                                                    </div>
-                                                </Form>
-                                            </TabPane>
-                                        </Tabs>
-                                    </div>
+                                                    </Form>
+                                                </TabPane>
+                                            </Tabs>
+                                        </div>  
+                                    </ResizableBox>
                                 </Modal>
                             </span>
                         </p>
@@ -615,6 +667,9 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 )
             },
         ];
+        const title = (
+            <BuildTitle visible={this.state.visible} title={"SỐ LIỆU QUAN TRẮC MƯA"} />
+        );
         return(
             <div className="p-0">
                 <Header headTitle="QUAN TRẮC MƯA " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
