@@ -631,7 +631,52 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                     </Select>
                                 </Form.Item>
                                 <Form.Item className="px-2 my-2">
-                                    <Button className="col-12">Thêm trạm</Button>
+                                    <Button className="col-12" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}>Thêm trạm</Button>
+                                    <Modal
+                                        className="modal-quantrac"
+                                        scrollableBody={true}
+                                        title="YÊU CẦU THÊM MỚI TRẠM QUAN TRẮC"
+                                        width={500}
+                                        visible={this.state.activeModal === "yeucau_themtrammoi"}
+                                        onCancel={this.hideModal}
+                                        footer={false}
+                                    >
+                                        <div>
+                                            <Form labelCol={{ span: 24 }}>
+                                                <Form.Item label="Tên trạm" style={{ marginBottom: 0 }}>
+                                                    <Input placeholder="Tên trạm" />
+                                                </Form.Item>
+                                                <Form.Item label="Tọa độ (VN2000)" style={{ marginBottom: 0 }}>
+                                                    <div className="d-flex justify-content-between">
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="X" />
+                                                        </Form.Item>
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="Y" />
+                                                        </Form.Item>
+                                                    </div>
+                                                </Form.Item>
+                                                <Form.Item label="Huyện / Xã" style={{ marginBottom: 0 }}>
+                                                    <div className="d-flex justify-content-between">
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="Huyện" />
+                                                        </Form.Item>
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="Xã" />
+                                                        </Form.Item>
+                                                    </div>
+                                                </Form.Item>
+                                                <Form.Item label="Địa chỉ">
+                                                    <Input placeholder="Địa chỉ" />
+                                                </Form.Item>
+                                                <Form.Item>
+                                                    <div className="d-flex justify-content-center">
+                                                        <Button>Yêu cầu thêm mới</Button>
+                                                    </div>
+                                                </Form.Item>
+                                            </Form>
+                                        </div>
+                                    </Modal>
                                 </Form.Item>
                             </Form>
 
