@@ -110,7 +110,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
         var constructionId = this.props.match.params.id_gp;
 
         trackPromise(axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/thong-tin-giay-phep/"+constructionId, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/thuy-dien/thong-tin-giay-phep/"+constructionId, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => { this.setState({licensePostData: response.data.licenseData[0], hangmuc: response.data.hangmuc}); })

@@ -1,28 +1,34 @@
 import React from 'react';
 
+// IMPORT HEADER
 import Header from "../../Shared/Header";
 
-
+// IMPORT FROM ANT
 import { FileExcelOutlined, SearchOutlined, UploadOutlined } from "@ant-design/icons";
 import { Modal, Tabs, Button, Table, Form, Select, DatePicker, Input } from 'antd';
-import { ResizableBox } from "react-resizable";
 
+// DRAG AND RESIZE MODAL
+import { ResizableBox } from "react-resizable";
 import DragM from "dragm";
 import "antd/dist/antd.css";
 
-
+// IMPORT BAR CHARTS DATA
 import { Bar } from 'react-chartjs-2';
 
-import { MapContainer, Marker, Popup } from "react-leaflet";
-import { BasemapLayer } from "react-esri-leaflet";
+// GET DATA FROM API
 import axios from "axios";
 import configData from "../../config.json";
 import { trackPromise } from 'react-promise-tracker';
-import ReactLeafletKml from 'react-leaflet-kml';
+// CHECK AUTH LOGIN
 import { getToken, removeUserSession } from '../../Shared/Auth';
 
-import * as L from 'leaflet';
 
+
+// MAP
+import { MapContainer, Marker, Popup } from "react-leaflet";
+import { BasemapLayer } from "react-esri-leaflet";
+import * as L from 'leaflet';
+import ReactLeafletKml from 'react-leaflet-kml';
 import blueMarker from '../../Shared/marker-blue.png';
 
 const blueIcon = L.icon({
@@ -34,13 +40,14 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
+// MODAL TITLE IN DRAG MODAL
 class BuildTitle extends React.Component {
     updateTransform = transformStr => {
       this.modalDom.style.transform = transformStr;
     };
     componentDidMount() {
       this.modalDom = document.getElementsByClassName(
-        "ant-modal-wrap" //modal的class是ant-modal
+        "ant-modal-wrap"
       )[0];
     }
     render() {
@@ -67,26 +74,27 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
             showMapLayer: false,
             showMapLegend: true,
             kml: null,
+            TenTramQuanTrac: '',
         };
         
         this.mapRef = React.createRef();
     }
 
     componentDidMount(){
+        // PAGE TITLE
         document.title = "Hệ thống quan trắc | Mưa | Giám sát tài nguyên nước Sơn La";
 
+        // 
         fetch(window.location.origin + "/Placemark.kml")
         .then((res) => res.text())
         .then((kmlText) => {
             const parser = new DOMParser();
             const kml = parser.parseFromString(kmlText, "text/xml");
-            
             this.setState({ kml: kml });
         })
-
         this.fetch(this.state.pagination, 'all');
     }
-
+    // FILTER LOCATION
     fetch = (params = {}, filter) => {
         this.setState({ loading: true });
         trackPromise(
@@ -117,16 +125,23 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
             })
         )
     };
-
-    clickHandler = (e, index) => {
-        this.setState({ activeModal: index })
+    // OPEN MODAL
+    clickHandler = (e, index, tentram) => {
+        this.setState({ 
+            activeModal: index,
+            TenTramQuanTrac: tentram
+         })
     }
-    
+    // CLOSE MODAL
     hideModal = () => {
-        this.setState({ activeModal: null })
+        this.setState({ 
+            activeModal: null,
+            TenTramQuanTrac: ''
+        })
     }
     
     render(){
+        // BAR CHARTS DATA
         const dataBar = {
             labels: ['00:00 - 24/08/2021', '01:00 - 24/08/2021', '02:00 - 24/08/2021', '03:00 - 24/08/2021', '04:00 - 24/08/2021', '05:00 - 24/08/2021','00:06 - 24/08/2021', '07:00 - 24/08/2021', '08:00 - 24/08/2021', '09:00 - 24/08/2021', '10:00 - 24/08/2021', '11:00 - 24/08/2021','12:00 - 24/08/2021', '13:00 - 24/08/2021', '14:00 - 24/08/2021', '15:00 - 24/08/2021', '16:00 - 24/08/2021', '17:00 - 24/08/2021','18:00 - 24/08/2021','19:00 - 24/08/2021','20:00 - 24/08/2021','21:00 - 24/08/2021','22:00 - 24/08/2021','23:00 - 24/08/2021',],
             datasets: [
@@ -143,7 +158,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
               },
             ],
           };
-          
+        //   BAR CHARTS OPTIONS
           const optionBar = {
             maintainAspectRatio: false,
             plugins: {
@@ -170,12 +185,12 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                     },
                     title: {
                         display: true,
-                        text: 'Lượng mưa'
+                        text: 'Lưu lượng mưa'
                     },
                 }
             }
           };
-        //   TABLE DATA
+        //   TRAM DATA IN TABLE TRAM
         const dataTram = [
             {
                 key: '1',
@@ -266,7 +281,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 ngay3: '19',
             },
         ];
-          
+        // COLUMN IN TABLE TRAM
         const columnTram = [
             {
                 title: 'Tên Trạm',
@@ -278,7 +293,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                             <span className="stt_table_quantrac">{record.id}. </span>
                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                             <span className="d-inline-block">
-                                <span className="p-1 d-flex align-items-center justify-content-center text-primary" onClick={(e) => this.clickHandler(e, record.id)}>
+                                <span className="p-1 d-flex align-items-center justify-content-center text-primary" onClick={(e) => this.clickHandler(e, record.id, record.tentram)}>
                                     {record.tentram}
                                 </span>
                                 <Modal
@@ -291,6 +306,8 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                     footer={false}
                                     destroyOnClose={true}
                                     mask={false}
+
+                                    // STYLE RESIZE MODAL
                                     style={{ pointerEvents: "all" }}
                                     wrapProps={{ style: { pointerEvents: "none" } }}
                                     afterClose={() => {
@@ -302,12 +319,14 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                         } catch (e) {}
                                     }}
                                 >
+                                    {/* RESIZE MODAL CONTENT */}
                                     <ResizableBox
                                         width={1290}
                                         height={750}
-                                        minConstraints={[750, 550]}
+                                        minConstraints={[750, 635]}
                                         maxConstraints={[1290, 800]}
                                     >
+                                        {/* MODAL CONTENT */}
                                         <div className="modal_quantrac">
                                             <div className="row p-0 m-0">
                                                 <div className="row p-0 mx-0 m-2 align-items-center ">
@@ -321,13 +340,14 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                             <span className="d-flex"> = <span className="fw-bold text-primary">0</span>(mm)</span>
                                                         </div>
                                                     </div>
+                                                    {/* FILTER FORM */}
                                                     <Form className="col-sm-8">
                                                         <div className="d-flex justify-content-end">
                                                             <Form.Item className="px-2 mb-0" label="Từ ngày: ">
-                                                                <DatePicker placeholder=" Chọn ngày " />
+                                                                <DatePicker size="small" placeholder=" Chọn ngày " />
                                                             </Form.Item>
                                                             <Form.Item className="px-2 mb-0" label="Đến ngày: ">
-                                                                <DatePicker placeholder=" Chọn ngày " />
+                                                                <DatePicker size="small" placeholder=" Chọn ngày " />
                                                             </Form.Item>
                                                             <Form.Item className="px-2 mb-0 d-flex justify-content-end align-items-end">
                                                                 <div className="d-flex justify-content-end align-items-end">
@@ -339,15 +359,19 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                             </Form.Item>
                                                         </div>
                                                     </Form>
+                                                    {/* END FILTER FORM */}
                                                 </div>
                                             </div>
-                                            <Tabs defaultActiveKey="1" type="card">
+                                            <Tabs type="card" tabPosition="left" defaultActiveKey="1" type="card">
                                                 <TabPane tab="Biểu Đồ" key="1">
+                                                    {/* BAR CHARTS LUU LUONG MUA */}
                                                     <div className="d-flex align-items-end">
                                                         <Bar width={600} height={400} data={dataBar} options={optionBar} />
                                                     </div>
+                                                    {/* END BAR CHARTS LUU LUONG MUA */}
                                                 </TabPane>
                                                 <TabPane tab="Bảng Biểu" key="2">
+                                                    {/* FORM SHOW DATA LUU LUONG MUA */}
                                                     <Form>
                                                         <div className="row m-0 p-0">
                                                             <div className="col-sm-6 p-2">
@@ -374,8 +398,10 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                             </div>
                                                         </div>
                                                     </Form>
+                                                    {/* END FORM SHOW DATA LUU LUONG MUA */}
                                                 </TabPane>
                                                 <TabPane tab="Cập Nhật" key="3">
+                                                    {/* FORM UPDATE DATA LUU LUONG MUA */}
                                                     <Form>
                                                         <div className="row m-0 p-0">
                                                             <div className="col-sm-6 p-2">
@@ -402,6 +428,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                             </div>
                                                         </div>
                                                     </Form>
+                                                    {/* END FORM SHOW DATA LUU LUONG MUA */}
                                                 </TabPane>
                                             </Tabs>
                                         </div>  
@@ -605,6 +632,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 giamsat_luongmua: '0',
             },
         ];
+        // COLUMN SHOW LUU LUONG MUA
         const columnBangBieuLuongMua = [
             {
                 title: '#',
@@ -636,6 +664,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 )
             },
         ];
+        // COLUMN UPDATE LUU LUONG MUA
         const columnCapNhatLuongMua = [
             {
                 title: '#',
@@ -667,8 +696,10 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 )
             },
         ];
+
+        // BUILE TITLE MODAL
         const title = (
-            <BuildTitle visible={this.state.visible} title={"SỐ LIỆU QUAN TRẮC MƯA"} />
+            <BuildTitle visible={this.state.visible} title={"SỐ LIỆU QUAN TRẮC MƯA - "+this.state.TenTramQuanTrac} />
         );
         return(
             <div className="p-0">
@@ -676,22 +707,24 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="my-2 col-12 p-0 row m-0">
+                            {/* FORM FILTER TRAM QUAN TRAC */}
                             <Form className="col-6 border-end row m-0 align-items-end">
-                                <div className="px-2 my-2 fw-bold">Có <span className="text-danger"> 0 </span> / <span> 11 </span> trạm đang mưa </div>
-                                <Form.Item className="px-2 my-2">
-                                    <Select placeholder="Chọn trạm">
+                                <div className="p-1 m-0 fw-bold">Có <span className="text-danger"> 0 </span> / <span> 11 </span> trạm đang mưa </div>
+                                <Form.Item className="p-1 m-0">
+                                    <Select size="small" placeholder="Chọn trạm">
                                         {dataTram.map((tram,i) => (
                                             <Select.Option key={i}>{tram.tentram}</Select.Option>
                                         ))}
                                     </Select>
                                 </Form.Item>
-                                <Form.Item className="px-2 my-2">
+                                <Form.Item className="p-1 m-0">
                                     <Button className="col-12" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}>Thêm trạm</Button>
                                     <Modal
                                         className="modal-quantrac"
                                         scrollableBody={true}
                                         title="YÊU CẦU THÊM MỚI TRẠM QUAN TRẮC"
                                         width={500}
+                                        centered={true}
                                         visible={this.state.activeModal === "yeucau_themtrammoi"}
                                         onCancel={this.hideModal}
                                         footer={false}
@@ -699,30 +732,30 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                         <div>
                                             <Form labelCol={{ span: 24 }}>
                                                 <Form.Item label="Tên trạm" style={{ marginBottom: 0 }}>
-                                                    <Input placeholder="Tên trạm" />
+                                                    <Input size="small" placeholder="Tên trạm" />
                                                 </Form.Item>
                                                 <Form.Item label="Tọa độ (VN2000)" style={{ marginBottom: 0 }}>
                                                     <div className="d-flex justify-content-between">
                                                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input placeholder="X" />
+                                                            <Input size="small" placeholder="X" />
                                                         </Form.Item>
                                                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input placeholder="Y" />
+                                                            <Input size="small" placeholder="Y" />
                                                         </Form.Item>
                                                     </div>
                                                 </Form.Item>
                                                 <Form.Item label="Huyện / Xã" style={{ marginBottom: 0 }}>
                                                     <div className="d-flex justify-content-between">
                                                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input placeholder="Huyện" />
+                                                            <Input size="small" placeholder="Huyện" />
                                                         </Form.Item>
                                                         <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input placeholder="Xã" />
+                                                            <Input size="small" placeholder="Xã" />
                                                         </Form.Item>
                                                     </div>
                                                 </Form.Item>
                                                 <Form.Item label="Địa chỉ">
-                                                    <Input placeholder="Địa chỉ" />
+                                                    <Input size="small" placeholder="Địa chỉ" />
                                                 </Form.Item>
                                                 <Form.Item>
                                                     <div className="d-flex justify-content-center">
@@ -736,32 +769,36 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                             </Form>
 
                             <Form className="col-6 border-start row m-0 align-items-end" labelCol={{ span: 8 }}>
-                                <Form.Item className="px-2 my-2" label="Từ ngày">
-                                    <DatePicker placeholder="Chọn ngày" />
+                                <Form.Item className="p-1 m-0" label="Từ ngày">
+                                    <DatePicker size="small" placeholder="Chọn ngày" />
                                 </Form.Item>
-                                <Form.Item className="px-2 my-2" label="Đến ngày">
-                                    <DatePicker placeholder="Chọn ngày" />
+                                <Form.Item className="p-1 m-0" label="Đến ngày">
+                                    <DatePicker size="small" placeholder="Chọn ngày" />
                                 </Form.Item>
-                                <Form.Item className="px-2 my-2">
+                                <Form.Item className="p-1 m-0">
                                     <Button className="d-flex justify-content-center align-items-center col-12">
                                         <SearchOutlined />
                                         Tìm kiếm
                                     </Button>
                                 </Form.Item>
                             </Form>
+                            {/* END FORM FILTER TRAM QUAN TRAC */}
                         </div>
                         <div className="px-2">
+                            {/* TABLE SHOW LIST TRAM QUAN TRAC MUA */}
                             <Table bordered dataSource={dataTram} columns={columnTram} />
+                            {/* END TABLE SHOW LIST TRAM QUAN TRAC MUA */}
                         </div>
                     </div>
                     <div className="col-12 col-lg-9 map-container px-md-0 position-relative">
+                        {/* MAP */}
                         <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
                             <BasemapLayer name="Imagery" />
                             <BasemapLayer name="ImageryLabels" />
 
                             {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
 
-                            {/* Diem mua*/}
+                            {/* POPUP DIEM MUA */}
                             { this.state.dataSource.map((marker, key) => (
                                     marker.location_type === "mua" ? <Marker position={[marker.latitude, marker.longitude]} key={key} icon={blueIcon} >
                                     <Popup>
@@ -773,6 +810,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                 ))
                             }
                         </MapContainer>
+                        {/* MAP */}
                     </div>
                 </main>
             </div>
