@@ -94,29 +94,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     componentDidMount(){
         document.title = "Nước mặt - Công trình thủy điện";
 
-        var pageName = this.props.match.path.split("/").pop();
-        trackPromise(axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/"+pageName+"/thong-tin-ban-do-cong-trinh", {
-                headers: {'Authorization': 'Bearer ' + getToken()}
-            })
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        contructionInfoForMap: response.data,
-                    });
-                }
-            })
-            .catch((error) => {
-                if(error.response.status === 401)
-                {
-                    removeUserSession();
-                    window.location.reload();
-                }
-                this.setState({msg: error.response})
-            })
-        )
-
         fetch(window.location.origin + "/Placemark.kml")
         .then((res) => res.text())
         .then((kmlText) => {
@@ -500,7 +477,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                     ))
                                 }
 
-                                {/* Diem cong trinh het hieu luc */}
+                                {/* Diem cong trinh chua duoc duyet */}
                                 {this.state.grayMarker && 
                                     this.state.dataSource.map((marker, key) => (
                                         marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "chuaduocduyet" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={GrayIcon} >

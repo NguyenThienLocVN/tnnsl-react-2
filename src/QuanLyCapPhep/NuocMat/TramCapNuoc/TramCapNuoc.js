@@ -1,22 +1,54 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
 import { Link } from 'react-router-dom';
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup, LayersControl, TileLayer, ZoomControl } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
-import { FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
-import { ConfigProvider, Table, Input, Modal } from 'antd';
+import { ConfigProvider, Table, Input, Modal, Checkbox } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
+import ReactLeafletKml from 'react-leaflet-kml';
 
 import * as L from 'leaflet';
-import * as esri from 'esri-leaflet';
+
+import yellowMarker from '../../../Shared/marker-yellow.png';
+import greenMarker from '../../../Shared/marker-green.png';
+import redMarker from '../../../Shared/marker-red.png';
+import grayMarker from '../../../Shared/marker-gray.png';
 
 const { Search } = Input;
+const YellowIcon = L.icon({
+    iconUrl: yellowMarker,
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
+    className: 'yellowMarker',
+});
+
+const GreenIcon = L.icon({
+    iconUrl: greenMarker,
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
+    className: 'greenMarker',
+});
+
+const RedIcon = L.icon({
+    iconUrl: redMarker,
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
+    className: 'redMarker',
+});
+
+const GrayIcon = L.icon({
+    iconUrl: grayMarker,
+    iconSize: [12, 12],
+    iconAnchor: [10, 12],
+    className: 'grayMarker',
+});
 
 export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
     constructor(props)
@@ -26,7 +58,6 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
             center: [21.529737201190642, 103.9692398828125],
 			zoom: 8,
             pagename: this.props.match.params.pagename,
-			contructionInfoForMap: [],
             loading: false,
             dataSource: [],
             visible: false,
@@ -34,7 +65,18 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            
+            showMapLayer: false,
+            showMapLegend: true,
+            kml: null,
+            yellowMarker: true,
+            greenMarker: true,
+            redMarker: true,
+            grayMarker: true,
+
+            maxBounds: [
+				[23.928100, 101.498900],
+				[19.629882, 106.971813]
+			]
         }
 
         this.mapRef = React.createRef();
@@ -49,84 +91,22 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Nươc mặt - Công trình trạm cấp nước";
+        document.title = "Nước mặt - Công trình trạm cấp nước";
 
-        trackPromise(axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/thong-tin-ban-do-cong-trinh", {
-                headers: {'Authorization': 'Bearer ' + getToken()}
-            })
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        contructionInfoForMap: response.data,
-                    });
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response})
-            })
-        )
+        fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
 
         this.fetch(this.state.pagination, 'all');
     }
 
     clickToZoom = (lat, long) => {
         this.mapRef.current.flyTo([lat, long], 16);
-    }
-
-    changeBasemap = (event) => {
-        // Change basemap follow select option
-        var basemap = event.target.value
-        var map = this.mapRef.current;
-
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
-        });
-    
-        var layer = esri.basemapLayer(basemap);
-    
-        map.addLayer(layer);
-    
-        if (basemap === 'ShadedRelief'
-        || basemap === 'Oceans'
-        || basemap === 'Gray'
-        ) {
-            var layerLabels = esri.basemapLayer(basemap + 'Labels');
-            map.addLayer(layerLabels);
-        } else if (basemap === 'Imagery') {
-            var imagery = esri.basemapLayer('Imagery');
-            var imageryLabels = esri.basemapLayer('ImageryLabels');
-            map.addLayer(imagery);
-            map.addLayer(imageryLabels);
-        }
-
-        // Add marker
-        var markerStyle = {
-            radius: 7,
-            fillColor: "yellow",
-            color: "yellow",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 1,
-            className: 'marker'
-        };
-
-        // Draw circle each point
-        L.geoJSON(this.state.contructionInfoForMap, {
-        onEachFeature: this.onEachFeature,
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, markerStyle);
-        }
-        }).addTo(map);
-    }
-
-    // Click to show popup
-    onEachFeature = (feature, layer) => {
-        if (feature.properties && feature.properties.hoverContent) {
-            layer.on('click', function() { layer.bindPopup(feature.properties.detailContent, {closeOnClick: true, autoClose: false}).openPopup()});
-            layer.on('mouseover', function() { layer.bindPopup(feature.properties.hoverContent).openPopup()});
-        }
     }
 
     formatDate(date) {
@@ -318,63 +298,250 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50 position-relative">
-                            <select defaultValue="Imagery" id="switch-basemaps" className="position-absolute" onChange={this.changeBasemap}>
-                                <option value="Imagery">Bản đồ vệ tinh</option>
-                                <option value="Topographic">Bản đồ địa hình</option>
-                                <option value="Streets">Bản đồ đường</option>
-                                <option value="NationalGeographic">Bản đồ địa lý</option>
-                                <option value="Gray">Bản đồ xám</option>
-                            </select>
-                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
-                                <BasemapLayer name="Imagery" />
+                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false} maxZoom={14} maxBounds={this.state.maxBounds}>
                                 <BasemapLayer name="ImageryLabels" />
 
-                                {this.state.dataSource.map((marker, key) => (
-                                    marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
-                                    <Popup>
-                                    <div>
-                                        <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].sohieu+" - "+marker.congtrinh_ten}</h5>
-                                        <table className="table table-striped table-hover mb-2">
-                                            <tbody>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Tọa độ X</td>
-                                                    <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Tọa độ Y</td>
-                                                    <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Địa điểm</td>
-                                                    <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Số GP</td>
-                                                    <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Ngày cấp</td>
-                                                    <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
-                                                    <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  gp</td>
-                                                    <td className="col-8 py-1">{marker.luuluong_xadongchay_toithieu} m<sup>3</sup>/s</td>
-                                                </tr>
-                                                <tr className="col-12 d-flex p-0">
-                                                    <td className="col-4 py-1">Q <sub>xả TT</sub>  thực tế</td>
-                                                    <td className="col-8 py-1"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <Link to={'/quan-ly-cap-phep/nuoc-mat/tram-cap-nuoc/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                <LayersControl position="topleft">
+                                    <LayersControl.BaseLayer checked name="Bản đồ vệ tinh">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ địa lý">
+                                        <TileLayer
+                                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ địa hình">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ xám">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                                        maxZoom = "16"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                </LayersControl>
+
+                                <ZoomControl position="bottomleft" />
+
+                                {/* Diem cong trinh con hieu luc */}
+                                {this.state.greenMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "conhieuluc" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={GreenIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {/* Diem cong trinh sap het hieu luc */}
+                                {this.state.yellowMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "saphethieuluc" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={YellowIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {/* Diem cong trinh het hieu luc */}
+                                {this.state.redMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "hethieuluc" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={RedIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {/* Diem cong trinh chua duoc duyet */}
+                                {this.state.grayMarker && 
+                                    this.state.dataSource.map((marker, key) => (
+                                        marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined && marker.hieulucgiayphep === "chuaduocduyet" ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} icon={GrayIcon} >
+                                        <Popup>
+                                        <div>
+                                            <h5 className="card-title fw-bold font-13">{marker.hang_muc_ct[0].tenhangmuc+" - "+marker.congtrinh_ten}</h5>
+                                            <table className="table table-striped table-hover mb-2">
+                                                <tbody>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ X</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].x}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Tọa độ Y</td>
+                                                        <td className="col-8 py-1">{marker.hang_muc_ct[0].y}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Địa điểm</td>
+                                                        <td className="col-8 py-1">{marker.congtrinh_diadiem}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Số GP</td>
+                                                        <td className="col-8 py-1">{marker.gp_sogiayphep}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Ngày cấp</td>
+                                                        <td className="col-8 py-1">{this.formatDate(marker.gp_ngaycap)}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1 font-11">Cấp thẩm quyền</td>
+                                                        <td className="col-8 py-1">{marker.gp_donvi_thamquyen}</td>
+                                                    </tr>
+                                                    <tr className="col-12 d-flex p-0">
+                                                        <td className="col-4 py-1">Chủ giấy phép</td>
+                                                        <td className="col-8 py-1">{marker.chugiayphep_ten}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
+                                        </div>
+                                        </Popup>
+                                    </Marker> : ""
+                                    ))
+                                }
+
+                                {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
+
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer, showMapLegend: false})}><BlockOutlined /></button>
+                                {this.state.showMapLayer &&
+                                    <div className="map-layer position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span>  &nbsp; <img alt="marker" style={{width: "15px"}} src={greenMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={redMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={yellowMarker} /> </li>
+                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={grayMarker} /> </li>
+                                        </ul>
                                     </div>
-                                    </Popup>
-                                </Marker> : ""
-                                ))}
+                                }
+
+                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend, showMapLayer: false})}><QuestionCircleOutlined /></button>
+                                {this.state.showMapLegend &&
+                                    <div className="map-legend position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CHÚ GIẢI</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-conhieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-hethieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-saphethieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><span className="dot bg-chuaduocduyet rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                        </ul>
+                                    </div>
+                                }
                             </MapContainer>
 
                             <div className="col-12 py-1 row mx-0 align-items-center">

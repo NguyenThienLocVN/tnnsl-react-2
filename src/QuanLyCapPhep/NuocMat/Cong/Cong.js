@@ -1,17 +1,23 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
 import { Link } from 'react-router-dom';
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup, LayersControl, TileLayer, ZoomControl } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import axios from "axios";
 import configData from "../../../config.json";
-import { FilePdfOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
-import { ConfigProvider, Table, Input, Modal } from 'antd';
+import { ConfigProvider, Table, Input, Modal, Checkbox } from 'antd';
 import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
 import { getToken } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
+import ReactLeafletKml from 'react-leaflet-kml';
+
+import yellowMarker from '../../../Shared/marker-yellow.png';
+import greenMarker from '../../../Shared/marker-green.png';
+import redMarker from '../../../Shared/marker-red.png';
+import grayMarker from '../../../Shared/marker-gray.png';
 
 const { Search } = Input;
 
@@ -31,7 +37,13 @@ export default class QuanLyCapPhepNuocMatCong extends React.Component {
             pagination: {},
             search: '',
             filter: '',
-            
+            showMapLayer: false,
+            showMapLegend: true,
+            kml: null,
+            yellowMarker: true,
+            greenMarker: true,
+            redMarker: true,
+            grayMarker: true,
         }
 
         this.mapRef = React.createRef();
@@ -46,24 +58,16 @@ export default class QuanLyCapPhepNuocMatCong extends React.Component {
     }
 
     componentDidMount(){
-        document.title = "Nươc mặt - Công trình cống";
+        document.title = "Nước mặt - Công trình cống";
 
-        trackPromise(axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/cong/thong-tin-ban-do-cong-trinh", {
-                headers: {'Authorization': 'Bearer ' + getToken()}
-            })
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        contructionInfoForMap: response.data,
-                    });
-                }
-            })
-            .catch((error) => {
-                this.setState({msg: error.response})
-            })
-        )
+        fetch(window.location.origin + "/Placemark.kml")
+        .then((res) => res.text())
+        .then((kmlText) => {
+            const parser = new DOMParser();
+            const kml = parser.parseFromString(kmlText, "text/xml");
+            
+            this.setState({ kml: kml });
+        })
 
         this.fetch(this.state.pagination, 'all');
     }
@@ -261,9 +265,38 @@ export default class QuanLyCapPhepNuocMatCong extends React.Component {
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 px-md-1 vh-50 position-relative">
-                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom}>
-                                <BasemapLayer name="Imagery" />
+                            <MapContainer className="col-12 h-100 w-100" whenCreated={ mapInstance => { this.mapRef.current = mapInstance } } center={this.state.center} zoom={this.state.zoom} zoomControl={false} maxZoom={14} maxBounds={this.state.maxBounds}>
                                 <BasemapLayer name="ImageryLabels" />
+
+                                <LayersControl position="topleft">
+                                    <LayersControl.BaseLayer checked name="Bản đồ vệ tinh">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ địa lý">
+                                        <TileLayer
+                                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ địa hình">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                    <LayersControl.BaseLayer name="Bản đồ xám">
+                                        <TileLayer
+                                        attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+                                        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                                        maxZoom = "16"
+                                        />
+                                    </LayersControl.BaseLayer>
+                                </LayersControl>
+
+                                <ZoomControl position="bottomleft" />
 
                                 {this.state.dataSource.map((marker, key) => (
                                     marker.hang_muc_ct && marker.hang_muc_ct[0] !== undefined ? <Marker position={[marker.hang_muc_ct[0].latitude, marker.hang_muc_ct[0].longitude]} key={key} >
@@ -311,6 +344,34 @@ export default class QuanLyCapPhepNuocMatCong extends React.Component {
                                     </Popup>
                                 </Marker> : ""
                                 ))}
+
+                                {this.state.kml && <ReactLeafletKml kml={this.state.kml} />}
+
+                                <button className="btn btn-sm position-absolute btn-map-layer bg-white d-flex" title="Các lớp bản đồ công trình" onClick={() => this.setState({showMapLayer: !this.state.showMapLayer, showMapLegend: false})}><BlockOutlined /></button>
+                                {this.state.showMapLayer &&
+                                    <div className="map-layer position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CÁC LỚP BẢN ĐỒ</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({greenMarker: !this.state.greenMarker})} />&nbsp;<span className="font-weight-bold">Còn hiệu lực</span>  &nbsp; <img alt="marker" style={{width: "15px"}} src={greenMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({redMarker: !this.state.redMarker})} />&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={redMarker} /> </li>
+                                            <li className="d-flex mb-2 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({yellowMarker: !this.state.yellowMarker})} />&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={yellowMarker} /> </li>
+                                            <li className="d-flex mb-1 align-items-center"><Checkbox defaultChecked onChange={() => this.setState({grayMarker: !this.state.grayMarker})} />&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> &nbsp; <img alt="marker" style={{width: "15px"}} src={grayMarker} /> </li>
+                                        </ul>
+                                    </div>
+                                }
+
+                                <button className="btn btn-sm position-absolute btn-map-legend bg-white d-flex" title="Chú giải" onClick={() => this.setState({showMapLegend: !this.state.showMapLegend, showMapLayer: false})}><QuestionCircleOutlined /></button>
+                                {this.state.showMapLegend &&
+                                    <div className="map-legend position-absolute bg-white">
+                                        <p className="m-0 p-1 text-center bg-header-bar text-white"><span>CHÚ GIẢI</span></p>
+                                        <ul className="p-2 m-0">
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-conhieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Còn hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-hethieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-2 align-items-center"><span className="dot bg-saphethieuluc rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Sắp hết hiệu lực</span> </li>
+                                            <li className="d-flex mb-1 align-items-center"><span className="dot bg-chuaduocduyet rounded-circle border-secondary border border-dark"></span>&nbsp;<span className="font-weight-bold">Chưa được duyệt</span> </li>
+                                        </ul>
+                                    </div>
+                                }
                             </MapContainer>
 
                             <div className="col-12 py-1 row mx-0 align-items-center">
