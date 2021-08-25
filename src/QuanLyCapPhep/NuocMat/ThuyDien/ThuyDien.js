@@ -272,9 +272,12 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 dataIndex: 'gp_thoihangiayphep',
                 key: 'gp_thoihangiayphep',
                 sorter: (a, b) => {
-                    let year_a = a.gp_thoihangiayphep.split(" ");
-                    let year_b = b.gp_thoihangiayphep.split(" ");
-                    return year_a[0] - year_b[0];
+                    if(a.gp_thoihangiayphep && b.gp_thoihangiayphep){
+                        let year_a = a.gp_thoihangiayphep.split(" ");
+                        let year_b = b.gp_thoihangiayphep.split(" ");
+                        return year_a[0] - year_b[0];
+                    }
+                    return '';
                 }
             },
             {
