@@ -261,11 +261,11 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
             },
             {
                 title: 'Thời hạn',
-                dataIndex: 'gp_thoigiancapphep',
-                key: 'gp_thoigiancapphep',
+                dataIndex: 'gp_thoihangiayphep',
+                key: 'gp_thoihangiayphep',
                 sorter: (a, b) => {
-                    let year_a = a.gp_thoigiancapphep.split(" ");
-                    let year_b = b.gp_thoigiancapphep.split(" ");
+                    let year_a = a.gp_thoihangiayphep.split(" ");
+                    let year_b = b.gp_thoihangiayphep.split(" ");
                     return year_a[0] - year_b[0];
                 }
             },
@@ -291,7 +291,7 @@ export default class QuanLyCapPhepNuocMatTramBom extends React.Component {
 
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ CẤP PHÉP CÔNG TRÌNH TRẠM BƠM" previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
+                <Header headTitle="QUẢN LÝ CẤP PHÉP CÔNG TRÌNH TRẠM CẤP NƯỚC" previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />

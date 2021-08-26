@@ -90,29 +90,6 @@ export default class QuanLyCapPhepNuocMatCongTrinhKhac extends React.Component {
     componentDidMount(){
         document.title = "Nước mặt - Công trình khác";
 
-        var pageName = this.props.match.path.split("/").pop();
-        trackPromise(axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/"+pageName+"/thong-tin-ban-do-cong-trinh", {
-                headers: {'Authorization': 'Bearer ' + getToken()}
-            })
-            .then((response) => {
-                if(response.status === 200)
-                {
-                    this.setState({
-                        contructionInfoForMap: response.data,
-                    });
-                }
-            })
-            .catch((error) => {
-                if(error.response.status === 401)
-                {
-                    removeUserSession();
-                    window.location.reload();
-                }
-                this.setState({msg: error.response})
-            })
-        )
-
         fetch(window.location.origin + "/Placemark.kml")
         .then((res) => res.text())
         .then((kmlText) => {
@@ -127,60 +104,6 @@ export default class QuanLyCapPhepNuocMatCongTrinhKhac extends React.Component {
 
     clickToZoom = (lat, long) => {
         this.mapRef.current.flyTo([lat, long], 16);
-    }
-
-    changeBasemap = (event) => {
-        // Change basemap follow select option
-        var basemap = event.target.value
-        var map = this.mapRef.current;
-
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
-        });
-    
-        var layer = esri.basemapLayer(basemap);
-    
-        map.addLayer(layer);
-    
-        if (basemap === 'ShadedRelief'
-        || basemap === 'Oceans'
-        || basemap === 'Gray'
-        ) {
-            var layerLabels = esri.basemapLayer(basemap + 'Labels');
-            map.addLayer(layerLabels);
-        } else if (basemap === 'Imagery') {
-            var imagery = esri.basemapLayer('Imagery');
-            var imageryLabels = esri.basemapLayer('ImageryLabels');
-            map.addLayer(imagery);
-            map.addLayer(imageryLabels);
-        }
-
-        // Add marker
-        var markerStyle = {
-            radius: 7,
-            fillColor: "yellow",
-            color: "yellow",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 1,
-            className: 'marker'
-        };
-
-        // Draw circle each point
-        L.geoJSON(this.state.contructionInfoForMap, {
-        onEachFeature: this.onEachFeature,
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, markerStyle);
-        }
-        }).addTo(map);
-    }
-
-    // Click to show popup
-    onEachFeature = (feature, layer) => {
-        if (feature.properties && feature.properties.hoverContent) {
-            layer.on('click', function() { layer.bindPopup(feature.properties.detailContent, {closeOnClick: true, autoClose: false}).openPopup()});
-            layer.on('mouseover', function() { layer.bindPopup(feature.properties.hoverContent).openPopup()});
-        }
     }
 
     formatDate(date) {
