@@ -4,7 +4,7 @@ import React from 'react';
 import Header from "../../Shared/Header";
 
 // IMPORT FROM ANT
-import { FileExcelOutlined, SearchOutlined, UploadOutlined, ArrowUpOutlined } from "@ant-design/icons";
+import { FileExcelOutlined, SearchOutlined, UploadOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Modal, Tabs, Button, Table, Form, Select, DatePicker, Input } from 'antd';
 
 // DRAG AND RESIZE MODAL
@@ -195,7 +195,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '1',
                 id: '1',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 1 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 1 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -203,7 +203,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '2',
                 id: '2',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 2 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 2 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -211,7 +211,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '3',
                 id: '3',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 3 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 3 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -219,7 +219,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '4',
                 id: '4',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 4 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 4 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -227,7 +227,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '5',
                 id: '5',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 5 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 5 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -235,7 +235,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '6',
                 id: '6',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 6 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 6 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -243,7 +243,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '7',
                 id: '7',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 7 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 7 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -251,7 +251,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '8',
                 id: '8',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 8 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 8 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -259,7 +259,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '9',
                 id: '9',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 9 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 9 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -267,7 +267,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '10',
                 id: '10',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 10 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 10 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -275,7 +275,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
             {
                 key: '11',
                 id: '11',
-                tenho: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 11 tỉnh Sơn La',
+                tentram: 'Trạm quan trắc lưu lượng nước xả tối thiểu số 11 tỉnh Sơn La',
                 luuluongnuocxatoithieu: 0.10,
                 luuluongnuocdenho: 0.15,
                 updatetime: "07:00",
@@ -284,17 +284,70 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
         // COLUMN IN TABLE TRAM
         const columnTram = [
             {
-                title: 'Tên Trạm',
-                dataIndex: 'tenho',
-                key: 'tenho',
+                title: () => { 
+                    return  <div className="d-flex align-items-center">
+                                <div className="col-8 p-0">Tên Trạm</div>
+                                <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
+                                    <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm trạm</Button>
+                                    <Modal
+                                        className="modal-quantrac"
+                                        scrollableBody={true}
+                                        title="YÊU CẦU THÊM MỚI TRẠM QUAN TRẮC"
+                                        width={500}
+                                        centered={true}
+                                        visible={this.state.activeModal === "yeucau_themtrammoi"}
+                                        onCancel={this.hideModal}
+                                        footer={false}
+                                    >
+                                        <div>
+                                            <Form labelCol={{ span: 24 }}>
+                                                <Form.Item label="Tên trạm" style={{ marginBottom: 0 }}>
+                                                    <Input placeholder="Tên trạm" />
+                                                </Form.Item>
+                                                <Form.Item label="Tọa độ (VN2000)" style={{ marginBottom: 0 }}>
+                                                    <div className="d-flex justify-content-between">
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="X" />
+                                                        </Form.Item>
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="Y" />
+                                                        </Form.Item>
+                                                    </div>
+                                                </Form.Item>
+                                                <Form.Item label="Huyện / Xã" style={{ marginBottom: 0 }}>
+                                                    <div className="d-flex justify-content-between">
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="Huyện" />
+                                                        </Form.Item>
+                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
+                                                            <Input placeholder="Xã" />
+                                                        </Form.Item>
+                                                    </div>
+                                                </Form.Item>
+                                                <Form.Item label="Địa chỉ">
+                                                    <Input placeholder="Địa chỉ" />
+                                                </Form.Item>
+                                                <Form.Item>
+                                                    <div className="d-flex justify-content-center">
+                                                        <Button>Yêu cầu thêm mới</Button>
+                                                    </div>
+                                                </Form.Item>
+                                            </Form>
+                                        </div>
+                                    </Modal>
+                                </div>
+                            </div>;
+                } ,
+                dataIndex: 'tentram',
+                key: 'tentram',
                 render: (text, record, index) => (
                     <div className="m-0 fw-bold">
                         <p className="m-0 d-flex align-items-center">
                             <span className="stt_table_quantrac">{record.id}. </span>
                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                             <span className="d-inline-block">
-                                <span className="p-1 d-flex align-items-center justify-content-center text-primary" onClick={(e) => this.clickHandler(e, record.id, record.tenho)}>
-                                    {record.tenho}
+                                <span className="p-1 d-flex align-items-center justify-content-center text-primary" onClick={(e) => this.clickHandler(e, record.id, record.tentram)}>
+                                    {record.tentram}
                                 </span>
                                 <Modal
                                     className="modal-quantrac"
@@ -717,84 +770,38 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaToithieu extends React.
                         <div className="my-2 col-12 p-0 row m-0">
                             <div className="p-1 m-0 fw-bold text-center">Có <span className="text-danger"> 0 </span> / <span> 11 </span> hồ </div>
                             {/* FORM FILTER TRAM QUAN TRAC */}
-                            <Form className="col-6 border-end row m-0 align-items-end" labelCol={{ span: 9 }}>
-                                <Form.Item className="p-1 m-0" label="Chọn hồ">
-                                    <Select size="small" defaultValue="all">
-                                        <Select.Option key='all'>Tất cả</Select.Option>
-                                        <Select.Option key="ho-thuy-dien">Hồ thủy điện</Select.Option>
-                                        <Select.Option key="ho-thuy-loi">Hồ thủy lợi</Select.Option>
-                                    </Select>
-                                </Form.Item>
-                                <Form.Item className="p-1 m-0" label="Mực nước">
-                                    <Select size="small" defaultValue="all">
-                                        <Select.Option key='all'>Tất cả</Select.Option>
-                                        <Select.Option key="minmax">Thấp đến cao</Select.Option>
-                                        <Select.Option key="maxmin">Cao đến thấp</Select.Option>
-                                    </Select>
-                                </Form.Item>
+                            <Form className="row m-0" labelCol={{ span: 9 }}>
+                                <div className="col-6 p-0">
+                                    <Form.Item className="p-1 m-0" label="Chọn trạm">
+                                        <Select size="small" defaultValue="all">
+                                            <Select.Option key='all'>Tất cả</Select.Option>
+                                            <Select.Option key='az'>{"A -> Z"}</Select.Option>
+                                            <Select.Option key='za'>{"Z -> A"}</Select.Option>
+                                        </Select>
+                                    </Form.Item>
+                                    <Form.Item className="p-1 m-0" label="Lượng mưa">
+                                        <Select size="small" defaultValue="all">
+                                            <Select.Option key='all'>Tất cả</Select.Option>
+                                            <Select.Option key='minmax'>Thấp đến cao</Select.Option>
+                                            <Select.Option key='maxmin'>Cao đến thấp</Select.Option>
+                                        </Select>
+                                    </Form.Item>
+                                </div>
+                                <div className="col-6 p-0">
+                                    <Form.Item className="p-1 m-0" label="Từ ngày">
+                                        <DatePicker size="small" placeholder="Chọn ngày" />
+                                    </Form.Item>
+                                    <Form.Item className="p-1 m-0" label="Đến ngày">
+                                        <DatePicker size="small" placeholder="Chọn ngày" />
+                                    </Form.Item>
+                                </div>
                                 <Form.Item className="p-1 m-0">
-                                    <Button className="col-12" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}>Thêm trạm</Button>
-                                    <Modal
-                                        className="modal-quantrac"
-                                        scrollableBody={true}
-                                        title="YÊU CẦU THÊM MỚI TRẠM QUAN TRẮC"
-                                        width={500}
-                                        centered={true}
-                                        visible={this.state.activeModal === "yeucau_themtrammoi"}
-                                        onCancel={this.hideModal}
-                                        footer={false}
-                                    >
-                                        <div>
-                                            <Form labelCol={{ span: 24 }}>
-                                                <Form.Item label="Tên trạm" style={{ marginBottom: 0 }}>
-                                                    <Input size="small" placeholder="Tên trạm" />
-                                                </Form.Item>
-                                                <Form.Item label="Tọa độ (VN2000)" style={{ marginBottom: 0 }}>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input size="small" placeholder="X" />
-                                                        </Form.Item>
-                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input size="small" placeholder="Y" />
-                                                        </Form.Item>
-                                                    </div>
-                                                </Form.Item>
-                                                <Form.Item label="Huyện / Xã" style={{ marginBottom: 0 }}>
-                                                    <div className="d-flex justify-content-between">
-                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input size="small" placeholder="Huyện" />
-                                                        </Form.Item>
-                                                        <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                            <Input size="small" placeholder="Xã" />
-                                                        </Form.Item>
-                                                    </div>
-                                                </Form.Item>
-                                                <Form.Item label="Địa chỉ">
-                                                    <Input size="small" placeholder="Địa chỉ" />
-                                                </Form.Item>
-                                                <Form.Item>
-                                                    <div className="d-flex justify-content-center">
-                                                        <Button>Yêu cầu thêm mới</Button>
-                                                    </div>
-                                                </Form.Item>
-                                            </Form>
-                                        </div>
-                                    </Modal>
-                                </Form.Item>
-                            </Form>
-
-                            <Form className="col-6 border-start row m-0 align-items-end" labelCol={{ span: 8 }}>
-                                <Form.Item className="p-1 m-0" label="Từ ngày">
-                                    <DatePicker size="small" placeholder="Chọn ngày" />
-                                </Form.Item>
-                                <Form.Item className="p-1 m-0" label="Đến ngày">
-                                    <DatePicker size="small" placeholder="Chọn ngày" />
-                                </Form.Item>
-                                <Form.Item className="p-1 m-0">
-                                    <Button className="d-flex justify-content-center align-items-center col-12">
-                                        <SearchOutlined />
-                                        Tìm kiếm
-                                    </Button>
+                                    <div className="d-flex justify-content-center">
+                                        <Button className="d-flex justify-content-center align-items-center">
+                                            <SearchOutlined />
+                                            Tìm kiếm
+                                        </Button>
+                                    </div>
                                 </Form.Item>
                             </Form>
                             {/* END FORM FILTER TRAM QUAN TRAC */}
