@@ -185,7 +185,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                     },
                     title: {
                         display: true,
-                        text: 'Lưu lượng mưa'
+                        text: 'Lượng mưa (mm)'
                     },
                 }
             }
@@ -323,7 +323,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                     <ResizableBox
                                         width={1290}
                                         height={750}
-                                        minConstraints={[750, 635]}
+                                        minConstraints={[750, 600]}
                                         maxConstraints={[1290, 800]}
                                     >
                                         {/* MODAL CONTENT */}
@@ -337,7 +337,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                             <span className="col-12 text-nowrap p-0">thực đo</span>
                                                         </div>
                                                         <div>
-                                                            <span className="d-flex"> = <span className="fw-bold text-primary">0</span>(mm)</span>
+                                                            <span className="d-flex"> = <span className="fw-bold text-primary px-1">0</span>(mm)</span>
                                                         </div>
                                                     </div>
                                                     {/* FILTER FORM */}
@@ -632,7 +632,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 giamsat_luongmua: '0',
             },
         ];
-        // COLUMN SHOW LUU LUONG MUA
+        // COLUMN SHOW LUONG MUA
         const columnBangBieuLuongMua = [
             {
                 title: '#',
@@ -653,7 +653,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 align: 'center',
             },
             {
-                title: 'Lưu lượng Mưa (mm)',
+                title: 'Lượng Mưa (mm)',
                 dataIndex: 'giamsat_luongmua',
                 key: 'giamsat_luongmua',
                 align: 'center',
@@ -685,7 +685,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 align: 'center',
             },
             {
-                title: 'Lưu lượng Mưa (mm)',
+                title: 'Lượng Mưa (mm)',
                 dataIndex: 'giamsat_luongmua',
                 key: 'giamsat_luongmua',
                 align: 'center',
@@ -707,14 +707,21 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <div className="my-2 col-12 p-0 row m-0">
+                            <div className="p-1 m-0 fw-bold text-center">Có <span className="text-danger"> 0 </span> / <span> 11 </span> trạm đang mưa </div>
                             {/* FORM FILTER TRAM QUAN TRAC */}
-                            <Form className="col-6 border-end row m-0 align-items-end">
-                                <div className="p-1 m-0 fw-bold">Có <span className="text-danger"> 0 </span> / <span> 11 </span> trạm đang mưa </div>
-                                <Form.Item className="p-1 m-0">
-                                    <Select size="small" placeholder="Chọn trạm">
-                                        {dataTram.map((tram,i) => (
-                                            <Select.Option key={i}>{tram.tentram}</Select.Option>
-                                        ))}
+                            <Form className="col-6 border-end row m-0 align-items-end" labelCol={{ span: 9 }}>
+                                <Form.Item className="p-1 m-0" label="Chọn trạm">
+                                    <Select size="small" defaultValue="all">
+                                        <Select.Option key='all'>Tất cả</Select.Option>
+                                        <Select.Option key='az'>{"A -> Z"}</Select.Option>
+                                        <Select.Option key='za'>{"Z -> A"}</Select.Option>
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item className="p-1 m-0" label="Lượng mưa">
+                                    <Select size="small" defaultValue="all">
+                                        <Select.Option key='all'>Tất cả</Select.Option>
+                                        <Select.Option key='minmax'>Thấp đến cao</Select.Option>
+                                        <Select.Option key='maxmin'>Cao đến thấp</Select.Option>
                                     </Select>
                                 </Form.Item>
                                 <Form.Item className="p-1 m-0">
