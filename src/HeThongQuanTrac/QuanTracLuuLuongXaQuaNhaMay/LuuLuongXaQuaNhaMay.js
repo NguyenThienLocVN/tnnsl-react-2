@@ -779,7 +779,7 @@ export default class HeThongQuanTracNuocMatLuuLuongNuocXaQuaNhaMay extends React
                                             <Select.Option key='za'>{"Z -> A"}</Select.Option>
                                         </Select>
                                     </Form.Item>
-                                    <Form.Item className="p-1 m-0" label="Lượng mưa">
+                                    <Form.Item className="p-1 m-0" label="Lưu lượng">
                                         <Select size="small" defaultValue="all">
                                             <Select.Option key='all'>Tất cả</Select.Option>
                                             <Select.Option key='minmax'>Thấp đến cao</Select.Option>
