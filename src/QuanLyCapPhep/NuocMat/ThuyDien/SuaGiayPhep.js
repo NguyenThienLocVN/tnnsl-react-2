@@ -274,6 +274,20 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
         });
     }
 
+    formatDate = (date) => {
+        if(date === null){
+            return "--";
+        }else if(date === "0000-00-00"){
+            return "--";
+        }else{
+            var date_format = new Date(date);
+            var d = date_format.getDate();
+            var m = date_format.getMonth()+1;
+            var y = date_format.getFullYear();
+            return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
+        }
+    }
+
     render(){
         const { licensePostData } = this.state;
 
@@ -294,9 +308,22 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                     <DemGiayPhep />
                     </div>
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
-                        <h6 className="px-2 pt-2 d-flex align-items-center fw-bold">Công trình: {licensePostData.congtrinh_ten} - <span className={licensePostData.status === 1 ? "text-success" : "text-primary"}>&nbsp; {this.statusText(licensePostData.status)}</span>&nbsp; <Popover placement="bottomLeft" content={statusBox} title="Trạng thái giấy phép" ><QuestionCircleOutlined /></Popover></h6>
+                        <h6 className="px-2 pt-2 d-flex align-items-center d-flex"><span className="col-1">Công trình:</span> <span className="fw-bold">{licensePostData.congtrinh_ten} - <span className={licensePostData.status === 1 ? "text-success" : "text-primary"}>&nbsp; {this.statusText(licensePostData.status)}</span></span>&nbsp; <Popover placement="bottomLeft" content={statusBox} title="Trạng thái giấy phép" ><QuestionCircleOutlined /></Popover></h6>
                         {licensePostData.status === 1 &&
-                            <p className="px-2">Số giấy phép: <span><u>{licensePostData.gp_sogiayphep}</u></span></p>
+                            <>
+                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Số giấy phép: </span><span className="fw-bold"><u>{licensePostData.gp_sogiayphep}</u></span>&nbsp; &nbsp; <span title="Xem tài liệu" onClick={() => this.setState({modalLicense: !this.state.modalLicense})} className="col-1 text-primary font-13 d-flex align-items-center"><FilePdfOutlined /></span></p>
+                                <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={licensePostData.gp_sogiayphep} width={1000} footer={null} id={licensePostData.gp_sogiayphep} visible={this.state.modalLicense} onCancel={this.hideModal}>
+                                <div>
+                                    {licensePostData.tai_lieu && licensePostData.tai_lieu[0] !== undefined ?
+                                    <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+licensePostData.tai_lieu[0].tailieu_loaigiayphep+"/"+licensePostData.tai_lieu[0].tailieu_nam+"/"+licensePostData.tai_lieu[0].tailieu_giayphep}></iframe>
+                                    : "Không có tài liệu"
+                                    }
+                                </div>
+                                </Modal>
+                            
+                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Ngày cấp: </span><span className="fw-bold">{this.formatDate(licensePostData.gp_ngaycap)}</span></p>
+                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Thời hạn GP: </span><span className="fw-bold">{licensePostData.gp_thoihangiayphep}</span></p>
+                            </>
                         }
                         <div className="px-2"><hr /></div>
                         <form action="" onSubmit={(e) => this.submitHandler(e)} noValidate>
@@ -516,25 +543,6 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                 </div>
                                 <div className="col-sm-6 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Giấy tờ, tài liệu kèm theo</p>
-                                    {licensePostData.status === 1 &&
-                                        <>
-                                            <div className="col-sm-12">
-                                                <div className="mb-2 d-flex mx-0">
-                                                    <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Tài liệu giấy phép</label>
-                                                    <div className="w-25"><button type="button" onClick={() => this.setState({modalLicense: !this.state.modalLicense})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center"><FilePdfOutlined /> &nbsp; {licensePostData.gp_sogiayphep} </button></div>
-                                                </div>
-                                            </div>
-
-                                            <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={licensePostData.gp_sogiayphep} width={1000} footer={null} id={licensePostData.gp_sogiayphep} visible={this.state.modalLicense} onCancel={this.hideModal}>
-                                            <div>
-                                                {licensePostData.tai_lieu && licensePostData.tai_lieu[0] !== undefined ?
-                                                <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+licensePostData.tai_lieu[0].tailieu_loaigiayphep+"/"+licensePostData.tai_lieu[0].tailieu_nam+"/"+licensePostData.tai_lieu[0].tailieu_giayphep}></iframe>
-                                                : "Không có tài liệu"
-                                                }
-                                            </div>
-                                            </Modal>
-                                        </>
-                                    }
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
