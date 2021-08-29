@@ -2,10 +2,91 @@ import React from 'react';
 import Header from '../../../Shared/Header';
 import DemGiayPhep from './DemGiayPhep';
 import { Button } from 'react-bootstrap';
+import { trackPromise } from 'react-promise-tracker';
+import axios from "axios";
+import configData from "../../../config.json";
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.Component {
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            activeModal: null,
+            licensePostData:{
+                chugiayphep_ten: '',
+                chugiayphep_sogiaydangkykinhdoanh: '', 
+                chugiayphep_diachi: '', 
+                chugiayphep_phone: '', 
+                chugiayphep_fax: '', 
+                chugiayphep_email: '', 
+                congtrinh_ten: '',
+                congtrinh_diadiem: '',
+                congtrinh_loaihinh_ktsd: '',
+                phuongthuc_kt: '',
+                congtrinh_hientrang : '',
+                mucdich_ktsd: '', 
+                congsuat_lapmay: '', 
+                luuluonglonnhat_quathuydien: '', 
+                mucnuocdang_binhthuong: '', 
+                mucnuoc_chet: '', 
+                mucnuoccaonhat_truoclu: '',
+                mucnuoc_donlu: '',
+                dungtich_huuich: '',
+                dungtich_toanbo: '',
+                luuluong_xadongchay_toithieu: '',
+                nguonnuoc_ktsd: '',
+                vitri_laynuoc: '',
+                luuluongnuoc_ktsd: '',
+                che_do_kt: '',
+                gp_thoihangiayphep: '',
+                tailieu_sodovitrikhuvuc_congtrinh_khaithac: '',
+                tailieu_donxincapphep: '',
+                tailieu_baocaodean_ktsd: '',
+                tailieu_ketqua_ptcln: '',
+                tailieu_baocaohientrangkhaithac: '',
+                tailieu_vanban_yccd: '',
+                tailieu_giaytokhac: '',
+                status: 0,
+                camket_dungsuthat: false,
+                camket_chaphanhdungquydinh: false,
+                camket_daguihoso: false,
+            },
+            hangmuc: [{
+                tenhangmuc: "",
+                x: "",
+                y: ""
+            }],
+            toastError: "",
+            toastSuccess: "",
+            redirectSuccess: false,
+        }
+    }
+
+    componentDidMount(){
+        document.title = "Theo dõi công trình sau cấp phép | Nước mặt - Thủy điện";
+
+        var constructionId = this.props.match.params.id_gp;
+
+        trackPromise(axios
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/thuy-dien/thong-tin-giay-phep/"+constructionId, {
+                headers: {'Authorization': 'Bearer ' + getToken()}
+            })
+            .then((response) => { this.setState({licensePostData: response.data.licenseData[0], hangmuc: response.data.hangmuc}); })
+            .catch((error) => {
+                if(error.response.status === 401)
+                {
+                    removeUserSession();
+                    window.location.reload();
+                }
+                this.setState({msg: error.response})
+            })
+        )
+    }
 
     render(){
+        const { licensePostData } = this.state;
+
         return(
 			<div className="p-0">
                 <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
@@ -22,37 +103,37 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                 <label htmlFor="chugiayphep_ten" className="form-label fw-bold font-13 m-0">1.1.Tên tổ chức/cá nhân</label>
-                                                <input type="text" required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
+                                                <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten" value={licensePostData.chugiayphep_ten}  />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                     <label htmlFor="chugiayphep_sogiaykangkykinhdoanh" className="form-label fw-bold font-13 m-0">1.2.Số Giấy đăng ký kinh doanh</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="chugiayphep_sogiaykangkykinhdoanh" name="chugiayphep_sogiaykangkykinhdoanh"  />
+                                                    <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_sogiaydangkykinhdoanh" name="chugiayphep_sogiaydangkykinhdoanh" value={licensePostData.chugiayphep_sogiaydangkykinhdoanh} />
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="mb-2">
                                                     <label htmlFor="chugiayphep_diachi" className="form-label fw-bold font-13 m-0">1.3.Địa chỉ</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="chugiayphep_diachi" name="chugiayphep_diachi"  />
+                                                    <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" value={licensePostData.chugiayphep_diachi} />
                                                 </div>
                                             </div>
                                             <div className="col-sm-2">
                                                 <div className="mb-2">
                                                     <label htmlFor="chugiayphep_phone" className="form-label fw-bold font-13 m-0">1.4.Điện thoại</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone"  />
+                                                    <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" value={licensePostData.chugiayphep_phone} />
                                                 </div>
                                             </div>
                                             <div className="col-sm-2">
                                                 <div className="mb-2">
                                                     <label htmlFor="chugiayphep_fax" className="form-label fw-bold font-13 m-0">1.5.Fax</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax"  />
+                                                    <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" value={licensePostData.chugiayphep_fax} />
                                                 </div>
                                             </div>
                                             <div className="col-sm-2">
                                                 <div className="mb-2">
                                                     <label htmlFor="chugiayphep_email" className="form-label fw-bold font-13 m-0">1.6.Email</label>
-                                                    <input type="email" required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email"  />
+                                                    <input type="email" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" value={licensePostData.chugiayphep_email} />
                                                 </div>
                                             </div>
                                     </div>
@@ -63,19 +144,19 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                 <label htmlFor="congtrinh_ten" className="form-label fw-bold font-13 m-0">2.1.Tên công trình khai thác</label>
-                                                <input type="text" required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten"  />
+                                                <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="congtrinh_ten" name="congtrinh_ten" value={licensePostData.congtrinh_ten} />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                 <label htmlFor="mucdich_ktsd" className="form-label fw-bold font-13 m-0">2.2.Mục đích khai thác, sử dụng nước</label>
-                                                <input type="text" required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd"  />
+                                                <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="mucdich_ktsd" name="mucdich_ktsd" value={licensePostData.mucdich_ktsd} />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                 <label htmlFor="congtrinh_diadiem" className="form-label fw-bold font-13 m-0">2.3.Vị trí công trình khai thác nước mặt</label>
-                                                <input type="text" required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem"  />
+                                                <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="congtrinh_diadiem" name="congtrinh_diadiem" value={licensePostData.congtrinh_diadiem} />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
@@ -93,13 +174,13 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                 <label htmlFor="tongluuluong_ktsd_max" className="form-label fw-bold font-13 m-0">2.6.Tổng lượng nước khai thác (m3/ngày đêm)</label>
-                                                <input type="email" required className="form-control form-control-sm" id="tongluuluong_ktsd_max" name="tongluuluong_ktsd_max"  />
+                                                <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="luuluongnuoc_ktsd" name="luuluongnuoc_ktsd" value={licensePostData.luuluongnuoc_ktsd} />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="mb-2">
                                                 <label htmlFor="gp_thoigiancapphep" className="form-label fw-bold font-13 m-0">2.7.Thời hạn giấy phép</label>
-                                                <input type="email" required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep"  />
+                                                <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoihangiayphep" name="gp_thoihangiayphep" value={licensePostData.gp_thoihangiayphep} />
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
