@@ -4,7 +4,7 @@ import React from 'react';
 import Header from "../../Shared/Header";
 
 // IMPORT FROM ANT
-import { FileExcelOutlined, SearchOutlined, UploadOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { FileExcelOutlined, SearchOutlined, UploadOutlined, PlusCircleOutlined, FilterOutlined } from "@ant-design/icons";
 import { Modal, Tabs, Button, Table, Form, Select, DatePicker, Input } from 'antd';
 
 // DRAG AND RESIZE MODAL
@@ -292,6 +292,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                     <Modal
                                         className="modal-quantrac"
                                         scrollableBody={true}
+                                        destroyOnClose={true}
                                         title="YÊU CẦU THÊM MỚI TRẠM QUAN TRẮC"
                                         width={500}
                                         centered={true}
@@ -346,7 +347,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                             <span className="stt_table_quantrac">{record.id}. </span>
                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                             <span className="d-inline-block">
-                                <span className="p-1 d-flex align-items-center justify-content-center text-primary" onClick={(e) => this.clickHandler(e, record.id, record.tentram)}>
+                                <span className="p-1 d-flex align-items-center justify-content-center">
                                     {record.tentram}
                                 </span>
                                 <Modal
@@ -489,6 +490,22 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                 </Modal>
                             </span>
                         </p>
+                        <div className="d-flex">
+                            <p className="text-primary" onClick={(e) => this.clickHandler(e, record.id, record.tentram)}> Thông số </p> 
+                            <span className="px-2">|</span>
+                            <p className="text-primary" onClick={(e) => this.clickHandler(e, "chi-tiet-tram"+record.id, record.tentram)}> Chi Tiết </p>
+                            <Modal
+                                    className="modal-quantrac"
+                                    title={record.tentram}
+                                    centered={true}
+                                    visible={this.state.activeModal === "chi-tiet-tram"+record.id} 
+                                    onCancel={this.hideModal}
+                                    footer={false}
+                                    destroyOnClose={true}
+                            >
+                                Thông tin trạm
+                            </Modal>
+                        </div>
                     </div>
                 )
             },
@@ -788,10 +805,10 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                     </Form.Item>
                                 </div>
                                 <Form.Item className="p-1 m-0">
-                                    <div className="d-flex justify-content-center">
+                                    <div className="d-flex justify-content-end">
                                         <Button className="d-flex justify-content-center align-items-center">
-                                            <SearchOutlined />
-                                            Tìm kiếm
+                                            <FilterOutlined />
+                                            Lọc trạm
                                         </Button>
                                     </div>
                                 </Form.Item>
