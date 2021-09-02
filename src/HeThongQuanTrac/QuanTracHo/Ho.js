@@ -59,9 +59,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
             // GET DATE TIME
             currentDate: date,
             currentTime: time,
-
-            // CHI SO TRAM 
-            tenTram: null,
         };
         
         this.mapRef = React.createRef();
@@ -192,6 +189,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 1,
+                congtrinh_vuotnguong: 1,
             },
             {
                 key: '2',
@@ -203,6 +202,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '3',
@@ -214,6 +215,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 1,
+                congtrinh_vuotnguong: 1,
             },
             {
                 key: '4',
@@ -225,6 +228,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '5',
@@ -236,6 +241,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '6',
@@ -247,6 +254,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '7',
@@ -258,6 +267,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 1,
+                congtrinh_vuotnguong: 1,
             },
             {
                 key: '8',
@@ -269,6 +280,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '9',
@@ -280,6 +293,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '10',
@@ -291,6 +306,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
             {
                 key: '11',
@@ -302,6 +319,8 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
+                congtrinh_matketnoi: 0,
+                congtrinh_vuotnguong: 0,
             },
         ];
         // COLUMN TABLE CONG TRINH
@@ -385,7 +404,7 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                                     <div className="modal_quantrac">
                                         <div className="row p-0 m-0">
                                             <div className="row p-0 mx-0 m-2 align-items-center ">
-                                                <p className="fw-bold"><span className="text-danger">THEO DÕI GIÁM SÁT CÔNG TRÌNH: </span> <span> {record.congtrinh_ten} </span> </p>
+                                                <p className="fw-bold"><span className="text-danger">THEO DÕI QUAN TRẮC: </span> <span> {record.congtrinh_ten} </span> </p>
                                                 {/* FORM FILTER TRAM QUAN TRAC */}
                                                 <Form layout="inline" className="justify-content-end">
                                                     <Form.Item className="p-1 m-0" label="Hồ">
@@ -484,7 +503,7 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                                                                 <FilterOutlined />
                                                                 Lọc
                                                             </Button>
-                                                    </Form.Item>
+                                                        </Form.Item>
                                                     </Form>
                                                     <Tabs tabPosition="top" defaultActiveKey="1" type="card">
                                                         <TabPane tab="Biểu Đồ" key="1">
@@ -561,10 +580,91 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                                                     </Tabs>
                                                 </TabPane>
                                                 <TabPane tab="Mất kết nối" key="3">
-                                                    
+                                                    <Form layout="inline" className="justify-content-end">
+                                                        <Form.Item className="p-1 m-0" label="Trạm QT">
+                                                            <Select placeholder="Chọn trạm quan trắc" >
+                                                            {dataTramQuanTrac.map((tram,i) => (
+                                                                <Select.Option value={tram.quantrac_tentram} key={i}>{tram.quantrac_tentram}</Select.Option>
+                                                            ))}
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0" label="Chỉ số">
+                                                            <Select placeholder="Chọn chỉ số quan trắc">
+                                                                <Select.Option value="MUCNUOC">MUCNUOC</Select.Option>
+                                                                <Select.Option value="LUULUONG">LUULUONG</Select.Option>
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0" label="Trạng thái">
+                                                            <Select defaultValue="binhthuong">
+                                                                <Select.Option key='binhthuong'>Bình thường</Select.Option>
+                                                                <Select.Option key='dinhky'>Định kỳ</Select.Option>
+                                                                <Select.Option key='hieuchinh'>Hiệu chỉnh</Select.Option>
+                                                                <Select.Option key='loithietbi'>Lỗi thiết bị</Select.Option>
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0" label="Trường thời gian">
+                                                            <Select defaultValue="thoigiando">
+                                                                <Select.Option key='thoigiando'>Thời gian đo</Select.Option>
+                                                                <Select.Option key='thoigiannhan'>Thời gian nhận</Select.Option>
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0">
+                                                            <Button className="d-flex justify-content-center align-items-center">
+                                                                <FilterOutlined />
+                                                                Lọc
+                                                            </Button>
+                                                        </Form.Item>
+                                                    </Form>
+                                                    <Table  
+                                                        bordered 
+                                                        dataSource={dataCongTrinh} 
+                                                        columns={columnCongTrinhMatKetNoi}  
+                                                        pagination={false} 
+                                                        rowClassName={(record, index) => record.congtrinh_matketnoi === 1 ? '' :  'd-none'}
+                                                    />
                                                 </TabPane>
                                                 <TabPane tab="Vượt ngưỡng" key="4">
-                                                    
+                                                    <Form layout="inline" className="justify-content-end">
+                                                        <Form.Item className="p-1 m-0" label="Trạm QT">
+                                                            <Select placeholder="Chọn trạm quan trắc" onChange={(value) => { this.setState(() => {return {tenTram: value}}) }} >
+                                                            {dataTramQuanTrac.map((tram,i) => (
+                                                                <Select.Option value={tram.quantrac_tentram} key={i}>{tram.quantrac_tentram}</Select.Option>
+                                                            ))}
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0" label="Chỉ số">
+                                                            <Select defaultValue={this.state.tenTram === "HALUU" || "THUONGLUU" ? "MUCNUOC" : "LUULUONG"}>
+                                                                <Select.Option value="MUCNUOC">MUCNUOC</Select.Option>
+                                                                <Select.Option value="LUULUONG">LUULUONG</Select.Option>
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0" label="Trạng thái">
+                                                            <Select defaultValue="binhthuong">
+                                                                <Select.Option key='binhthuong'>Bình thường</Select.Option>
+                                                                <Select.Option key='dinhky'>Định kỳ</Select.Option>
+                                                                <Select.Option key='hieuchinh'>Hiệu chỉnh</Select.Option>
+                                                                <Select.Option key='loithietbi'>Lỗi thiết bị</Select.Option>
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0" label="Trường thời gian">
+                                                            <Select defaultValue="thoigiando">
+                                                                <Select.Option key='thoigiando'>Thời gian đo</Select.Option>
+                                                                <Select.Option key='thoigiannhan'>Thời gian nhận</Select.Option>
+                                                            </Select>
+                                                        </Form.Item>
+                                                        <Form.Item className="p-1 m-0">
+                                                            <Button className="d-flex justify-content-center align-items-center">
+                                                                <FilterOutlined />
+                                                                Lọc
+                                                            </Button>
+                                                        </Form.Item>
+                                                    </Form>
+                                                    <Table  
+                                                        bordered 
+                                                        dataSource={dataCongTrinh} 
+                                                        columns={columnCongTrinhVuotNguong}  
+                                                        pagination={false}
+                                                    />
                                                 </TabPane>
                                             </Tabs>
                                         </div>
@@ -684,7 +784,7 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Button onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Button>
+                        <span className="fw-bold text-primary" onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</span>
                     </>
                 ),
             },
@@ -957,6 +1057,137 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
             },
         ];
 
+        // COLUMN CONG TRINH MAT KET NOI
+        const columnCongTrinhMatKetNoi = [
+            {
+              title: 'Tên công trình',
+              dataIndex: 'congtrinh_ten',
+              key: 'congtrinh_ten',
+            },
+            {
+                title: 'Ký hiệu công trình',
+                dataIndex: '',
+                key: '',
+              },
+            {
+              title: 'Nguồn nước khai thác',
+              dataIndex: '',
+              key: '',
+            },
+            {
+              title: 'Ký hiệu trạm',
+              dataIndex: '',
+              key: '',
+            },
+            {
+                title: 'Chỉ số',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: () => (
+                    <span>MUCNUOC</span>
+                ),
+            },
+            {
+                title: 'Thời gian nhận',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: () => (
+                    <span> 31/08/2021 17:30:00 </span>
+                ),
+            },
+            {
+                title: 'Giá trị',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: (record, index) => (
+                    <span> { 14 + parseInt(record.id) } </span>
+                ),
+            },
+        ];
+
+        // COLUMN CONG TRINH VUOT NGUONG
+        const columnCongTrinhVuotNguong = [
+            {
+              title: 'Tên công trình',
+              dataIndex: 'congtrinh_ten',
+              key: 'congtrinh_ten',
+            },
+            {
+                title: 'Trạm',
+                dataIndex: '',
+                key: '',
+              },
+            {
+              title: 'Chỉ số QT',
+              dataIndex: '',
+              key: '',
+              align: 'center',
+            },
+            {
+              title: 'Giá trị QT',
+              dataIndex: '',
+              key: '',
+              align: 'center',
+            },
+            {
+                title: 'Đơn vị đo',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: () => (
+                    <span>m</span>
+                ),
+            },
+            {
+                title: 'Thời gian nhận SL',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: () => (
+                    <span> 31/08/2021 17:30:00 </span>
+                ),
+            },
+            {
+                title: 'Vượt ngưỡng',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: (record, index) => (
+                    <span> {record.congtrinh_vuotnguong === 1 ? "Có" : "Không"} </span>
+                ),
+            },
+            {
+                title: 'Giá trị vượt ngưỡng',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                render: (record, index) => (
+                    <span> {record.congtrinh_vuotnguong === 1 ? <span> { 14 + parseInt(record.id) } </span> : "0"} </span>
+                ),
+            },
+            {
+                title: 'Giá trị nhỏ nhất',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: 'Giá trị lớn nhất',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: 'Giá trị trung bình',
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+        ];
+
         // DATA TRAM QUAN TRAC
         const dataTramQuanTrac = [
             {
@@ -972,7 +1203,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 quantrac_giatrilonnhat: '',
                 quantrac_giatrinhonhat: '',
                 quantrac_giatritrungbinh: '',
-                
             },
             {
                 key: '2',
@@ -987,7 +1217,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 quantrac_giatrilonnhat: '',
                 quantrac_giatrinhonhat: '',
                 quantrac_giatritrungbinh: '',
-                
             },
             {
                 key: '3',
@@ -995,14 +1224,13 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 quantrac_tentram: 'NHAMAY',
                 quantrac_chiso: 'LUULUONG',
                 quantrac_giatri: '',
-                quantrac_donvido: 'm',
+                quantrac_donvido: 'm3/s',
                 quantrac_thoigiannhan: '31/08/2021 17:30:00',
                 quantrac_vuotnguong: '',
                 quantrac_giatrivuotnguong: '',
                 quantrac_giatrilonnhat: '',
                 quantrac_giatrinhonhat: '',
                 quantrac_giatritrungbinh: '',
-                
             },
         ]
         // COLUMN TRAM QUAN TRAC
@@ -1016,46 +1244,55 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
               title: 'Chỉ số QT',
               dataIndex: 'quantrac_chiso',
               key: 'quantrac_chiso',
+              align: 'center',
             },
             {
               title: 'Giá trị QT',
               dataIndex: 'quantrac_giatri',
               key: 'quantrac_giatri',
+              align: 'center',
             },
             {
               title: 'Đơn vị đo',
               dataIndex: 'quantrac_donvido',
               key: 'quantrac_donvido',
+              align: 'center',
             },
             {
                 title: 'Thời gian nhận số liệu',
                 dataIndex: 'quantrac_thoigiannhan',
                 key: 'quantrac_thoigiannhan',
+                align: 'center',
             },
             {
                 title: 'Vượt ngưỡng',
                 dataIndex: 'quantrac_vuotnguong',
                 key: 'quantrac_vuotnguong',
+                align: 'center',
             },
             {
                 title: 'Giá trị vượt ngưỡng',
                 dataIndex: 'quantrac_giatrivuotnguong',
                 key: 'quantrac_giatrivuotnguong',
+                align: 'center',
             },
             {
                 title: 'Giá trị lớn nhất',
                 dataIndex: 'quantrac_giatrilonnhat',
                 key: 'quantrac_giatrilonnhat',
+                align: 'center',
             },
             {
                 title: 'Giá trị nhỏ nhất',
                 dataIndex: 'quantrac_giatrinhonhat',
                 key: 'quantrac_giatrinhonhat',
+                align: 'center',
             },
             {
                 title: 'Giá trị trung bình',
                 dataIndex: 'quantrac_giatritrungbinh',
                 key: 'quantrac_giatritrungbinh',
+                align: 'center',
             },
         ];
 
