@@ -185,11 +185,20 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
                     <div className="menu-home col-12 p-0 col-lg-9 discharge-water">
                         <div className="col-12 p-0 ">
                             <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                                <div className=" mb-1 col-lg-9 ">
+                                <div className=" mb-1 col-lg-6 ">
                                     <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                 </div>
+                                <div className=" mb-1 col-lg-3 ">
+                                    <select name="type" id="type" className="form-select font-13" defaultValue="all">
+                                        <option value="" disabled>--Loại giấy phép yêu cầu--</option>
+                                        <option value="all">Tất cả</option>
+                                        <option value="yeu-cau-cap-moi">Yêu cầu cấp mới</option>
+                                        <option value="yeu-cau-gia-han-dieu-chinh">Yêu cầu gia hạn, điều chỉnh</option>
+                                    </select>
+                                </div>
                                 <div className="col-lg-3 mb-2">
-                                <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                    <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                        <option value="" disabled>--Trạng thái--</option>
                                         <option value="all">Tất cả</option>
                                         <option value={0}>Nộp hồ sơ</option>
                                         <option value={2}>Đang lấy ý kiến thẩm định</option>  

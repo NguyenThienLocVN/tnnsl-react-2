@@ -3,9 +3,49 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button} from "react-bootstrap";
-import { PlusSquareOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, FilePdfOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
+import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
+
+// Font
+import Roboto from '../../../Shared/fonts/Roboto-Light.ttf';
+import RobotoBold from '../../../Shared/fonts/Roboto-Bold.ttf';
+import RobotoItalic from '../../../Shared/fonts/Roboto-LightItalic.ttf';
+
+Font.register({
+    family: "Roboto",
+    src: Roboto
+});
+
+Font.register({
+    family: "RobotoBold",
+    src: RobotoBold
+});
+
+Font.register({
+    family: "RobotoItalic",
+    src: RobotoItalic
+});
+
+const styles = StyleSheet.create({
+    page: {
+        margin: 15,
+        padding: 15,
+        fontFamily: "Roboto"
+    },
+    displayFlexRow: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    displayFlexColumn: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    textEnd: {
+        textAlign: 'right'
+    }
+});
 
 export default class QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -149,6 +189,99 @@ export default class QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien extends React.C
     }
 
     render(){
+        const GenerateRequestFile = ({data}) => (
+            <Document>
+                <Page size="A4" style={styles.page} >
+                    <View style={[styles.textEnd]}>
+                        <Text style={{ fontSize: 12, paddingRight: 15, paddingBottom: 10, fontFamily: 'RobotoBold' }}>Mẫu 06</Text>
+                    </View>
+                    <View style={{ textAlign: 'center', fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12 }}>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Text>
+                        <Text style={{ fontSize: 12 }}>Độc lập - Tự do - Hạnh phúc</Text>
+                        <Text style={{ fontSize: 12 }}>--------------</Text>
+                    </View>
+                    <View style={{ height: 20 }}></View>
+                    <View style={{ textAlign: 'center', fontFamily: 'RobotoBold', marginBottom: 10 }}>
+                        <Text style={{ fontSize: 12, marginBottom: 5}}>ĐƠN ĐỀ NGHỊ GIA HẠN/ĐIỀU CHỈNH GIẤY PHÉP KHAI THÁC, SỬ DỤNG NƯỚC MẶT</Text>
+                        <Text style={{ fontSize: 12 }}>Kính gửi: ........................................... (1)</Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3}}>1. Thông tin về chủ giấy phép: </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.1. Tên chủ giấy phép: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_ten}</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.2. Địa chỉ: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_diachi}</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.3. Điện thoại: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_phone}</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; Fax: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_fax}</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; Email: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>{data.chugiayphep_email}</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>1.4. Giấy phép khai thác, sử dụng nước mặt số: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>......</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; ngày </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>......</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; tháng </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>......</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; năm </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>......</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>&nbsp; &nbsp; do </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>...... cấp</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>; thời hạn của giấy phép</Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}> ....... </Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3}}>2. Lý do đề nghị gia hạn/điều chỉnh giấy phép: </Text>
+                    </View>
+                    <View style={{ marginBottom: 3, paddingRight: 15 }}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>- ............ </Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3}}>3. Thời gian đề nghị gia hạn/nội dung đề nghị điều chỉnh giấy phép: </Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15 }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>- Thời hạn đề nghị gia hạn: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>.....</Text>
+                    </View>
+                    <View style={[styles.displayFlexRow, { marginBottom: 3, paddingRight: 15, flexWrap: 'wrap' }]}>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>- Nội dung đề nghị điều chỉnh: </Text>
+                        <Text style={[styles.displayFlexRow, { fontSize: 11 }]}>......</Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3 }}>4. Giấy tờ, tài liệu nộp kèm theo Đơn này gồm có: </Text>
+                    </View>
+                    <View style={{ marginBottom: 3, paddingRight: 15 }}>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Báo cáo hiện trạng khai thác, sử dụng nước mặt và tình hình thực hiện giấy phép. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Kết quả phân tích chất lượng nguồn nước (không quá ba (03) tháng tính đến thời điểm nộp hồ sơ). </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Bản sao giấy phép đã được cấp. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- Các giấy tờ, tài liệu khác có liên quan (nếu có).</Text>
+                    </View>
+                    <View style={{ fontFamily: 'RobotoBold' }}>
+                        <Text style={{ fontSize: 12, marginBottom: 3 }}>5. Cam kết của chủ giấy phép: </Text>
+                    </View>
+                    <View style={{ marginBottom: 3, paddingRight: 15 }}>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- (Chủ giấy phép) cam đoan các nội dung, thông tin trong Đơn này và các giấy tờ, tài liệu gửi kèm theo là đúng sự thật và xin hoàn toàn chịu trách nhiệm trước pháp luật. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- (Chủ giấy phép) cam kết chấp hành đúng, đầy đủ các quy định của Giấy phép và thực hiện đầy đủ các nghĩa vụ quy định tại Khoản 2 Điều 43 của Luật tài nguyên nước và quy định của pháp luật có liên quan. </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>- (Chủ giấy phép) đã gửi một (01) bộ hồ sơ tới Sở Tài nguyên và Môi trường tỉnh Sơn La (10). </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}>Đề nghị (tên cơ quan cấp phép) xem xét, gia hạn/điều chỉnh giấy phép khai thác, sử dụng nước mặt cho (tên chủ giấy phép)./. </Text>
+                    </View>
+                    <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', paddingRight: 15, textAlign: 'center' }}>
+                        <Text style={{ fontSize: 11, marginBottom: 3, fontFamily: 'RobotoItalic' }}> ........ ngày....... tháng....... năm........ </Text>
+                        <Text style={{ fontSize: 11, marginBottom: 3 }}> Tổ chức, cá nhân đề nghị cấp phép </Text>
+                        <Text style={{ fontSize: 10, marginBottom: 3, fontFamily: 'RobotoItalic' }}> Ký, ghi rõ họ tên (đóng dấu nếu có) </Text>
+                    </View>
+                </Page>
+            </Document>
+        )
+
         return(
 			<div className="p-0">
                 <Header headTitle="ĐỀ NGHỊ ĐỀ NGHỊ GIA HẠN/ ĐIỀU CHỈNH GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
@@ -399,37 +532,37 @@ export default class QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien extends React.C
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">6.Giấy tờ, tài liệu nộp kèm theo</p>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
+                                        <span htmlFor="tailieu_donxincapphep" className="form-label d-flex w-75 m-0 font-13 align-items-center"><span>- Đơn xin cấp phép</span> &nbsp;(<PDFDownloadLink document={<GenerateRequestFile data={this.state.licensePostData} />} className="mx-2 fw-bold font-14 d-flex align-items-center justify-content-center" fileName="Don-de-nghi-gia-han-dieu-chinh-giay-phep-nuoc-mat.pdf"><FilePdfOutlined /> &nbsp; In PDF</PDFDownloadLink>)</span>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">Đề án/ báo cáo khai thác, sử dụng nước </label>
+                                            <label htmlFor="tailieu_sodokhuvucvitricongtrinhkhaithac" className="form-label d-block w-75 m-0 font-13">- Đề án/ báo cáo khai thác, sử dụng nước </label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_sodokhuvucvitricongtrinhkhaithac" name="tailieu_sodokhuvucvitricongtrinhkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">Kết quả phân tích chất lượng nguồn nước </label>
+                                            <label htmlFor="tailieu_baocaoketquathamdo" className="form-label d-block w-75 m-0 font-13">- Kết quả phân tích chất lượng nguồn nước </label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaoketquathamdo" name="tailieu_baocaoketquathamdo" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13"> Báo cáo hiện trạng khai thác </label>
+                                            <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Báo cáo hiện trạng khai thác </label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_baocaohientrangkhaithac" name="tailieu_baocaohientrangkhaithac" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng</label>
+                                            <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_ketqua_ptcln" name="tailieu_ketqua_ptcln" /></div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13"> Các giấy tờ, tài liệu khác có liên quan</label>
+                                            <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan</label>
                                             <div className="w-25"><input type="file" onChange={this.handleInputChange} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_vanban_yccd" name="tailieu_vanban_yccd" /></div>
                                         </div>
                                     </div>

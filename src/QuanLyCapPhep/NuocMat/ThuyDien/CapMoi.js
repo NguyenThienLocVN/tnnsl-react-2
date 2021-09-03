@@ -474,22 +474,22 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center align-middle" rowSpan="2">TT</th>
-                                                        <th className="text-center align-middle" rowSpan="2">Hạng mục</th>
-                                                        <th className="text-center align-middle" colSpan="2">Tọa độ</th>
-                                                        <th className="text-center align-middle" rowSpan="2">
+                                                        <th className="text-center align-middle font-13" rowSpan="2">TT</th>
+                                                        <th className="text-center align-middle font-13" rowSpan="2">Hạng mục</th>
+                                                        <th className="text-center align-middle font-13" colSpan="2">Tọa độ</th>
+                                                        <th className="text-center align-middle font-13" rowSpan="2">
                                                             <Button variant="link" title="Tạo mới hạng mục" size="sm" className="w-100 text-primary d-flex justify-content-center align-items-center" onClick={this.handleAddHangmuc}><PlusSquareOutlined /></Button>
                                                         </th>
                                                     </tr>
                                                     <tr>
-                                                        <th className="text-center align-middle">X</th>
-                                                        <th className="text-center align-middle">Y</th>
+                                                        <th className="text-center align-middle font-13">X</th>
+                                                        <th className="text-center align-middle font-13">Y</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {this.state.hangmuc.map((item, i) => (
                                                     <tr key={i}>
-                                                        <th className="text-center align-middle">{i+1}</th>
+                                                        <th className="text-center align-middle font-13">{i+1}</th>
                                                         <td> 
                                                             <input type="text" value={this.state.hangmuc[i].tenhangmuc} name="tenhangmuc" onChange={(e) => this.handleChangeHangmuc(i, e)} className="form-control form-control-sm" />  
                                                         </td>
@@ -516,44 +516,44 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center align-middle">Công suất lắp máy (MW)</th>
-                                                        <th className="text-center align-middle">Lưu lượng lớn nhất qua nhà máy thủy điện (m3/s)</th>
-                                                        <th className="text-center align-middle">Mực nước dâng bình thường (m)</th>
-                                                        <th className="text-center align-middle">Mực nước chết (m)</th>
-                                                        <th className="text-center align-middle">Mực nước cao nhất trước lũ (m)</th>
-                                                        <th className="text-center align-middle">Mực nước đón lũ (m)</th>
-                                                        <th className="text-center align-middle">Dung tích hữu ích (triệu m3)</th>
-                                                        <th className="text-center align-middle">Dung tích toàn bộ (triệu m3)</th>
-                                                        <th className="text-center align-middle">Lưu lượng xả dòng chảy tối thiểu (m3/s)</th>
+                                                        <th className="text-center align-middle font-13">Công suất lắp máy (MW)</th>
+                                                        <th className="text-center align-middle font-13">Lưu lượng lớn nhất qua nhà máy thủy điện (m3/s)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước dâng bình thường (m)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước chết (m)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước cao nhất trước lũ (m)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước đón lũ (m)</th>
+                                                        <th className="text-center align-middle font-13">Dung tích hữu ích (triệu m3)</th>
+                                                        <th className="text-center align-middle font-13">Dung tích toàn bộ (triệu m3)</th>
+                                                        <th className="text-center align-middle font-13">Lưu lượng xả dòng chảy tối thiểu (m3/s)</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="congsuat_lapmay" id="congsuat_lapmay" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="luuluonglonnhat_quathuydien" id="luuluonglonnhat_quathuydien" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="mucnuocdang_binhthuong" id="mucnuocdang_binhthuong" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="mucnuoc_chet" id="mucnuoc_chet" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="mucnuoccaonhat_truoclu" id="mucnuoccaonhat_truoclu" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="mucnuoc_donlu" id="mucnuoc_donlu" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="dungtich_huuich" id="dungtich_huuich" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="dungtich_toanbo" id="dungtich_toanbo" className="form-control form-control-sm" /> 
                                                         </td>
-                                                        <td className="text-center align-middle"> 
+                                                        <td className="text-center align-middle font-13"> 
                                                             <input type="text" onChange={(e) => this.handleInputChange(e)} name="luuluong_xadongchay_toithieu" id="luuluong_xadongchay_toithieu" className="form-control form-control-sm" /> 
                                                         </td>
                                                     </tr>
@@ -615,7 +615,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Giấy tờ, tài liệu nộp kèm theo (.pdf)</p>
                                     <div className="col-sm-12">
                                         <div className="mb-2 d-flex mx-0">
-                                            <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
+                                            <span htmlFor="tailieu_donxincapphep" className="form-label d-flex w-75 m-0 font-13 align-items-center"><span>- Đơn xin cấp phép</span> &nbsp;(<PDFDownloadLink document={<GenerateRequestFile data={this.state.licensePostData} />} className="mx-2 fw-bold font-14 d-flex align-items-center justify-content-center" fileName="Don-de-nghi-cap-phep-nuoc-mat.pdf"><FilePdfOutlined /> &nbsp; In PDF</PDFDownloadLink>)</span>
                                             <div className="w-25"><input type="file" onChange={(e) => this.handleInputChange(e)} accept="application/pdf" className="form-control form-control-sm w-100" id="tailieu_donxincapphep" name="tailieu_donxincapphep" /></div>
                                         </div>
                                     </div>
@@ -692,14 +692,8 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                 </div>
                             </div>
                             <div className="my-3 p-1"></div>
-                            <div className="pb-4 text-center col-sm-12 d-flex">
-                                <div className="col-3">
-                                    <PDFDownloadLink document={<GenerateRequestFile data={this.state.licensePostData} />} className="col-4 btn btn-outline-primary mx-2 fw-bold font-14 d-flex align-items-center justify-content-center" fileName="Don-de-nghi-cap-phep-nuoc-mat.pdf"><FilePdfOutlined /> &nbsp; IN PDF</PDFDownloadLink>
-                                </div>
-                                <div className="col-6 d-flex justify-content-center">
-                                    <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
-                                </div>
-                                <div className="col-3"></div>
+                            <div className="pb-4 text-center col-sm-12 d-flex justify-content-center">
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
                             </div>
                         </form>
                     </div>
