@@ -125,7 +125,7 @@ export default class QuanLyCapPhep extends React.Component {
                     this.setState({
                         doughnutData: {
                             labels: [
-                                'Năm 2015','Năm 2016','Năm 2017','Năm 2018','Năm 2019','Năm 2020',
+                                'GP còn hiệu lực','GP sắp hết hiệu lực','GP hết hiệu lực','GP chưa phê duyệt',
                             ],
                             datasets: [{
                                 data: response.data.data.gp_nuocmat,
@@ -346,52 +346,50 @@ export default class QuanLyCapPhep extends React.Component {
                         </div>
 
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
-                            <div className="card-header">Số lượng giấy phép công trình được cấp theo năm</div>
+                            <div className="card-header">Biểu đồ tỉ lệ loại giấy phép công trình theo năm</div>
                             <div className="card-body col-12 row mx-0">
                                 <div className="col-12 col-md-3 p-0">
-                                    <div className="form-group mb-2">
-                                        <label className="fw-bold m-0">Đối tượng:</label>
+                                    <div className="form-group mb-3">
+                                        <label className="fw-bold m-0">Loại giấy phép:</label>
                                         <select className="form-select form-select-sm">
-                                            <option>Đối tượng 0</option>
-                                            <option>Đối tượng 1</option>
-                                            <option>Đối tượng 2</option>
-                                            <option>Đối tượng 3</option>
-                                            <option>Đối tượng 4</option>
+                                            <option>Khai thác sử dụng nước mặt</option>
+                                            <option>Khai thác nước dưới đất</option>
+                                            <option>Xả thải vào nguồn nước</option>
                                         </select>
                                     </div>
-                                    <div className="form-group mb-2">
-                                        <label className="fw-bold m-0">Nhóm:</label>
-                                        <select className="form-select form-select-sm">
-                                            <option>Nhóm 0</option>
-                                            <option>Nhóm 1</option>
-                                            <option>Nhóm 2</option>
-                                            <option>Nhóm 3</option>
-                                            <option>Nhóm 4</option>
-                                        </select>
+                                    <div className="form-group mb-3">
+                                            <label className="fw-bold m-0">Giai đoạn:</label>
+                                            <select className="form-select form-select-sm">
+                                                <option>Tất cả thời gian</option>
+                                                <option>Khoảng thời gian</option>
+                                            </select>
+                                        </div>
+                                    <div className="col-12 d-flex mb-4">
+                                        <div className="form-group mb-2 col-6 px-1">
+                                            <label className="fw-bold m-0">Từ:</label>
+                                            <select className="form-select form-select-sm">
+                                                <option>2015</option>
+                                                <option>2016</option>
+                                                <option>2017</option>
+                                                <option>2018</option>
+                                                <option>2019</option>
+                                                <option>2019</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group mb-2 col-6 px-1">
+                                            <label className="fw-bold m-0">Đến:</label>
+                                            <select className="form-select form-select-sm">
+                                                <option>2015</option>
+                                                <option>2016</option>
+                                                <option>2017</option>
+                                                <option>2018</option>
+                                                <option>2019</option>
+                                                <option>2019</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="form-group mb-2">
-                                        <label className="fw-bold m-0">Giai đoạn:</label>
-                                        <select className="form-select form-select-sm">
-                                            <option>Giai đoạn 0</option>
-                                            <option>Giai đoạn 1</option>
-                                            <option>Giai đoạn 2</option>
-                                            <option>Giai đoạn 3</option>
-                                            <option>Giai đoạn 4</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group mb-2">
-                                        <label className="fw-bold m-0">Chu kỳ:</label>
-                                        <select className="form-select form-select-sm">
-                                            <option>Chu kỳ 0</option>
-                                            <option>Chu kỳ 1</option>
-                                            <option>Chu kỳ 2</option>
-                                            <option>Chu kỳ 3</option>
-                                            <option>Chu kỳ 4</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group d-flex mb-2 justify-content-between">
-                                        <button className="col-5 font-11 btn btn-sm btn-success d-flex align-items-center justify-content-center mr-1"><DownloadOutlined /> &nbsp; Xuất PDF</button>
-                                        <button className="col-5 font-11 btn btn-sm btn-primary d-flex align-items-center justify-content-center"><LineChartOutlined /> &nbsp; Thống kê</button>
+                                    <div>
+                                        <button className="btn btn-sm btn-primary mx-auto d-flex align-items-center justify-content-center"><LineChartOutlined /> &nbsp; Thống kê</button>
                                     </div>
                                 </div>
                                 <div className="col-md-9 col-12">
@@ -427,30 +425,6 @@ export default class QuanLyCapPhep extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-success">
-                                    <p className="bg-ww-title-box rounded mb-2 p-2 fw-bold text-center">XẢ THẢI VÀO NGUỒN NƯỚC</p>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">1000</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
-                                        <p className="col-3">1000</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">1000</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">1000</p>
-                                    </div>
-                                </div>
-
                                 <div className="col-11 pb-1 mx-auto my-3 rounded px-0 bg-warning">
                                     <p className="bg-euw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
@@ -475,51 +449,27 @@ export default class QuanLyCapPhep extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-danger">
-                                    <p className="bg-uwe-title-box rounded mb-2 p-2 fw-bold text-center">THĂM DÒ NƯỚC DƯỚI ĐẤT</p>
+                                <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-success">
+                                    <p className="bg-ww-title-box rounded mb-2 p-2 fw-bold text-center">XẢ THẢI VÀO NGUỒN NƯỚC</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.tat_ca_giay_phep}</p>
+                                        <p className="col-3">64</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.con_hieu_luc}</p>
+                                        <p className="col-3">47</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.sap_het_hieu_luc}</p>
+                                        <p className="col-3">0</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.het_hieu_luc}</p>
+                                        <p className="col-3">17</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">{this.state.DemGPTDNuocDuoiDat.chua_phe_duyet}</p>
-                                    </div>
-                                </div>
-
-                                <div className="col-11 pb-1 mx-auto my-3 rounded text-white px-0 bg-secondary">
-                                    <p className="bg-practise-title-box rounded mb-2 p-2 fw-bold text-center">HÀNH NGHỀ</p>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.tat_ca_giay_phep}</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.con_hieu_luc}</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.sap_het_hieu_luc}</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.het_hieu_luc}</p>
-                                    </div>
-                                    <div className="fw-bold col-12 d-flex px-2">
-                                        <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">{this.state.DemGPKhoanNuocDuoiDat.chua_phe_duyet}</p>
+                                        <p className="col-3">0</p>
                                     </div>
                                 </div>
                             </div>
