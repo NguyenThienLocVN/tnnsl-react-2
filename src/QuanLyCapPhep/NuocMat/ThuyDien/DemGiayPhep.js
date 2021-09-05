@@ -76,7 +76,7 @@ export default class DemGiayPhepThuyDien extends React.Component {
                         </div>
                         <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/licensing-3.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="giay-phep-3" />
                     </div>
-                    <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom">
+                    <div className="col-12 py-1 d-flex justify-content-center text-center border-bottom mb-lg-5">
                         <div className="col-9 text-start p-0">
                             <p className="fw-bold m-0">Chưa có giấy phép</p>
                             <p className="font-18 m-0 fw-bold text-danger"> {this.state.countLicense.chua_phe_duyet} / {this.state.countLicense.tat_ca_giay_phep}</p>
@@ -87,7 +87,6 @@ export default class DemGiayPhepThuyDien extends React.Component {
                     
                     <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/cap-moi" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
                     <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý yêu cầu cấp phép</Link>
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Gia hạn, điều chỉnh giấy phép</Link>
                     <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                 </div>
         )

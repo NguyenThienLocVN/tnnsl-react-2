@@ -46,6 +46,11 @@ export default class Login extends React.Component {
         );
     };
 
+    redirectRegister(){
+        removeUserSession();
+        this.props.history.push('/register');
+    }
+
     render(){
         const user = getUser();
         if (!user || this.state.redirect) {
@@ -100,10 +105,10 @@ export default class Login extends React.Component {
                                     <img className="grid-item-image" src={process.env['PUBLIC_URL'] + '/images/TRANG_CHU/ANH_QUANLYCAPPHEP.png'} alt="cap-phep" />
                                     <p className="grid-item-text fw-bold">Quản lý cấp phép</p>
                                 </Link>
-                                <Link to="#" className="col-6 text-center">
+                                <div onClick={() => this.redirectRegister()} className="col-6 text-center cursor_pointer">
                                     <img className="grid-item-image" src={process.env['PUBLIC_URL'] + '/images/TRANG_CHU/ANH_DANGKY.png'} alt="dang-ky" />
                                     <p className="grid-item-text fw-bold">Đăng ký</p>
-                                </Link>
+                                </div>
                             </div>
                         </div>
                         <div className="d-flex flex-column flex-md-row flex-lg-column">
