@@ -25,7 +25,7 @@ export default class Login extends React.Component{
 				organization_address: '',
 				phone: '',
 			},
-			type: 0
+			type: "to-chuc"
         }
     }
 
@@ -120,7 +120,7 @@ export default class Login extends React.Component{
 							</div>
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Đối tượng <span className="text-danger">*</span></div>
-								<select name="type" onChange={this.onChangeTypehandler} value={this.state.type} className="form-select font-14 rounded-0">
+								<select name="type" onChange={this.onChangeTypehandler} defaultValue="to-chuc" value={this.state.type} className="form-select font-14 rounded-0">
 									<option value="to-chuc">Tổ chức</option>
 									<option value="ca-nhan">Cá nhân</option>
 								</select>
@@ -129,44 +129,44 @@ export default class Login extends React.Component{
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Tên cá nhân/Tổ chức <span className="text-danger">*</span></div>
 								<span className="input-group-text font-20"><BankOutlined /></span>
-								<input name="name" value={this.state.name} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="VD: Công ty A hoặc Nguyễn Văn A" type="text" required />
+								<input name="name" value={this.state.name} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="VD: Công ty A hoặc Nguyễn Văn A" type="text" required />
 							</div>
 
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Tên đăng nhập <span className="text-danger">*</span></div>
 								<span className="input-group-text font-20"><UserOutlined /></span>
-								<input name="username" value={this.state.username} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Tên đăng nhập" type="text" required />
+								<input name="username" value={this.state.username} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="Tên đăng nhập" type="text" required />
 							</div>
 
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Mật khẩu <span className="text-danger">*</span></div>
 								<span className="input-group-text font-20"><LockOutlined /></span>
-								<input name="password" value={this.state.password} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Mật khẩu" type="password" required />
+								<input name="password" value={this.state.password} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="Mật khẩu" type="password" required />
 							</div>
 							{this.state.checkOrganization && 
 								<div className="input-group mb-2 d-flex mx-0 align-items-center">
 									<div className="me-2 col-4 fw-bold text-start">Mã doanh nghiệp</div>
 									<span className="input-group-text font-20"><IdcardOutlined /></span>
-									<input name="organization_code" value={this.state.organization_code} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Mã doanh nghiệp" type="text" />
+									<input name="organization_code" value={this.state.organization_code} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="Mã doanh nghiệp" type="text" />
 								</div>
 							}
 
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Địa chỉ <span className="text-danger">*</span></div>
 								<span className="input-group-text font-20"><HomeOutlined /></span>
-								<input name="address" value={this.state.address} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Địa chỉ" type="text" required/>
+								<input name="address" value={this.state.address} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="Địa chỉ" type="text" required/>
 							</div>
 
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Số điện thoại <span className="text-danger">*</span></div>
 								<span className="input-group-text font-20"><PhoneOutlined /></span>
-								<input name="phone" value={this.state.phone} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Số điện thoại" type="text" required />
+								<input name="phone" value={this.state.phone} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="Số điện thoại" type="text" required />
 							</div>
 
 							<div className="input-group mb-2 d-flex mx-0 align-items-center">
 								<div className="me-2 col-4 fw-bold text-start">Email <span className="text-danger">*</span></div>
 								<span className="input-group-text font-20"><MailOutlined /></span>
-								<input name="email" value={this.state.email} onChange={this.onChangehandler} className="form-control font-14 rounded-0" placeholder="Email" type="text" required/>
+								<input name="email" value={this.state.email} onChange={this.onChangehandler} className="form-control font-13 rounded-0" placeholder="Email" type="text" required/>
 							</div>
 
 							{this.state.errorMsg ? 
@@ -176,10 +176,10 @@ export default class Login extends React.Component{
 								<Alert className="mt-3" message={this.state.successMsg} type="success" showIcon />
 							: "" }
 
-							<div className="text-center d-flex pt-2 pb-3">
-								<input type="submit" className="col-5 btn btn-success" value="Đăng ký" />
+							<div className="text-center d-flex pt-2 pb-3 justify-content-center align-items-center">
+								<input type="submit" className="col-4 btn btn-success" value="Đăng ký" />
 
-								<Link to="/login" className="btn font-13 col-6">Đăng nhập</Link>
+								<span className="px-2">hoặc</span> <Link to="/login">Đăng nhập</Link>
 							</div>
 						</div>
 					</main>

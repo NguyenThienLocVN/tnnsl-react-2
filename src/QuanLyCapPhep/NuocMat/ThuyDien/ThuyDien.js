@@ -8,9 +8,8 @@ import configData from "../../../config.json";
 import { FilePdfOutlined, EditOutlined, DeleteOutlined, BlockOutlined, QuestionCircleOutlined, EyeOutlined, SearchOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { trackPromise } from 'react-promise-tracker';
 import { ConfigProvider, Table, Input, Modal, Checkbox } from 'antd';
-import { Button } from "react-bootstrap";
 import vnVN from 'antd/lib/locale/vi_VN';
-import { getToken, removeUserSession } from '../../../Shared/Auth';
+import { getToken, removeUserSession, getUser } from '../../../Shared/Auth';
 import DemGiayPhep from './DemGiayPhep';
 import ReactLeafletKml from 'react-leaflet-kml';
 
@@ -49,6 +48,8 @@ const GrayIcon = L.icon({
     iconAnchor: [10, 12],
     className: 'grayMarker',
 });
+
+const user = getUser();
 
 export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -104,6 +105,10 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
         })
 
         this.fetch(this.state.pagination, 'all');
+        if(!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
 
     clickToZoom = (lat, long) => {
@@ -199,7 +204,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     }
 
     //  Destroy License
-    handlerDestroyLicense = (id_gp) =>{
+    handlerDestroyLicense = (id_gp) => {
         trackPromise(
             axios.get(configData.API_URL + "quan-ly-cap-phep/nuoc-mat/xoa-giay-phep/"+id_gp, {
                 headers: {'Authorization': 'Bearer ' + getToken()}
@@ -210,6 +215,18 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 }
             })
         );
+    }
+
+    formatLicenseType = (type) => {
+        if(type === 'cap-moi'){
+            return 'Cấp mới';
+        }else if(type === 'cap-lai-lan-1'){
+            return 'Cấp lại lần 1';
+        }else if(type === 'thu-hoi'){
+            return 'Thu hồi';
+        }else{
+            return type;
+        }
     }
 
     render(){        
@@ -260,25 +277,20 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 )
             },
             {
-                title: 'Ngày có hiệu lực',
-                dataIndex: 'gp_ngaybatdau',
-                key: 'gp_ngaybatdau',
+                title: 'Loại giấy phép',
+                dataIndex: 'gp_loaigiayphep',
+                key: 'gp_loaigiayphep',
                 render: (text, record) => (
-                    this.formatDate(record.gp_ngaybatdau)
+                    this.formatLicenseType(record.gp_loaigiayphep)
                 )
             },
             {
                 title: 'Thời hạn',
                 dataIndex: 'gp_thoihangiayphep',
                 key: 'gp_thoihangiayphep',
-                sorter: (a, b) => {
-                    if(a.gp_thoihangiayphep && b.gp_thoihangiayphep){
-                        let year_a = a.gp_thoihangiayphep.split(" ");
-                        let year_b = b.gp_thoihangiayphep.split(" ");
-                        return year_a[0] - year_b[0];
-                    }
-                    return '';
-                }
+                render: (text, record) => (
+                    record.gp_thoihangiayphep
+                )
             },
             {
                 title: 'Trạng thái',
@@ -293,11 +305,19 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 key: 'action',
                 render: (text, record) => (
                     <div className="d-flex align-items-center justify-content-center">
-                        <Link className="p-1" to="#" title="Xem"><EyeOutlined /></Link>
-                        <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link>
-                        <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/"+record.id} title="Theo Dõi"><SearchOutlined/></Link>
-                        <Link className="p-2 pl-md-0" to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" title="Gia hạn"><ClockCircleOutlined /></Link>
-                        <Link className="p-1" onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Link>
+                        <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem/"+record.id} title="Xem"><EyeOutlined /></Link>
+                        {user.id === record.user_id || user.role === 'admin' ?
+                            <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link> : ""
+                        }
+                        {user.role === 'admin' ?
+                            <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/"+record.id} title="Theo Dõi"><SearchOutlined/></Link> : ""
+                        }
+                        {user.id === record.user_id || user.role === 'admin' ?
+                            <Link className="p-2 pl-md-0" to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" title="Gia hạn"><ClockCircleOutlined /></Link> : ""
+                        }
+                        {user.role === 'admin' ?
+                            <Link className="p-1" onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Link> : ''
+                        }
                     </div>
                 )
             },
@@ -305,7 +325,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
 
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ CẤP PHÉP CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep" showHeadImage={true} layout48={true} />
+                <Header headTitle="QUẢN LÝ CẤP PHÉP CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep" showHeadImage={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -384,7 +404,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
                                         </div>
                                         </Popup>
                                     </Marker> : ""
@@ -430,7 +449,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
                                         </div>
                                         </Popup>
                                     </Marker> : ""
@@ -476,7 +494,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
                                         </div>
                                         </Popup>
                                     </Marker> : ""
@@ -522,7 +539,6 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <Link to={'/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem-thong-tin-chung/'+marker.id} className="card-link d-block text-center">Chi tiết công trình</Link>
                                         </div>
                                         </Popup>
                                     </Marker> : ""

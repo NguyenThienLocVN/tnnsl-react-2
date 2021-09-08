@@ -21,6 +21,7 @@ import QuanLyCapPhepCapMoiNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien
 import QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/QuanLyCapPhep';
 import QuanLyCapPhepSuaGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/SuaGiayPhep';
 import QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/TheoDoi';
+import QuanLyCapPhepXemGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/Xem';
 
 // <==================================================QUAN LY CAP PHEP NUOC MAT - HO CHUA=================================================================================>
 import QuanLyCapPhepNuocMatHoChua from './QuanLyCapPhep/NuocMat/HoChua/HoChua';
@@ -245,6 +246,7 @@ function App() {
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem/:id_gp" component={QuanLyCapPhepXemGiayPhepNuocMatThuyDien} />
 
 
 				{/* ==================================================CONG TRINH HO CHUA================================================== */}
