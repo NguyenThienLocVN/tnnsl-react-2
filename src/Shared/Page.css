@@ -425,7 +425,8 @@
 .bg-chuaduocduyet { background: #cecfd0; }
 
 .legend-title-secondary { border-bottom: 1px solid #6c757d; }
-.form-control:disabled, .form-control[readonly] { opacity: 0.5 !important; }
+.form-control:focus{ box-shadow: none !important; }
+.form-control:disabled { opacity: 0.5 !important; }
 
 @media screen and (min-width: 768px){
     .top-bar { height: 35px; line-height: 35px; }
