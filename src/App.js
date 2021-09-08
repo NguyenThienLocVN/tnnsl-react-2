@@ -182,18 +182,31 @@ import HeThongQuanTracNuocMatMua from './HeThongQuanTrac/QuanTracMua/Mua';
 
 // <==================================================HE THONG QUAN TRAC - GIAM SAT HO CHUA=================================================================================>
 import HeThongQuanTracNuocMatHoChua from './HeThongQuanTrac/QuanTracHo/Ho';
+import HeThongQuanTracNuocMatTheoDoiQuanTracHo from './HeThongQuanTrac/QuanTracHo/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG DEN HO=================================================================================>
 import HeThongQuanTracNuocMatLuuLuongDenHo from './HeThongQuanTrac/QuanTracLuuLuongDenHo/LuuLuongDenHo';
+import HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo from './HeThongQuanTrac/QuanTracLuuLuongDenHo/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG XA QUA NHA MAY=================================================================================>
 import HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay from './HeThongQuanTrac/QuanTracLuuLuongXaQuaNhaMay/LuuLuongXaQuaNhaMay';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaNhaMay from './HeThongQuanTrac/QuanTracLuuLuongXaQuaNhaMay/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG XA TRAN=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongXaTran from './HeThongQuanTrac/QuanTracLuuLuongXaTran/LuuLuongXaTran';
+import HeThongQuanTracNuocMatLuuLuongXaQuaTran from './HeThongQuanTrac/QuanTracLuuLuongXaTran/LuuLuongXaTran';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran from './HeThongQuanTrac/QuanTracLuuLuongXaTran/TheoDoiQuanTrac';
+
+// <==================================================HE THONG QUAN TRAC - LUU LUONG KHAI THAC=================================================================================>
+import HeThongQuanTracNuocMatLuuLuongKhaiThac from './HeThongQuanTrac/QuanTracLuuLuongKhaiThac/LuuLuongKhaiThac';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac from './HeThongQuanTrac/QuanTracLuuLuongKhaiThac/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG XA TOI THIEU=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTracLuuLuongXaToiThieu/LuuLuongXaToiThieu'
+import HeThongQuanTracNuocMatLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTracLuuLuongXaToiThieu/LuuLuongXaToiThieu';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTracLuuLuongXaToiThieu/TheoDoiQuanTrac';
+
+// <==================================================HE THONG QUAN TRAC - LUU LUONG NUOC KHAI THAC=================================================================================>
+import HeThongQuanTracNuocMatChatLuongNuocKhaiThac from './HeThongQuanTrac/QuanTracChatLuongNuocKhaiThac/ChatLuongNuocKhaiThac';
+import HeThongQuanTracNuocMatTheoDoiChatLuongNuocKhaiThac from './HeThongQuanTrac/QuanTracChatLuongNuocKhaiThac/TheoDoiQuanTrac';
 
 // <==================================================HE THONG GIAM SAT=================================================================================>
 import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
@@ -418,18 +431,31 @@ function App() {
 
 				{/* ==================================================HE THONG QUAN TRAC HO CHUA================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/ho-chua" component={HeThongQuanTracNuocMatHoChua} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/ho-chua/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiQuanTracHo} />
 
 				{/* ==================================================HE THONG QUAN TRAC LUU LUONG DEN HO================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-den-ho" component={HeThongQuanTracNuocMatLuuLuongDenHo} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-den-ho/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo} />
 
 				{/* ==================================================HE THONG QUAN TRAC LUU LUONG XA THAI QUA NHA MAY================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-nha-may" component={HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-nha-may/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaNhaMay} />
 
 				{/* ==================================================HE THONG QUAN TRAC XA TRAN================================================== */}
-				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-tran" component={HeThongQuanTracNuocMatLuuLuongXaTran} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-tran" component={HeThongQuanTracNuocMatLuuLuongXaQuaTran} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-tran/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran} />
+
+				{/* ==================================================HE THONG QUAN TRAC KHAI THAC================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-khai-thac" component={HeThongQuanTracNuocMatLuuLuongKhaiThac} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-khai-thac/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac} />
 
 				{/* ==================================================HE THONG QUAN TRAC XA TOI THIEU================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-toi-thieu" component={HeThongQuanTracNuocMatLuuLuongXaToiThieu} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-toi-thieu/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu} />
+
+				{/* ==================================================HE THONG QUAN TRAC CHAT LUONG NUOC KHAI THAC================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/chat-luong-nuoc-khai-thac" component={HeThongQuanTracNuocMatChatLuongNuocKhaiThac} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/chat-luong-nuoc-khai-thac/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiChatLuongNuocKhaiThac} />
 
 
 

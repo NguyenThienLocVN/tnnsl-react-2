@@ -36,7 +36,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Component{
+export default class HeThongQuanTracNuocMatChatLuongNuocKhaiThac extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -265,6 +265,11 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
         // COLUMN TABLE CONG TRINH
         const columnCongTrinh = [
             {
+                title: 'Số giấy phép',
+                dataIndex: 'gp_sogiayphep',
+                key: 'gp_sogiayphep',
+            },
+            {
                 title: () => { 
                     return  <div className="d-flex align-items-center">
                                 <div className="col-8 p-0">Tên Hồ</div>
@@ -323,61 +328,73 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 key: 'congtrinh_ten',
             },
             {
-                title: 'Địa điểm',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-                render: () => (
-                    <div className="d-flex align-items-center">
-                        <span className="px-2">
-                            <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
-                        </span>
-                        <span>
-                            Địa điểm hồ chứa
-                        </span>
-                    </div>
-                )
-            },
-            {
-                title: 'Nguồn nước khai thác',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: 'Lưu lượng xả qua tràn (m3/s)',
+                title: 'Quan trắc chất lượng nước trong quá trình khai thác',
                 children: [
                     {
-                      title: 'Qxả tràn (m3/s)',
+                      title: 'Nhiệt độ',
                       dataIndex: '',
                       key: '',
-                      width: 150,
+                      width: 80,
                     },
                     {
                         title: () => (
                             <div className="text-center">
-                                Giá trị <br /> lớn nhất
+                                pH
                             </div>
                         ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
+                        width: 80,
                     },
                     {
                         title: () => (
                             <div className="text-center">
-                                Giá trị <br /> nhỏ nhất
+                                BOD₅(20⁰)
                             </div>
                         ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
+                        width: 80,
                     },
                     {
-                        title: 'Trung bình',
+                        title: () => (
+                            <div className="text-center">
+                                COD
+                            </div>
+                        ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                DO
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                TSS
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                NH4+
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
                     },
                 ],
                 dataIndex: '',
@@ -391,16 +408,17 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-tran/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
+                        <Link to={"/he-thong-quan-trac/nuoc-mat/chat-luong-nuoc-khai-thac"} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
                     </>
                 ),
             },
+            
         ];
 
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ TRÀN " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC CHẤT LƯỢNG NƯỚC KHAI THÁC " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />

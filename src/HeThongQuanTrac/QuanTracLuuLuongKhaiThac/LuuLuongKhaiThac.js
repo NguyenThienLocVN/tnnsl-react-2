@@ -36,7 +36,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Component{
+export default class HeThongQuanTracNuocMatLuuLuongKhaiThac extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -345,10 +345,10 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 align: 'center',
             },
             {
-                title: 'Lưu lượng xả qua tràn (m3/s)',
+                title: 'Lưu lượng khai thác (m3/s)',
                 children: [
                     {
-                      title: 'Qxả tràn (m3/s)',
+                      title: 'Qkhai thác (m3/s)',
                       dataIndex: '',
                       key: '',
                       width: 150,
@@ -391,7 +391,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-tran/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
+                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-khai-thac/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
                     </>
                 ),
             },
@@ -400,7 +400,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ TRÀN " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG KHAI THÁC " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />
