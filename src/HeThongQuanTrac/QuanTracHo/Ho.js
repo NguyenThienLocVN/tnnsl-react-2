@@ -351,7 +351,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                       title: 'Mực nước',
                       dataIndex: '',
                       key: '',
-                      width: 150,
                     },
                     {
                         title: () => (
@@ -361,7 +360,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                         ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
                     },
                     {
                         title: () => (
@@ -371,13 +369,11 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                         ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
                     },
                     {
                         title: 'Trung bình',
                         dataIndex: '',
                         key: '',
-                        width: 150,
                     },
                 ],
                 dataIndex: '',
@@ -391,7 +387,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                       title: 'Mực nước',
                       dataIndex: '',
                       key: '',
-                      width: 150,
                     },
                     {
                         title: () => (
@@ -401,7 +396,6 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                         ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
                     },
                     {
                         title: () => (
@@ -411,13 +405,11 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                         ),
                         dataIndex: '',
                         key: '',
-                        width: 150,
                     },
                     {
                         title: 'Trung bình',
                         dataIndex: '',
                         key: '',
-                        width: 150,
                     },
                 ],
                 dataIndex: '',
