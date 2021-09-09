@@ -1,9 +1,9 @@
 import React from 'react';
 
 // IMPORT HEADER
-import Header from "../../Shared/Header";
+import Header from "../../../Shared/Header";
 
-import LeftBarNav from "../LeftBarNav";
+import LeftBarNav from "../../LeftBarNav";
 
 // IMPORT FROM ANT
 import { FileExcelOutlined, UploadOutlined, FilterOutlined } from "@ant-design/icons";
@@ -15,10 +15,10 @@ import { Line } from 'react-chartjs-2';
 
 // GET DATA FROM API
 import axios from "axios";
-import configData from "../../config.json";
+import configData from "../../../config.json";
 import { trackPromise } from 'react-promise-tracker';
 // CHECK AUTH LOGIN
-import { getToken, removeUserSession } from '../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 
 
@@ -27,7 +27,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import * as L from 'leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
-import blueMarker from '../../Shared/marker-blue.png';
+import blueMarker from '../../../Shared/marker-blue.png';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -38,7 +38,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends React.Component{
+export default class HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -163,7 +163,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
                     },
                     title: {
                         display: true,
-                        text: 'Lưu lượng xả qua tràn (m3/s)'
+                        text: 'Lưu lượng khai thác (m3/s)'
                     },
                     beginAtZero: true,
                     min: 0
@@ -380,7 +380,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
                 align: 'center',
             },
             {
-                title: 'Lưu lượng nước xả qua nhà máy (m3/s)',
+                title: 'Lưu lượng khai thác (m3/s)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
@@ -412,7 +412,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
                 align: 'center',
             },
             {
-                title: 'Lưu lượng nước xả qua nhà máy (m3/s)',
+                title: 'Lưu lượng khai thác (m3/s)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
@@ -465,7 +465,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
                 dataIndex: '',
                 key: '',
                 render: () => (
-                    <span>NHAMAY</span>
+                    <span>KHAITHAC</span>
                 ),
             },
             {
@@ -504,9 +504,9 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
                 dataIndex: '',
                 key: '',
                 render: () => (
-                    <span>QUATRAN</span>
+                    <span>KHAITHAC</span>
                 ),
-              },
+            },
             {
               title: 'Chỉ số QT',
               dataIndex: '',
@@ -586,7 +586,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
             {
                 key: '1',
                 id: '1',
-                quantrac_tentram: 'NHAMAY',
+                quantrac_tentram: 'KHAITHAC',
                 quantrac_chiso: 'LUULUONG',
                 quantrac_giatri: '',
                 quantrac_thoigiannhan: '31/08/2021 17:30:00',
@@ -665,7 +665,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran extends Reac
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ QUA TRÀN " previousLink="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-tran" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG KHAI THÁC " previousLink="/he-thong-quan-trac/nuoc-mat/luu-luong-khai-thac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />

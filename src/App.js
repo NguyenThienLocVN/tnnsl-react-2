@@ -178,36 +178,46 @@ import GioiThieuChung from './GioiThieuChung/GioiThieuChung';
 // <==================================================HE THONG QUAN TRAC=================================================================================>
 import HeThongQuanTrac from './HeThongQuanTrac/HeThongQuanTrac';
 
+// <==================================================HE THONG QUAN TRAC - NUOC MAT=================================================================================>
+
 // <==================================================HE THONG QUAN TRAC - GIAM SAT MUA=================================================================================>
-import HeThongQuanTracNuocMatMua from './HeThongQuanTrac/QuanTracMua/Mua';
+import HeThongQuanTracNuocMatMua from './HeThongQuanTrac/NuocMat/QuanTracMua/Mua';
 
 // <==================================================HE THONG QUAN TRAC - GIAM SAT HO CHUA=================================================================================>
-import HeThongQuanTracNuocMatHoChua from './HeThongQuanTrac/QuanTracHo/Ho';
-import HeThongQuanTracNuocMatTheoDoiQuanTracHo from './HeThongQuanTrac/QuanTracHo/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatHoChua from './HeThongQuanTrac/NuocMat/QuanTracHo/Ho';
+import HeThongQuanTracNuocMatTheoDoiQuanTracHo from './HeThongQuanTrac/NuocMat/QuanTracHo/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG DEN HO=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongDenHo from './HeThongQuanTrac/QuanTracLuuLuongDenHo/LuuLuongDenHo';
-import HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo from './HeThongQuanTrac/QuanTracLuuLuongDenHo/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatLuuLuongDenHo from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongDenHo/LuuLuongDenHo';
+import HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongDenHo/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG XA QUA NHA MAY=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay from './HeThongQuanTrac/QuanTracLuuLuongXaQuaNhaMay/LuuLuongXaQuaNhaMay';
-import HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaNhaMay from './HeThongQuanTrac/QuanTracLuuLuongXaQuaNhaMay/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongXaQuaNhaMay/LuuLuongXaQuaNhaMay';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaNhaMay from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongXaQuaNhaMay/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG XA TRAN=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongXaQuaTran from './HeThongQuanTrac/QuanTracLuuLuongXaTran/LuuLuongXaTran';
-import HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran from './HeThongQuanTrac/QuanTracLuuLuongXaTran/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatLuuLuongXaQuaTran from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongXaTran/LuuLuongXaTran';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaTran from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongXaTran/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG KHAI THAC=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongKhaiThac from './HeThongQuanTrac/QuanTracLuuLuongKhaiThac/LuuLuongKhaiThac';
-import HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac from './HeThongQuanTrac/QuanTracLuuLuongKhaiThac/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatLuuLuongKhaiThac from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongKhaiThac/LuuLuongKhaiThac';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongKhaiThac/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG XA TOI THIEU=================================================================================>
-import HeThongQuanTracNuocMatLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTracLuuLuongXaToiThieu/LuuLuongXaToiThieu';
-import HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu from './HeThongQuanTrac/QuanTracLuuLuongXaToiThieu/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatLuuLuongXaToiThieu from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongXaToiThieu/LuuLuongXaToiThieu';
+import HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu from './HeThongQuanTrac/NuocMat/QuanTracLuuLuongXaToiThieu/TheoDoiQuanTrac';
 
 // <==================================================HE THONG QUAN TRAC - LUU LUONG NUOC KHAI THAC=================================================================================>
-import HeThongQuanTracNuocMatChatLuongNuocKhaiThac from './HeThongQuanTrac/QuanTracChatLuongNuocKhaiThac/ChatLuongNuocKhaiThac';
-import HeThongQuanTracNuocMatTheoDoiChatLuongNuocKhaiThac from './HeThongQuanTrac/QuanTracChatLuongNuocKhaiThac/TheoDoiQuanTrac';
+import HeThongQuanTracNuocMatChatLuongNuocKhaiThac from './HeThongQuanTrac/NuocMat/QuanTracChatLuongNuocKhaiThac/ChatLuongNuocKhaiThac';
+import HeThongQuanTracNuocMatTheoDoiChatLuongNuocKhaiThac from './HeThongQuanTrac/NuocMat/QuanTracChatLuongNuocKhaiThac/TheoDoiQuanTrac';
+
+// <==================================================HE THONG QUAN TRAC - NUOC DUOI DAT=================================================================================>
+
+// <==================================================HE THONG QUAN TRAC - LUU LUONG NUOC KHAI THAC=================================================================================>
+import HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac from './HeThongQuanTrac/NuocDuoiDat/QuanTracLuuLuongKhaiThac/LuuLuongKhaiThac';
+import HeThongQuanTracNuocDuoiDatTheoDoiLuuLuongKhaiThac from './HeThongQuanTrac/NuocDuoiDat/QuanTracLuuLuongKhaiThac/TheoDoiQuanTrac';
+
+
 
 // <==================================================HE THONG GIAM SAT=================================================================================>
 import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
@@ -428,6 +438,8 @@ function App() {
 				{/* ==================================================HE THONG QUAN TRAC================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac" component={HeThongQuanTrac} />
 
+				{/* ==================================================HE THONG QUAN TRAC - NUOC MAT================================================== */}
+
 				{/* ==================================================HE THONG QUAN TRAC MUA================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/mua" component={HeThongQuanTracNuocMatMua} />
 
@@ -458,6 +470,13 @@ function App() {
 				{/* ==================================================HE THONG QUAN TRAC CHAT LUONG NUOC KHAI THAC================================================== */}
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/chat-luong-nuoc-khai-thac" component={HeThongQuanTracNuocMatChatLuongNuocKhaiThac} />
 				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-mat/chat-luong-nuoc-khai-thac/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocMatTheoDoiChatLuongNuocKhaiThac} />
+
+				{/* ==================================================HE THONG QUAN TRAC - NUOC MAT================================================== */}
+
+				{/* ==================================================HE THONG QUAN TRAC CHAT LUONG NUOC KHAI THAC================================================== */}
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-duoi-dat/luu-luong-khai-thac" component={HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac} />
+				<ProtectedRoute exact path="/he-thong-quan-trac/nuoc-duoi-dat/luu-luong-khai-thac/theo-doi-quan-trac/:id_congtrinh" component={HeThongQuanTracNuocDuoiDatTheoDoiLuuLuongKhaiThac} />
+
 
 
 

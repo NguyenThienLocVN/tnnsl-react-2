@@ -1,9 +1,9 @@
 import React from 'react';
 
 // IMPORT HEADER
-import Header from "../../Shared/Header";
+import Header from "../../../Shared/Header";
 
-import LeftBarNav from "../LeftBarNav";
+import LeftBarNav from "../../LeftBarNav";
 
 // IMPORT FROM ANT
 import { FileExcelOutlined, UploadOutlined, FilterOutlined } from "@ant-design/icons";
@@ -15,10 +15,10 @@ import { Line } from 'react-chartjs-2';
 
 // GET DATA FROM API
 import axios from "axios";
-import configData from "../../config.json";
+import configData from "../../../config.json";
 import { trackPromise } from 'react-promise-tracker';
 // CHECK AUTH LOGIN
-import { getToken, removeUserSession } from '../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 
 
@@ -27,7 +27,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import * as L from 'leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
-import blueMarker from '../../Shared/marker-blue.png';
+import blueMarker from '../../../Shared/marker-blue.png';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -38,7 +38,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends React.Component{
+export default class HeThongQuanTracNuocMatTheoDoiQuanTracHo extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -163,7 +163,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                     },
                     title: {
                         display: true,
-                        text: 'Lưu lượng xả tối thiểu (m3/s)'
+                        text: 'Mực nước (m)'
                     },
                     beginAtZero: true,
                     min: 0
@@ -380,7 +380,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 align: 'center',
             },
             {
-                title: 'Lưu lượng nước xả tối thiểu (m3/s)',
+                title: 'Mực nước (m)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
@@ -412,7 +412,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 align: 'center',
             },
             {
-                title: 'Lưu lượng nước xả tối thiểu (m3/s)',
+                title: 'Mực nước (m)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
@@ -465,7 +465,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 dataIndex: '',
                 key: '',
                 render: () => (
-                    <span>NHAMAY</span>
+                    <span>HALUU</span>
                 ),
             },
             {
@@ -474,7 +474,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 key: '',
                 align: 'center',
                 render: () => (
-                    <span>LUULUONG</span>
+                    <span>MUCNUOC</span>
                 ),
             },
             {
@@ -487,7 +487,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 ),
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị',
                 dataIndex: '',
                 key: '',
                 align: 'center',
@@ -504,7 +504,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 dataIndex: '',
                 key: '',
                 render: () => (
-                    <span>QUATRAN</span>
+                    <span>THUONGLUU</span>
                 ),
               },
             {
@@ -513,7 +513,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
               key: '',
               align: 'center',
               render: () => (
-                    <span>LUULUONG</span>
+                    <span>MUCNUOC</span>
                 ),
             },
             {
@@ -534,7 +534,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                 key: '',
                 align: 'center',
                 render: () => (
-                    <span>m3/s</span>
+                    <span>m</span>
                 ),
             },
             {
@@ -586,8 +586,21 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
             {
                 key: '1',
                 id: '1',
-                quantrac_tentram: 'NHAMAY',
-                quantrac_chiso: 'LUULUONG',
+                quantrac_tentram: 'THUONGLUU',
+                quantrac_chiso: 'MUCNUOC',
+                quantrac_giatri: '',
+                quantrac_thoigiannhan: '31/08/2021 17:30:00',
+                quantrac_vuotnguong: '',
+                quantrac_giatrivuotnguong: '',
+                quantrac_giatrilonnhat: '',
+                quantrac_giatrinhonhat: '',
+                quantrac_giatritrungbinh: '',
+            },
+            {
+                key: '2',
+                id: '2',
+                quantrac_tentram: 'HALUU',
+                quantrac_chiso: 'MUCNUOC',
                 quantrac_giatri: '',
                 quantrac_thoigiannhan: '31/08/2021 17:30:00',
                 quantrac_vuotnguong: '',
@@ -622,7 +635,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
               key: '',
               align: 'center',
               render: () => (
-                <span>m3/s</span>
+                <span>m</span>
               )
             },
             {
@@ -665,7 +678,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ TỐI THIỂU " previousLink="/he-thong-quan-trac/nuoc-mat/luu-luong-xa-toi-thieu/" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC MỰC NƯỚC HỒ" previousLink="/he-thong-quan-trac/nuoc-mat/ho-chua/" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />
@@ -772,8 +785,8 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item className="p-1 m-0" label="Chỉ số">
-                                                    <Select defaultValue="LUULUONG" >
-                                                        <Select.Option value="LUULUONG">LUULUONG</Select.Option>
+                                                    <Select defaultValue="MUCNUOC" >
+                                                        <Select.Option value="MUCNUOC">MUCNUOC</Select.Option>
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item className="p-1 m-0" label="Trạng thái">
@@ -881,8 +894,8 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item className="p-1 m-0" label="Chỉ số">
-                                                    <Select defaultValue="LUULUONG">
-                                                        <Select.Option value="LUULUONG">LUULUONG</Select.Option>
+                                                    <Select defaultValue="MUCNUOC">
+                                                        <Select.Option value="MUCNUOC">MUCNUOC</Select.Option>
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item className="p-1 m-0" label="Trạng thái">
@@ -923,8 +936,8 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaToiThieu extends Rea
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item className="p-1 m-0" label="Chỉ số">
-                                                    <Select defaultValue="LUULUONG" >
-                                                        <Select.Option value="LUULUONG">LUULUONG</Select.Option>
+                                                    <Select defaultValue="MUCNUOC" >
+                                                        <Select.Option value="MUCNUOC">MUCNUOC</Select.Option>
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item className="p-1 m-0" label="Trạng thái">

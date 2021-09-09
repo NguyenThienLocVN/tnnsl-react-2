@@ -1,9 +1,9 @@
 import React from 'react';
 
 // IMPORT HEADER
-import Header from "../../Shared/Header";
+import Header from "../../../Shared/Header";
 
-import LeftBarNav from "../LeftBarNav";
+import LeftBarNav from "../../LeftBarNav";
 
 import { Link } from 'react-router-dom';
 
@@ -15,10 +15,10 @@ import { Modal, Button, Table, Form, Select, DatePicker, Input, TimePicker } fro
 
 // GET DATA FROM API
 import axios from "axios";
-import configData from "../../config.json";
+import configData from "../../../config.json";
 import { trackPromise } from 'react-promise-tracker';
 // CHECK AUTH LOGIN
-import { getToken, removeUserSession } from '../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 
 
@@ -27,7 +27,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import * as L from 'leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
-import blueMarker from '../../Shared/marker-blue.png';
+import blueMarker from '../../../Shared/marker-blue.png';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -36,7 +36,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocMatLuuLuongKhaiThac extends React.Component{
+export default class HeThongQuanTracNuocMatLuuLuongXaQuaNhaMay extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -345,10 +345,10 @@ export default class HeThongQuanTracNuocMatLuuLuongKhaiThac extends React.Compon
                 align: 'center',
             },
             {
-                title: 'Lưu lượng khai thác (m3/s)',
+                title: 'Lưu lượng xả qua nhà máy (m3/s)',
                 children: [
                     {
-                      title: 'Qkhai thác (m3/s)',
+                      title: 'Qxả nhà máy (m3/s)',
                       dataIndex: '',
                       key: '',
                       width: 150,
@@ -391,7 +391,7 @@ export default class HeThongQuanTracNuocMatLuuLuongKhaiThac extends React.Compon
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-khai-thac/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
+                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-nha-may/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
                     </>
                 ),
             },
@@ -400,7 +400,7 @@ export default class HeThongQuanTracNuocMatLuuLuongKhaiThac extends React.Compon
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG KHAI THÁC " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ QUA NHÀ MÁY " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />

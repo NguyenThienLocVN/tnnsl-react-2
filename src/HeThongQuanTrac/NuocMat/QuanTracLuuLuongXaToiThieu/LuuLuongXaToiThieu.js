@@ -1,9 +1,9 @@
 import React from 'react';
 
 // IMPORT HEADER
-import Header from "../../Shared/Header";
+import Header from "../../../Shared/Header";
 
-import LeftBarNav from "../LeftBarNav";
+import LeftBarNav from "../../LeftBarNav";
 
 import { Link } from 'react-router-dom';
 
@@ -15,10 +15,10 @@ import { Modal, Button, Table, Form, Select, DatePicker, Input, TimePicker } fro
 
 // GET DATA FROM API
 import axios from "axios";
-import configData from "../../config.json";
+import configData from "../../../config.json";
 import { trackPromise } from 'react-promise-tracker';
 // CHECK AUTH LOGIN
-import { getToken, removeUserSession } from '../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 
 
@@ -27,7 +27,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import * as L from 'leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
-import blueMarker from '../../Shared/marker-blue.png';
+import blueMarker from '../../../Shared/marker-blue.png';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -36,7 +36,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
+export default class HeThongQuanTracNuocMatLuuLuongXaToiThieu extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -345,21 +345,13 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 align: 'center',
             },
             {
-                title: 'Mực nước hồ thượng lưu (m)',
+                title: 'Lưu lượng xả tối thiểu (m3/s)',
                 children: [
                     {
-                      title: 'Mực nước',
+                      title: 'Qxả tối thiểu (m3/s)',
                       dataIndex: '',
                       key: '',
-                    },
-                    {
-                        title: () => (
-                            <div className="text-center">
-                                Giá trị <br /> nhỏ nhất
-                            </div>
-                        ),
-                        dataIndex: '',
-                        key: '',
+                      width: 150,
                     },
                     {
                         title: () => (
@@ -369,33 +361,7 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                         ),
                         dataIndex: '',
                         key: '',
-                    },
-                    {
-                        title: 'Trung bình',
-                        dataIndex: '',
-                        key: '',
-                    },
-                ],
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: 'Mực nước hồ hạ lưu (m)',
-                children: [
-                    {
-                      title: 'Mực nước',
-                      dataIndex: '',
-                      key: '',
-                    },
-                    {
-                        title: () => (
-                            <div className="text-center">
-                                Giá trị <br /> lớn nhất
-                            </div>
-                        ),
-                        dataIndex: '',
-                        key: '',
+                        width: 150,
                     },
                     {
                         title: () => (
@@ -405,11 +371,13 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                         ),
                         dataIndex: '',
                         key: '',
+                        width: 150,
                     },
                     {
                         title: 'Trung bình',
                         dataIndex: '',
                         key: '',
+                        width: 150,
                     },
                 ],
                 dataIndex: '',
@@ -423,7 +391,7 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Link to={"/he-thong-quan-trac/nuoc-mat/ho-chua/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
+                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-xa-toi-thieu/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
                     </>
                 ),
             },
@@ -432,7 +400,7 @@ export default class HeThongQuanTracNuocMatMucNuocHo extends React.Component{
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC MỰC NƯỚC HỒ " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ TỐI THIỂU " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />

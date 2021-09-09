@@ -122,7 +122,7 @@ export default class LeftBarNav extends React.Component {
                 </div>
                 <div className="row m-0 p-0 surfacewater-usage">
                     <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">NƯỚC DƯỚI ĐẤT</p>
-                    <Link to="#" className="col-6 mb-3 justify-content-center quantrac_item">
+                    <Link to="/he-thong-quan-trac/nuoc-duoi-dat/luu-luong-khai-thac" className="col-6 mb-3 justify-content-center quantrac_item">
                         <div className="surfacewater-usage p-1 row mx-0">
                             <p className="mb-0 col-12 text-center text-violet fw-bold font-12 quantrac_title">LƯU LƯỢNG KHAI THÁC NDD (m3/ngày đêm)</p>
                             <div className="row mx-0">
@@ -152,20 +152,6 @@ export default class LeftBarNav extends React.Component {
                     </Link>
                     <Link to="#" className="col-6 mb-3 justify-content-center quantrac_item">
                         <div className="surfacewater-usage p-1 row mx-0">
-                            <p className="mb-0 col-12 text-center text-violet fw-bold font-12 quantrac_title">CHẤT LƯỢNG NƯỚC TRONG QUÁ TRÌNH KHAI THÁC (m3/s)</p>
-                            <div className="row mx-0">
-                                <div className="col-5 row mx-0 align-items-center">
-                                    <p className="mb-0 w-100 text-center fw-bold p-0"><span>0</span>/<span>0</span></p>
-                                    <p className="mb-0 w-100 p-0 text-center text-danger fw-bold fst-italic">Giếng</p>
-                                </div>
-                                <div className="col-7">
-                                    <img src={process.env.PUBLIC_URL + '/images/HE_THONG_QUAN_TRAC/NUOC_DUOI_DAT/ANH_CLN_TRONG_QT_KT.png'} alt="HE_THONG_QUAN_TRAC/NUOC_DUOI_DAT/ANH_CLN_TRONG_QT_KT" />
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                    <Link to="#" className="col-6 mb-3 justify-content-center quantrac_item">
-                        <div className="surfacewater-usage p-1 row mx-0">
                             <p className="mb-0 col-12 text-center text-violet fw-bold font-12 quantrac_title">MỰC NƯỚC GIẾNG QUAN TRẮC</p>
                             <div className="row mx-0">
                                 <div className="col-5 row mx-0 align-items-center">
@@ -174,6 +160,20 @@ export default class LeftBarNav extends React.Component {
                                 </div>
                                 <div className="col-7">
                                     <img src={process.env.PUBLIC_URL + '/images/HE_THONG_QUAN_TRAC/NUOC_DUOI_DAT/MUC_NUOC_GIENG_KT.png'} alt="HE_THONG_QUAN_TRAC/NUOC_DUOI_DAT/MUC_NUOC_GIENG_KT" />
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="#" className="col-6 mb-3 justify-content-center quantrac_item">
+                        <div className="surfacewater-usage p-1 row mx-0">
+                            <p className="mb-0 col-12 text-center text-violet fw-bold font-12 quantrac_title">CHẤT LƯỢNG NƯỚC TRONG QUÁ TRÌNH KHAI THÁC (m3/s)</p>
+                            <div className="row mx-0">
+                                <div className="col-5 row mx-0 align-items-center">
+                                    <p className="mb-0 w-100 text-center fw-bold p-0"><span>0</span>/<span>0</span></p>
+                                    <p className="mb-0 w-100 p-0 text-center text-danger fw-bold fst-italic">Giếng</p>
+                                </div>
+                                <div className="col-7">
+                                    <img src={process.env.PUBLIC_URL + '/images/HE_THONG_QUAN_TRAC/NUOC_DUOI_DAT/ANH_CLN_TRONG_QT_KT.png'} alt="HE_THONG_QUAN_TRAC/NUOC_DUOI_DAT/ANH_CLN_TRONG_QT_KT" />
                                 </div>
                             </div>
                         </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 
 // IMPORT HEADER
-import Header from "../../Shared/Header";
+import Header from "../../../Shared/Header";
 
-import LeftBarNav from "../LeftBarNav";
+import LeftBarNav from "../../LeftBarNav";
 
 import { Link } from 'react-router-dom';
 
@@ -15,10 +15,10 @@ import { Modal, Button, Table, Form, Select, DatePicker, Input, TimePicker } fro
 
 // GET DATA FROM API
 import axios from "axios";
-import configData from "../../config.json";
+import configData from "../../../config.json";
 import { trackPromise } from 'react-promise-tracker';
 // CHECK AUTH LOGIN
-import { getToken, removeUserSession } from '../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 
 
 
@@ -27,7 +27,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import { BasemapLayer } from "react-esri-leaflet";
 import * as L from 'leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
-import blueMarker from '../../Shared/marker-blue.png';
+import blueMarker from '../../../Shared/marker-blue.png';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -36,7 +36,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Component{
+export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -124,7 +124,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 1',
+                congtrinh_ten: 'Thủy điện1',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -137,7 +137,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 2',
+                congtrinh_ten: 'Thủy điện2',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -150,7 +150,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 3',
+                congtrinh_ten: 'Thủy điện3',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -163,7 +163,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 4',
+                congtrinh_ten: 'Thủy điện4',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -176,7 +176,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 5',
+                congtrinh_ten: 'Thủy điện5',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -189,7 +189,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 6',
+                congtrinh_ten: 'Thủy điện6',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -202,7 +202,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 7',
+                congtrinh_ten: 'Thủy điện7',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -215,7 +215,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 8',
+                congtrinh_ten: 'Thủy điện8',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -228,7 +228,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 9',
+                congtrinh_ten: 'Thủy điện9',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -241,7 +241,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 10',
+                congtrinh_ten: 'Thủy điện10',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -254,7 +254,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 11',
+                congtrinh_ten: 'Thủy điện11',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -265,15 +265,20 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
         // COLUMN TABLE CONG TRINH
         const columnCongTrinh = [
             {
+                title: 'Số giấy phép',
+                dataIndex: 'gp_sogiayphep',
+                key: 'gp_sogiayphep',
+            },
+            {
                 title: () => { 
                     return  <div className="d-flex align-items-center">
-                                <div className="col-8 p-0">Tên Hồ</div>
+                                <div className="col-8 p-0">Số hiệu giếng</div>
                                     <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
-                                        <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm hồ</Button>
+                                        <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm Giếng</Button>
                                         <Modal
                                             className="modal-quantrac"
                                             scrollableBody={true}
-                                            title="YÊU CẦU THÊM MỚI HỒ"
+                                            title="YÊU CẦU THÊM MỚI GIẾNG"
                                             width={500}
                                             centered={true}
                                             visible={this.state.activeModal === "yeucau_themtrammoi"}
@@ -282,10 +287,10 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                                         >
                                             <div>
                                                 <Form labelCol={{ span: 24 }}>
-                                                    <Form.Item label="Tên hồ" style={{ marginBottom: 0 }}>
-                                                        <Input placeholder="Tên hồ" />
+                                                    <Form.Item label="Số hiệu" style={{ marginBottom: 0 }}>
+                                                        <Input placeholder="Số hiệu" />
                                                     </Form.Item>
-                                                    <Form.Item label="Tọa độ (VN2000)" style={{ marginBottom: 0 }}>
+                                                    <Form.Item label="Tọa độ (VN2000)">
                                                         <div className="d-flex justify-content-between">
                                                             <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
                                                                 <Input placeholder="X" />
@@ -294,19 +299,6 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                                                                 <Input placeholder="Y" />
                                                             </Form.Item>
                                                         </div>
-                                                    </Form.Item>
-                                                    <Form.Item label="Huyện / Xã" style={{ marginBottom: 0 }}>
-                                                        <div className="d-flex justify-content-between">
-                                                            <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                                <Input placeholder="Huyện" />
-                                                            </Form.Item>
-                                                            <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                                <Input placeholder="Xã" />
-                                                            </Form.Item>
-                                                        </div>
-                                                    </Form.Item>
-                                                    <Form.Item label="Địa chỉ">
-                                                        <Input placeholder="Địa chỉ" />
                                                     </Form.Item>
                                                     <Form.Item>
                                                         <div className="d-flex justify-content-center">
@@ -321,65 +313,61 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 } ,
                 dataIndex: 'congtrinh_ten',
                 key: 'congtrinh_ten',
-            },
-            {
-                title: 'Địa điểm',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-                render: () => (
+                render: (text, render, index) => (
                     <div className="d-flex align-items-center">
                         <span className="px-2">
                             <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
                         </span>
                         <span>
-                            Địa điểm hồ chứa
+                            {render.congtrinh_ten}
                         </span>
                     </div>
                 )
             },
             {
-                title: 'Nguồn nước khai thác',
+                title: () => (
+                    <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, múi chiếu 3⁰ </span>
+                ),
+                children: [
+                    {
+                      title: 'X',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                      width: 150,
+                    },
+                    {
+                        title: 'Y',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                        width: 150,
+                    },
+                ],
                 dataIndex: '',
                 key: '',
                 align: 'center',
             },
             {
-                title: 'Lưu lượng xả qua tràn (m3/s)',
-                children: [
-                    {
-                      title: 'Qxả tràn (m3/s)',
-                      dataIndex: '',
-                      key: '',
-                      width: 150,
-                    },
-                    {
-                        title: () => (
-                            <div className="text-center">
-                                Giá trị <br /> lớn nhất
-                            </div>
-                        ),
-                        dataIndex: '',
-                        key: '',
-                        width: 150,
-                    },
-                    {
-                        title: () => (
-                            <div className="text-center">
-                                Giá trị <br /> nhỏ nhất
-                            </div>
-                        ),
-                        dataIndex: '',
-                        key: '',
-                        width: 150,
-                    },
-                    {
-                        title: 'Trung bình',
-                        dataIndex: '',
-                        key: '',
-                        width: 150,
-                    },
-                ],
+                title: () => (
+                    <span>Lưu lượng khai thác <br /> (giờ/ngày đêm) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Chế độ khai thác <br /> (giờ/ngày đêm) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Tầng chứa nước <br /> khai thác</span>
+                ),
                 dataIndex: '',
                 key: '',
                 align: 'center',
@@ -391,7 +379,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Link to={"/he-thong-quan-trac/nuoc-mat/luu-luong-xa-qua-tran/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
+                        <Link to={"/he-thong-quan-trac/nuoc-duoi-dat/luu-luong-khai-thac/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
                     </>
                 ),
             },
@@ -400,7 +388,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ TRÀN " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG KHAI THÁC NƯỚC DƯỚI ĐẤT " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />
