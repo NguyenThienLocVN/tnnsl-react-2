@@ -123,7 +123,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracLuuLuongKhaiThac e
             labels: ['00:00 - 24/08/2021', '00:30 - 24/08/2021','01:00 - 24/08/2021', '01:30 - 24/08/2021', '02:00 - 24/08/2021', '02:30 - 24/08/2021','03:00 - 24/08/2021', '03:30 - 24/08/2021', '04:00 - 24/08/2021', '04:30 - 24/08/2021','05:00 - 24/08/2021', '06:00 - 24/08/2021', '06:30 - 24/08/2021', '07:00 - 24/08/2021', '07:30 - 24/08/2021', '08:00 - 24/08/2021', '08:30 - 24/08/2021', '09:00 - 24/08/2021', '09:30 - 24/08/2021', '10:00 - 24/08/2021', '10:30 - 24/08/2021', '11:00 - 24/08/2021', '11:30 - 24/08/2021','12:00 - 24/08/2021', '12:30 - 24/08/2021','13:00 - 24/08/2021', '13:30 - 24/08/2021','14:00 - 24/08/2021', '14:30 - 24/08/2021', '15:00 - 24/08/2021', '15:30 - 24/08/2021', '16:00 - 24/08/2021', '16:30 - 24/08/2021', '17:00 - 24/08/2021', '17:30 - 24/08/2021', '18:00 - 24/08/2021', '18:30 - 24/08/2021', '19:00 - 24/08/2021', '19:30 - 24/08/2021', '20:00 - 24/08/2021', '20:30 - 24/08/2021', '21:00 - 24/08/2021', '21:30 - 24/08/2021', '22:00 - 24/08/2021', '22:30 - 24/08/2021', '23:00 - 24/08/2021', '23:30 - 24/08/2021'],
             datasets: [
               {
-                label: 'Mực nước',
+                label: 'Lưu lượng',
                 data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155,122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
                 backgroundColor: [
                   'rgba(75,192,192,0.2)',
@@ -452,7 +452,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracLuuLuongKhaiThac e
                 key: '',
             },
             {
-                title: 'Số giếng cấp phép quan trắc',
+                title: 'Số giếng',
                 dataIndex: 'tramcapphep_soluong',
                 key: 'tramcapphep_soluong',
             },
@@ -844,7 +844,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracLuuLuongKhaiThac e
                                         />
                                         {/* END TABLE THONG TIN TRAM QUAN TRAC */}
                                     </div>
-                                    <Tabs type="card" tabPosition="left" defaultActiveKey="1">
+                                    <Tabs tabPosition="top" defaultActiveKey="1">
                                         <TabPane tab="Chỉ số quan trắc" key="1">
                                             <div>
                                                 <Form layout="inline" className="justify-content-end">
@@ -900,7 +900,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracLuuLuongKhaiThac e
                                                     </Button>
                                                 </Form.Item>
                                             </Form>
-                                            <Tabs tabPosition="top" defaultActiveKey="1" type="card">
+                                            <Tabs tabPosition="top" defaultActiveKey="1">
                                                 <TabPane tab="Biểu Đồ" key="1">
                                                     {/* LINE CHARTS MUC NUOC HO */}
                                                     <div className="d-flex align-items-end">

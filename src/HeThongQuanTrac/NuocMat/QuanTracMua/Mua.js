@@ -416,7 +416,7 @@ export default class HeThongQuanTracNuocMatMua extends React.Component{
                                                     {/* END FILTER FORM */}
                                                 </div>
                                             </div>
-                                            <Tabs type="card" tabPosition="left" defaultActiveKey="1" type="card">
+                                            <Tabs tabPosition="left" defaultActiveKey="1">
                                                 <TabPane tab="Biểu Đồ" key="1">
                                                     {/* BAR CHARTS LUU LUONG MUA */}
                                                     <div className="d-flex align-items-end">

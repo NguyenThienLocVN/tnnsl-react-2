@@ -741,7 +741,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac extends React
                                         />
                                         {/* END TABLE THONG TIN TRAM QUAN TRAC */}
                                     </div>
-                                    <Tabs type="card" tabPosition="left" defaultActiveKey="1">
+                                    <Tabs tabPosition="top" defaultActiveKey="1">
                                         <TabPane tab="Chỉ số quan trắc" key="1">
                                             <div>
                                                 <Form layout="inline" className="justify-content-end">
@@ -797,7 +797,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongKhaiThac extends React
                                                     </Button>
                                                 </Form.Item>
                                             </Form>
-                                            <Tabs tabPosition="top" defaultActiveKey="1" type="card">
+                                            <Tabs tabPosition="top" defaultActiveKey="1">
                                                 <TabPane tab="Biểu Đồ" key="1">
                                                     {/* LINE CHARTS MUC NUOC HO */}
                                                     <div className="d-flex align-items-end">

@@ -272,8 +272,8 @@ export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Co
             {
                 title: () => { 
                     return  <div className="d-flex align-items-center">
-                                <div className="col-8 p-0">Số hiệu giếng</div>
-                                    <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
+                                <div className="col-8 p-0">Tên công trình</div>
+                                    {/* <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
                                         <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm Giếng</Button>
                                         <Modal
                                             className="modal-quantrac"
@@ -308,7 +308,7 @@ export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Co
                                                 </Form>
                                             </div>
                                         </Modal>
-                                    </div>
+                                    </div> */}
                                 </div>;
                 } ,
                 dataIndex: 'congtrinh_ten',
@@ -326,7 +326,7 @@ export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Co
             },
             {
                 title: () => (
-                    <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, múi chiếu 3⁰ </span>
+                    <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, <br /> múi chiếu 3⁰ </span>
                 ),
                 children: [
                     {
@@ -334,14 +334,12 @@ export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Co
                       dataIndex: '',
                       key: '',
                       align: 'center',
-                      width: 150,
                     },
                     {
                         title: 'Y',
                         dataIndex: '',
                         key: '',
                         align: 'center',
-                        width: 150,
                     },
                 ],
                 dataIndex: '',
@@ -350,7 +348,7 @@ export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Co
             },
             {
                 title: () => (
-                    <span>Lưu lượng khai thác <br /> (giờ/ngày đêm) </span>
+                    <span>Lưu lượng <br /> khai thác <br /> (giờ/ngày đêm) </span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -358,7 +356,7 @@ export default class HeThongQuanTracNuocDuoiDatLuuLuongKhaiThac extends React.Co
             },
             {
                 title: () => (
-                    <span>Chế độ khai thác <br /> (giờ/ngày đêm) </span>
+                    <span>Chế độ <br /> khai thác <br /> (giờ/ngày đêm) </span>
                 ),
                 dataIndex: '',
                 key: '',

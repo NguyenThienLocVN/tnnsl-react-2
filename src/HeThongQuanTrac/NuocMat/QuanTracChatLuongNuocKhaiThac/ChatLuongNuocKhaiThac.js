@@ -273,7 +273,7 @@ export default class HeThongQuanTracNuocMatChatLuongNuocKhaiThac extends React.C
                 title: () => { 
                     return  <div className="d-flex align-items-center">
                                 <div className="col-8 p-0">Tên Hồ</div>
-                                    <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
+                                    {/* <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
                                         <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm hồ</Button>
                                         <Modal
                                             className="modal-quantrac"
@@ -321,7 +321,7 @@ export default class HeThongQuanTracNuocMatChatLuongNuocKhaiThac extends React.C
                                                 </Form>
                                             </div>
                                         </Modal>
-                                    </div>
+                                    </div> */}
                                 </div>;
                 } ,
                 dataIndex: 'congtrinh_ten',
@@ -400,18 +400,7 @@ export default class HeThongQuanTracNuocMatChatLuongNuocKhaiThac extends React.C
                 dataIndex: '',
                 key: '',
                 align: 'center',
-            },
-            {
-                title: '',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-                render: (text, record, index) => (
-                    <>
-                        <Link to={"/he-thong-quan-trac/nuoc-mat/chat-luong-nuoc-khai-thac"} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
-                    </>
-                ),
-            },
+            }
             
         ];
 

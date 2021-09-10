@@ -96,8 +96,21 @@
 .hydroelectric-icon { width: 65px; height: 65px; }
 .hydroelectric-sub-icon { width: 45px; height: 45px; }
 
+thead[class*="ant-table-thead"] th{
+  background-color: rgb(68,114,196) !important;
+  color: #fff !important;
+}
+.ant-table-tbody > tr:nth-child(even){
+  background-color: rgb(217,225,242) !important
+}
+.ant-table-tbody > tr:nth-child(odd){
+  background-color: #00000017 !important
+}
+
+/* .ant-table-tbody > tr:hover > td{background-color: rgb(193 212 251) !important;} */
+
 .ant-table-thead > tr > th { padding: 5px 6px !important; }
-.ant-table-tbody > tr > td { padding: 6px !important; cursor: pointer; font-size: 13px; }
+.ant-table-tbody > tr > td { padding: 6px !important; cursor: pointer; font-size: 13px;  }
 .table-icon { width: 15px; height: 15px; }
 
 .ant-modal{top: 0 !important;}
@@ -190,6 +203,7 @@
 .ant-tabs-top > .ant-tabs-nav, .ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top > div > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav{
   margin: 0 !important;
 }
+
 
 /* rotate colse btn */
 .modal-quantrac .ant-modal-close-x {

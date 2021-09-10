@@ -268,7 +268,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                 title: () => { 
                     return  <div className="d-flex align-items-center">
                                 <div className="col-8 p-0">Tên Hồ</div>
-                                    <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
+                                    {/* <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
                                         <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm hồ</Button>
                                         <Modal
                                             className="modal-quantrac"
@@ -316,7 +316,7 @@ export default class HeThongQuanTracNuocMatLuuLuongXaQuaTran extends React.Compo
                                                 </Form>
                                             </div>
                                         </Modal>
-                                    </div>
+                                    </div> */}
                                 </div>;
                 } ,
                 dataIndex: 'congtrinh_ten',

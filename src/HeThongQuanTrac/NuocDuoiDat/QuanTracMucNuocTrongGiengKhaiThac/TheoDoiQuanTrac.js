@@ -38,7 +38,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends React.Component{
+export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengKhaiThac extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -163,7 +163,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                     },
                     title: {
                         display: true,
-                        text: 'Lưu lượng nước (m3/s)'
+                        text: 'Mực nước trong giếng khai thác (m)'
                     },
                     beginAtZero: true,
                     min: 0
@@ -178,7 +178,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 1',
+                congtrinh_ten: 'Thủy điện 1',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -380,7 +380,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                 align: 'center',
             },
             {
-                title: 'Lưu lượng nước (m)',
+                title: 'Lưu lượng khai thác (m3/s)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
@@ -412,7 +412,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                 align: 'center',
             },
             {
-                title: 'Lưu lượng nước (m3/s)',
+                title: 'Lưu lượng khai thác (m3/s)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
@@ -452,7 +452,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                 key: '',
             },
             {
-                title: 'Số trạm cấp phép quan trắc',
+                title: 'Số giếng',
                 dataIndex: 'tramcapphep_soluong',
                 key: 'tramcapphep_soluong',
             },
@@ -461,38 +461,101 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
         // COLUMN CONG TRINH MAT KET NOI
         const columnCongTrinhMatKetNoi = [
             {
-                title: 'Tên trạm',
+                title: 'Số hiệu',
                 dataIndex: '',
                 key: '',
-                render: () => (
-                    <span>NHAMAY</span>
+            },{
+                title: () => (
+                    <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, <br /> múi chiếu 3⁰ </span>
                 ),
-            },
-            {
-                title: 'Chỉ số',
+                children: [
+                    {
+                      title: 'X',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                    },
+                    {
+                        title: 'Y',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                ],
                 dataIndex: '',
                 key: '',
                 align: 'center',
-                render: () => (
-                    <span>LUULUONG</span>
-                ),
             },
             {
-                title: 'Thời gian nhận',
+                title: () => (
+                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
+                ),
+                children: [
+                    {
+                      title: 'Từ',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                    },
+                    {
+                        title: 'Đến',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                ],
                 dataIndex: '',
                 key: '',
                 align: 'center',
-                render: () => (
-                    <span> 31/08/2021 17:30:00 </span>
-                ),
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: () => (
+                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Mực nước <br /> trong giếng <br /> khai thác  <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Thời gian <br /> nhận số liệu</span>
+                ),
+                dataIndex: '',
+                key: '',
+                width: 90,
+                align: 'center',
+            },
+            {
+                title: 'Giá trị (m)',
                 dataIndex: '',
                 key: '',
                 align: 'center',
                 render: (record, index) => (
-                    <span> { 14 + parseInt(record.id) } </span>
+                    <span> 0 </span>
                 ),
             },
         ];
@@ -500,50 +563,95 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
         // COLUMN CONG TRINH VUOT NGUONG
         const columnCongTrinhVuotNguong = [
             {
-                title: 'Tên trạm',
+                title: 'Số hiệu',
                 dataIndex: '',
                 key: '',
-                render: () => (
-                    <span>QUATRAN</span>
+            },{
+                title: () => (
+                    <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, <br /> múi chiếu 3⁰ </span>
                 ),
-              },
-            {
-              title: 'Chỉ số QT',
-              dataIndex: '',
-              key: '',
-              align: 'center',
-              render: () => (
-                    <span>LUULUONG</span>
-                ),
-            },
-            {
-                title: 'Giá trị ngưỡng',
+                children: [
+                    {
+                      title: 'X',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                    },
+                    {
+                        title: 'Y',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                ],
                 dataIndex: '',
                 key: '',
                 align: 'center',
             },
             {
-              title: 'Giá trị QT',
-              dataIndex: '',
-              key: '',
-              align: 'center',
-            },
-            {
-                title: 'Đơn vị đo',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-                render: () => (
-                    <span>m3/s</span>
+                title: () => (
+                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
                 ),
-            },
-            {
-                title: 'Thời gian nhận SL',
+                children: [
+                    {
+                      title: 'Từ',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                    },
+                    {
+                        title: 'Đến',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                ],
                 dataIndex: '',
                 key: '',
                 align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Mực nước <br /> trong giếng <br /> khai thác  <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Thời gian <br /> nhận số liệu</span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+                width: 90,
                 render: () => (
-                    <span> 31/08/2021 17:30:00 </span>
+                    <span> 2021-08-31 17:30:00 </span>
                 ),
             },
             {
@@ -556,29 +664,37 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                 ),
             },
             {
-                title: 'Giá trị vượt ngưỡng',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: 'Giá trị nhỏ nhất',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: 'Giá trị lớn nhất',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: 'Giá trị trung bình',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
+                title: () => (
+                   <span>Giá trị <br /> vượt ngưỡng</span>
+               ),
+               dataIndex: '',
+               key: '',
+               align: 'center',
+           },
+           {
+                title: () => (
+                   <span>Giá trị <br /> lớn nhất</span>
+               ),
+               dataIndex: '',
+               key: '',
+               align: 'center',
+           },
+           {
+                title: () => (
+                   <span>Giá trị <br /> nhỏ nhất</span>
+               ),
+               dataIndex: '',
+               key: '',
+               align: 'center',
+           },
+           {
+                title: () => (
+                   <span>Giá trị <br /> trung bình</span>
+               ),
+               dataIndex: '',
+               key: '',
+               align: 'center',
+           },
         ];
 
         // DATA TRAM QUAN TRAC
@@ -586,112 +702,157 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
             {
                 key: '1',
                 id: '1',
-                quantrac_tentram: 'DCTT',
-                quantrac_chiso: 'LUULUONG',
-                quantrac_giatri: '',
-                quantrac_thoigiannhan: '31/08/2021 17:30:00',
-                quantrac_vuotnguong: '',
-                quantrac_giatrivuotnguong: '',
-                quantrac_giatrilonnhat: '',
-                quantrac_giatrinhonhat: '',
-                quantrac_giatritrungbinh: '',
+                gieng_sohieu: 'GK1',
+                quantrac_thoigiannhan: '2021-08-31 17:30:00',
             },
             {
                 key: '2',
                 id: '2',
-                quantrac_tentram: 'NHAMAY',
-                quantrac_chiso: 'LUULUONG',
-                quantrac_giatri: '',
-                quantrac_thoigiannhan: '31/08/2021 17:30:00',
-                quantrac_vuotnguong: '',
-                quantrac_giatrivuotnguong: '',
-                quantrac_giatrilonnhat: '',
-                quantrac_giatrinhonhat: '',
-                quantrac_giatritrungbinh: '',
+                gieng_sohieu: 'GK2',
+                quantrac_thoigiannhan: '2021-08-31 17:30:00',
             },
             {
                 key: '3',
                 id: '3',
-                quantrac_tentram: 'QUATRAN',
-                quantrac_chiso: 'LUULUONG',
-                quantrac_giatri: '',
-                quantrac_thoigiannhan: '31/08/2021 17:30:00',
-                quantrac_vuotnguong: '',
-                quantrac_giatrivuotnguong: '',
-                quantrac_giatrilonnhat: '',
-                quantrac_giatrinhonhat: '',
-                quantrac_giatritrungbinh: '',
+                gieng_sohieu: 'GK3',
+                quantrac_thoigiannhan: '2021-08-31 17:30:00',
             },
         ]
         // COLUMN TRAM QUAN TRAC
         const columnTramQuanTrac = [
             {
-                title: 'Tên trạm',
-                dataIndex: 'quantrac_tentram',
-                key: 'quantrac_tentram',
+                title: 'Số hiệu giếng',
+                dataIndex: 'gieng_sohieu',
+                key: 'gieng_sohieu',
             },
             {
-              title: 'Chỉ số QT',
-              dataIndex: 'quantrac_chiso',
-              key: 'quantrac_chiso',
-              align: 'center',
+                title: () => (
+                    <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, <br /> múi chiếu 3⁰ </span>
+                ),
+                children: [
+                    {
+                      title: 'X',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                    },
+                    {
+                        title: 'Y',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                ],
+                dataIndex: '',
+                key: '',
+                align: 'center',
             },
             {
-              title: 'Giá trị QT',
-              dataIndex: 'quantrac_giatri',
-              key: 'quantrac_giatri',
-              align: 'center',
+                title: () => (
+                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
+                ),
+                children: [
+                    {
+                      title: 'Từ',
+                      dataIndex: '',
+                      key: '',
+                      align: 'center',
+                    },
+                    {
+                        title: 'Đến',
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                ],
+                dataIndex: '',
+                key: '',
+                align: 'center',
             },
             {
-              title: 'Đơn vị đo',
-              dataIndex: '',
-              key: '',
-              align: 'center',
-              render: () => (
-                <span>m3/s</span>
-              )
+                title: () => (
+                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
             },
             {
-                title: 'Thời gian nhận số liệu',
+                title: () => (
+                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Mực nước <br /> trong giếng <br /> khai thác  <br /> (m) </span>
+                ),
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            {
+                title: () => (
+                    <span>Thời gian <br /> nhận số liệu</span>
+                ),
                 dataIndex: 'quantrac_thoigiannhan',
                 key: 'quantrac_thoigiannhan',
                 align: 'center',
+                width: 90,
             },
             {
                 title: 'Vượt ngưỡng',
-                dataIndex: 'quantrac_vuotnguong',
-                key: 'quantrac_vuotnguong',
+                dataIndex: '',
+                key: '',
                 align: 'center',
             },
             {
-                title: 'Giá trị vượt ngưỡng',
-                dataIndex: 'quantrac_giatrivuotnguong',
-                key: 'quantrac_giatrivuotnguong',
+                 title: () => (
+                    <span>Giá trị <br /> vượt ngưỡng</span>
+                ),
+                dataIndex: '',
+                key: '',
                 align: 'center',
             },
             {
-                title: 'Giá trị lớn nhất',
-                dataIndex: 'quantrac_giatrilonnhat',
-                key: 'quantrac_giatrilonnhat',
+                 title: () => (
+                    <span>Giá trị <br /> lớn nhất</span>
+                ),
+                dataIndex: '',
+                key: '',
                 align: 'center',
             },
             {
-                title: 'Giá trị nhỏ nhất',
-                dataIndex: 'quantrac_giatrinhonhat',
-                key: 'quantrac_giatrinhonhat',
+                 title: () => (
+                    <span>Giá trị <br /> nhỏ nhất</span>
+                ),
+                dataIndex: '',
+                key: '',
                 align: 'center',
             },
             {
-                title: 'Giá trị trung bình',
-                dataIndex: 'quantrac_giatritrungbinh',
-                key: 'quantrac_giatritrungbinh',
+                 title: () => (
+                    <span>Giá trị <br /> trung bình</span>
+                ),
+                dataIndex: '',
+                key: '',
                 align: 'center',
             },
         ];
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC LƯU LƯỢNG ĐẾN HỒ " previousLink="/he-thong-quan-trac/nuoc-mat/luu-luong-den-ho" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC MỰC NƯỚC TRONG GIẾNG KHAI THÁC" previousLink="/he-thong-quan-trac/nuoc-duoi-dat/muc-nuoc-trong-gieng-khai-thac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />
@@ -767,7 +928,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                                         />
                                         {/* END TABLE THONG TIN TRAM QUAN TRAC */}
                                     </div>
-                                    <Tabs type="card" tabPosition="left" defaultActiveKey="1">
+                                    <Tabs tabPosition="top" defaultActiveKey="1">
                                         <TabPane tab="Chỉ số quan trắc" key="1">
                                             <div>
                                                 <Form layout="inline" className="justify-content-end">
@@ -793,7 +954,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                                                 <Form.Item className="p-1 m-0" label="Trạm QT">
                                                     <Select placeholder="Chọn trạm quan trắc" >
                                                     {dataTramQuanTrac.map((tram,i) => (
-                                                        <Select.Option value={tram.quantrac_tentram} key={i}>{tram.quantrac_tentram}</Select.Option>
+                                                        <Select.Option value={tram.gieng_sohieu} key={i}>{tram.gieng_sohieu}</Select.Option>
                                                     ))}
                                                     </Select>
                                                 </Form.Item>
@@ -823,7 +984,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                                                     </Button>
                                                 </Form.Item>
                                             </Form>
-                                            <Tabs tabPosition="top" defaultActiveKey="1" type="card">
+                                            <Tabs tabPosition="top" defaultActiveKey="1">
                                                 <TabPane tab="Biểu Đồ" key="1">
                                                     {/* LINE CHARTS MUC NUOC HO */}
                                                     <div className="d-flex align-items-end">
@@ -902,7 +1063,7 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                                                 <Form.Item className="p-1 m-0" label="Trạm QT">
                                                     <Select placeholder="Chọn trạm quan trắc" >
                                                     {dataTramQuanTrac.map((tram,i) => (
-                                                        <Select.Option value={tram.quantrac_tentram} key={i}>{tram.quantrac_tentram}</Select.Option>
+                                                        <Select.Option value={tram.gieng_sohieu} key={i}>{tram.gieng_sohieu}</Select.Option>
                                                     ))}
                                                     </Select>
                                                 </Form.Item>
@@ -939,12 +1100,12 @@ export default class HeThongQuanTracNuocMatTheoDoiQuanTracLuuLuongDenHo extends 
                                                 pagination={false} 
                                             />
                                         </TabPane>
-                                        <TabPane tab="Vượt ngưỡng" key="4">
+                                        <TabPane tab="Vượt ngưỡng" key="4" style={{"overflow": "auto"}}>
                                             <Form layout="inline" className="justify-content-end">
                                                 <Form.Item className="p-1 m-0" label="Trạm QT">
                                                     <Select placeholder="Chọn trạm quan trắc">
                                                     {dataTramQuanTrac.map((tram,i) => (
-                                                        <Select.Option value={tram.quantrac_tentram} key={i}>{tram.quantrac_tentram}</Select.Option>
+                                                        <Select.Option value={tram.gieng_sohieu} key={i}>{tram.gieng_sohieu}</Select.Option>
                                                     ))}
                                                     </Select>
                                                 </Form.Item>
