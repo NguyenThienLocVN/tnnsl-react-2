@@ -8,8 +8,8 @@ import LeftBarNav from "../../LeftBarNav";
 import { Link } from 'react-router-dom';
 
 // IMPORT FROM ANT
-import { PlusCircleOutlined, FilterOutlined } from "@ant-design/icons";
-import { Modal, Button, Table, Form, Select, DatePicker, Input, TimePicker } from 'antd';
+import { FilterOutlined } from "@ant-design/icons";
+import { Button, Table, Form, Select, DatePicker, TimePicker } from 'antd';
 
 
 
@@ -271,45 +271,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengQuanTrac extends
             },
             {
                 title: () => { 
-                    return  <div className="d-flex align-items-center">
-                                <div className="col-8 p-0">Tên công trình</div>
-                                    {/* <div className="p-1 m-0 col-4 d-flex flex-row-reverse">
-                                        <Button className="d-flex align-items-center" type="ghost" onClick={(e) => this.clickHandler(e, "yeucau_themtrammoi")}> <PlusCircleOutlined /> Thêm Giếng</Button>
-                                        <Modal
-                                            className="modal-quantrac"
-                                            scrollableBody={true}
-                                            title="YÊU CẦU THÊM MỚI GIẾNG"
-                                            width={500}
-                                            centered={true}
-                                            visible={this.state.activeModal === "yeucau_themtrammoi"}
-                                            onCancel={this.hideModal}
-                                            footer={false}
-                                        >
-                                            <div>
-                                                <Form labelCol={{ span: 24 }}>
-                                                    <Form.Item label="Số hiệu" style={{ marginBottom: 0 }}>
-                                                        <Input placeholder="Số hiệu" />
-                                                    </Form.Item>
-                                                    <Form.Item label="Tọa độ (VN2000)">
-                                                        <div className="d-flex justify-content-between">
-                                                            <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                                <Input placeholder="X" />
-                                                            </Form.Item>
-                                                            <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 8px)',marginBottom: 0 }}>
-                                                                <Input placeholder="Y" />
-                                                            </Form.Item>
-                                                        </div>
-                                                    </Form.Item>
-                                                    <Form.Item>
-                                                        <div className="d-flex justify-content-center">
-                                                            <Button>Yêu cầu thêm mới</Button>
-                                                        </div>
-                                                    </Form.Item>
-                                                </Form>
-                                            </div>
-                                        </Modal>
-                                    </div> */}
-                                </div>;
+                    return <span>Tên công trình</span>
                 } ,
                 dataIndex: 'congtrinh_ten',
                 key: 'congtrinh_ten',

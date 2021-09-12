@@ -5,8 +5,6 @@ import Header from "../../../Shared/Header";
 
 import LeftBarNav from "../../LeftBarNav";
 
-import { Link } from 'react-router-dom';
-
 // IMPORT FROM ANT
 import { FilterOutlined } from "@ant-design/icons";
 import { Button, Table, Form, Select, DatePicker, TimePicker } from 'antd';
@@ -36,7 +34,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends React.Component{
+export default class HeThongQuanTracXaThaiChatLuongNuoc extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -124,7 +122,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện1',
+                congtrinh_ten: 'Thủy Điện 1',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -137,7 +135,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện2',
+                congtrinh_ten: 'Thủy Điện 2',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -150,7 +148,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện3',
+                congtrinh_ten: 'Thủy Điện 3',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -163,7 +161,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện4',
+                congtrinh_ten: 'Thủy Điện 4',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -176,7 +174,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện5',
+                congtrinh_ten: 'Thủy Điện 5',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -189,7 +187,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện6',
+                congtrinh_ten: 'Thủy Điện 6',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -202,7 +200,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện7',
+                congtrinh_ten: 'Thủy Điện 7',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -215,7 +213,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện8',
+                congtrinh_ten: 'Thủy Điện 8',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -228,7 +226,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện9',
+                congtrinh_ten: 'Thủy Điện 9',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -241,7 +239,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện10',
+                congtrinh_ten: 'Thủy Điện 10',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -254,7 +252,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 mucnuocho: 725.1,
                 updatetime: "07:00",
                 gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy điện11',
+                congtrinh_ten: 'Thủy Điện 11',
                 congtrinh_diachi: "123 đường 123 - tp sơn la",
                 chugiayphep_ten: 'Công ty 1',
                 tramcapphep_soluong: 2,
@@ -271,20 +269,10 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
             },
             {
                 title: () => { 
-                    return <span>Tên công trình</span>
+                    return <span>Vị trí xả thải</span>
                 } ,
                 dataIndex: 'congtrinh_ten',
                 key: 'congtrinh_ten',
-                render: (text, render, index) => (
-                    <div className="d-flex align-items-center">
-                        <span className="px-2">
-                            <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/earth.png'} alt="earth" className="table-icon" />
-                        </span>
-                        <span>
-                            {render.congtrinh_ten}
-                        </span>
-                    </div>
-                )
             },
             {
                 title: () => (
@@ -310,99 +298,113 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
             },
             {
                 title: () => (
-                    <span>Lưu lượng <br /> khai thác <br /> (giờ/ngày đêm) </span>
+                    <span>Lưu lượng <br /> xả thải <br /> (m3/ngày đêm) </span>
                 ),
                 dataIndex: '',
                 key: '',
                 align: 'center',
             },
             {
-                title: () => (
-                    <span>Chế độ <br /> khai thác <br /> (giờ/ngày đêm) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Tầng chứa nước <br /> khai thác</span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
-                ),
+                title: 'Quan trắc chất lượng nước thải',
                 children: [
                     {
-                      title: 'Từ',
+                      title: 'pH',
                       dataIndex: '',
                       key: '',
-                      align: 'center',
                     },
                     {
-                        title: 'Đến',
+                        title: () => (
+                            <div className="text-center">
+                                BOD₅(20⁰)
+                            </div>
+                        ),
                         dataIndex: '',
                         key: '',
-                        align: 'center',
                     },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                TSS
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Tổng <br /> chất rắn <br /> hòa tan
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Sunfua <br /> (Tính theo <br /> H2S)
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Amoni <br /> (Tính theo N)
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Nitrat <br /> (NO3-) <br /> (tính theo N)
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Dầu mỡ <br /> động, <br /> thực vật
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    }, 
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Photsphat <br /> (PO43-) <br /> (tính theo P)
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    }, 
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                Tổng <br /> Coliforms
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                    }, 
                 ],
                 dataIndex: '',
                 key: '',
                 align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Mực nước <br /> trong giếng <br /> khai thác  <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: '',
-                dataIndex: '',
-                key: '',
-                align: 'center',
-                render: (text, record, index) => (
-                    <>
-                        <Link to={"/he-thong-quan-trac/nuoc-duoi-dat/muc-nuoc-trong-gieng-khai-thac/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
-                    </>
-                ),
-            },
+            }
+            
         ];
 
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC MỰC NƯỚC TRONG GIẾNG KHAI THÁC " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC CHẤT LƯỢNG NƯỚC THẢI " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />

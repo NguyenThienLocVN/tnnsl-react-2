@@ -35,7 +35,7 @@ export default class RightBar extends React.Component {
             
           };
         return(
-            <>
+            <div className="px-1">
                 <div className="bg-greenyellow">
                     <p className="mb-0 p-2 fw-bold text-center text-violet font-12">THỐNG KÊ  CÔNG TRÌNH</p>
                     <p className="fw-bold font-12 row mx-0"><span className="d-block col-8">Tổng số </span><span className="d-block col-4">60</span></p>
@@ -79,7 +79,7 @@ export default class RightBar extends React.Component {
                         <img src={process.env.PUBLIC_URL + '/images/HE_THONG_GIAM_SAT/ANH_QXATRAN.png'} alt="HE_THONG_GIAM_SAT/ANH_QXATRAN" width="100%" />
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }

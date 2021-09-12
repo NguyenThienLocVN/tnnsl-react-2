@@ -36,7 +36,7 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends React.Component{
+export default class HeThongQuanTracXaThaiLuuLuongXaThai extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -271,7 +271,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
             },
             {
                 title: () => { 
-                    return <span>Tên công trình</span>
+                    return <span>Vị trí xả thải</span>
                 } ,
                 dataIndex: 'congtrinh_ten',
                 key: 'congtrinh_ten',
@@ -310,7 +310,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
             },
             {
                 title: () => (
-                    <span>Lưu lượng <br /> khai thác <br /> (giờ/ngày đêm) </span>
+                    <span>Nguồn nước <br /> xả thải </span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -318,70 +318,42 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
             },
             {
                 title: () => (
-                    <span>Chế độ <br /> khai thác <br /> (giờ/ngày đêm) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Tầng chứa nước <br /> khai thác</span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
+                    <span>Lưu lượng xả thải (m3/s)</span>
                 ),
                 children: [
                     {
-                      title: 'Từ',
+                        title: () => (
+                            <span>Lưu lượng <br /> xả thải <br /> (m3/ngày đêm)</span>
+                        ),
                       dataIndex: '',
                       key: '',
                       align: 'center',
                     },
                     {
-                        title: 'Đến',
+                        title: () => (
+                            <span>Giá trị <br /> lớn nhất</span>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <span>Giá trị <br /> nhỏ nhất</span>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <span>Giá trị <br /> trung bình</span>
+                        ),
                         dataIndex: '',
                         key: '',
                         align: 'center',
                     },
                 ],
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Mực nước <br /> trong giếng <br /> khai thác  <br /> (m) </span>
-                ),
                 dataIndex: '',
                 key: '',
                 align: 'center',
@@ -393,7 +365,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
                 align: 'center',
                 render: (text, record, index) => (
                     <>
-                        <Link to={"/he-thong-quan-trac/nuoc-duoi-dat/muc-nuoc-trong-gieng-khai-thac/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
+                        <Link to={"/he-thong-quan-trac/xa-thai/luu-luong-xa-thai/theo-doi-quan-trac/"+record.id} onClick={(e) => this.clickHandler(e, record.id, record.gp_sogiayphep, record.congtrinh_ten)}>Xem</Link>
                     </>
                 ),
             },
@@ -402,7 +374,7 @@ export default class HeThongQuanTracNuocDuoiDatMucNuocTrongGiengKhaiThac extends
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC MỰC NƯỚC TRONG GIẾNG KHAI THÁC " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ THẢI " previousLink="/he-thong-quan-trac" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />
