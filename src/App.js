@@ -8,6 +8,8 @@ import ProtectedRoute from './Shared/protectedRoute'
 
 // Home page
 import Home from './TrangChu/Home';
+import UserProfile from './TrangChu/Profile';
+
 
 // QUAN LY CAP PHEP
 import QuanLyCapPhep from './QuanLyCapPhep/QuanLyCapPhep';
@@ -275,6 +277,8 @@ function App() {
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
 				<ProtectedRoute exact path="/" component={Home} />
+				<ProtectedRoute exact path="/thong-tin-tai-khoan" component={UserProfile} />
+				
 				
 
 				{/* ==================================================QUAN LY CAP PHEP================================================== */}

@@ -14,6 +14,7 @@ export default class Header extends React.Component {
             showHeadImage: this.props.showHeadImage,
             layout48: this.props.layout48,
             layout39: this.props.layout39,
+            layout210: this.props.layout210,
             layout66: this.props.layout66,
             layoutfull: this.props.layoutfull,
             leftBarClass: '',
@@ -34,6 +35,10 @@ export default class Header extends React.Component {
         {
             this.setState({leftBarClass: "col-lg-6 col-sm-12 col-md-12 px-0 pt-md-0 pb-md-0 d-flex align-items-center"});
             this.setState({rightBarClass: "bg-lightgray col-lg-6 col-sm-12 col-md-12 text-center py-1 py-lg-0"});
+        }else if(this.state.layout210)
+        {
+            this.setState({leftBarClass: "col-lg-2 col-sm-12 col-md-12 px-0 pt-md-0 pb-md-0 d-flex align-items-center"});
+            this.setState({rightBarClass: "bg-lightgray col-lg-10 col-sm-12 col-md-12 text-center py-1 py-lg-0"});
         }
         else
         {

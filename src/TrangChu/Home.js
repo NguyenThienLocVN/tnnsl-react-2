@@ -5,7 +5,7 @@ import axios from "axios";
 import Map from '../Shared/Map';
 import Header from '../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
-import { LoginOutlined } from '@ant-design/icons';
+import { LoginOutlined, DownOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import configData from "../config.json";
 
 import { getUser, removeUserSession, getToken } from '../Shared/Auth';
@@ -63,9 +63,18 @@ export default class Login extends React.Component {
                     <div className="col-12 col-lg-4 px-0 menu-home discharge-water">
                         <div className="d-flex auth-bar pl-2 justify-content-between align-items-center">
                             <span className="fw-bold px-2 d-block">Xin chào, {user.name} </span>
-                            <button onClick={this.onLogoutHandler} className="px-md-3 p-2 d-flex justify-content-center align-items-center text-white btn-logout btn-danger" title="Đăng xuất">
-                                <LoginOutlined />
-                            </button>
+                            <div className="position-relative" id="dropdown-menu-toggle">
+                                <span className="px-md-3 p-2 d-flex justify-content-center align-items-center btn">
+                                    <DownOutlined />
+                                </span>
+                                <div className="dropdown-menu-content shadow rounded p-2">
+                                    {user.role === "admin" ? <Link to="#" className="dropdown-item py-2 border-top d-flex"> <TeamOutlined className="d-flex justify-content-center align-items-center" /> Quản lý tài khoản </Link> : ""}
+                                    <Link to="/thong-tin-tai-khoan"  className="dropdown-item py-2 border-top d-flex" > <UserOutlined className="d-flex justify-content-center align-items-center" /> Thông tin tài khoản </Link>
+                                    <hr className="mt-0 mb-1" />
+                                    <Link to="#" className="dropdown-item py-2 border-top d-flex bg-danger text-light" onClick={this.onLogoutHandler} > <LoginOutlined className="d-flex justify-content-center align-items-center" /> Đăng xuất </Link>
+                                </div>
+
+                            </div>
                         </div>
                         <div className="d-flex flex-column flex-md-row flex-lg-column">
                             <div className="col-12 col-md-6 col-lg-12 px-0 pt-3 pb-0 d-flex">
