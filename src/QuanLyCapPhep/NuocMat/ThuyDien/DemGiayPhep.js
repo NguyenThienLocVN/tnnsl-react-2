@@ -86,7 +86,7 @@ export default class DemGiayPhepThuyDien extends React.Component {
 
                     
                     <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/cap-moi" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-yeu-cau" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
                     <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                 </div>
         )

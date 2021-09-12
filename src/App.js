@@ -20,7 +20,7 @@ import QuanLyCapPhep from './QuanLyCapPhep/QuanLyCapPhep';
 import QuanLyCapPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/ThuyDien';
 import QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/GiaHanDieuChinh';
 import QuanLyCapPhepCapMoiNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/CapMoi';
-import QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/QuanLyCapPhep';
+import QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/QuanLyYeuCau';
 import QuanLyCapPhepSuaGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/SuaGiayPhep';
 import QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/TheoDoi';
 import QuanLyCapPhepXemGiayPhepNuocMatThuyDien from './QuanLyCapPhep/NuocMat/ThuyDien/Xem';
@@ -290,7 +290,7 @@ function App() {
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien" component={QuanLyCapPhepNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" component={QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/cap-moi" component={QuanLyCapPhepCapMoiNuocMatThuyDien} />
-				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" component={QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien} />
+				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-yeu-cau" component={QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/:id_gp" component={QuanLyCapPhepSuaGiayPhepNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/:id_gp" component={QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien} />
 				<ProtectedRoute exact path="/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem/:id_gp" component={QuanLyCapPhepXemGiayPhepNuocMatThuyDien} />

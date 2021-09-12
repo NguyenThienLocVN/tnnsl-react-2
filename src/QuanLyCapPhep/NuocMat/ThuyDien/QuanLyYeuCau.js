@@ -7,20 +7,20 @@ import configData from "../../../config.json";
 import { Form, Button } from "react-bootstrap";
 import { getUser, getToken } from '../../../Shared/Auth';
 import { ConfigProvider, Table, Input, Tabs } from 'antd';
-import { EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { SearchOutlined, EditOutlined, DeleteOutlined, EyeOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import vnVN from 'antd/lib/locale/vi_VN';
 import DemGiayPhep from './DemGiayPhep';
 
 const user = getUser();
 const { TabPane } = Tabs;
 
-export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Component {
+export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Component {
     constructor(props)
     {
         super(props)
         this.state = {
             pagename: this.props.match.params.pagename,
-            dataNewLicenseManagement: [],
+            dataLicense: [],
             activeModal: null,
             status: '',
             id_gp: '',
@@ -81,7 +81,7 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
                 {
                     this.setState({
                         loading: false,
-                        dataNewLicenseManagement: response.data,
+                        dataLicense: response.data,
                         pagination: {
                             ...params.pagination,
                             total: response.data.length
@@ -105,7 +105,7 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
         {   
             this.fetch(this.state.pagination, 'all');
         }
-        const filterResult = this.state.dataNewLicenseManagement.filter(o =>
+        const filterResult = this.state.dataLicense.filter(o =>
             Object.keys(o).some(k =>
                 String(o[k])
                 .toLowerCase()
@@ -113,7 +113,7 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
             )
         );
 
-        this.setState({ dataNewLicenseManagement : filterResult });
+        this.setState({ dataLicense : filterResult });
     }
 
     formatDate(date) {
@@ -190,16 +190,25 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
                 render: (text, record, i) => (
                     <>
                         <div className="d-flex justify-content-center">
-                            <Link className="btn text-primary" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem/"+record.id} title="Theo Dõi"><EyeOutlined /></Link>
-                            <Link className="btn text-primary" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link>
-                            {user.role === 'admin' &&
-                                <Button onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Button>
-                            }
+                        <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem/"+record.id} title="Xem"><EyeOutlined /></Link>
+                        {user.id === record.user_id || user.role === 'admin' ?
+                            <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link> : ""
+                        }
+                        {user.role === 'admin' ?
+                            <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/"+record.id} title="Theo Dõi"><SearchOutlined/></Link> : ""
+                        }
+                        {user.id === record.user_id || user.role === 'admin' ?
+                            <Link className="p-1 pl-md-0" to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" title="Gia hạn"><ClockCircleOutlined /></Link> : ""
+                        }
+                        {user.role === 'admin' ?
+                            <Link className="p-1 text-danger" onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" title="Xóa"><DeleteOutlined /></Link> : ''
+                        }
                         </div>
                     </>
                 )
             },
         ];
+        
         return(
 			<div className="p-0">
                 <Header headTitle="QUẢN LÝ CẤP MỚI GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
@@ -240,7 +249,7 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
                                                 columns={columns} 
                                                 loading={this.state.loading}
                                                 onChange={() => this.handleTableChange}
-                                                dataSource={this.state.dataNewLicenseManagement}
+                                                dataSource={this.state.dataLicense}
                                                 rowKey="id"
                                                 bordered                                        
                                                 pagination={{
@@ -255,7 +264,36 @@ export default class QuanLyCapPhepQuanLyCapMoiNuocMatThuyDien extends React.Comp
                             </div>
                         </TabPane>
                         <TabPane tab="Yêu cầu gia hạn" key="2">
-                        <div className="menu-home col-12 p-0 discharge-water">
+                            <div className="menu-home col-12 p-0 discharge-water">
+                                <div className="col-12 p-0 ">
+                                    <div className="col-12 row align-items-center my-1 px-0 mx-0">
+                                        <div className=" mb-1 col-lg-6 ">
+                                            <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
+                                        </div>
+                                        <div className=" mb-1 col-lg-3 ">
+                                            <select name="type" id="type" className="form-select font-13" defaultValue="all">
+                                                <option value="" disabled>--Loại giấy phép yêu cầu--</option>
+                                                <option value="all">Tất cả</option>
+                                                <option value="yeu-cau-cap-moi">Yêu cầu cấp mới</option>
+                                                <option value="yeu-cau-gia-han-dieu-chinh">Yêu cầu gia hạn, điều chỉnh</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-lg-3 mb-2">
+                                            <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                                <option value="" disabled>--Trạng thái--</option>
+                                                <option value="all">Tất cả</option>
+                                                <option value={0}>Nộp hồ sơ</option>
+                                                <option value={2}>Đang lấy ý kiến thẩm định</option>  
+                                                <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                <option value={1}>Đã được cấp phép</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="Yêu cầu thu hồi" key="3">
+                            <div className="menu-home col-12 p-0 discharge-water">
                                 <div className="col-12 p-0 ">
                                     <div className="col-12 row align-items-center my-1 px-0 mx-0">
                                         <div className=" mb-1 col-lg-6 ">

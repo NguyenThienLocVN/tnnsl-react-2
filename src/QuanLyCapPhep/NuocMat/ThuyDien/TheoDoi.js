@@ -6,6 +6,9 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
 import { getToken, removeUserSession } from '../../../Shared/Auth';
+import { ConfigProvider, Modal, Table } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import vnVN from 'antd/lib/locale/vi_VN';
 
 export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -60,6 +63,10 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
             toastError: "",
             toastSuccess: "",
             redirectSuccess: false,
+
+            modalLicenseInspect: false,
+            modalLicenseFollow: false,
+            modalConnectFollow: false
         }
     }
 
@@ -84,12 +91,148 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
         )
     }
 
+    handleCloseModal = () => {
+        this.setState({modalLicenseInspect: false})
+        this.setState({modalLicenseFollow: false})
+        this.setState({modalConnectFollow: false})
+    }
+
+    handleModalLicenseInspect = () => {
+        this.setState({modalLicenseInspect: true})
+    }
+
+    handleModalLicenseFollow = () => {
+        this.setState({modalLicenseFollow: true})
+    }
+
+    handleModalConnectFollow = () => {
+        this.setState({modalConnectFollow: true})
+    }
+
     render(){
         const { licensePostData } = this.state;
 
+        const columnLicenseInspect = [
+            {
+              title: '#',
+              dataIndex: 'gp_sogiayphep',
+              key: 'gp_sogiayphep',
+              width: '10%',
+              render: (text, record, index) => (
+                <p className="cursor_pointer m-0">#</p>
+              ),
+            },
+            {
+                title: 'Tên đợt thanh tra',
+                dataIndex: 'congtrinh_ten',
+                key: 'congtrinh_ten',
+                width: '30%',
+                render: (text, record) => (
+                    <p className="cursor_pointer m-0">{record.congtrinh_ten ? record.congtrinh_ten : "--"} </p>
+                )
+            },
+            {
+                title: 'Đơn vị thực hiện',
+                dataIndex: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.chugiayphep_ten ? record.chugiayphep_ten : "--"} </p>
+                )
+            },
+            {
+                title: 'Tên trưởng đoàn',
+                dataIndex: 'gp_ngayhethan',
+                key: 'gp_ngayhethan',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.gp_ngayhethan ? this.formatDate(record.gp_ngayhethan) : "--"} </p>
+                )
+            },
+            {
+                title: 'Năm thực hiện',
+                dataIndex: 'gp_ngayhethan',
+                key: 'gp_ngayhethan',render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.gp_ngayhethan ? this.formatDate(record.gp_ngayhethan) : "--"} </p>
+                )
+            }
+        ];
+
+        const columnLicenseFollow = [
+            {
+              title: '#',
+              dataIndex: 'gp_sogiayphep',
+              key: 'gp_sogiayphep',
+              width: '10%',
+              render: (text, record, index) => (
+                <p className="cursor_pointer m-0">#</p>
+              ),
+            },
+            {
+                title: 'Ngày tháng',
+                dataIndex: 'congtrinh_ten',
+                key: 'congtrinh_ten',
+                width: '30%',
+                render: (text, record) => (
+                    <p className="cursor_pointer m-0">"--"</p>
+                )
+            },
+            {
+                title: 'Tên văn bản',
+                dataIndex: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">--</p>
+                )
+            },
+            {
+                title: 'Nội dung',
+                dataIndex: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">--</p>
+                )
+            }
+        ];
+
+        const columnConnectFollow = [
+            {
+              title: '#',
+              dataIndex: 'gp_sogiayphep',
+              key: 'gp_sogiayphep',
+              width: '10%',
+              render: (text, record, index) => (
+                <p className="cursor_pointer m-0">#</p>
+              ),
+            },
+            {
+                title: 'Ngày tháng',
+                dataIndex: 'congtrinh_ten',
+                key: 'congtrinh_ten',
+                width: '30%',
+                render: (text, record) => (
+                    <p className="cursor_pointer m-0">"--"</p>
+                )
+            },
+            {
+                title: 'Tên văn bản',
+                dataIndex: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">--</p>
+                )
+            },
+            {
+                title: 'Nội dung',
+                dataIndex: 'chugiayphep_ten',
+                key: 'chugiayphep_ten',
+                render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">--</p>
+                )
+            }
+        ];
+
         return(
 			<div className="p-0">
-                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-yeu-cau" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -192,83 +335,112 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                     </div>
                                 </div>
                                 <div className="3">
-                                    <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Thanh tra/kiểm tra</p>
-                                    <div className="row m-0">
-                                        <div className="col-sm-6">
-                                            <div className="mb-2">
-                                                <label htmlFor="thanhtra_tendot" className="form-label fw-bold font-13 m-0">3.1.Tên đợt thanh tra</label>
-                                                <input type="text" required className="form-control form-control-sm" id="thanhtra_tendot" name="thanhtra_tendot"  />
+                                    <div className="d-flex justify-content-between col-12 align-items-center">
+                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">3.Thanh tra/kiểm tra</p>
+                                        <button type="button" className="btn btn-sm btn-outline-primary m-3 d-flex" title="Thêm mới đợt thanh tra / kiểm tra" onClick={() => this.handleModalLicenseInspect()}><PlusOutlined /></button>
+                                        <Modal title="Thêm mới đợt thanh tra / kiểm tra" visible={this.state.modalLicenseInspect} onCancel={() => this.handleCloseModal()} onOk={() => this.handleCloseModal()} >
+                                            <div className="form-group mb-3">
+                                                <p className="m-0">Tên đợt <span className="text-danger">*</span></p>
+                                                <input type="text" className="form-control font-13" name="ten_dotthanhtra" />
                                             </div>
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <div className="mb-2">
-                                                <label htmlFor="thanhtra_tentruongdoan" className="form-label fw-bold font-13 m-0">3.2.Tên trưởng đoàn</label>
-                                                <input type="text" required className="form-control form-control-sm" id="thanhtra_tentruongdoan" name="thanhtra_tentruongdoan"  />
+                                            <div className="form-group mb-3">
+                                                <p className="m-0">Đơn vị thực hiện</p>
+                                                <input type="text" className="form-control font-13" name="donvi_thanhtra" />
                                             </div>
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <div className="mb-2">
-                                                <label htmlFor="thanhtra_thoigianthuchien" className="form-label fw-bold font-13 m-0">3.3.Thời gian thực hiện thanh tra</label>
-                                                <input type="text" required className="form-control form-control-sm" id="thanhtra_thoigianthuchien" name="thanhtra_thoigianthuchien"  />
+                                            <div className="form-group mb-3">
+                                                <p className="m-0">Trưởng đoàn thanh tra</p>
+                                                <input type="text" className="form-control font-13" name="truongdoan_thanhtra" />
                                             </div>
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <div className="mb-2">
-                                                <label htmlFor="thanhtra_thanhphandoan" className="form-label fw-bold font-13 m-0">3.4.Thành phần đoàn thanh tra</label>
-                                                <input type="text" required className="form-control form-control-sm" id="thanhtra_thanhphandoan" name="thanhtra_thanhphandoan"  />
+                                            <div className="form-group mb-3">
+                                                <p className="m-0">Năm thực hiện</p>
+                                                <input type="text" className="form-control font-13" name="namthuchien_thanhtra" />
                                             </div>
-                                        </div>
-                                        <div className="col-sm-12">
-                                            <div className="mb-2">
-                                                <label htmlFor="thanhtra_ketluan" className="form-label fw-bold font-13 m-0">3.5.Kết luận thanh tra</label>
-                                                <textarea rows="5" className="form-control form-control-sm" id="thanhtra_ketluan" name="thanhtra_ketluan" />
-                                            </div>
-                                        </div>
+                                        </Modal>
+                                    </div>
+                                    <div className="row m-0 table-responsive">
+                                        <ConfigProvider locale={vnVN}>
+                                            <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
+                                                columns={columnLicenseInspect} 
+                                                loading={this.state.loading}
+                                                onChange={() => this.handleTableChange}
+                                                dataSource={this.state.dataSource}
+                                                rowKey="id" 
+                                                bordered                                           
+                                                pagination={{
+                                                showTotal: (total, range) => `Tất cả ${total} bản ghi`,
+                                                    current: this.state.currentPage,
+                                                    pageSize: 10}}/>
+                                        </ConfigProvider>
                                     </div>
                                 </div>
-                                <div className="row m-0">
+                                <div className="row m-0 mb-4">
                                     <div className="4 col-sm-6">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Theo dõi sau cấp phép</p>
+                                        <div className="d-flex justify-content-between col-12 align-items-center">
+                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Theo dõi sau cấp phép</p>
+                                            <button type="button" className="btn btn-sm btn-outline-primary m-3 d-flex" title="Theo dõi sau cấp phép" onClick={() => this.handleModalLicenseFollow()}><PlusOutlined /></button>
+                                            <Modal title="Theo dõi sau cấp phép" visible={this.state.modalLicenseFollow} onCancel={() => this.handleCloseModal()} onOk={() => this.handleCloseModal()} >
+                                                <div className="form-group mb-3">
+                                                    <p className="m-0">Ngày tháng <span className="text-danger">*</span></p>
+                                                    <input type="date" className="form-control font-13" name="ten_dotthanhtra" />
+                                                </div>
+                                                <div className="form-group mb-3">
+                                                    <p className="m-0">Tên văn bản <span className="text-danger">*</span></p>
+                                                    <input type="text" className="form-control font-13" name="donvi_thanhtra" />
+                                                </div>
+                                                <div className="form-group mb-3">
+                                                    <p className="m-0">Nội dung</p>
+                                                    <textarea className="form-control font-13" name="truongdoan_thanhtra"></textarea>
+                                                </div>
+                                            </Modal>
+                                        </div>
                                         <div className="row m-0">
-                                            <div className="col-sm-6">
-                                                <div className="mb-2">
-                                                    <label htmlFor="theodoisaucp_vanbanso" className="form-label fw-bold font-13 m-0">4.1.Văn bản số</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="theodoisaucp_vanbanso" name="theodoisaucp_vanbanso"  />
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="mb-2">
-                                                    <label htmlFor="thepdoisaucp_noidung" className="form-label fw-bold font-13 m-0">4.2.Nội dung</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="thepdoisaucp_noidung" name="thepdoisaucp_noidung"  />
-                                                </div>
-                                            </div>
+                                            <ConfigProvider locale={vnVN}>
+                                                <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
+                                                    columns={columnLicenseFollow} 
+                                                    loading={this.state.loading}
+                                                    onChange={() => this.handleTableChange}
+                                                    dataSource={this.state.dataSource}
+                                                    rowKey="id" 
+                                                    bordered                                           
+                                                    pagination={{
+                                                    showTotal: (total, range) => `Tất cả ${total} bản ghi`,
+                                                        current: this.state.currentPage,
+                                                        pageSize: 10}}/>
+                                            </ConfigProvider>
                                         </div>
                                     </div>
                                     <div className="5 col-sm-6">
-                                        <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Theo dõi quá trình kết nối/ giám sát</p>
+                                        <div className="d-flex justify-content-between col-12 align-items-center">
+                                            <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Theo dõi quá trình kết nối/ giám sát</p>
+                                            <button type="button" className="btn btn-sm btn-outline-primary m-3 d-flex" title="Theo dõi quá trình kết nối / giám sát" onClick={() => this.handleModalConnectFollow()}><PlusOutlined /></button>
+                                            <Modal title="Theo dõi quá trình thực hiện kết nối" visible={this.state.modalConnectFollow} onCancel={() => this.handleCloseModal()} onOk={() => this.handleCloseModal()} >
+                                                <div className="form-group mb-3">
+                                                    <p className="m-0">Ngày tháng <span className="text-danger">*</span></p>
+                                                    <input type="date" className="form-control font-13" name="ten_dotthanhtra" />
+                                                </div>
+                                                <div className="form-group mb-3">
+                                                    <p className="m-0">Nội dung</p>
+                                                    <textarea className="form-control font-13" name="truongdoan_thanhtra"></textarea>
+                                                </div>
+                                            </Modal>
+                                        </div>
                                         <div className="row m-0">
-                                            <div className="col-sm-4">
-                                                <div className="mb-2">
-                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_tudong" className="form-label fw-bold font-13 m-0">5.1.Tự động</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="theodoiquatrinh_ketnoi_giamsat_tudong" name="theodoiquatrinh_ketnoi_giamsat_tudong"  />
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-4">
-                                                <div className="mb-2">
-                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_tructuyen" className="form-label fw-bold font-13 m-0">5.2.Trực tuyến</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="theodoiquatrinh_ketnoi_giamsat_tructuyen" name="theodoiquatrinh_ketnoi_giamsat_tructuyen"  />
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-4">
-                                                <div className="mb-2">
-                                                    <label htmlFor="theodoiquatrinh_ketnoi_giamsat_dinhky" className="form-label fw-bold font-13 m-0">5.3.Định kỳ</label>
-                                                    <input type="text" required className="form-control form-control-sm" id="theodoiquatrinh_ketnoi_giamsat_dinhky" name="theodoiquatrinh_ketnoi_giamsat_dinhky"  />
-                                                </div>
-                                            </div>
+                                            <ConfigProvider locale={vnVN}>
+                                                <Table  className="table table-sm table-bordered col-12 table-hover text-center" 
+                                                    columns={columnConnectFollow} 
+                                                    loading={this.state.loading}
+                                                    onChange={() => this.handleTableChange}
+                                                    dataSource={this.state.dataSource}
+                                                    rowKey="id" 
+                                                    bordered                                           
+                                                    pagination={{
+                                                    showTotal: (total, range) => `Tất cả ${total} bản ghi`,
+                                                        current: this.state.currentPage,
+                                                        pageSize: 10}}/>
+                                            </ConfigProvider>
                                         </div>
                                     </div>
                                 </div>
-                                <hr />
                                 <div className="row m-0 justify-content-between mb-5 px-4">
                                     <Button variant="primary" className="col-sm-2">Sửa</Button>
                                     <Button variant="primary" className="col-sm-2">Xóa</Button>

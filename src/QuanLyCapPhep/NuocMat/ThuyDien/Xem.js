@@ -431,15 +431,15 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-center align-middle">Công suất lắp máy (MW)</th>
-                                                        <th className="text-center align-middle">Lưu lượng lớn nhất qua nhà máy thủy điện (m3/s)</th>
-                                                        <th className="text-center align-middle">Mực nước dâng bình thường (m)</th>
-                                                        <th className="text-center align-middle">Mực nước chết (m)</th>
-                                                        <th className="text-center align-middle">Mực nước cao nhất trước lũ (m)</th>
-                                                        <th className="text-center align-middle">Mực nước đón lũ (m)</th>
-                                                        <th className="text-center align-middle">Dung tích hữu ích (triệu m3)</th>
-                                                        <th className="text-center align-middle">Dung tích toàn bộ (triệu m3)</th>
-                                                        <th className="text-center align-middle">Lưu lượng xả dòng chảy tối thiểu (m3/s)</th>
+                                                        <th className="text-center align-middle font-13">Công suất lắp máy (MW)</th>
+                                                        <th className="text-center align-middle font-13">Lưu lượng lớn nhất qua nhà máy thủy điện (m3/s)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước dâng bình thường (m)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước chết (m)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước cao nhất trước lũ (m)</th>
+                                                        <th className="text-center align-middle font-13">Mực nước đón lũ (m)</th>
+                                                        <th className="text-center align-middle font-13">Dung tích hữu ích (triệu m3)</th>
+                                                        <th className="text-center align-middle font-13">Dung tích toàn bộ (triệu m3)</th>
+                                                        <th className="text-center align-middle font-13">Lưu lượng xả dòng chảy tối thiểu (m3/s)</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

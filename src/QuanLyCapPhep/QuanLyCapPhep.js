@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Shared/Header';
 import axios from "axios";
 import configData from "../config.json";
-import { DownloadOutlined, LineChartOutlined } from '@ant-design/icons';
+import { LineChartOutlined } from '@ant-design/icons';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { trackPromise } from 'react-promise-tracker';
 import { removeUserSession } from '../Shared/Auth';

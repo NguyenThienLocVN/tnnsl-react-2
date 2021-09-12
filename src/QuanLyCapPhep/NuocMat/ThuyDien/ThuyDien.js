@@ -129,7 +129,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
         }
     }
 
-    checkStatus(hieulucgiayphep){
+    checkStatus = (hieulucgiayphep) =>{
         if(hieulucgiayphep === "chuaduocduyet"){
             return <div className="license_status" style={{color: "gray", backgroundColor: "#f0f0f0", border: "1px solid gray"}}> Chưa duyệt </div>;
         }else if(hieulucgiayphep === "saphethieuluc"){
@@ -139,6 +139,10 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
         }else if(hieulucgiayphep === "hethieuluc"){
             return <div className="license_status" style={{color: "red", backgroundColor: "#ffa39e", border: "1px solid red"}}> Hết hiệu lực </div>;
         }
+    }
+
+    checkConnection = () => {
+        return <div className="license_status" style={{color: "gray", backgroundColor: "#f0f0f0", border: "1px solid gray"}}> Chưa kết nối </div>;
     }
 
     handleTableChange = (pagination, filters, sorter) => {
@@ -290,6 +294,14 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 key: 'gp_thoihangiayphep',
                 render: (text, record) => (
                     record.gp_thoihangiayphep
+                )
+            },
+            {
+                title: 'Tình trạng kết nối',
+                dataIndex: 'tinhtrang_ketnoi',
+                key: 'tinhtrang_ketnoi',
+                render: (text, record) => (
+                    this.checkConnection()
                 )
             },
             {
