@@ -11,7 +11,7 @@ export default class LeftBar extends React.Component {
                         <p className="mb-0 p-2 fw-bold text-center font-12 text-violet">Bộ quản lý</p>
                         <Link to="/he-thong-giam-sat/phat-dien-lon-hon-2mw" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
-                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Phát điện {'>'} 2MWW</p>
+                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Phát điện {'>'} 2MW</p>
                                 <div className="row mx-0">
                                     <div className="col-5 row mx-0 align-items-center">
                                         <p className="mb-0 w-100 text-center fw-bold font-11 p-0"><span>0</span> CT</p>
@@ -92,7 +92,7 @@ export default class LeftBar extends React.Component {
                         <p className="mb-0 p-2 fw-bold text-center font-12 text-violet">UBND quản lý</p>
                         <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
-                                <p className="mb-0 col-12 text-center fw-bold font-12 text-danger quantrac_title">Phát điện {'<'} 2MWW</p>
+                                <p className="mb-0 col-12 text-center fw-bold font-12 text-danger quantrac_title">Phát điện {'<'} 2MW</p>
                                 <div className="row mx-0">
                                     <div className="col-5 row mx-0 align-items-center">
                                         <p className="mb-0 w-100 text-center fw-bold font-11 p-0"><span>0</span> CT</p>
@@ -175,7 +175,7 @@ export default class LeftBar extends React.Component {
                     <div className="col-sm-12 row m-0 pt-2">
                         <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
-                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Mực nước</p>
+                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Mực nước hồ (m)</p>
                                 <div className="row mx-0">
                                     <div className="col-5 row mx-0 align-items-center">
                                         <p className="mb-0 w-100 text-center font-11 p-0"><span>4</span>/<span>63</span> vượt ngưỡng</p>
@@ -188,7 +188,7 @@ export default class LeftBar extends React.Component {
                         </Link>
                         <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
-                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Q xả tối thiểu: {'>'} 2MW; {'>'} 0.1m3/s; {'>'} 100 m3/ngđ</p>
+                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Q xả tối thiểu</p>
                                 <div className="row mx-0">
                                     <div className="col-5 row mx-0 align-items-center">
                                         <p className="mb-0 w-100 text-center font-11 p-0"><span>4</span>/<span>63</span> vượt ngưỡng</p>
@@ -214,7 +214,7 @@ export default class LeftBar extends React.Component {
                         </Link>
                         <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
-                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Q xả tràn</p>
+                                <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Q xả tràn (hồ {'>'} 1 triệu m3)</p>
                                 <div className="row mx-0">
                                     <div className="col-5 row mx-0 align-items-center">
                                         <p className="mb-0 w-100 text-center font-11 p-0"><span>4</span>/<span>63</span> vượt ngưỡng</p>

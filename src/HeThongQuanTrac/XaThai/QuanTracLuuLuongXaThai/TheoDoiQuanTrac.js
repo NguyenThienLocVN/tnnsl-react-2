@@ -38,7 +38,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQuanTrac extends React.Component{
+export default class HeThongQuanTracXaThaiTheoDoiQuanTracLuuLuongXaThai extends React.Component{
     constructor(props){
         super(props)
         this.state = { 
@@ -123,7 +123,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             labels: ['00:00 - 24/08/2021', '00:30 - 24/08/2021','01:00 - 24/08/2021', '01:30 - 24/08/2021', '02:00 - 24/08/2021', '02:30 - 24/08/2021','03:00 - 24/08/2021', '03:30 - 24/08/2021', '04:00 - 24/08/2021', '04:30 - 24/08/2021','05:00 - 24/08/2021', '06:00 - 24/08/2021', '06:30 - 24/08/2021', '07:00 - 24/08/2021', '07:30 - 24/08/2021', '08:00 - 24/08/2021', '08:30 - 24/08/2021', '09:00 - 24/08/2021', '09:30 - 24/08/2021', '10:00 - 24/08/2021', '10:30 - 24/08/2021', '11:00 - 24/08/2021', '11:30 - 24/08/2021','12:00 - 24/08/2021', '12:30 - 24/08/2021','13:00 - 24/08/2021', '13:30 - 24/08/2021','14:00 - 24/08/2021', '14:30 - 24/08/2021', '15:00 - 24/08/2021', '15:30 - 24/08/2021', '16:00 - 24/08/2021', '16:30 - 24/08/2021', '17:00 - 24/08/2021', '17:30 - 24/08/2021', '18:00 - 24/08/2021', '18:30 - 24/08/2021', '19:00 - 24/08/2021', '19:30 - 24/08/2021', '20:00 - 24/08/2021', '20:30 - 24/08/2021', '21:00 - 24/08/2021', '21:30 - 24/08/2021', '22:00 - 24/08/2021', '22:30 - 24/08/2021', '23:00 - 24/08/2021', '23:30 - 24/08/2021'],
             datasets: [
               {
-                label: 'Mực nước',
+                label: 'Lưu lượng',
                 data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155,122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
                 backgroundColor: [
                   'rgba(75,192,192,0.2)',
@@ -163,7 +163,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
                     },
                     title: {
                         display: true,
-                        text: 'Mực nước trong giếng quan trắc (m)'
+                        text: 'Lưu lượng xả thải (m3/ngày đêm)'
                     },
                     beginAtZero: true,
                     min: 0
@@ -187,7 +187,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
         ];
 
         // DATA LUONG MUA
-        const dataBangBieuLuongMua = [
+        const dataBangBieuLuongMua1 = [
             {
                 key: '1',
                 id: '1',
@@ -272,6 +272,8 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
                 giamsat_gio: '11:00',
                 giamsat_mucnuocho: '0',
             },
+        ];
+        const dataBangBieuLuongMua2 = [
             {
                 key: '13',
                 id: '13',
@@ -378,13 +380,45 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
                 align: 'center',
             },
             {
-                title: 'Mực nước trong giếng quan trắc (m)',
+                title: 'Lưu lượng xả thải (m3/ngày đêm)',
                 dataIndex: 'giamsat_mucnuocho',
                 key: 'giamsat_mucnuocho',
                 align: 'center',
                 render: (text, record) => (
                     <>
                         <Input size="small" readOnly defaultValue={record.giamsat_mucnuocho} />
+                    </>
+                )
+            },
+        ];
+        // COLUMN UPDATE MUC NUOC HO
+        const columnCapNhatLuongMua = [
+            {
+                title: '#',
+                dataIndex: 'id',
+                key: 'id',
+                align: 'center',
+            },
+            {
+                title: 'Ngày',
+                dataIndex: 'giamsat_ngay',
+                key: 'giamsat_ngay',
+                align: 'center',
+            },
+            {
+                title: 'Giờ',
+                dataIndex: 'giamsat_gio',
+                key: 'giamsat_gio',
+                align: 'center',
+            },
+            {
+                title: 'Lưu lượng xả thải (m3/ngày đêm)',
+                dataIndex: 'giamsat_mucnuocho',
+                key: 'giamsat_mucnuocho',
+                align: 'center',
+                render: (text, record) => (
+                    <>
+                        <Input size="small" defaultValue={record.giamsat_mucnuocho} />
                     </>
                 )
             },
@@ -413,12 +447,12 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
               key: 'chugiayphep_ten',
             },
             {
-                title: 'Nguồn nước quan trắc',
+                title: 'Nguồn nước khai thác',
                 dataIndex: '',
                 key: '',
             },
             {
-                title: 'Số giếng',
+                title: 'Số điểm xả thải',
                 dataIndex: 'tramcapphep_soluong',
                 key: 'tramcapphep_soluong',
             },
@@ -427,10 +461,11 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
         // COLUMN CONG TRINH MAT KET NOI
         const columnCongTrinhMatKetNoi = [
             {
-                title: 'Số hiệu',
+                title: 'Vị trí xả thải',
                 dataIndex: '',
                 key: '',
-            },{
+            },
+            {
                 title: () => (
                     <span>Tọa độ (VN2000, <br /> Kinh tuyến trục 104⁰, <br /> múi chiếu 3⁰ </span>
                 ),
@@ -454,29 +489,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             },
             {
                 title: () => (
-                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
-                ),
-                children: [
-                    {
-                      title: 'Từ',
-                      dataIndex: '',
-                      key: '',
-                      align: 'center',
-                    },
-                    {
-                        title: 'Đến',
-                        dataIndex: '',
-                        key: '',
-                        align: 'center',
-                    },
-                ],
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
+                    <span>nguồn nước <br /> xả thải</span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -484,23 +497,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             },
             {
                 title: () => (
-                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Mực nước <br /> trong giếng <br /> quan trắc  <br /> (m) </span>
+                    <span>Lưu lượng <br /> xả thải <br /> (m3/ngày đêm) </span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -516,7 +513,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
                 align: 'center',
             },
             {
-                title: 'Giá trị (m)',
+                title: 'Giá trị (m3/ngày đêm)',
                 dataIndex: '',
                 key: '',
                 align: 'center',
@@ -529,7 +526,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
         // COLUMN CONG TRINH VUOT NGUONG
         const columnCongTrinhVuotNguong = [
             {
-                title: 'Số hiệu',
+                title: 'Vị trí xả thải',
                 dataIndex: '',
                 key: '',
             },{
@@ -556,29 +553,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             },
             {
                 title: () => (
-                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
-                ),
-                children: [
-                    {
-                      title: 'Từ',
-                      dataIndex: '',
-                      key: '',
-                      align: 'center',
-                    },
-                    {
-                        title: 'Đến',
-                        dataIndex: '',
-                        key: '',
-                        align: 'center',
-                    },
-                ],
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
+                    <span>nguồn nước <br /> xả thải</span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -586,24 +561,14 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             },
             {
                 title: () => (
-                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
+                    <span>Lưu lượng <br /> xả thải <br /> (m3/ngày đêm) </span>
                 ),
                 dataIndex: '',
                 key: '',
                 align: 'center',
             },
             {
-                title: () => (
-                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Mực nước <br /> trong giếng <br /> quan trắc  <br /> (m) </span>
-                ),
+                title: 'Giá trị ngưỡng',
                 dataIndex: '',
                 key: '',
                 align: 'center',
@@ -687,7 +652,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
         // COLUMN TRAM QUAN TRAC
         const columnTramQuanTrac = [
             {
-                title: 'Số hiệu giếng',
+                title: 'Vị trí xả thải',
                 dataIndex: 'gieng_sohieu',
                 key: 'gieng_sohieu',
             },
@@ -715,29 +680,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             },
             {
                 title: () => (
-                    <span> Chiều sâu <br /> đoạn thu nước<br /> (m)</span>
-                ),
-                children: [
-                    {
-                      title: 'Từ',
-                      dataIndex: '',
-                      key: '',
-                      align: 'center',
-                    },
-                    {
-                        title: 'Đến',
-                        dataIndex: '',
-                        key: '',
-                        align: 'center',
-                    },
-                ],
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Chiều sâu <br /> mực nước tĩnh <br /> (m) </span>
+                    <span>Nguồn nước <br /> xả thải </span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -745,23 +688,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
             },
             {
                 title: () => (
-                    <span>Chiều sâu <br /> mực nước động <br /> lớn nhất <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Hạ thấp <br /> mực nước  <br /> (m) </span>
-                ),
-                dataIndex: '',
-                key: '',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <span>Mực nước <br /> trong giếng <br /> quan trắc  <br /> (m) </span>
+                    <span>Lưu lượng <br /> xả thải <br />(m3/ngày đêm) </span>
                 ),
                 dataIndex: '',
                 key: '',
@@ -818,7 +745,7 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
 
         return(
             <div className="p-0">
-                <Header headTitle="QUAN TRẮC MỰC NƯỚC TRONG GIẾNG QUAN TRẮC" previousLink="/he-thong-quan-trac/nuoc-duoi-dat/muc-nuoc-trong-gieng-quan-trac" showHeadImage={true} layout37={true} />
+                <Header headTitle="QUAN TRẮC LƯU LƯỢNG XẢ THẢI" previousLink="/he-thong-quan-trac/xa-thai/luu-luong-xa-thai" showHeadImage={true} layout37={true} />
                 <main className="row m-0 p-0">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBarNav />
@@ -965,19 +892,17 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
                                                             <div className="col-sm-6 p-2">
                                                                 <Table 
                                                                     bordered 
-                                                                    dataSource={dataBangBieuLuongMua} 
+                                                                    dataSource={dataBangBieuLuongMua1} 
                                                                     columns={columnBangBieuLuongMua}
                                                                     pagination={false}
-                                                                    rowClassName={(record, index) => (record.id <=12 ? "" : "d-none")}
                                                                 />
                                                             </div>
                                                             <div className="col-sm-6 p-2">
                                                                 <Table 
                                                                     bordered 
-                                                                    dataSource={dataBangBieuLuongMua} 
+                                                                    dataSource={dataBangBieuLuongMua2} 
                                                                     columns={columnBangBieuLuongMua}
                                                                     pagination={false}
-                                                                    rowClassName={(record, index) => (record.id <=12 ? "d-none" : "")}
                                                                 />
                                                             </div>
                                                         </div>
@@ -999,19 +924,17 @@ export default class HeThongQuanTracNuocDuoiDatTheoDoiQuanTracMucNuocTrongGiengQ
                                                             <div className="col-sm-6 p-2">
                                                                 <Table 
                                                                     bordered 
-                                                                    dataSource={dataBangBieuLuongMua} 
-                                                                    columns={columnBangBieuLuongMua}
+                                                                    dataSource={dataBangBieuLuongMua1} 
+                                                                    columns={columnCapNhatLuongMua}
                                                                     pagination={false}
-                                                                    rowClassName={(record, index) => (record.id <=12 ? "" : "d-none")}
                                                                 />
                                                             </div>
                                                             <div className="col-sm-6 p-2">
                                                                 <Table 
                                                                     bordered 
-                                                                    dataSource={dataBangBieuLuongMua} 
-                                                                    columns={columnBangBieuLuongMua}
+                                                                    dataSource={dataBangBieuLuongMua2} 
+                                                                    columns={columnCapNhatLuongMua}
                                                                     pagination={false}
-                                                                    rowClassName={(record, index) => (record.id <=12 ? "d-none" : "")}
                                                                 />
                                                             </div>
                                                         </div>

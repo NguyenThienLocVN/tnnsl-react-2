@@ -181,7 +181,7 @@ export default class LeftBarNav extends React.Component {
                 </div>
                 <div className="row m-0 p-0 surfacewater-usage">
                     <p className="exploit-surfacewater-title mb-2 p-2 fw-bold text-start font-12">XẢ THẢI VÀO NGUỒN NƯỚC</p>
-                    <Link to="#" className="col-6 mb-3 justify-content-center quantrac_item">
+                    <Link to="/he-thong-quan-trac/xa-thai/luu-luong-xa-thai" className="col-6 mb-3 justify-content-center quantrac_item">
                         <div className="surfacewater-usage p-1 row mx-0">
                             <p className="mb-0 col-12 text-center text-violet fw-bold font-12 quantrac_title">Q XẢ THẢI (m3/s)</p>
                             <div className="row mx-0">
@@ -195,7 +195,7 @@ export default class LeftBarNav extends React.Component {
                             </div>
                         </div>
                     </Link>
-                    <Link to="#" className="col-6 mb-3 justify-content-center quantrac_item">
+                    <Link to="/he-thong-quan-trac/xa-thai/chat-luong-nuoc" className="col-6 mb-3 justify-content-center quantrac_item">
                         <div className="surfacewater-usage p-1 row mx-0">
                             <p className="mb-0 col-12 text-center text-violet fw-bold font-12 quantrac_title">CHẤT LƯỢNG NƯỚC THẢI</p>
                             <div className="row mx-0">
