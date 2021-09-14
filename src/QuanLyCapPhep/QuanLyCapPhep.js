@@ -24,7 +24,12 @@ export default class QuanLyCapPhep extends React.Component {
             doughnutData: {},
             startYear: '2016',
             endYear: '2020',
+            timeFilterType: true
         }
+    }
+
+    changeTimeFilterType = (e) => {
+        this.setState({timeFilterType: e.target.value});
     }
 
     componentDidMount(){
@@ -79,22 +84,6 @@ export default class QuanLyCapPhep extends React.Component {
                                 ],
                             },
                             {
-                                label: 'Thăm dò nước dưới đất',
-                                data: response.data.data.gp_tdnuocduoidat,
-                                stack: 1,
-                                backgroundColor: [
-                                    'rgba(220, 172, 172, 0.77)',
-                                ],
-                            },
-                            {
-                                label: 'Hành nghề khoan nước dưới đất',
-                                data: response.data.data.gp_khoannuocduoidat,
-                                stack: 1,
-                                backgroundColor: [
-                                    'rgba(226, 159, 106, 0.92)',
-                                ],
-                            },
-                            {
                                 label: 'Xả thải',
                                 data: response.data.data.gp_xathai,
                                 stack: 1,
@@ -128,7 +117,7 @@ export default class QuanLyCapPhep extends React.Component {
                                 'GP còn hiệu lực','GP sắp hết hiệu lực','GP hết hiệu lực','GP chưa phê duyệt',
                             ],
                             datasets: [{
-                                data: response.data.data.gp_nuocmat,
+                                data: response.data.dataDoughnut.gp_nuocmat,
                                 backgroundColor: [
                                 '#FF6384',
                                 '#36A2EB',
@@ -158,6 +147,7 @@ export default class QuanLyCapPhep extends React.Component {
             [e.target.name]: e.target.value,
         })
     }
+    
     handlerFillterYear = () => {
         trackPromise(axios
             .get(configData.API_URL + "/quan-ly-cap-phep/dem-giay-phep-theo-loai/"+this.state.startYear+"/"+this.state.endYear)
@@ -347,10 +337,10 @@ export default class QuanLyCapPhep extends React.Component {
 
                         <div className="qlcp-chart col-12 p-0 mt-3 card">
                             <div className="card-header">Biểu đồ tỉ lệ loại giấy phép công trình theo năm</div>
-                            <div className="card-body col-12 row mx-0">
+                            <div className="card-body col-12 row mx-0 py-4">
                                 <div className="col-12 col-md-3 p-0">
                                     <div className="form-group mb-3">
-                                        <label className="fw-bold m-0">Loại giấy phép:</label>
+                                        <label className="fw-bold mt-2 mb-1">Loại giấy phép:</label>
                                         <select className="form-select form-select-sm">
                                             <option>Khai thác sử dụng nước mặt</option>
                                             <option>Khai thác nước dưới đất</option>
@@ -358,36 +348,42 @@ export default class QuanLyCapPhep extends React.Component {
                                         </select>
                                     </div>
                                     <div className="form-group mb-3">
-                                            <label className="fw-bold m-0">Giai đoạn:</label>
-                                            <select className="form-select form-select-sm">
-                                                <option>Tất cả thời gian</option>
-                                                <option>Khoảng thời gian</option>
-                                            </select>
-                                        </div>
-                                    <div className="col-12 d-flex mb-4">
-                                        <div className="form-group mb-2 col-6 px-1">
-                                            <label className="fw-bold m-0">Từ:</label>
-                                            <select className="form-select form-select-sm">
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2019</option>
-                                            </select>
-                                        </div>
-                                        <div className="form-group mb-2 col-6 px-1">
-                                            <label className="fw-bold m-0">Đến:</label>
-                                            <select className="form-select form-select-sm">
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2019</option>
-                                            </select>
-                                        </div>
+                                        <label className="fw-bold mt-2 mb-1">Giai đoạn:</label>
+                                        <select className="form-select form-select-sm" onChange={(e) => this.changeTimeFilterType(e)} value={this.state.timeFilterType}>
+                                            <option value="all">Tất cả thời gian</option>
+                                            <option value="range">Khoảng thời gian</option>
+                                        </select>
                                     </div>
+                                    
+                                    <div className="col-12 d-flex mb-4">
+                                        {this.state.timeFilterType === 'range' && 
+                                            <>
+                                                <div className="form-group mb-2 col-6 px-1">
+                                                    <label className="fw-bold mt-2 mb-1">Từ:</label>
+                                                    <select className="form-select form-select-sm">
+                                                        <option>2015</option>
+                                                        <option>2016</option>
+                                                        <option>2017</option>
+                                                        <option>2018</option>
+                                                        <option>2019</option>
+                                                        <option>2019</option>
+                                                    </select>
+                                                </div>
+                                                <div className="form-group mb-2 col-6 px-1">
+                                                    <label className="fw-bold mt-2 mb-1">Đến:</label>
+                                                    <select className="form-select form-select-sm">
+                                                        <option>2015</option>
+                                                        <option>2016</option>
+                                                        <option>2017</option>
+                                                        <option>2018</option>
+                                                        <option>2019</option>
+                                                        <option>2019</option>
+                                                    </select>
+                                                </div>
+                                            </>
+                                        }
+                                    </div>
+                                    
                                     <div>
                                         <button className="btn btn-sm btn-primary mx-auto d-flex align-items-center justify-content-center"><LineChartOutlined /> &nbsp; Thống kê</button>
                                     </div>
