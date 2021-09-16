@@ -246,9 +246,11 @@ import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
 
 // <==================================================HE THONG GIAM SAT PHAT DIEN LON HON 2mw=================================================================================>
 import HeThongGiamSatPhatDienLonHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienLonHon2MW/PhatDienLonHon2MW';
-
-// <==================================================HE THONG GIAM SAT lichsu PHAT DIEN LON HON 2mw=================================================================================>
 import HeThongGiamSatLichSuPhatDienLonHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienLonHon2MW/LichSuPhatDienLonHon2MW/LichSuPhatDienLonHon2MW';
+
+// <==================================================HE THONG GIAM SAT PHAT DIEN Nho HON 2mw=================================================================================>
+import HeThongGiamSatPhatDienNhoHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienNhoHon2MW/PhatDienNhoHon2MW';
+import HeThongGiamSatLichSuPhatDienNhoHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienNhoHon2MW/LichSuPhatDienNhoHon2MW/LichSuPhatDienNhoHon2MW';
 
 // <==================================================HE THONG GIAM SAT SXNN nho hon 2m3s=================================================================================>
 import HeThongGiamSatSXNNNhoHon2m3s from './HeThongGiamSat/QuanLyGiamSat/SXNNNhoHon2m3s/SXNNNhoHon2m3s';
@@ -529,9 +531,11 @@ function App() {
 
 				{/* ==================================================HE THONG GIAM SAT PHAT DIEN LON HON 2mw================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat/phat-dien-lon-hon-2mw" component={HeThongGiamSatPhatDienLonHon2MW} />
-
-				{/* ==================================================HE THONG GIAM SAT LICH SU PHAT DIEN LON HON 2mw================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat/phat-dien-lon-hon-2mw/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuPhatDienLonHon2MW} />
+
+				{/* ==================================================HE THONG GIAM SAT PHAT DIEN NHO HON 2mw================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/phat-dien-nho-hon-2mw" component={HeThongGiamSatPhatDienNhoHon2MW} />
+				<ProtectedRoute exact path="/he-thong-giam-sat/phat-dien-nho-hon-2mw/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuPhatDienNhoHon2MW} />
 
 				{/* ==================================================HE THONG GIAM SAT SXNN NHO HON 2M3/S================================================== */}
 				<ProtectedRoute exact path="/he-thong-giam-sat/san-xuat-nong-nghiep" component={HeThongGiamSatSXNNNhoHon2m3s} />

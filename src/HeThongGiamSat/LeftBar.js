@@ -90,7 +90,7 @@ export default class LeftBar extends React.Component {
                     </div>
                     <div className="col-6 pt-2">
                         <p className="mb-0 p-2 fw-bold text-center font-12 text-violet">UBND quản lý</p>
-                        <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
+                        <Link to="/he-thong-giam-sat/phat-dien-nho-hon-2mw" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-danger quantrac_title">Phát điện {'<'} 2MW</p>
                                 <div className="row mx-0">
