@@ -68,10 +68,10 @@ export default class Login extends React.Component {
                                     <DownOutlined />
                                 </span>
                                 <div className="dropdown-menu-content shadow rounded p-2">
-                                    {user.role === "admin" ? <Link to="#" className="dropdown-item py-2 border-top d-flex"> <TeamOutlined className="d-flex justify-content-center align-items-center" /> Quản lý tài khoản </Link> : ""}
-                                    <Link to="/thong-tin-tai-khoan"  className="dropdown-item py-2 border-top d-flex" > <UserOutlined className="d-flex justify-content-center align-items-center" /> Thông tin tài khoản </Link>
+                                    {user.role === "admin" ? <Link to="#" className="dropdown-item py-2 border-top d-flex"> <TeamOutlined className="d-flex justify-content-center align-items-center" /> &nbsp; Quản lý tài khoản </Link> : ""}
+                                    <Link to="/thong-tin-tai-khoan"  className="dropdown-item py-2 border-top d-flex" > <UserOutlined className="d-flex justify-content-center align-items-center" /> &nbsp; Thông tin tài khoản </Link>
                                     <hr className="mt-0 mb-1" />
-                                    <Link to="#" className="dropdown-item py-2 border-top d-flex bg-danger text-light" onClick={this.onLogoutHandler} > <LoginOutlined className="d-flex justify-content-center align-items-center" /> Đăng xuất </Link>
+                                    <Link to="#" className="dropdown-item py-2 border-top d-flex bg-danger text-light" onClick={this.onLogoutHandler} > <LoginOutlined className="d-flex justify-content-center align-items-center" /> &nbsp; Đăng xuất </Link>
                                 </div>
 
                             </div>
