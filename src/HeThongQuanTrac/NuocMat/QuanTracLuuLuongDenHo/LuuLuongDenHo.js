@@ -408,7 +408,7 @@ export default class HeThongQuanTracNuocMatLuuLuongDenHo extends React.Component
                                     <DatePicker placeholder="Chọn ngày" />
                                 </Form.Item>
                                 <Form.Item className="p-1 m-0">
-                                    <Button className="d-flex justify-content-center align-items-center">
+                                    <Button type="primary" className="d-flex justify-content-center align-items-center">
                                         <FilterOutlined />
                                         Lọc
                                     </Button>
