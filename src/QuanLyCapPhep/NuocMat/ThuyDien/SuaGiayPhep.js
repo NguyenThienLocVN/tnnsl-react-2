@@ -680,7 +680,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                             </div>
                                         </div>
                                     </div>
-                                    {/* {user.role === 'admin' && */}
+                                    {user.role === 'lanh-dao' &&
                                         <div className="col-sm-12 row m-0 p-0">
                                             <div>
                                                 <p className="fw-bold w-100 text-violet py-2 px-0 m-0 font-15">Trạng thái giấy phép sau khi thẩm định</p>
@@ -696,7 +696,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                                 {licensePostData.gp_ghichu && <textarea className="col-12 form-control font-13" id="gp_ghichu" name="gp_ghichu" rows="5" style={{ resize: 'none' }} placeholder="-- Ghi chú giấy phép sau khi thẩm định.. --">{licensePostData.gp_ghichu}</textarea>}
                                             </div>
                                         </div>
-                                    {/* } */}
+                                    }
                                 </div>
                             </div>
                             <div className="pb-4 text-center col-sm-12">
