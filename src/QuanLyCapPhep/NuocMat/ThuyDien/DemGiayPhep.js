@@ -84,9 +84,9 @@ export default class DemGiayPhepThuyDien extends React.Component {
                         <img src={process.env.PUBLIC_URL + '/images/QUAN_LY_CAP_PHEP/CONG_TRINH/expire.png'} className="p-0 hydroelectric-sub-icon border-secondary my-auto mx-3" alt="het-han" />
                     </div>
 
-                    
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/cap-moi" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
-                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-yeu-cau" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" style={{backgroundColor: "rgb(0 152 208)"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Danh sách giấy phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/cap-moi" style={{backgroundColor: "#1EC0D7"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Cấp mới giấy phép</Link>
+                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-ho-so" style={{backgroundColor: "#C5E287"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Quản lý cấp phép</Link>
                     <Link to="#" style={{backgroundColor: "#E2D987"}} className="col-11 btn d-flex align-items-center mx-auto mt-3 fw-bold">Hướng dẫn sử dụng</Link>
                 </div>
         )

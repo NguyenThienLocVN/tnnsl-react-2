@@ -586,11 +586,12 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                                 }
                             </MapContainer>
 
-                            <div className="col-12 py-1 row mx-0 align-items-center mx-0">
+                            <div className="col-12 py-1 row mx-0 align-items-center mx-0 justify-content-between">
                                 <div className="col-lg-4">
                                     <Search allowClear id="search" name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                 </div>
-                                <div className="col-3 p-0">
+                                <div className="col-4 p-0 d-flex align-items-center">
+                                    <span className="font-13 col-3">Lọc kết quả :</span>
                                     <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
                                         <option value="all">Tất cả</option>
                                         <option value="conhieuluc">Còn hiệu lực</option>

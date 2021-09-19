@@ -121,6 +121,10 @@ thead[class*="ant-table-thead"] th{
   background-color: #00000017 !important
 }
 
+.border-right-gray { border-right: 1px solid lightgray; }
+.license-number-badge { width: 25px; }
+.license-status-select { -webkit-appearance: none; }
+
 /* .ant-table-tbody > tr:hover > td{background-color: rgb(193 212 251) !important;} */
 
 .ant-table-thead > tr > th { padding: 5px 6px !important; }

@@ -60,6 +60,7 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                 x: "",
                 y: ""
             }],
+            thanhtra_nuocmat_thuydien: [],
             toastError: "",
             toastSuccess: "",
             redirectSuccess: false,
@@ -374,7 +375,7 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                     </div>
                                 </div>
                                 <div className="row m-0 mb-4">
-                                    <div className="4 col-sm-6">
+                                    <div className="4 col-sm-6 px-0 border-right-gray">
                                         <div className="d-flex justify-content-between col-12 align-items-center">
                                             <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Theo dõi sau cấp phép</p>
                                             <button type="button" className="btn btn-sm btn-outline-primary m-3 d-flex" title="Theo dõi sau cấp phép" onClick={() => this.handleModalLicenseFollow()}><PlusOutlined /></button>
@@ -409,7 +410,7 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                             </ConfigProvider>
                                         </div>
                                     </div>
-                                    <div className="5 col-sm-6">
+                                    <div className="5 col-sm-6 px-0">
                                         <div className="d-flex justify-content-between col-12 align-items-center">
                                             <p className="fw-bold w-100 text-violet p-2 m-0 font-15">5.Theo dõi quá trình kết nối/ giám sát</p>
                                             <button type="button" className="btn btn-sm btn-outline-primary m-3 d-flex" title="Theo dõi quá trình kết nối / giám sát" onClick={() => this.handleModalConnectFollow()}><PlusOutlined /></button>

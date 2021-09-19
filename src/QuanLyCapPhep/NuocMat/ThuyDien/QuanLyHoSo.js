@@ -20,7 +20,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
         super(props)
         this.state = {
             pagename: this.props.match.params.pagename,
-            dataLicense: [],
+            grantedLicense: [],
             activeModal: null,
             status: '',
             id_gp: '',
@@ -39,7 +39,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
     
     componentDidMount(){
         document.title = "Quản lý cấp mới giấy phép nước mặt - Thủy điện";
-        this.fetch(this.state.pagination, 'all');
+        this.fetchGrantedLicense(this.state.pagination, 1);
     }
 
     handleStatusChange = (event) => {
@@ -61,7 +61,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
     }
 
     handleTableChange = (pagination, filters, sorter) => {
-        this.fetch({
+        this.fetchGrantedLicense({
             sortField: sorter.field,
             sortOrder: sorter.order,
             pagination,
@@ -69,11 +69,11 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
           });
     };
 
-    fetch = (params = {}, filter) => {
+    fetchGrantedLicense = (params = {}) => {
         this.setState({ loading: true });
         user ?
         axios
-            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/yeu-cau/"+user.id+"/"+filter, {
+            .get(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/thuy-dien/danh-sach/"+user.id+"/1", {
                 headers: {'Authorization': 'Bearer ' + getToken()}
             })
             .then((response) => {
@@ -81,7 +81,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                 {
                     this.setState({
                         loading: false,
-                        dataLicense: response.data,
+                        grantedLicense: response.data,
                         pagination: {
                             ...params.pagination,
                             total: response.data.length
@@ -96,16 +96,16 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
 
     // Function handle filter feature
     onFilterHandle = (e) => {
-        this.fetch(this.state.pagination, e.target.value);   
+        this.fetchGrantedLicense(this.state.pagination, e.target.value);   
     }
 
     // Function search
     onSearchHandle = (value) => {
         if(!value)
         {   
-            this.fetch(this.state.pagination, 'all');
+            this.fetchGrantedLicense(this.state.pagination, 1);
         }
-        const filterResult = this.state.dataLicense.filter(o =>
+        const filterResult = this.state.grantedLicense.filter(o =>
             Object.keys(o).some(k =>
                 String(o[k])
                 .toLowerCase()
@@ -113,7 +113,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
             )
         );
 
-        this.setState({ dataLicense : filterResult });
+        this.setState({ grantedLicense : filterResult });
     }
 
     formatDate(date) {
@@ -166,15 +166,22 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                     <>
                         <Form>
                             <Form.Group controlId={record.id}>
-                                <Form.Control disabled size="sm" as="select" defaultValue={record.status}>
-                                    <option value={0}>Nộp hồ sơ</option>
-                                    <option value={2}>Đang lấy ý kiến thẩm định</option>
+                                <select disabled defaultValue={record.status} className="py-1 px-2 license-status-select rounded">
+                                    <option value={0}>Chưa được duyệt</option>
+                                    <option value={2}>Đang xem xét, chỉnh sửa</option>
                                     <option value={3}>Hoàn thành hồ sơ cấp phép</option>
                                     <option value={1}>Đã được cấp phép</option>
-                                </Form.Control>
+                                </select>
                             </Form.Group>
                         </Form>
                     </>
+                )
+            },
+            {
+                title: 'Ghi chú',
+                dataIndex: 'gp_ghichu',
+                key: 'gp_ghichu',render: (text, record) => (
+                    <p className="cursor_pointer text-2-wrap m-0">{record.gp_ghichu} </p>
                 )
             },
             {
@@ -217,30 +224,12 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                         <DemGiayPhep />
                     </div>
                     <Tabs type="card" className="col-9 py-1 px-1">
-                        <TabPane tab="Yêu cầu cấp mới" key="1">
+                        <TabPane tab={<span className="d-flex align-items-center"><span>Hồ sơ đã cấp </span>&nbsp;<span className="text-white bg-danger p-1 font-13 rounded-circle d-flex text-center justify-content-center align-items-center license-number-badge">{this.state.grantedLicense.length}</span></span>} key="1">
                             <div className="menu-home col-12 p-0 discharge-water">
                                 <div className="col-12 p-0 ">
-                                    <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                                        <div className=" mb-1 col-lg-6 ">
+                                    <div className="col-12 row align-items-center my-1 px-0 mx-0 justify-content-center">
+                                        <div className="my-1 col-lg-6 ">
                                             <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
-                                        </div>
-                                        <div className=" mb-1 col-lg-3 ">
-                                            <select name="type" id="type" className="form-select font-13" defaultValue="all">
-                                                <option value="" disabled>--Loại giấy phép yêu cầu--</option>
-                                                <option value="all">Tất cả</option>
-                                                <option value="yeu-cau-cap-moi">Yêu cầu cấp mới</option>
-                                                <option value="yeu-cau-gia-han-dieu-chinh">Yêu cầu gia hạn, điều chỉnh</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-lg-3 mb-2">
-                                            <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
-                                                <option value="" disabled>--Trạng thái--</option>
-                                                <option value="all">Tất cả</option>
-                                                <option value={0}>Nộp hồ sơ</option>
-                                                <option value={2}>Đang lấy ý kiến thẩm định</option>  
-                                                <option value={3}>Hoàn thành hồ sơ cấp phép</option>
-                                                <option value={1}>Đã được cấp phép</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div className="table-responsive px-2">
@@ -249,7 +238,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                                                 columns={columns} 
                                                 loading={this.state.loading}
                                                 onChange={() => this.handleTableChange}
-                                                dataSource={this.state.dataLicense}
+                                                dataSource={this.state.grantedLicense}
                                                 rowKey="id"
                                                 bordered                                        
                                                 pagination={{
@@ -263,22 +252,14 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                                 </div>
                             </div>
                         </TabPane>
-                        <TabPane tab="Yêu cầu gia hạn" key="2">
+                        <TabPane tab="Hồ sơ cấp mới" key="2">
                             <div className="menu-home col-12 p-0 discharge-water">
                                 <div className="col-12 p-0 ">
                                     <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                                        <div className=" mb-1 col-lg-6 ">
+                                        <div className="my-1 col-lg-6">
                                             <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                         </div>
-                                        <div className=" mb-1 col-lg-3 ">
-                                            <select name="type" id="type" className="form-select font-13" defaultValue="all">
-                                                <option value="" disabled>--Loại giấy phép yêu cầu--</option>
-                                                <option value="all">Tất cả</option>
-                                                <option value="yeu-cau-cap-moi">Yêu cầu cấp mới</option>
-                                                <option value="yeu-cau-gia-han-dieu-chinh">Yêu cầu gia hạn, điều chỉnh</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-lg-3 mb-2">
+                                        <div className="col-lg-3 my-1">
                                             <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
                                                 <option value="" disabled>--Trạng thái--</option>
                                                 <option value="all">Tất cả</option>
@@ -292,22 +273,35 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                                 </div>
                             </div>
                         </TabPane>
-                        <TabPane tab="Yêu cầu thu hồi" key="3">
+                        <TabPane tab="Hồ sơ gia hạn" key="3">
                             <div className="menu-home col-12 p-0 discharge-water">
                                 <div className="col-12 p-0 ">
                                     <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                                        <div className=" mb-1 col-lg-6 ">
+                                        <div className="my-1 col-lg-6">
                                             <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
                                         </div>
-                                        <div className=" mb-1 col-lg-3 ">
-                                            <select name="type" id="type" className="form-select font-13" defaultValue="all">
-                                                <option value="" disabled>--Loại giấy phép yêu cầu--</option>
+                                        <div className="col-lg-3 my-1">
+                                            <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
+                                                <option value="" disabled>--Trạng thái--</option>
                                                 <option value="all">Tất cả</option>
-                                                <option value="yeu-cau-cap-moi">Yêu cầu cấp mới</option>
-                                                <option value="yeu-cau-gia-han-dieu-chinh">Yêu cầu gia hạn, điều chỉnh</option>
+                                                <option value={0}>Chưa được duyệt</option>
+                                                <option value={2}>Đang xem xét, chỉnh sửa</option>
+                                                <option value={3}>Hoàn thành hồ sơ cấp phép</option>
+                                                <option value={1}>Đã được cấp phép</option>
                                             </select>
                                         </div>
-                                        <div className="col-lg-3 mb-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="Hồ sơ thu hồi" key="4">
+                            <div className="menu-home col-12 p-0 discharge-water">
+                                <div className="col-12 p-0 ">
+                                    <div className="col-12 row align-items-center my-1 px-0 mx-0">
+                                        <div className="my-1 col-lg-6">
+                                            <Input.Search allowClear name="search" placeholder="--Tìm kiếm giấy phép--" onSearch={this.onSearchHandle} />
+                                        </div>
+                                        <div className="col-lg-3 my-1">
                                             <select name="filter" id="filter" onChange={this.onFilterHandle} className="form-select font-13" defaultValue="all">
                                                 <option value="" disabled>--Trạng thái--</option>
                                                 <option value="all">Tất cả</option>

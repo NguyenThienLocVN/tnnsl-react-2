@@ -397,7 +397,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
         )
 
         return(
-            this.state.redirectSuccess ?  <Redirect to='/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-cap-moi' /> :
+            this.state.redirectSuccess ?  <Redirect to='/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-ho-so' /> :
 			<div className="p-0">
                 <Header headTitle="ĐỀ NGHỊ CẤP MỚI GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
@@ -410,7 +410,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                 <p className="fw-bold w-100 text-violet p-2 m-0 font-15">1.Tổ chức/Cá nhân đề nghị CP</p>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="chugiayphep_ten" className="form-label fw-bold font-13 m-0">1.1.Tên tổ chức/cá nhân </label>
+                                        <label htmlFor="chugiayphep_ten" className="form-label fw-bold font-13 m-0">1.1.Tên tổ chức/cá nhân <span className="text-danger">*</span> </label>
                                         <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_ten" name="chugiayphep_ten"  />
                                     </div>
                                 </div>
@@ -422,13 +422,13 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="mb-2">
-                                        <label htmlFor="chugiayphep_diachi" className="form-label fw-bold font-13 m-0">1.3.Địa chỉ  </label>
+                                        <label htmlFor="chugiayphep_diachi" className="form-label fw-bold font-13 m-0">1.3.Địa chỉ <span className="text-danger">*</span> </label>
                                         <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_diachi"  name="chugiayphep_diachi" />
                                     </div>
                                 </div>
                                 <div className="col-sm-6 p-0 row m-0">
                                     <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_phone" className="form-label fw-bold font-13 m-0">1.4.Điện thoại   </label>
+                                        <label htmlFor="chugiayphep_phone" className="form-label fw-bold font-13 m-0">1.4.Điện thoại <span className="text-danger">*</span> </label>
                                         <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_phone" name="chugiayphep_phone" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
@@ -436,7 +436,7 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                         <input type="text" onChange={(e) => this.handleInputChange(e)} className="form-control form-control-sm" id="chugiayphep_fax" name="chugiayphep_fax" />
                                     </div>
                                     <div className="mb-2 col-sm-4">
-                                        <label htmlFor="chugiayphep_email" className="form-label fw-bold font-13 m-0">1.6.Email   </label>
+                                        <label htmlFor="chugiayphep_email" className="form-label fw-bold font-13 m-0">1.6.Email <span className="text-danger">*</span> </label>
                                         <input type="email" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="chugiayphep_email" name="chugiayphep_email" />
                                     </div>
                                 </div>
