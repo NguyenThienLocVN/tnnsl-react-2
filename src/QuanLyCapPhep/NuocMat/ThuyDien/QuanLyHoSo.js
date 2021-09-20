@@ -391,7 +391,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
                     <>
                         <div className="d-flex justify-content-center">
                         <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/xem/"+record.id} title="Xem"><EyeOutlined /></Link>
-                        {user.id === record.user_id || user.role === 'admin' ?
+                        {user.id === record.user_id || user.role === 'admin' || user.role === 'lanh-dao' ?
                             <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/chinh-sua/"+record.id} title="Chỉnh Sửa"><EditOutlined /></Link> : ""
                         }
                         {user.role === 'admin' ?

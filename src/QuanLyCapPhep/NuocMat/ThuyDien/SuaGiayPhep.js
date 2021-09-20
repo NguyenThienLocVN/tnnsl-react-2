@@ -195,8 +195,12 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
         formData.append("camket_dungsuthat", camket_dungsuthat);
         formData.append("camket_chaphanhdungquydinh", camket_chaphanhdungquydinh);
         formData.append("camket_daguihoso", camket_daguihoso);
-        formData.append("status", status);
-        formData.append("gp_ghichu", gp_ghichu);
+        if(status){
+            formData.append("status", status);
+        }
+        if(gp_ghichu){
+            formData.append("gp_ghichu", gp_ghichu);
+        }
 
         apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
