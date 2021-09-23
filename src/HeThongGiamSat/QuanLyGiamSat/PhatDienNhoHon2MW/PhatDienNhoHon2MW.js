@@ -3,7 +3,6 @@ import React from 'react';
 import Header from '../../../Shared/Header';
 import '../../../Shared/Page.css';
 import LeftBar from '../../LeftBar';
-import { Tabs } from 'antd';
 
 
 // GET DATA FROM API
@@ -19,7 +18,9 @@ import { BasemapLayer } from "react-esri-leaflet";
 import * as L from 'leaflet';
 import ReactLeafletKml from 'react-leaflet-kml';
 import blueMarker from '../../../Shared/marker-blue.png';
-import GiamSatKetNoi from './GiamSatKetNoi';
+
+// IMPORT TABPANE GIAMSAT
+import ListCongTrinh from './ListCongTrinh';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -28,10 +29,8 @@ const blueIcon = L.icon({
     className: 'blueMarker',
 });
 
-const { TabPane } = Tabs;
 
-
-export default class HeThongGiamSatPhatDienNhoHon2MW extends React.Component {
+export default class HeThongGiamSatPhatDienLonHon2MW extends React.Component {
     constructor(props){
         super(props)
         this.state = { 
@@ -97,7 +96,7 @@ export default class HeThongGiamSatPhatDienNhoHon2MW extends React.Component {
     render(){
         return(
             <div className="pt-1 px-1">
-                <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN NHỎ HƠN 2MW" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN LỚN HƠN 2MW" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
@@ -126,16 +125,7 @@ export default class HeThongGiamSatPhatDienNhoHon2MW extends React.Component {
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                            <Tabs tabPosition="top" defaultActiveKey="1">
-                                <TabPane tab="Giám sát kết nối" key="1">
-                                    <GiamSatKetNoi />
-                                </TabPane>
-                                <TabPane tab="Giám sát dữ liệu" key="2"></TabPane>
-                                <TabPane tab="Camera giám sát" key="3"></TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="4"></TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="5"></TabPane>
-                            </Tabs>
-                            
+                            <ListCongTrinh />
                         </div>
                     </div>
                 </main>

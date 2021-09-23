@@ -248,7 +248,7 @@ import HeThongGiamSat from './HeThongGiamSat/HeThongGiamSat';
 import HeThongGiamSatPhatDienLonHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienLonHon2MW/PhatDienLonHon2MW';
 import HeThongGiamSatLichSuPhatDienLonHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienLonHon2MW/LichSuPhatDienLonHon2MW/LichSuPhatDienLonHon2MW';
 
-// <==================================================HE THONG GIAM SAT PHAT DIEN Nho HON 2mw=================================================================================>
+// <==================================================HE THONG GIAM SAT PHAT DIEN NHO HON 2mw=================================================================================>
 import HeThongGiamSatPhatDienNhoHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienNhoHon2MW/PhatDienNhoHon2MW';
 import HeThongGiamSatLichSuPhatDienNhoHon2MW from './HeThongGiamSat/QuanLyGiamSat/PhatDienNhoHon2MW/LichSuPhatDienNhoHon2MW/LichSuPhatDienNhoHon2MW';
 

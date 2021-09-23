@@ -4,6 +4,10 @@ import '../../../Shared/Page.css';
 import { Link } from 'react-router-dom';
 import { Button, Table, Form, Select, DatePicker, Input, TimePicker } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
+
+// moment date in DatePicker
+import moment from 'moment';
+
 export default class GiamSatKetNoi extends React.Component {
 
     checkStatus(hieulucgiayphep){
@@ -217,16 +221,21 @@ export default class GiamSatKetNoi extends React.Component {
                 title: 'Xem lịch sử',
                 key: 'view_history',
                 align: 'center',
+                width: 100,
                 render: (text, record) => (
                     <>
-                        <Link to={"/he-thong-giam-sat/phat-dien-nho-hon-2mw/lich-su/"+record.view_history} className="text-center">Xem</Link>
+                        <Link to={"/he-thong-giam-sat/phat-dien-lon-hon-2mw/lich-su/"+record.view_history} className="text-center">Xem</Link>
                     </>
                 ),
             },
           ];
+
+        const dateFormat = 'DD/MM/YYYY';
+        const timeFormat = 'HH:mm';
+
         return(
             <>
-                <Form layout="inline" className="justify-content-center mb-2">
+                <Form layout="inline" className="justify-content-end mb-2">
                     <Form.Item className="p-1 m-0" label="Giám sát kết nối" style={{width:'25%'}}>
                         <Select defaultValue={0} >
                             <Select.Option value={0}>Tất cả</Select.Option>
@@ -253,12 +262,12 @@ export default class GiamSatKetNoi extends React.Component {
                         </Select>
                     </Form.Item>
                     <Form.Item className="p-1 m-0" label="Từ">
-                        <DatePicker placeholder="Chọn ngày" />
-                        <TimePicker placeholder="Chọn giờ" />
+                        <DatePicker placeholder="Chọn ngày" defaultValue={moment()} format={dateFormat} />
+                        <TimePicker placeholder="Chọn giờ" defaultValue={moment("00:00", timeFormat)} format={timeFormat} />
                     </Form.Item>
                     <Form.Item className="p-1 m-0" label="Đến">
-                        <DatePicker placeholder="Chọn ngày" />
-                        <TimePicker placeholder="Chọn giờ" />
+                        <DatePicker placeholder="Chọn ngày" defaultValue={moment()} format={dateFormat} />
+                        <TimePicker placeholder="Chọn giờ" defaultValue={moment()} format={timeFormat} />
                     </Form.Item>
                     <Form.Item className="p-1 m-0">
                         <Button type="primary" className="d-flex justify-content-center align-items-center">

@@ -3,11 +3,7 @@ import React from 'react';
 import Header from '../../../../Shared/Header';
 import '../../../../Shared/Page.css';
 import LeftBar from '../../../LeftBar';
-import { Button, Table, Form, DatePicker, TimePicker, Select, Tabs } from 'antd';
-import { FilterOutlined } from '@ant-design/icons';
-
-// moment date in DatePicker
-import moment from 'moment';
+import { Tabs } from 'antd';
 
 
 // MAP
@@ -22,6 +18,8 @@ import blueMarker from '../../../../Shared/marker-blue.png';
 import GiamSatDuLieu from './GiamSatDuLieu';
 import CameraGiamSat from './CameraGiamSat';
 import GiamSatKetNoi from './GiamSatKetNoi';
+import NhatKyCanhBao from './NhatKyCanhBao';
+import TongHopVanHanh from './TongHopVanHanh';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -85,18 +83,22 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                            <Tabs tabPosition="top" defaultActiveKey="1">
-                                <TabPane tab="Giám sát kết nối" key="1">
+                            <Tabs tabPosition="top" defaultActiveKey="giamsat-ketnoi">
+                                <TabPane tab="Giám sát kết nối" key="giamsat-ketnoi">
                                     <GiamSatKetNoi />
                                 </TabPane>
-                                <TabPane tab="Giám sát dữ liệu" key="2">
+                                <TabPane tab="Giám sát dữ liệu" key="giamsat-dulieu">
                                     <GiamSatDuLieu />
                                 </TabPane>
-                                <TabPane tab="Camera giám sát" key="3">
+                                <TabPane tab="Camera giám sát" key="camera-giamsat">
                                     <CameraGiamSat />
                                 </TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="4"></TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="5"></TabPane>
+                                <TabPane tab="Nhật ký cảnh báo" key="nhatky-canhbao">
+                                    <NhatKyCanhBao />
+                                </TabPane>
+                                <TabPane tab="Tổng hợp vận hành" key="tonghop-vanhanh">
+                                    <TongHopVanHanh />
+                                </TabPane>
                             </Tabs>
                         </div>
                     </div>
