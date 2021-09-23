@@ -19,6 +19,7 @@ import GiamSatDuLieu from './GiamSatDuLieu';
 import CameraGiamSat from './CameraGiamSat';
 import GiamSatKetNoi from './GiamSatKetNoi';
 import NhatKyCanhBao from './NhatKyCanhBao';
+import TongHopVanHanh from './TongHopVanHanh';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -29,7 +30,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Component {
+export default class HeThongGiamSatLichSuPhatDienNhoHon2MW extends React.Component {
     constructor(props){
         super(props)
         this.state = { 
@@ -53,7 +54,7 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
     render(){
         return(
             <div className="pt-1 px-1">
-                <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN LỚN HƠN 2MW" previousLink="/he-thong-giam-sat/phat-dien-lon-hon-2mw" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN NHỎ HƠN 2MW" previousLink="/he-thong-giam-sat/phat-dien-nho-hon-2mw" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
@@ -82,20 +83,22 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                            <Tabs tabPosition="top" defaultActiveKey="1">
-                                <TabPane tab="Giám sát kết nối" key="1">
+                            <Tabs tabPosition="top" defaultActiveKey="giamsat-ketnoi">
+                                <TabPane tab="Giám sát kết nối" key="giamsat-ketnoi">
                                     <GiamSatKetNoi />
                                 </TabPane>
-                                <TabPane tab="Giám sát dữ liệu" key="2">
+                                <TabPane tab="Giám sát dữ liệu" key="giamsat-dulieu">
                                     <GiamSatDuLieu />
                                 </TabPane>
-                                <TabPane tab="Camera giám sát" key="3">
+                                <TabPane tab="Camera giám sát" key="camera-giamsat">
                                     <CameraGiamSat />
                                 </TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="4">
+                                <TabPane tab="Nhật ký cảnh báo" key="nhatky-canhbao">
                                     <NhatKyCanhBao />
                                 </TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="5"></TabPane>
+                                <TabPane tab="Tổng hợp vận hành" key="tonghop-vanhanh">
+                                    <TongHopVanHanh />
+                                </TabPane>
                             </Tabs>
                         </div>
                     </div>

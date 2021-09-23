@@ -8,7 +8,7 @@ import { FilterOutlined } from '@ant-design/icons';
 // moment date in DatePicker
 import moment from 'moment';
 
-export default class GiamSatKetNoi extends React.Component {
+export default class ListCongTrinh extends React.Component {
 
     checkStatus(hieulucgiayphep){
         if(hieulucgiayphep === "chuaduocduyet"){

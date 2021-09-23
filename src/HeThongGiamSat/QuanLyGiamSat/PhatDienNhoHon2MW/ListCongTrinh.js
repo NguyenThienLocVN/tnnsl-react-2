@@ -8,7 +8,8 @@ import { FilterOutlined } from '@ant-design/icons';
 // moment date in DatePicker
 import moment from 'moment';
 
-export default class GiamSatKetNoi extends React.Component {
+// FILE LAY DÂT DANH SACH CONG TRINH
+export default class ListCongTrinh extends React.Component {
 
     checkStatus(hieulucgiayphep){
         if(hieulucgiayphep === "chuaduocduyet"){
@@ -224,7 +225,8 @@ export default class GiamSatKetNoi extends React.Component {
                 width: 100,
                 render: (text, record) => (
                     <>
-                        <Link to={"/he-thong-giam-sat/phat-dien-lon-hon-2mw/lich-su/"+record.view_history} className="text-center">Xem</Link>
+                    {/* DUONG DAN DEN TRANG XEM LICH SU */}
+                        <Link to={"/he-thong-giam-sat/phat-dien-nho-hon-2mw/lich-su/"+record.view_history} className="text-center">Xem</Link>
                     </>
                 ),
             },
