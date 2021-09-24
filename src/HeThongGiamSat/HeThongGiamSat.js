@@ -16,7 +16,7 @@ export default class HeThongGiamSat extends React.Component {
 
     render(){
         return(
-            <div className="pt-1 px-1">
+            <div>
                 <Header headTitle="HỆ THỐNG GIÁM SÁT" previousLink="/" showHeadImage={true} layout48={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">

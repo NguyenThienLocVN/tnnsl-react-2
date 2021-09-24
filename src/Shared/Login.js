@@ -83,17 +83,18 @@ export default class Login extends React.Component{
                             <input id="password" onChange={this.onChangehandler} className="form-control block w-full font-13 rounded-left" type="password" name="password" required autoComplete="current-password" placeholder="Mật khẩu" />
                         </div>
                     </div>
-
                     {this.state.msg ? 
                     <Alert className="mt-3" message={this.state.msg} type="error" showIcon /> : "" }
-    
-                    <div className="text-center d-flex mt-3">
-                        <input type="submit" className="col-5 btn font-13 button-login text-white" value="Đăng nhập" />
-    
-                        <Link to="register" className="btn font-13 col-6">Đăng ký</Link>
-                    </div>
-                    <div className="text-center mt-4">
-                        <a className="underline text-sm text-gray-600 hover:text-gray-900 font-13 fw-bold" href="{{ route('password.request') }}">Quên mật khẩu?</a>
+
+                    <div className="text-center row mx-0 mt-4">
+                        <input type="submit" className="col-12 btn font-13 button-login text-white" value="Đăng nhập" />
+                        <a className="underline my-2 text-sm font-15" href="{{ route('password.request') }}">Quên mật khẩu ?</a>
+                        <div className="col-12" style={{borderTop:"1px solid rgb(175 175 175)"}}></div>
+                        <div className="mt-3 d-flex justify-content-between">
+                            <Link to="register" className="font-13 btn button-login p-1 col-4 text-white">Đăng ký</Link>
+                            <span> Hoặc </span>
+                            <Link to="#" className="font-13 col-6 btn button-login p-1 text-white">Xem không cần đăng nhập</Link>
+                        </div>
                     </div>
                 </form> 
             </div>
