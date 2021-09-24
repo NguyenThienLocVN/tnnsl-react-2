@@ -342,19 +342,19 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                         <Modal title="Thêm mới đợt thanh tra / kiểm tra" visible={this.state.modalLicenseInspect} onCancel={() => this.handleCloseModal()} onOk={() => this.handleCloseModal()} >
                                             <div className="form-group mb-3">
                                                 <p className="m-0">Tên đợt <span className="text-danger">*</span></p>
-                                                <input type="text" className="form-control font-13" name="ten_dotthanhtra" />
+                                                <input type="text" className="form-control font-13" name="ten_dotthanhtra" placeholder="-- Nhập tên đợt thanh tra kiểm tra --" />
                                             </div>
                                             <div className="form-group mb-3">
                                                 <p className="m-0">Đơn vị thực hiện</p>
-                                                <input type="text" className="form-control font-13" name="donvi_thanhtra" />
+                                                <input type="text" className="form-control font-13" name="donvi_thanhtra" placeholder="-- Nhập đơn vị thực hiện --" />
                                             </div>
                                             <div className="form-group mb-3">
                                                 <p className="m-0">Trưởng đoàn thanh tra</p>
-                                                <input type="text" className="form-control font-13" name="truongdoan_thanhtra" />
+                                                <input type="text" className="form-control font-13" name="truongdoan_thanhtra" placeholder="-- Nhập trưởng đoàn thanh tra --" />
                                             </div>
                                             <div className="form-group mb-3">
                                                 <p className="m-0">Năm thực hiện</p>
-                                                <input type="text" className="form-control font-13" name="namthuchien_thanhtra" />
+                                                <input type="text" className="form-control font-13" name="namthuchien_thanhtra" placeholder="-- Nhập năm thực hiện --" />
                                             </div>
                                         </Modal>
                                     </div>
@@ -386,11 +386,11 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                                 </div>
                                                 <div className="form-group mb-3">
                                                     <p className="m-0">Tên văn bản <span className="text-danger">*</span></p>
-                                                    <input type="text" className="form-control font-13" name="donvi_thanhtra" />
+                                                    <input type="text" className="form-control font-13" name="donvi_thanhtra" placeholder="-- Nhập tên văn bản --" />
                                                 </div>
                                                 <div className="form-group mb-3">
                                                     <p className="m-0">Nội dung</p>
-                                                    <textarea className="form-control font-13" name="truongdoan_thanhtra"></textarea>
+                                                    <textarea className="form-control font-13" name="truongdoan_thanhtra" placeholder="-- Nhập nội dung --"></textarea>
                                                 </div>
                                             </Modal>
                                         </div>
@@ -421,7 +421,7 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                                 </div>
                                                 <div className="form-group mb-3">
                                                     <p className="m-0">Nội dung</p>
-                                                    <textarea className="form-control font-13" name="truongdoan_thanhtra"></textarea>
+                                                    <textarea className="form-control font-13" name="truongdoan_thanhtra" placeholder="-- Nhập nội dung --"></textarea>
                                                 </div>
                                             </Modal>
                                         </div>
