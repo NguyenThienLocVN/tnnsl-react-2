@@ -2,11 +2,10 @@ import React from 'react';
 import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
-import { Button } from "react-bootstrap";
-import { PlusSquareOutlined, QuestionCircleOutlined, DeleteOutlined, CheckCircleOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, CheckCircleOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { Popover, Modal } from 'antd';
 import DemGiayPhep from './DemGiayPhep';
-import { apiClient, getToken, removeUserSession } from '../../../Shared/Auth';
+import { getToken, removeUserSession } from '../../../Shared/Auth';
 import axios from "axios";
 
 // Alert library
@@ -125,98 +124,6 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
         )
     }
 
-    submitHandler = (e) => {
-        e.preventDefault();
-        var idGP = this.props.match.params.id_gp;
-
-        console.log(this.state);
-        let formData = new FormData();    //formdata object
-
-        var chugiayphep_ten = document.querySelector('#chugiayphep_ten').value;
-        var chugiayphep_sogiaydangkykinhdoanh = document.querySelector('#chugiayphep_sogiaydangkykinhdoanh').value;
-        var chugiayphep_diachi = document.querySelector('#chugiayphep_diachi').value;
-        var chugiayphep_phone = document.querySelector('#chugiayphep_phone').value;
-        var chugiayphep_fax = document.querySelector('#chugiayphep_fax').value;
-        var chugiayphep_email = document.querySelector('#chugiayphep_email').value;
-        var congtrinh_ten = document.querySelector('#congtrinh_ten').value;
-        var congtrinh_diadiem = document.querySelector('#congtrinh_diadiem').value;
-        var phuongthuc_kt = document.querySelector('#phuongthuc_kt').value;
-        var congtrinh_hientrang = document.querySelector('#congtrinh_hientrang').value;
-        var mucdich_ktsd = document.querySelector('#mucdich_ktsd').value;
-        var congsuat_lapmay = document.querySelector('#congsuat_lapmay').value;
-        var luuluonglonnhat_quathuydien = document.querySelector('#luuluonglonnhat_quathuydien').value;
-        var mucnuocdang_binhthuong = document.querySelector('#mucnuocdang_binhthuong').value;
-        var mucnuoc_chet = document.querySelector('#mucnuoc_chet').value;
-        var mucnuoccaonhat_truoclu = document.querySelector('#mucnuoccaonhat_truoclu').value;
-        var mucnuoc_donlu = document.querySelector('#mucnuoc_donlu').value;
-        var dungtich_huuich = document.querySelector('#dungtich_huuich').value;
-        var dungtich_toanbo = document.querySelector('#dungtich_toanbo').value;
-        var luuluong_xadongchay_toithieu = document.querySelector('#luuluong_xadongchay_toithieu').value;
-        var nguonnuoc_ktsd = document.querySelector('#nguonnuoc_ktsd').value;
-        var vitri_laynuoc = document.querySelector('#vitri_laynuoc').value;
-        var luuluongnuoc_ktsd = document.querySelector('#luuluongnuoc_ktsd').value;
-        var che_do_kt = document.querySelector('#che_do_kt').value;
-        var gp_thoihangiayphep = document.querySelector('#gp_thoihangiayphep').value;
-        var camket_dungsuthat = document.querySelector('#camket_dungsuthat').value;
-        var camket_chaphanhdungquydinh = document.querySelector('#camket_chaphanhdungquydinh').value;
-        var camket_daguihoso = document.querySelector('#camket_daguihoso').value;
-        
-        formData.append("chugiayphep_ten", chugiayphep_ten);
-        formData.append("chugiayphep_sogiaydangkykinhdoanh", chugiayphep_sogiaydangkykinhdoanh);
-        formData.append("chugiayphep_diachi", chugiayphep_diachi);
-        formData.append("chugiayphep_phone", chugiayphep_phone);
-        formData.append("chugiayphep_fax", chugiayphep_fax);
-        formData.append("chugiayphep_email", chugiayphep_email);
-        formData.append("congtrinh_ten", congtrinh_ten);
-        formData.append("congtrinh_diadiem", congtrinh_diadiem);
-        formData.append("phuongthuc_kt", phuongthuc_kt);
-        formData.append("congtrinh_hientrang", congtrinh_hientrang);
-        formData.append("hangmuc", JSON.stringify(this.state.hangmuc));
-        formData.append("mucdich_ktsd", mucdich_ktsd);
-        formData.append("congsuat_lapmay", congsuat_lapmay);
-        formData.append("luuluonglonnhat_quathuydien", luuluonglonnhat_quathuydien);
-        formData.append("mucnuocdang_binhthuong", mucnuocdang_binhthuong);
-        formData.append("mucnuoc_chet", mucnuoc_chet);
-        formData.append("mucnuoccaonhat_truoclu", mucnuoccaonhat_truoclu);
-        formData.append("mucnuoc_donlu", mucnuoc_donlu);
-        formData.append("dungtich_huuich", dungtich_huuich);
-        formData.append("dungtich_toanbo", dungtich_toanbo);
-        formData.append("luuluong_xadongchay_toithieu", luuluong_xadongchay_toithieu);
-        formData.append("nguonnuoc_ktsd", nguonnuoc_ktsd);
-        formData.append("vitri_laynuoc", vitri_laynuoc);
-        formData.append("luuluongnuoc_ktsd", luuluongnuoc_ktsd);
-        formData.append("che_do_kt", che_do_kt);
-        formData.append("gp_thoihangiayphep", gp_thoihangiayphep);
-        formData.append("camket_dungsuthat", camket_dungsuthat);
-        formData.append("camket_chaphanhdungquydinh", camket_chaphanhdungquydinh);
-        formData.append("camket_daguihoso", camket_daguihoso);
-
-        apiClient.get('/sanctum/csrf-cookie')
-            .then(response => {
-                trackPromise(
-					apiClient.post(configData.API_URL + "/quan-ly-cap-phep/nuoc-mat/sua-giay-phep/"+idGP, formData, {
-                        headers: {
-                            'content-type': 'multipart/form-data',
-                            'Authorization': 'Bearer ' + getToken()
-                        } 
-                    })
-					.then((response) => {
-                        this.setState({toastSuccess: response.data.success_message});
-                        this.notifySuccess();
-					})
-					.catch((error) => {
-                        this.setState({toastError: error.response.data.error_message});
-                        this.notifyError();
-                        if(error.response.status === 401)
-                        {
-                            removeUserSession();
-                            window.location.reload();
-                        }
-					})
-				)
-            })
-    };
-
     // Get value for license creation on change (Lay gia tri input de tao moi giay phep)
     handleInputChange = event => {
         const { licensePostData } = this.state;
@@ -326,7 +233,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                             </>
                         }
                         <div className="px-2"><hr /></div>
-                        <form action="" onSubmit={(e) => this.submitHandler(e)} noValidate>
+                        <form action="" noValidate>
                             <div className="col-12 row m-0 p-0">
                                 <p className="fw-bold w-100 text-violet p-2 m-0 font-15">1.Tổ chức/Cá nhân đề nghị CP</p>
                                 <div className="col-sm-6">

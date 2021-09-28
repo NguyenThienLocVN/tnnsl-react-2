@@ -325,7 +325,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                             <Link className="p-1" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/theo-doi/"+record.id} title="Theo Dõi"><SearchOutlined/></Link> : ""
                         }
                         {user.id === record.user_id || user.role === 'admin' ?
-                            <Link className="p-2 pl-md-0" to="/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh" title="Gia hạn"><ClockCircleOutlined /></Link> : ""
+                            <Link className="p-2 pl-md-0" to={"/quan-ly-cap-phep/nuoc-mat/thuy-dien/gia-han-dieu-chinh/"+record.id} title="Gia hạn"><ClockCircleOutlined /></Link> : ""
                         }
                         {user.role === 'admin' ?
                             <Link className="p-1" onClick={() => {if(window.confirm('Bạn có chắc muốn xóa giấy phép '+record.gp_sogiayphep+' chứ ?')){ this.destroyLicenseHandler(record.id)};}} variant="link" className="text-danger" title="Xóa"><DeleteOutlined /></Link> : ''
