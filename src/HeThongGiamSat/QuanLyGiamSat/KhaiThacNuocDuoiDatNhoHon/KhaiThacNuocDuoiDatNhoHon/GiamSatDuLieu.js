@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import '../../../../Shared/Page.css';
-import { Button, Table, Form, DatePicker, TimePicker, Modal, Select, Tabs, Input } from 'antd';
-import { FilterOutlined, FileExcelOutlined, UploadOutlined } from '@ant-design/icons';
+import { Button, Table, Form, DatePicker, TimePicker, Modal, Select, Input } from 'antd';
+import { FilterOutlined } from '@ant-design/icons';
 
 // moment date in DatePicker
 import moment from 'moment';
@@ -10,7 +10,6 @@ import moment from 'moment';
 // IMPORT LINE CHARTS DATA
 import { Line } from 'react-chartjs-2';
 
-const { TabPane } = Tabs;
 
 export default class GiamSatDuLieu extends React.Component {
 
@@ -98,259 +97,6 @@ export default class GiamSatDuLieu extends React.Component {
                 }
             }
           };
-        //   DATA IN TABLE CONG TRINH
-        const dataCongTrinh = [
-            {
-                key: '1',
-                id: '1',
-                mucnuocho: 725.1,
-                updatetime: "07:00",
-                gp_sogiayphep: 'GP/22-BTNMT',
-                congtrinh_ten: 'Thủy Điện 1',
-                congtrinh_diachi: "123 đường 123 - tp sơn la",
-                chugiayphep_ten: 'Công ty 1',
-                tramcapphep_soluong: 2,
-                congtrinh_matketnoi: 1,
-            },
-        ];
-
-        // DATA LUONG MUA
-        const dataBangBieuLuongMua1 = [
-            {
-                key: '1',
-                id: '1',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '00:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '2',
-                id: '2',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '01:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '3',
-                id: '3',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '02:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '4',
-                id: '4',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '03:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '5',
-                id: '5',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '04:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '6',
-                id: '6',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '05:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '7',
-                id: '7',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '06:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '8',
-                id: '8',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '07:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '9',
-                id: '9',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '08:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '10',
-                id: '10',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '09:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '11',
-                id: '11',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '10:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '12',
-                id: '12',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '11:00',
-                giamsat_mucnuocho: '0',
-            },
-        ];
-        const dataBangBieuLuongMua2 = [
-            {
-                key: '13',
-                id: '13',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '12:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '14',
-                id: '14',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '13:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '15',
-                id: '15',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '14:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '16',
-                id: '16',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '15:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '17',
-                id: '17',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '16:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '18',
-                id: '18',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '17:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '19',
-                id: '19',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '18:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '20',
-                id: '20',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '19:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '21',
-                id: '21',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '20:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '22',
-                id: '22',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '21:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '23',
-                id: '23',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '22:00',
-                giamsat_mucnuocho: '0',
-            },
-            {
-                key: '24',
-                id: '24',
-                giamsat_ngay: '04/09/2021',
-                giamsat_gio: '23:00',
-                giamsat_mucnuocho: '0',
-            },
-        ];
-        // COLUMN SHOW LUONG MUA
-        const columnBangBieuLuongMua = [
-            {
-                title: '#',
-                dataIndex: 'id',
-                key: 'id',
-                align: 'center',
-            },
-            {
-                title: 'Ngày',
-                dataIndex: 'giamsat_ngay',
-                key: 'giamsat_ngay',
-                align: 'center',
-            },
-            {
-                title: 'Giờ',
-                dataIndex: 'giamsat_gio',
-                key: 'giamsat_gio',
-                align: 'center',
-            },
-            {
-                title: 'Lưu lượng (m3/s)',
-                dataIndex: 'giamsat_mucnuocho',
-                key: 'giamsat_mucnuocho',
-                align: 'center',
-                render: (text, record) => (
-                    <>
-                        <Input size="small" readOnly defaultValue={record.giamsat_mucnuocho} />
-                    </>
-                )
-            },
-        ];
-        // COLUMN UPDATE MUC NUOC HO
-        const columnCapNhatLuongMua = [
-            {
-                title: '#',
-                dataIndex: 'id',
-                key: 'id',
-                align: 'center',
-            },
-            {
-                title: 'Ngày',
-                dataIndex: 'giamsat_ngay',
-                key: 'giamsat_ngay',
-                align: 'center',
-            },
-            {
-                title: 'Giờ',
-                dataIndex: 'giamsat_gio',
-                key: 'giamsat_gio',
-                align: 'center',
-            },
-            {
-                title: 'Lưu lượng (m3/s)',
-                dataIndex: 'giamsat_mucnuocho',
-                key: 'giamsat_mucnuocho',
-                align: 'center',
-                render: (text, record) => (
-                    <>
-                        <Input size="small" defaultValue={record.giamsat_mucnuocho} />
-                    </>
-                )
-            },
-        ];
         
           const dataSource = [
             {
@@ -424,9 +170,9 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '1',
                 id: '1',
-                quantrac_tentram: 'THUONGLUU',
+                quantrac_tentram: 'LUULUONGKTNDD',
                 tram_kyhieu: '',
-                tram_chiso: 'MUCNUOC',
+                tram_chiso: 'LUULUONG',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [1, 3, 1, 8],
@@ -434,7 +180,7 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '2',
                 id: '2',
-                quantrac_tentram: 'HALUU',
+                quantrac_tentram: 'MUCNUOCKTNDD',
                 tram_kyhieu: '',
                 tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
@@ -444,33 +190,24 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '3',
                 id: '3',
-                quantrac_tentram: 'NHAMAY',
+                quantrac_tentram: 'CLNKHAITHACNDD',
                 tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
-                tram_thoigiannhan: '',
-                tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [2, 5, 3, 12],
-            },
-            {
-                key: '4',
-                id: '4',
-                quantrac_tentram: 'QUATRAN',
-                tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
+                tram_chiso: 'CLN',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [8, 6, 1, 6],
             },
             {
-                key: '5',
-                id: '5',
-                quantrac_tentram: 'DCTT',
+                key: '4',
+                id: '4',
+                quantrac_tentram: 'MUCNUOCGIENGQT',
                 tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
+                tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [1, 1, 5, 18],
-            }
+            },
+            
         ];
 
         const columnTram = [
@@ -485,14 +222,101 @@ export default class GiamSatDuLieu extends React.Component {
                 key: 'tram_chiso',
             },
             {
-                title: 'Thời gian nhận',
+                title: () => {
+                    return <span>Thời gian <br /> nhận số liệu</span>
+                } ,
                 dataIndex: '',
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+               
+                title: () => { 
+                    return <span>Lưu lượng <br /> khai thác <br /> (m3/ngày đêm)</span>
+                } ,
                 dataIndex: '',
                 key: '',
+            },
+            {
+                title: () => { 
+                    return <span>Mực nước <br /> trong giếng <br /> khai thác</span>
+                } ,
+           
+                dataIndex: '',
+                key: '',
+            },
+            {
+                title: 'Quan trắc chất lượng nước trong quá trình khai thác',
+                children: [
+                    {
+                      title: 'Nhiệt độ',
+                      dataIndex: '',
+                      key: '',
+                      width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                pH
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                BOD₅(20⁰)
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                COD
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                DO
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                TSS
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                NH4+
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                ],
+                dataIndex: '',
+                key: '',
+                align: 'center',
             },
             {
                 title: 'Trạng thái kết nối',
@@ -573,79 +397,9 @@ export default class GiamSatDuLieu extends React.Component {
                             destroyOnClose={true}
                         >
                             <p className="fw-bold"><span className="text-danger">LỊCH SỬ GIÁM SÁT TRẠM QUAN TRẮC: </span> <span> {record.quantrac_tentram} </span> </p>
-                            <Tabs tabPosition="top" defaultActiveKey="1">
-                                <TabPane tab="Biểu Đồ" key="1">
-                                    {/* LINE CHARTS MUC NUOC HO */}
-                                    <div className="d-flex align-items-end">
-                                        <Line width={600} height={400} data={dataLine} options={optionLine} />
-                                    </div>
-                                    {/* END LINE CHARTS MUC NUOC HO */}
-                                </TabPane>
-                                <TabPane tab="Bảng Biểu" key="2">
-                                    {/* FORM SHOW DATA MUC NUOC HO */}
-                                    <Form>
-                                        <div className="row m-0 p-0">
-                                            <div className="col-sm-6 p-2">
-                                                <Table 
-                                                    bordered 
-                                                    dataSource={dataBangBieuLuongMua1} 
-                                                    columns={columnBangBieuLuongMua}
-                                                    pagination={false}
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 p-2">
-                                                <Table 
-                                                    bordered 
-                                                    dataSource={dataBangBieuLuongMua2} 
-                                                    columns={columnBangBieuLuongMua}
-                                                    pagination={false}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="d-flex p-2 justify-content-end">
-                                            <div className="d-flex justify-content-end">
-                                                <Button type="primary" className="d-flex justify-content-center align-items-center">
-                                                    <FileExcelOutlined />
-                                                    Xuất file excel
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </Form>
-                                    {/* END FORM SHOW DATA MUC NUOC HO */}
-                                </TabPane>
-                                <TabPane tab="Cập Nhật" key="3">
-                                    {/* FORM UPDATE DATA MUC NUOC HO */}
-                                    <Form>
-                                        <div className="row m-0 p-0">
-                                            <div className="col-sm-6 p-2">
-                                                <Table 
-                                                    bordered 
-                                                    dataSource={dataBangBieuLuongMua1} 
-                                                    columns={columnCapNhatLuongMua}
-                                                    pagination={false}
-                                                />
-                                            </div>
-                                            <div className="col-sm-6 p-2">
-                                                <Table 
-                                                    bordered 
-                                                    dataSource={dataBangBieuLuongMua2} 
-                                                    columns={columnCapNhatLuongMua}
-                                                    pagination={false}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="d-flex p-2 justify-content-end">
-                                            <div className="d-flex justify-content-end">
-                                                <Button type="primary" className="d-flex justify-content-center align-items-center">
-                                                    <UploadOutlined />
-                                                    Cập Nhật
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </Form>
-                                    {/* END FORM SHOW DATA MUC NUOC HO */}
-                                </TabPane>
-                            </Tabs>
+                            <div>
+                                <Line data={dataLine} options={optionLine} width={1000} height={600} />
+                            </div>
                         </Modal>
                     </>
                 ),

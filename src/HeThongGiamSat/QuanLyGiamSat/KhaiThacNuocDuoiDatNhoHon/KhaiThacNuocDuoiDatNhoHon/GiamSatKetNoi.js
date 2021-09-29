@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import '../../../../Shared/Page.css';
-import { Button, Table, Form, DatePicker, TimePicker, Modal, Select, Input } from 'antd';
+import { Button, Table, Form, DatePicker, TimePicker, Modal, Select } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
 
 // moment date in DatePicker
@@ -11,11 +11,10 @@ import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 
 
-export default class GiamSatDuLieu extends React.Component {
-
+export default class HeThongGiamSatLichSuKhaiThacNuocDuoiDatNhoHon extends React.Component {
     constructor(props){
         super(props)
-        this.state = { 
+        this.state = {
             activeModal: null,
         };
     }
@@ -43,14 +42,15 @@ export default class GiamSatDuLieu extends React.Component {
             activeModal: null,
         })
     }
-    
+
     render(){
+
         // LINE CHARTS DATA
         const dataLine = {
             labels: ['00:00 - 24/08/2021', '00:30 - 24/08/2021','01:00 - 24/08/2021', '01:30 - 24/08/2021', '02:00 - 24/08/2021', '02:30 - 24/08/2021','03:00 - 24/08/2021', '03:30 - 24/08/2021', '04:00 - 24/08/2021', '04:30 - 24/08/2021','05:00 - 24/08/2021', '06:00 - 24/08/2021', '06:30 - 24/08/2021', '07:00 - 24/08/2021', '07:30 - 24/08/2021', '08:00 - 24/08/2021', '08:30 - 24/08/2021', '09:00 - 24/08/2021', '09:30 - 24/08/2021', '10:00 - 24/08/2021', '10:30 - 24/08/2021', '11:00 - 24/08/2021', '11:30 - 24/08/2021','12:00 - 24/08/2021', '12:30 - 24/08/2021','13:00 - 24/08/2021', '13:30 - 24/08/2021','14:00 - 24/08/2021', '14:30 - 24/08/2021', '15:00 - 24/08/2021', '15:30 - 24/08/2021', '16:00 - 24/08/2021', '16:30 - 24/08/2021', '17:00 - 24/08/2021', '17:30 - 24/08/2021', '18:00 - 24/08/2021', '18:30 - 24/08/2021', '19:00 - 24/08/2021', '19:30 - 24/08/2021', '20:00 - 24/08/2021', '20:30 - 24/08/2021', '21:00 - 24/08/2021', '21:30 - 24/08/2021', '22:00 - 24/08/2021', '22:30 - 24/08/2021', '23:00 - 24/08/2021', '23:30 - 24/08/2021'],
             datasets: [
               {
-                label: 'Lưu lượng',
+                label: 'Giá trị quan trắc',
                 data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155,122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
                 backgroundColor: [
                   'rgba(75,192,192,0.2)',
@@ -97,8 +97,8 @@ export default class GiamSatDuLieu extends React.Component {
                 }
             }
           };
-        
-          const dataSource = [
+
+        const dataSource = [
             {
                 key: '1',
                 id: '1',
@@ -170,9 +170,9 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '1',
                 id: '1',
-                quantrac_tentram: 'THUONGLUU',
+                quantrac_tentram: 'LUULUONGKTNDD',
                 tram_kyhieu: '',
-                tram_chiso: 'MUCNUOC',
+                tram_chiso: 'LUULUONG',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [1, 3, 1, 8],
@@ -180,7 +180,7 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '2',
                 id: '2',
-                quantrac_tentram: 'HALUU',
+                quantrac_tentram: 'MUCNUOCKTNDD',
                 tram_kyhieu: '',
                 tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
@@ -190,9 +190,9 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '3',
                 id: '3',
-                quantrac_tentram: 'NHAMAY',
+                quantrac_tentram: 'CLNKHAITHACNDD',
                 tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
+                tram_chiso: 'CLN',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [2, 5, 3, 12],
@@ -200,23 +200,14 @@ export default class GiamSatDuLieu extends React.Component {
             {
                 key: '4',
                 id: '4',
-                quantrac_tentram: 'QUATRAN',
+                quantrac_tentram: 'MUCNUOCGIENGQT',
                 tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
+                tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [8, 6, 1, 6],
             },
-            {
-                key: '5',
-                id: '5',
-                quantrac_tentram: 'DCTT',
-                tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
-                tram_thoigiannhan: '',
-                tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [1, 1, 5, 18],
-            }
+            
         ];
 
         const columnTram = [
@@ -226,20 +217,113 @@ export default class GiamSatDuLieu extends React.Component {
                 key: 'quantrac_tentram',
             },
             {
+                title: 'Ký hiệu trạm',
+                dataIndex: '',
+                key: '',
+            },
+            {
                 title: 'Chỉ số',
                 dataIndex: 'tram_chiso',
                 key: 'tram_chiso',
             },
             {
-                title: 'Thời gian nhận',
+                title: () => {
+                    return <span>Thời gian <br /> nhận số liệu</span>
+                } ,
                 dataIndex: '',
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+               
+                title: () => { 
+                    return <span>Lưu lượng <br /> khai thác <br /> (m3/ngày đêm)</span>
+                } ,
                 dataIndex: '',
                 key: '',
             },
+            {
+                title: () => { 
+                    return <span>Mực nước <br /> trong giếng <br /> khai thác</span>
+                } ,
+           
+                dataIndex: '',
+                key: '',
+            },
+            {
+                title: 'Quan trắc chất lượng nước trong quá trình khai thác',
+                children: [
+                    {
+                      title: 'Nhiệt độ',
+                      dataIndex: '',
+                      key: '',
+                      width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                pH
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                BOD₅(20⁰)
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                COD
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                DO
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                TSS
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                    {
+                        title: () => (
+                            <div className="text-center">
+                                NH4+
+                            </div>
+                        ),
+                        dataIndex: '',
+                        key: '',
+                        width: 80,
+                    },
+                ],
+                dataIndex: '',
+                key: '',
+                align: 'center',
+            },
+            
             {
                 title: 'Trạng thái kết nối',
                 dataIndex: '',
@@ -255,56 +339,9 @@ export default class GiamSatDuLieu extends React.Component {
                 )
             },
             {
-                title: 'Vượt ngưỡng',
-                dataIndex: 'quantrac_vuotnguong',
-                key: 'quantrac_vuotnguong',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> vượt ngưỡng
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrivuotnguong',
-                key: 'quantrac_giatrivuotnguong',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> lớn nhất
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrilonnhat',
-                key: 'quantrac_giatrilonnhat',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> nhỏ nhất
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrinhonhat',
-                key: 'quantrac_giatrinhonhat',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> trung bình
-                    </>
-                ),
-                dataIndex: 'quantrac_giatritrungbinh',
-                key: 'quantrac_giatritrungbinh',
-                align: 'center',
-            },
-            {
                 title: 'Xem lịch sử',
                 key: '',
                 align: 'center',
-                width: 100,
                 render: (text, record) => (
                     <>
                         <span className="text-primary" onClick={(e) => { this.handleOpenModal(e, record.id) }} >Xem</span>
@@ -327,7 +364,7 @@ export default class GiamSatDuLieu extends React.Component {
                 ),
             },
         ];
-        
+
         const dateFormat = 'DD/MM/YYYY';
         const timeFormat = 'HH:mm';
 
@@ -335,12 +372,16 @@ export default class GiamSatDuLieu extends React.Component {
             <>
                 <Table columns={columns}  dataSource={dataSource} bordered pagination={false} />
                 <Form layout="inline" className="justify-content-end mb-2">
-                    <Form.Item className="p-1 m-0" label="Giám sát kết nối" style={{width:'25%'}}>
-                        <Select defaultValue={0} >
-                            <Select.Option value={0}>Tất cả</Select.Option>
-                            <Select.Option value={1}>Giám sát trực tuyến</Select.Option>  
-                            <Select.Option value={2}>Giám sát camera</Select.Option>  
-                            <Select.Option value={3}>Giám sát định kỳ</Select.Option>
+                    <Form.Item className="p-1 m-0" label="Trạm QT">
+                        <Select placeholder="Chọn trạm quan trắc" >
+                        {dataTram.map((tram,i) => (
+                            <Select.Option value={tram.quantrac_tentram} key={i}>{tram.quantrac_tentram}</Select.Option>
+                        ))}
+                        </Select>
+                    </Form.Item>
+                    <Form.Item className="p-1 m-0" label="Chỉ số">
+                        <Select defaultValue="LUULUONG">
+                            <Select.Option value="LUULUONG">LUULUONG</Select.Option>
                         </Select>
                     </Form.Item>
                     <Form.Item className="p-1 m-0" label="Từ">
@@ -360,14 +401,22 @@ export default class GiamSatDuLieu extends React.Component {
                 </Form>
                 <div className="row m-0 p-0">
                     <div className="col-lg-12 row justify-content-center align-items-center mx-0 mb-2">
-                        <div className="col-sm-2">Bình thường: <span className="py-1 px-3 fw-bold text-light bg-success">{12*11}</span></div>
-                        <div className="col-sm-2">Mất kết nối: <span className="py-1 px-3 fw-bold text-light bg-warning">{15*11}</span></div>
-                        <div className="col-sm-2">Vượt ngưỡng: <span className="py-1 px-3 fw-bold text-light bg-danger">{10*11}</span></div>
-                        <div className="col-sm-2">Chưa gửi dữ liệu: <span className="py-1 px-3 fw-bold text-light bg-secondary">{44*11}</span></div>
+                        <div className="col-sm-2">Bình thường: 
+                            <span className="py-1 px-3 fw-bold text-light bg-success">12</span>
+                        </div>
+                        <div className="col-sm-2">Mất kết nối: 
+                            <span className="py-1 px-3 fw-bold text-light bg-warning">15</span>
+                        </div>
+                        <div className="col-sm-2">Vượt ngưỡng: 
+                            <span className="py-1 px-3 fw-bold text-light bg-danger">10</span>
+                        </div>
+                        <div className="col-sm-2">Chưa gửi dữ liệu: 
+                            <span className="py-1 px-3 fw-bold text-light bg-secondary">44</span>
+                        </div>
                     </div>
                 </div>
                 <div className="table-responsive px-2">
-                    <Table dataSource={dataTram} columns={columnTram} bordered />
+                    <Table columns={columnTram} dataSource={dataTram} bordered />
                 </div>
             </>
         )

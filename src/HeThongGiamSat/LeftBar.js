@@ -35,7 +35,8 @@ export default class LeftBar extends React.Component {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/he-thong-giam-sat/muc-dich-khac-lon-hon-50000-m3ngdem" className="col-6 justify-content-center text-dark quantrac_item">
+                        
+                        <Link to="/he-thong-giam-sat/muc-dich-khac-lon-hon" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Mục đích khác {'>'} 50.000 m3/ngđ</p>
                                 <div className="row mx-0">
@@ -48,7 +49,7 @@ export default class LeftBar extends React.Component {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="/he-thong-giam-sat/khai-thac-nuoc-duoi-dat" className="col-6 justify-content-center text-dark quantrac_item">
+                        <Link to="/he-thong-giam-sat/khai-thac-nuoc-duoi-dat-lon-hon" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-blue quantrac_title">Khai thác NDĐ {'>'} 3000 m3/ngđ</p>
                                 <div className="row mx-0">
@@ -88,6 +89,7 @@ export default class LeftBar extends React.Component {
                             </div>
                         </Link>
                     </div>
+                    
                     <div className="col-6 pt-2">
                         <p className="mb-0 p-2 fw-bold text-center font-12 text-violet">UBND quản lý</p>
                         <Link to="/he-thong-giam-sat/phat-dien-nho-hon-2mw" className="col-6 justify-content-center text-dark quantrac_item">
@@ -103,7 +105,7 @@ export default class LeftBar extends React.Component {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
+                        <Link to="/he-thong-giam-sat/san-xuat-nong-nghiep-nho-hon" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-danger quantrac_title">SXNN - NTTS {'<'} 2m3/s</p>
                                 <div className="row mx-0">
@@ -116,7 +118,7 @@ export default class LeftBar extends React.Component {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
+                        <Link to="/he-thong-giam-sat/muc-dich-khac-nho-hon" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-danger quantrac_title">Mục đích khác {'<'} 50.000 m3/ngđ</p>
                                 <div className="row mx-0">
@@ -129,7 +131,7 @@ export default class LeftBar extends React.Component {
                                 </div>
                             </div>
                         </Link>
-                        <Link to="#" className="col-6 justify-content-center text-dark quantrac_item">
+                        <Link to="/he-thong-giam-sat/khai-thac-nuoc-duoi-dat-nho-hon" className="col-6 justify-content-center text-dark quantrac_item">
                             <div className="border p-1 row mx-0 mb-3">
                                 <p className="mb-0 col-12 text-center fw-bold font-12 text-danger quantrac_title">Mục đích khác {'<'} 50.000 m3/ngđ</p>
                                 <div className="row mx-0">

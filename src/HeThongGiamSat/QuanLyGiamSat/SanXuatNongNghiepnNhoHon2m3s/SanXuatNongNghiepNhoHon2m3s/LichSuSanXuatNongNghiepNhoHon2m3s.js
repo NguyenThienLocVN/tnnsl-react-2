@@ -22,8 +22,6 @@ import blueMarker from '../../../../Shared/marker-blue.png';
 import GiamSatDuLieu from './GiamSatDuLieu';
 import CameraGiamSat from './CameraGiamSat';
 import GiamSatKetNoi from './GiamSatKetNoi';
-import NhatKyCanhBao from './NhatKyCanhBao';
-import TongHopVanHanh from './TongHopVanHanh';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -34,7 +32,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Component {
+export default class HeThongGiamSatLichSuSanXuatNongNghiepNhoHon2m3s extends React.Component {
     constructor(props){
         super(props)
         this.state = { 
@@ -58,7 +56,7 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
     render(){
         return(
             <div className="pt-1 px-1">
-                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI HỒ CHỨA ĐỂ PHÁT ĐIỆN CÔNG SUẤT > 2MW" previousLink="/he-thong-giam-sat/phat-dien-lon-hon-2mw" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI CÔNG TRÌNH ĐỂ SẢN XUẤT NÔNG NGHIỆP, NUÔI TRỒNG THỦY SẢN < 2m3/s" previousLink="/he-thong-giam-sat/san-xuat-nong-nghiep-nho-hon" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
@@ -97,12 +95,8 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                                 <TabPane tab="Camera giám sát" key="3">
                                     <CameraGiamSat />
                                 </TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="4">
-                                    <NhatKyCanhBao />
-                                </TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="5">
-                                    <TongHopVanHanh />
-                                </TabPane>
+                                <TabPane tab="Nhật ký cảnh báo" key="4"></TabPane>
+                                <TabPane tab="Tổng hợp vận hành" key="5"></TabPane>
                             </Tabs>
                         </div>
                     </div>

@@ -3,7 +3,11 @@ import React from 'react';
 import Header from '../../../../Shared/Header';
 import '../../../../Shared/Page.css';
 import LeftBar from '../../../LeftBar';
-import { Tabs } from 'antd';
+import { Button, Table, Form, DatePicker, TimePicker, Select, Tabs } from 'antd';
+import { FilterOutlined } from '@ant-design/icons';
+
+// moment date in DatePicker
+import moment from 'moment';
 
 
 // MAP
@@ -54,7 +58,7 @@ export default class HeThongGiamSatLichSuPhatDienNhoHon2MW extends React.Compone
     render(){
         return(
             <div className="pt-1 px-1">
-                <Header headTitle="HỆ THỐNG GIÁM SÁT CÔNG TRÌNH THỦY ĐIỆN NHỎ HƠN 2MW" previousLink="/he-thong-giam-sat/phat-dien-nho-hon-2mw" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI HỒ CHỨA ĐỂ PHÁT ĐIỆN CÔNG SUẤT < 2MW" previousLink="/he-thong-giam-sat/phat-dien-nho-hon-2mw" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
@@ -83,20 +87,21 @@ export default class HeThongGiamSatLichSuPhatDienNhoHon2MW extends React.Compone
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                            <Tabs tabPosition="top" defaultActiveKey="giamsat-ketnoi">
-                                <TabPane tab="Giám sát kết nối" key="giamsat-ketnoi">
+                            <Tabs tabPosition="top" defaultActiveKey="1">
+                                <TabPane tab="Giám sát kết nối" key="1">
                                     <GiamSatKetNoi />
                                 </TabPane>
-                                <TabPane tab="Giám sát dữ liệu" key="giamsat-dulieu">
+                                <TabPane tab="Giám sát dữ liệu" key="2">
                                     <GiamSatDuLieu />
                                 </TabPane>
-                                <TabPane tab="Camera giám sát" key="camera-giamsat">
+                                <TabPane tab="Camera giám sát" key="3">
                                     <CameraGiamSat />
                                 </TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="nhatky-canhbao">
-                                    <NhatKyCanhBao />
+                                <TabPane tab="Nhật ký cảnh báo" key="4">
+                                    <NhatKyCanhBao /> 
+                                    {/* CTRL + SPACE rồi chọn để tự import file */}
                                 </TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="tonghop-vanhanh">
+                                <TabPane tab="Tổng hợp vận hành" key="5">
                                     <TongHopVanHanh />
                                 </TabPane>
                             </Tabs>
