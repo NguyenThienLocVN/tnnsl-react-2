@@ -55,7 +55,7 @@ export default class HeThongGiamSatLichSuMucdichkhaclonhon extends React.Compone
 
     render(){
         return(
-            <div className="pt-1 px-1">
+            <div>
                 <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI MỤC ĐÍCH KHÁC VỚI QUY MÔ TỪ 50.000 m3/ngày đêm " previousLink="/he-thong-giam-sat/muc-dich-khac-lon-hon" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">

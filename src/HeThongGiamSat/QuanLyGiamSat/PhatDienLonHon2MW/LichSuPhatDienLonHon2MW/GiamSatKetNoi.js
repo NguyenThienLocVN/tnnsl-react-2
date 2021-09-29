@@ -429,7 +429,8 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [1, 3, 1, 8],
+                tram_trangthaiketnoi: 1,
+                quantrac_vuotnguong: 100,
             },
             {
                 key: '2',
@@ -439,7 +440,8 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [1, 3, 1, 8],
+                tram_trangthaiketnoi: 2,
+                quantrac_vuotnguong: 100,
             },
             {
                 key: '3',
@@ -449,7 +451,8 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 tram_chiso: 'LUULUONG',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [2, 5, 3, 12],
+                tram_trangthaiketnoi: 3,
+                quantrac_vuotnguong: 100,
             },
             {
                 key: '4',
@@ -459,7 +462,8 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 tram_chiso: 'LUULUONG',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [8, 6, 1, 6],
+                tram_trangthaiketnoi: 4,
+                quantrac_vuotnguong: 100.5,
             },
             {
                 key: '5',
@@ -469,7 +473,8 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 tram_chiso: 'LUULUONG',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [1, 1, 5, 18],
+                tram_trangthaiketnoi: 1,
+                quantrac_vuotnguong: 100.5,
             }
         ];
 
@@ -503,13 +508,21 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 title: 'Trạng thái kết nối',
                 dataIndex: '',
                 key: '',
-                width: 200,
+                width: 120,
                 render: (text, record) => (
                     <div className="d-flex justify-content-between">
-                        <div className="license_status bg-success px-3 text-light"> {record.tram_trangthaiketnoi[0] < 10 ? "0"+record.tram_trangthaiketnoi[0] : record.tram_trangthaiketnoi[0]} </div>
-                        <div className="license_status bg-warning px-3 text-light"> {record.tram_trangthaiketnoi[1] < 10 ? "0"+record.tram_trangthaiketnoi[1] : record.tram_trangthaiketnoi[1]} </div>
-                        <div className="license_status bg-danger px-3 text-light"> {record.tram_trangthaiketnoi[2] < 10 ? "0"+record.tram_trangthaiketnoi[2] : record.tram_trangthaiketnoi[2]} </div>
-                        <div className="license_status bg-secondary px-3 text-light"> {record.tram_trangthaiketnoi[3] < 10 ? "0"+record.tram_trangthaiketnoi[3] : record.tram_trangthaiketnoi[3]} </div>
+                        {record.tram_trangthaiketnoi === 1 ?  
+                            <div style={{width: 120}} className="license_status bg-success px-3 text-light"> Bình thường </div> 
+                            : 
+                        record.tram_trangthaiketnoi === 2 ? 
+                            <div style={{width: 120}} className="license_status bg-warning px-3 text-light"> Vượt ngưỡng </div> 
+                            :
+                        record.tram_trangthaiketnoi === 3 ? 
+                        <div style={{width: 120}} className="license_status bg-danger px-3 text-light"> Mất kết nối </div>
+                            :
+                        record.tram_trangthaiketnoi === 4 ? 
+                            <div style={{width: 120}} className="license_status bg-secondary px-3 text-light"> Chưa gửi dữ liệu </div>
+                        : ""}
                     </div>
                 )
             },
@@ -614,6 +627,38 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
         const dateFormat = 'DD/MM/YYYY';
         const timeFormat = 'HH:mm';
 
+        const countknbt = dataTram.filter(function(item){
+            if (item.tram_trangthaiketnoi === 1) {
+              return true;
+            } else {
+              return false;
+            }
+          }).length;
+
+          const counvn = dataTram.filter(function(item){
+            if (item.tram_trangthaiketnoi === 2) {
+              return true;
+            } else {
+              return false;
+            }
+          }).length;
+
+          const countmkn = dataTram.filter(function(item){
+            if (item.tram_trangthaiketnoi === 3) {
+              return true;
+            } else {
+              return false;
+            }
+          }).length;
+
+          const countcgdk = dataTram.filter(function(item){
+            if (item.tram_trangthaiketnoi === 4) {
+              return true;
+            } else {
+              return false;
+            }
+          }).length;
+
         return(
             <>
                 <Table columns={columns}  dataSource={dataSource} bordered pagination={false} />
@@ -647,18 +692,10 @@ export default class HeThongGiamSatLichSuPhatDienLonHon2MW extends React.Compone
                 </Form>
                 <div className="row m-0 p-0">
                     <div className="col-lg-12 row justify-content-center align-items-center mx-0 mb-2">
-                        <div className="col-sm-2">Bình thường: 
-                            <span className="py-1 px-3 fw-bold text-light bg-success">12</span>
-                        </div>
-                        <div className="col-sm-2">Mất kết nối: 
-                            <span className="py-1 px-3 fw-bold text-light bg-warning">15</span>
-                        </div>
-                        <div className="col-sm-2">Vượt ngưỡng: 
-                            <span className="py-1 px-3 fw-bold text-light bg-danger">10</span>
-                        </div>
-                        <div className="col-sm-2">Chưa gửi dữ liệu: 
-                            <span className="py-1 px-3 fw-bold text-light bg-secondary">44</span>
-                        </div>
+                        <div className="col-sm-2">Bình thường: <span className="py-1 px-3 fw-bold text-light bg-success">{countknbt}</span></div>
+                        <div className="col-sm-2">Mất kết nối: <span className="py-1 px-3 fw-bold text-light bg-warning">{counvn}</span></div>
+                        <div className="col-sm-2">Vượt ngưỡng: <span className="py-1 px-3 fw-bold text-light bg-danger">{countmkn}</span></div>
+                        <div className="col-sm-2">Chưa gửi dữ liệu: <span className="py-1 px-3 fw-bold text-light bg-secondary">{countcgdk}</span></div>
                     </div>
                 </div>
                 <div className="table-responsive px-2">

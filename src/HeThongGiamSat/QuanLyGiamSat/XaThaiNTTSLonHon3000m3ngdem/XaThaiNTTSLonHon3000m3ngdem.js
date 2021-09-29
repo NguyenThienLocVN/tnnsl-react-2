@@ -120,7 +120,7 @@ export default class XaThaiNTTSLonHon3000m3ngdem extends React.Component {
             },
           ];
         return(
-            <div className="pt-1 px-1">
+            <div>
                 <Header headTitle="CÔNG TRÌNH XẢ THẢI NUÔI TRỒNG THỦY SẢN > 30.000 m3/ng. đêm" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">

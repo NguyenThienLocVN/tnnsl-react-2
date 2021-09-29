@@ -95,7 +95,7 @@ export default class HeThongGiamSatPhatDienNhoHon2MW extends React.Component {
 
     render(){
         return(
-            <div className="pt-1 px-1">
+            <div>
                 {/*TIEU DE */}
                 <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI HỒ CHỨA ĐỂ PHÁT ĐIỆN CÔNG SUẤT < 2MW" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
