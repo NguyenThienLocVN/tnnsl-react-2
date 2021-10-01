@@ -85,7 +85,7 @@ export default class HeThongGiamSatLichSuKhaiThacNuocDuoiDatLonHon extends React
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                            <Tabs tabPosition="top" defaultActiveKey="1">
+                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
                                 <TabPane tab="Giám sát kết nối" key="1">
                                     <GiamSatKetNoi />
                                 </TabPane>

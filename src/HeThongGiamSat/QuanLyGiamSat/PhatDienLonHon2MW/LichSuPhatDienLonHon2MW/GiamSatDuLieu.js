@@ -604,11 +604,11 @@ export default class GiamSatDuLieu extends React.Component {
                             destroyOnClose={true}
                         >
                             <p className="fw-bold"><span className="text-danger">LỊCH SỬ GIÁM SÁT TRẠM QUAN TRẮC: </span> <span> {record.quantrac_tentram} </span> </p>
-                            <Tabs tabPosition="top" defaultActiveKey="1">
+                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
                                 <TabPane tab="Biểu Đồ" key="1">
                                     {/* LINE CHARTS MUC NUOC HO */}
                                     <div className="d-flex align-items-end">
-                                        <Line width={600} height={400} data={dataLine} options={optionLine} />
+                                        <Line width={600} height={500} data={dataLine} options={optionLine} />
                                     </div>
                                     {/* END LINE CHARTS MUC NUOC HO */}
                                 </TabPane>

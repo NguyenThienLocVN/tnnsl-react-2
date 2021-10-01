@@ -3,7 +3,7 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button } from "react-bootstrap";
-import { PlusSquareOutlined, QuestionCircleOutlined, DeleteOutlined, CheckCircleOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, QuestionCircleOutlined, DeleteOutlined, CheckCircleOutlined, FilePdfOutlined, SendOutlined, CloseOutlined } from '@ant-design/icons';
 import { Popover, Modal } from 'antd';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient, getToken, removeUserSession, getUser } from '../../../Shared/Auth';
@@ -12,6 +12,7 @@ import axios from "axios";
 // Alert library
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const user = getUser();
 
@@ -703,11 +704,10 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                     }
                                 </div>
                             </div>
-                            <div className="pb-4 text-center col-sm-12">
-                                <div className="col-11 px-2 text-center m-auto">
-                                    <hr className="my-3" />
-                                </div>
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">CẬP NHẬT GIẤY PHÉP</button>
+                            <div className="border-top col-12 my-3"></div>
+                            <div className="pb-4 col-sm-12 d-flex justify-content-end">
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU &nbsp; <SendOutlined /> </button>
+                                <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="btn btn-danger mx-2 fw-bold font-14 d-flex align-items-center">HỦY &nbsp; <CloseOutlined /> </Link>
                             </div>
                         </form>
                     </div>

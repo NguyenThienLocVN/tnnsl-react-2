@@ -505,7 +505,7 @@ export default class TongHopVanHanh extends React.Component {
                     </div>
                 </div>
                 <div className="table-responsive px-2">
-                    <Tabs tabPosition="top" defaultActiveKey="1">
+                   <Tabs tabPosition="top" type="card" defaultActiveKey="1">
                         <TabPane tab="Mất kết nối" key="1">
                             <div>
                                 <Table dataSource={dataTram} columns={columnTramMatKetNoi} bordered pagination={false} />

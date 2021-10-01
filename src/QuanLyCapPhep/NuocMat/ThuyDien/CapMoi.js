@@ -3,7 +3,7 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button } from "react-bootstrap";
-import { PlusSquareOutlined, DeleteOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, DeleteOutlined, FilePdfOutlined, SendOutlined, CloseOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient, removeUserSession, getToken } from '../../../Shared/Auth';
 import { Redirect } from 'react-router';
@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Roboto from '../../../Shared/fonts/Roboto-Light.ttf';
 import RobotoBold from '../../../Shared/fonts/Roboto-Bold.ttf';
 import RobotoItalic from '../../../Shared/fonts/Roboto-LightItalic.ttf';
+import { Link } from 'react-router-dom';
 
 Font.register({
     family: "Roboto",
@@ -691,9 +692,10 @@ export default class QuanLyCapPhepCapMoiNuocMatThuyDien extends React.Component 
                                     </div>
                                 </div>
                             </div>
-                            <div className="my-3 p-1"></div>
-                            <div className="pb-4 text-center col-sm-12 d-flex justify-content-center">
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
+                            <div className="border-top col-12 my-3"></div>
+                            <div className="pb-4 col-sm-12 d-flex justify-content-end">
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU &nbsp; <SendOutlined /> </button>
+                                <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="btn btn-danger mx-2 fw-bold font-14 d-flex align-items-center">HỦY &nbsp; <CloseOutlined /> </Link>
                             </div>
                         </form>
                     </div>

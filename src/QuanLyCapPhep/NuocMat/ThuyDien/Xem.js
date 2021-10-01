@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
-import { QuestionCircleOutlined, CheckCircleOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, CheckCircleOutlined, FilePdfOutlined, RollbackOutlined, PrinterOutlined } from '@ant-design/icons';
 import { Popover, Modal } from 'antd';
 import DemGiayPhep from './DemGiayPhep';
 import { getToken, removeUserSession } from '../../../Shared/Auth';
@@ -11,6 +11,7 @@ import axios from "axios";
 // Alert library
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -209,7 +210,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
         
         return(
 			<div className="p-0">
-                <Header headTitle="CHỈNH SỬA GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />
@@ -442,9 +443,9 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                         </Modal>
                                     </div>
                                 </div>
-                                <div className="col-sm-6 row m-0 p-0">
+                                <div className="col-sm-12 row m-0 p-0">
                                     <p className="fw-bold w-100 text-violet p-2 m-0 font-15">4.Giấy tờ, tài liệu kèm theo</p>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_donxincapphep" className="form-label d-block w-75 m-0 font-13">- Đơn xin cấp phép</label>
                                             <div className="w-25"><button type="button" onClick={() => this.setState({modalDonXin: !this.state.modalDonXin})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center justify-content-center"><FilePdfOutlined /> &nbsp; XEM FILE </button></div>
@@ -459,7 +460,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                             </div>
                                         </Modal>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaodean_ktsd" className="form-label d-block w-75 m-0 font-13">- Đề án/ báo cáo khai thác, sử dụng nước </label>
                                             <div className="w-25"><button type="button" onClick={() => this.setState({modalBaoCaoKTSD: !this.state.modalBaoCaoKTSD})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center justify-content-center"><FilePdfOutlined /> &nbsp; XEM FILE </button></div>
@@ -474,7 +475,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                             </div>
                                         </Modal>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_ketqua_ptcln" className="form-label d-block w-75 m-0 font-13">- Kết quả phân tích chất lượng nguồn nước </label>
                                             <div className="w-25"><button type="button" onClick={() => this.setState({modalPhanTichCLN: !this.state.modalPhanTichCLN})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center justify-content-center"><FilePdfOutlined /> &nbsp; XEM FILE </button></div>
@@ -489,7 +490,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                             </div>
                                         </Modal>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_baocaohientrangkhaithac" className="form-label d-block w-75 m-0 font-13">- Báo cáo hiện trạng khai thác </label>
                                             <div className="w-25"><button type="button" onClick={() => this.setState({modalBaoCaoHTKT: !this.state.modalBaoCaoHTKT})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center justify-content-center"><FilePdfOutlined /> &nbsp; XEM FILE </button></div>
@@ -504,7 +505,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                             </div>
                                         </Modal>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_vanban_yccd" className="form-label d-block w-75 m-0 font-13">- Văn bản góp ý và tổng hợp tiếp thu, giải trình lấy ý kiến cộng đồng</label>
                                             <div className="w-25"><button type="button" onClick={() => this.setState({modalVanBanYKCD: !this.state.modalVanBanYKCD})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center justify-content-center"><FilePdfOutlined /> &nbsp; XEM FILE </button></div>
@@ -519,7 +520,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                             </div>
                                         </Modal>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="mb-2 d-flex mx-0">
                                             <label htmlFor="tailieu_giaytokhac" className="form-label d-block w-75 m-0 font-13">- Các giấy tờ, tài liệu khác có liên quan</label>
                                             <div className="w-25"><button type="button" onClick={() => this.setState({modalGiayToLienQuan: !this.state.modalGiayToLienQuan})} className="form-control btn btn-md btn-outline-primary form-control-sm w-100 font-13 d-flex align-items-center justify-content-center"><FilePdfOutlined /> &nbsp; XEM FILE </button></div>
@@ -535,6 +536,24 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                         </Modal>
                                     </div>
                                 </div>
+                            </div>
+                            <div className="border-top col-12 my-3"></div>
+                            <div className="pb-4 col-sm-12 d-flex justify-content-end">
+                            <Link to="#" className="btn btn-success mx-2 fw-bold font-14 d-flex align-items-center" > IN &nbsp; <PrinterOutlined /> </Link>
+                                {licensePostData.status === 1 &&
+                                    <>
+                                        <Link to="#" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center" onClick={() => this.setState({modalLicense: !this.state.modalLicense})} >XEM PDF &nbsp; <FilePdfOutlined /> </Link>
+                                        <Modal className="modal-view-file-pdf" bodyStyle={{backgroundColor : '#323639'}} title={licensePostData.gp_sogiayphep} width={1000} footer={null} id={licensePostData.gp_sogiayphep} visible={this.state.modalLicense} onCancel={this.hideModal}>
+                                        <div>
+                                            {licensePostData.tai_lieu && licensePostData.tai_lieu[0] !== undefined ?
+                                            <iframe width="100%" title="file giấy phép" src={"http://tainguyennuocsonla.s3-ap-southeast-1.amazonaws.com/"+licensePostData.tai_lieu[0].tailieu_loaigiayphep+"/"+licensePostData.tai_lieu[0].tailieu_nam+"/"+licensePostData.tai_lieu[0].tailieu_giayphep}></iframe>
+                                            : "Không có tài liệu"
+                                            }
+                                        </div>
+                                        </Modal>
+                                    </>
+                                }
+                                <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="btn btn-danger mx-2 fw-bold font-14 d-flex align-items-center">TRỞ LẠI &nbsp; <RollbackOutlined /> </Link>
                             </div>
                         </form>
                     </div>

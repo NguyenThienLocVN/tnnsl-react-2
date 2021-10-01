@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../../../Shared/Header';
 import DemGiayPhep from './DemGiayPhep';
-import { Button } from 'react-bootstrap';
 import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 import configData from "../../../config.json";
 import { getToken, removeUserSession } from '../../../Shared/Auth';
 import { ConfigProvider, Modal, Table } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, SendOutlined, CloseOutlined } from '@ant-design/icons';
 import vnVN from 'antd/lib/locale/vi_VN';
+import { Link } from 'react-router-dom';
 
 export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.Component {
     constructor(props)
@@ -442,12 +442,13 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row m-0 justify-content-between mb-5 px-4">
-                                    <Button variant="primary" className="col-sm-2">Sửa</Button>
-                                    <Button variant="primary" className="col-sm-2">Xóa</Button>
-                                    <Button variant="primary" className="col-sm-2">Ghi</Button>
-                                    <Button variant="primary" className="col-sm-2">In</Button>
-                                    <Button variant="primary" className="col-sm-2">Xuất PDF</Button>
+                                <div className="border-top col-12 my-3"></div>
+                                <div className="pb-4 col-sm-12 d-flex justify-content-end">
+                                    <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU &nbsp; <SendOutlined /> </button>
+                                    <button type="reset" className="btn btn-success mx-2 fw-bold font-14">RESET</button>
+                                    {/* <button type="button" className="btn btn-warning mx-2 fw-bold font-14">IN</button>
+                                    <button type="button" className="btn btn-warning mx-2 fw-bold font-14">XUẤT PDF</button> */}
+                                    <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="btn btn-danger mx-2 fw-bold font-14 d-flex align-items-center">HỦY &nbsp; <CloseOutlined /> </Link>
                                 </div>
                             </div>
                         </form>

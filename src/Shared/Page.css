@@ -221,6 +221,13 @@ thead[class*="ant-table-thead"] th{
   margin: 0 !important;
 }
 
+.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab{
+  background-color: lightgray;
+}
+
+.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active{
+  background-color: white !important;
+}
 
 /* rotate colse btn */
 .modal-quantrac .ant-modal-close-x {
