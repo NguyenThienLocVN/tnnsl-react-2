@@ -233,7 +233,7 @@ export default class QuanLyCapPhepTheoDoiGiayPhepNuocMatThuyDien extends React.C
 
         return(
 			<div className="p-0">
-                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien/quan-ly-yeu-cau" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="THÔNG TIN THEO DÕI CÔNG TRÌNH SAU CẤP PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                 <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                     <DemGiayPhep />

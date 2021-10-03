@@ -230,7 +230,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                 </Modal>
                             
                             <p className="px-2 m-0 d-flex font-14"><span className="col-1">Ngày cấp: </span><span className="fw-bold">{this.formatDate(licensePostData.gp_ngaycap)}</span></p>
-                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Thời hạn GP: </span><span className="fw-bold">{licensePostData.gp_thoihangiayphep}</span></p>
+                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Thời hạn GP: </span><span className="fw-bold">{licensePostData.gp_thoigiancapphep}</span></p>
                             </>
                         }
                         <div className="px-2"><hr /></div>
@@ -424,7 +424,7 @@ export default class QuanLyCapPhepXemGiayPhepNuocMatThuyDien extends React.Compo
                                     <div className="col-sm-3">
                                         <div className="mb-2">
                                             <label htmlFor="gp_thoihangiayphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
-                                            <input type="text" readOnly onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoihangiayphep" name="gp_thoihangiayphep" value={licensePostData.gp_thoihangiayphep} />
+                                            <input type="text" readOnly onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoigiancapphep" name="gp_thoigiancapphep" value={licensePostData.gp_thoigiancapphep} />
                                         </div>
                                     </div>
                                     <div className="col-sm-7">
