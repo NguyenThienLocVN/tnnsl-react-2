@@ -408,7 +408,7 @@ export default class QuanLyCapPhepQuanLyYeuCauNuocMatThuyDien extends React.Comp
         
         return(
 			<div className="p-0">
-                <Header headTitle="QUẢN LÝ GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="QUẢN LÝ CẤP MỚI GIẤY PHÉP KHAI THÁC SỬ DỤNG NƯỚC MẶT CHO CÔNG TRÌNH THỦY ĐIỆN" previousLink="/quan-ly-cap-phep/nuoc-mat/thuy-dien" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home discharge-water text-center">
                         <DemGiayPhep />

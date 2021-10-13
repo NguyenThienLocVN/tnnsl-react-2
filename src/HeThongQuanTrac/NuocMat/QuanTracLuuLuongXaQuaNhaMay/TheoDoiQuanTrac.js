@@ -741,7 +741,7 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaNhaMay extends Re
                                         />
                                         {/* END TABLE THONG TIN TRAM QUAN TRAC */}
                                     </div>
-                                   <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                                    <Tabs tabPosition="top" defaultActiveKey="1">
                                         <TabPane tab="Chỉ số quan trắc" key="1">
                                             <div>
                                                 <Form layout="inline" className="justify-content-end">
@@ -797,11 +797,11 @@ export default class HeThongQuanTracNuocMatTheoDoiLuuLuongXaQuaNhaMay extends Re
                                                     </Button>
                                                 </Form.Item>
                                             </Form>
-                                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                                            <Tabs tabPosition="top" defaultActiveKey="1">
                                                 <TabPane tab="Biểu Đồ" key="1">
                                                     {/* LINE CHARTS MUC NUOC HO */}
                                                     <div className="d-flex align-items-end">
-                                                        <Line width={600} height={500} data={dataLine} options={optionLine} />
+                                                        <Line width={600} height={400} data={dataLine} options={optionLine} />
                                                     </div>
                                                     {/* END LINE CHARTS MUC NUOC HO */}
                                                 </TabPane>

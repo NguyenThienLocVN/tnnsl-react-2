@@ -22,6 +22,8 @@ import blueMarker from '../../../../Shared/marker-blue.png';
 import GiamSatDuLieu from './GiamSatDuLieu';
 import CameraGiamSat from './CameraGiamSat';
 import GiamSatKetNoi from './GiamSatKetNoi';
+import NhatKyCanhBao from './NhatKyCanhBao';
+import TongHopVanHanh from './TongHopVanHanh';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -32,7 +34,7 @@ const blueIcon = L.icon({
 
 const { TabPane } = Tabs;
 
-export default class HeThongGiamSatLichSuMucdichkhaclonhon extends React.Component {
+export default class HeThongGiamSatLichSuMucDichKhacLonHon2m3s extends React.Component {
     constructor(props){
         super(props)
         this.state = { 
@@ -56,7 +58,7 @@ export default class HeThongGiamSatLichSuMucdichkhaclonhon extends React.Compone
     render(){
         return(
             <div>
-                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI MỤC ĐÍCH KHÁC VỚI QUY MÔ TỪ 50.000 m3/ngày đêm " previousLink="/he-thong-giam-sat/muc-dich-khac-lon-hon" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI MỤC ĐÍCH KHÁC VỚI QUY MÔ TỪ 50.000 m3/ngày đêm" previousLink="/he-thong-giam-sat/muc-dich-khac-lon-hon" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
@@ -85,7 +87,7 @@ export default class HeThongGiamSatLichSuMucdichkhaclonhon extends React.Compone
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                            <Tabs tabPosition="top" defaultActiveKey="1">
                                 <TabPane tab="Giám sát kết nối" key="1">
                                     <GiamSatKetNoi />
                                 </TabPane>
@@ -95,8 +97,12 @@ export default class HeThongGiamSatLichSuMucdichkhaclonhon extends React.Compone
                                 <TabPane tab="Camera giám sát" key="3">
                                     <CameraGiamSat />
                                 </TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="4"></TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="5"></TabPane>
+                                <TabPane tab="Nhật ký cảnh báo" key="4">
+                                    <NhatKyCanhBao />
+                                </TabPane>
+                                <TabPane tab="Tổng hợp vận hành" key="5">
+                                    <TongHopVanHanh /> 
+                                </TabPane>
                             </Tabs>
                         </div>
                     </div>

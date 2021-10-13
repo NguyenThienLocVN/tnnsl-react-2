@@ -8,7 +8,7 @@ import { FilterOutlined } from '@ant-design/icons';
 // moment date in DatePicker
 import moment from 'moment';
 
-export default class ListCongTrinh extends React.Component {
+export default class GiamSatKetNoi extends React.Component {
 
     checkStatus(hieulucgiayphep){
         if(hieulucgiayphep === "chuaduocduyet"){
@@ -165,24 +165,21 @@ export default class ListCongTrinh extends React.Component {
             },
           ];
           
-        const columns = [
+          const columns = [
             {
                 title: 'Số giấy phép',
                 dataIndex: 'gp_sogiayphep',
                 key: 'gp_sogiayphep',
-                width: 100,
             },
             {
                 title: 'Ngày ký',
                 dataIndex: 'gp_ngayky',
                 key: 'gp_ngayky',
-                width: 100,
             },
             {
                 title: 'Tên công trình',
                 dataIndex: 'congtrinh_ten',
                 key: 'congtrinh_ten',
-                width: 150,
             },
             {
                 title: 'Chủ giấy phép',
@@ -190,18 +187,10 @@ export default class ListCongTrinh extends React.Component {
                 key: 'chugiayphep_ten',
             },
             {
-                title: 'Thời hạn GP',
+                title: 'Thời hạn',
                 dataIndex: 'gp_thoihan',
                 key: 'gp_thoihan',
-                width: 100,
             },
-            {
-                title: 'Nguồn nước khai thác',
-                dataIndex: '',
-                key: '',
-                
-              },
-
             {
                 title: 'Trạng thái',
                 dataIndex: 'hieulucgiayphep',
@@ -211,84 +200,14 @@ export default class ListCongTrinh extends React.Component {
                 )
             },
             {
-                title: () => {
-                    return <span>Thời gian gửi <br /> dữ liệu gần nhất </span>
-                },
+                title: 'Thời gian dửi dữ liệu gần nhất',
                 dataIndex: 'gp_thoigianguigannhat',
-                    
                 key: 'gp_thoigianguigannhat',
-                width: 100,
-                //{
-                //      title: () => {
-                //         return <span>Thời gian <br /> nhận số liệu</span>
-                //    } ,
-                //     dataIndex: '',
-                //     key: '',
-               
-                //  },
             },
-            
-            {
-                title: () => {
-                    return <span>Mực nước hồ <br /> thượng lưu (m) </span>
-                },
-                dataIndex: 'gp_mucnuochothuongluu',
-                    
-                key: 'gp_mucnuochothuongluu',
-                width: 100,
-                //{
-                //      title: () => {
-                //         return <span>Thời gian <br /> nhận số liệu</span>
-                //    } ,
-                //     dataIndex: '',
-                //     key: '',
-               
-                //  },
-            },
-            {
-                title: () => {
-                    return <span>Mực nước hồ <br /> hạ lưu (m) </span>
-                },
-                dataIndex: 'gp_mucnuochohaluu',
-                    
-                key: 'gp_mucnuochohaluu',
-                width: 100,
-            },
-            {
-                title: () => {
-                    return <span>Lưu lượng xả <br /> DCTT (m3/s) </span>
-                },
-                dataIndex: 'gp_xaDCTT',
-                        
-                key: 'gp_xaDCTT',
-                width: 100,
-            },
-            {
-                title: () => {
-                    return <span>Lưu lượng xả <br /> DCTT theo GP (m3/s) </span>
-                },
-                dataIndex: 'gp_xaDCTTGP',
-                        
-                key: 'gp_xaDCTTG',
-                width: 100,
-            },
-
-
-
-            //{
-              //      title: () => {
-               //         return <span>Thời gian <br /> nhận số liệu</span>
-               //    } ,
-               //     dataIndex: '',
-               //     key: '',
-               
-            //  },
-            
             {
                 title: 'Tình trạng kết nối',
                 dataIndex: 'connect_status',
                 key: 'connect_status',
-                width: 120,
                 render: (text, record) => (
                     <div className="d-flex justify-content-center">
                         <div className="license_status bg-success px-3 text-light"> 12 </div>
@@ -305,7 +224,7 @@ export default class ListCongTrinh extends React.Component {
                 width: 100,
                 render: (text, record) => (
                     <>
-                        <Link to={"/he-thong-giam-sat/dinh-ky-khai-thac-luu-luong/lich-su/"+record.view_history} className="text-center">Xem</Link>
+                       <Link to={"/he-thong-giam-sat/dinh-ky-khai-thac-luu-luong/lich-su/" +record.view_history} className="text-center">Xem</Link>
                     </>
                 ),
             },

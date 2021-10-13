@@ -224,7 +224,7 @@ export default class GiamSatKetNoi extends React.Component {
                 width: 100,
                 render: (text, record) => (
                     <>
-                       <Link to={"/he-thong-giam-sat/muc-dich-khac-hon-hon/lich-su/" +record.view_history} className="text-center">Xem</Link>
+                       <Link to={"/he-thong-giam-sat/san-xuat-nong-nghiep-lon-hon-2m3s/lich-su/" +record.view_history} className="text-center">Xem</Link>
                     </>
                 ),
             },

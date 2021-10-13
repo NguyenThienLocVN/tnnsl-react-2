@@ -495,8 +495,9 @@ export default class GiamSatDuLieu extends React.Component {
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị quan trắc hiện tại',
                 dataIndex: '',
+                width: 120,
                 key: '',
             },
             {
@@ -521,8 +522,10 @@ export default class GiamSatDuLieu extends React.Component {
                     </div>
                 )
             },
+            // copy đpạnk aaaaa
+            
             {
-                title: 'Vượt ngưỡng',
+                title: 'Giá trị ngưỡng',
                 dataIndex: 'quantrac_vuotnguong',
                 key: 'quantrac_vuotnguong',
                 align: 'center',
@@ -537,53 +540,59 @@ export default class GiamSatDuLieu extends React.Component {
                 )
             },
             {
-                title: () => (
-                    <>
-                        Giá trị <br /> vượt ngưỡng
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrivuotnguong',
-                key: 'quantrac_giatrivuotnguong',
-                align: 'center',
-                render: (text, record) => (
-                    <div className="d-flex justify-content-between">
-                        {record.quantrac_vuotnguong > 100 ?  
-                            <span className="text-center w-100"> {record.quantrac_vuotnguong - 100} </span> 
-                            : 
-                            <span className="text-center w-100"> {record.quantrac_vuotnguong - 100} </span>
-                        }
-                    </div>
-                )
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> lớn nhất
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrilonnhat',
-                key: 'quantrac_giatrilonnhat',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> nhỏ nhất
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrinhonhat',
-                key: 'quantrac_giatrinhonhat',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> trung bình
-                    </>
-                ),
-                dataIndex: 'quantrac_giatritrungbinh',
-                key: 'quantrac_giatritrungbinh',
-                align: 'center',
+                title: 'Tình trạng vượt ngưỡng',
+                children: [
+
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> vượt ngưỡng
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatrivuotnguong',
+                        key: 'quantrac_giatrivuotnguong',
+                        align: 'center',
+                        render: (text, record) => (
+                            <div className="d-flex justify-content-between">
+                                {record.quantrac_vuotnguong > 100 ?
+                                    <span className="text-center w-100"> {record.quantrac_vuotnguong - 100} </span>
+                                    :
+                                    <span className="text-center w-100"> {record.quantrac_vuotnguong - 100} </span>
+                                }
+                            </div>
+                        )
+                    },
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> lớn nhất
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatrilonnhat',
+                        key: 'quantrac_giatrilonnhat',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> nhỏ nhất
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatrinhonhat',
+                        key: 'quantrac_giatrinhonhat',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> trung bình
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatritrungbinh',
+                        key: 'quantrac_giatritrungbinh',
+                        align: 'center',
+                    },
+                ],
             },
             {
                 title: 'Xem lịch sử',
@@ -604,11 +613,11 @@ export default class GiamSatDuLieu extends React.Component {
                             destroyOnClose={true}
                         >
                             <p className="fw-bold"><span className="text-danger">LỊCH SỬ GIÁM SÁT TRẠM QUAN TRẮC: </span> <span> {record.quantrac_tentram} </span> </p>
-                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                            <Tabs tabPosition="top" defaultActiveKey="1">
                                 <TabPane tab="Biểu Đồ" key="1">
                                     {/* LINE CHARTS MUC NUOC HO */}
                                     <div className="d-flex align-items-end">
-                                        <Line width={600} height={500} data={dataLine} options={optionLine} />
+                                        <Line width={600} height={400} data={dataLine} options={optionLine} />
                                     </div>
                                     {/* END LINE CHARTS MUC NUOC HO */}
                                 </TabPane>

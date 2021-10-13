@@ -44,39 +44,39 @@ export default class TongHopVanHanh extends React.Component {
         })
     }
 
-    render(){
+    render() {
 
         // LINE CHARTS DATA
         const dataLine = {
-            labels: ['00:00 - 24/08/2021', '00:30 - 24/08/2021','01:00 - 24/08/2021', '01:30 - 24/08/2021', '02:00 - 24/08/2021', '02:30 - 24/08/2021','03:00 - 24/08/2021', '03:30 - 24/08/2021', '04:00 - 24/08/2021', '04:30 - 24/08/2021','05:00 - 24/08/2021', '06:00 - 24/08/2021', '06:30 - 24/08/2021', '07:00 - 24/08/2021', '07:30 - 24/08/2021', '08:00 - 24/08/2021', '08:30 - 24/08/2021', '09:00 - 24/08/2021', '09:30 - 24/08/2021', '10:00 - 24/08/2021', '10:30 - 24/08/2021', '11:00 - 24/08/2021', '11:30 - 24/08/2021','12:00 - 24/08/2021', '12:30 - 24/08/2021','13:00 - 24/08/2021', '13:30 - 24/08/2021','14:00 - 24/08/2021', '14:30 - 24/08/2021', '15:00 - 24/08/2021', '15:30 - 24/08/2021', '16:00 - 24/08/2021', '16:30 - 24/08/2021', '17:00 - 24/08/2021', '17:30 - 24/08/2021', '18:00 - 24/08/2021', '18:30 - 24/08/2021', '19:00 - 24/08/2021', '19:30 - 24/08/2021', '20:00 - 24/08/2021', '20:30 - 24/08/2021', '21:00 - 24/08/2021', '21:30 - 24/08/2021', '22:00 - 24/08/2021', '22:30 - 24/08/2021', '23:00 - 24/08/2021', '23:30 - 24/08/2021'],
+            labels: ['00:00 - 24/08/2021', '00:30 - 24/08/2021', '01:00 - 24/08/2021', '01:30 - 24/08/2021', '02:00 - 24/08/2021', '02:30 - 24/08/2021', '03:00 - 24/08/2021', '03:30 - 24/08/2021', '04:00 - 24/08/2021', '04:30 - 24/08/2021', '05:00 - 24/08/2021', '06:00 - 24/08/2021', '06:30 - 24/08/2021', '07:00 - 24/08/2021', '07:30 - 24/08/2021', '08:00 - 24/08/2021', '08:30 - 24/08/2021', '09:00 - 24/08/2021', '09:30 - 24/08/2021', '10:00 - 24/08/2021', '10:30 - 24/08/2021', '11:00 - 24/08/2021', '11:30 - 24/08/2021', '12:00 - 24/08/2021', '12:30 - 24/08/2021', '13:00 - 24/08/2021', '13:30 - 24/08/2021', '14:00 - 24/08/2021', '14:30 - 24/08/2021', '15:00 - 24/08/2021', '15:30 - 24/08/2021', '16:00 - 24/08/2021', '16:30 - 24/08/2021', '17:00 - 24/08/2021', '17:30 - 24/08/2021', '18:00 - 24/08/2021', '18:30 - 24/08/2021', '19:00 - 24/08/2021', '19:30 - 24/08/2021', '20:00 - 24/08/2021', '20:30 - 24/08/2021', '21:00 - 24/08/2021', '21:30 - 24/08/2021', '22:00 - 24/08/2021', '22:30 - 24/08/2021', '23:00 - 24/08/2021', '23:30 - 24/08/2021'],
             datasets: [
                 {
                     label: 'Q yêu cầu',
-                    data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155,122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
+                    data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155, 122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
                     backgroundColor: [
-                    'rgba(75,192,192,0.2)',
+                        'rgba(75,192,192,0.2)',
                     ],
                     borderColor: [
                         'rgba(75,192,192,1)',
                     ],
                     borderWidth: 1,
-                }, 
+                },
                 {
-                label: 'Q đến',
-                    data: [111, 123, 222, 5, 16, 114, 117, 122, null, 190, 177, 176, 121, 111, 121, 143, 122, 166, null, 175, 122, 177, 199, 342,133, 132, 133, 99, 133, 132, 222, 142, 148, 99, 133, 132, 99, 132, 99, 133, 133, 112, 133, 99, 133, 132, 144, 342],
+                    label: 'Q đến',
+                    data: [111, 123, 222, 5, 16, 114, 117, 122, null, 190, 177, 176, 121, 111, 121, 143, 122, 166, null, 175, 122, 177, 199, 342, 133, 132, 133, 99, 133, 132, 222, 142, 148, 99, 133, 132, 99, 132, 99, 133, 133, 112, 133, 99, 133, 132, 144, 342],
                     backgroundColor: [
-                    'red',
+                        'red',
                     ],
                     borderColor: [
                         'red',
                     ],
                     borderWidth: 1,
-                }, 
+                },
                 {
-                label: 'Q xả',
-                    data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155,122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
+                    label: 'Q xả',
+                    data: [122, 132, 122, 152, 122, 132, 222, 142, null, 152, 122, 132, 152, 132, 152, 122, 122, 112, null, 152, 122, 132, 144, 155, 122, 132, 122, 152, 122, 132, 222, 142, 148, 152, 122, 132, 152, 132, 152, 122, 122, 112, 122, 152, 122, 132, 144, 155],
                     backgroundColor: [
-                    'green',
+                        'green',
                     ],
                     borderColor: [
                         'green',
@@ -86,7 +86,7 @@ export default class TongHopVanHanh extends React.Component {
             ],
         }
         //   LINE CHARTS OPTIONS
-          const optionLine = {
+        const optionLine = {
             maintainAspectRatio: false,
             plugins: {
                 legend: {
@@ -118,7 +118,7 @@ export default class TongHopVanHanh extends React.Component {
                     min: 0
                 }
             }
-          };
+        };
 
         const dataSource = [
             {
@@ -194,7 +194,7 @@ export default class TongHopVanHanh extends React.Component {
                 id: '1',
                 quantrac_tentram: 'THUONGLUU',
                 tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
+                tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [1, 3, 1, 8],
@@ -202,6 +202,16 @@ export default class TongHopVanHanh extends React.Component {
             {
                 key: '2',
                 id: '2',
+                quantrac_tentram: 'HALUU',
+                tram_kyhieu: '',
+                tram_chiso: 'MUCNUOC',
+                tram_thoigiannhan: '',
+                tram_giatriquantrac: '',
+                tram_trangthaiketnoi: [1, 3, 1, 8],
+            },
+            {
+                key: '3',
+                id: '3',
                 quantrac_tentram: 'NHAMAY',
                 tram_kyhieu: '',
                 tram_chiso: 'LUULUONG',
@@ -210,8 +220,8 @@ export default class TongHopVanHanh extends React.Component {
                 tram_trangthaiketnoi: [2, 5, 3, 12],
             },
             {
-                key: '3',
-                id: '3',
+                key: '4',
+                id: '4',
                 quantrac_tentram: 'QUATRAN',
                 tram_kyhieu: '',
                 tram_chiso: 'LUULUONG',
@@ -220,8 +230,8 @@ export default class TongHopVanHanh extends React.Component {
                 tram_trangthaiketnoi: [8, 6, 1, 6],
             },
             {
-                key: '4',
-                id: '4',
+                key: '5',
+                id: '5',
                 quantrac_tentram: 'DCTT',
                 tram_kyhieu: '',
                 tram_chiso: 'LUULUONG',
@@ -264,10 +274,10 @@ export default class TongHopVanHanh extends React.Component {
                 width: 200,
                 render: (text, record) => (
                     <div className="d-flex justify-content-between">
-                        <div className="license_status bg-success px-3 text-light"> {record.tram_trangthaiketnoi[0] < 10 ? "0"+record.tram_trangthaiketnoi[0] : record.tram_trangthaiketnoi[0]} </div>
-                        <div className="license_status bg-warning px-3 text-light"> {record.tram_trangthaiketnoi[1] < 10 ? "0"+record.tram_trangthaiketnoi[1] : record.tram_trangthaiketnoi[1]} </div>
-                        <div className="license_status bg-danger px-3 text-light"> {record.tram_trangthaiketnoi[2] < 10 ? "0"+record.tram_trangthaiketnoi[2] : record.tram_trangthaiketnoi[2]} </div>
-                        <div className="license_status bg-secondary px-3 text-light"> {record.tram_trangthaiketnoi[3] < 10 ? "0"+record.tram_trangthaiketnoi[3] : record.tram_trangthaiketnoi[3]} </div>
+                        <div className="license_status bg-success px-3 text-light"> {record.tram_trangthaiketnoi[0] < 10 ? "0" + record.tram_trangthaiketnoi[0] : record.tram_trangthaiketnoi[0]} </div>
+                        <div className="license_status bg-warning px-3 text-light"> {record.tram_trangthaiketnoi[1] < 10 ? "0" + record.tram_trangthaiketnoi[1] : record.tram_trangthaiketnoi[1]} </div>
+                        <div className="license_status bg-danger px-3 text-light"> {record.tram_trangthaiketnoi[2] < 10 ? "0" + record.tram_trangthaiketnoi[2] : record.tram_trangthaiketnoi[2]} </div>
+                        <div className="license_status bg-secondary px-3 text-light"> {record.tram_trangthaiketnoi[3] < 10 ? "0" + record.tram_trangthaiketnoi[3] : record.tram_trangthaiketnoi[3]} </div>
                     </div>
                 )
             },
@@ -283,7 +293,7 @@ export default class TongHopVanHanh extends React.Component {
                             title={false}
                             centered={true}
                             width={1500}
-                            visible={this.state.activeModal === record.id} 
+                            visible={this.state.activeModal === record.id}
                             onCancel={this.handleCloseModal}
                             footer={false}
                             destroyOnClose={true}
@@ -305,11 +315,7 @@ export default class TongHopVanHanh extends React.Component {
                 dataIndex: 'quantrac_tentram',
                 key: 'quantrac_tentram',
             },
-            {
-                title: 'Ký hiệu trạm',
-                dataIndex: '',
-                key: '',
-            },
+           
             {
                 title: () => (
                     <p className="text-center">Mực nước hồ <br /> (m) </p>
@@ -353,7 +359,28 @@ export default class TongHopVanHanh extends React.Component {
                 key: '',
             },
             {
-                title: 'Chi tiết',
+                title: () => (
+                    <p className="text-center">Q xả <br /> tối thiểu <br /> (m3/s) </p>
+                ),
+                dataIndex: '',
+                key: '',
+            },
+            {
+                title: 'Trạng thái kết nối',
+                dataIndex: '',
+                key: '',
+                width: 200,
+                render: (text, record) => (
+                    <div className="d-flex justify-content-between">
+                        <div className="license_status bg-success px-3 text-light"> {record.tram_trangthaiketnoi[0] < 10 ? "0" + record.tram_trangthaiketnoi[0] : record.tram_trangthaiketnoi[0]} </div>
+                        <div className="license_status bg-warning px-3 text-light"> {record.tram_trangthaiketnoi[1] < 10 ? "0" + record.tram_trangthaiketnoi[1] : record.tram_trangthaiketnoi[1]} </div>
+                        <div className="license_status bg-danger px-3 text-light"> {record.tram_trangthaiketnoi[2] < 10 ? "0" + record.tram_trangthaiketnoi[2] : record.tram_trangthaiketnoi[2]} </div>
+                        <div className="license_status bg-secondary px-3 text-light"> {record.tram_trangthaiketnoi[3] < 10 ? "0" + record.tram_trangthaiketnoi[3] : record.tram_trangthaiketnoi[3]} </div>
+                    </div>
+                )
+            },
+            {
+                title: 'Xem lịch sử',
                 key: '',
                 align: 'center',
                 render: (text, record) => (
@@ -364,7 +391,7 @@ export default class TongHopVanHanh extends React.Component {
                             title={false}
                             centered={true}
                             width={1500}
-                            visible={this.state.activeModal === record.id} 
+                            visible={this.state.activeModal === record.id}
                             onCancel={this.handleCloseModal}
                             footer={false}
                             destroyOnClose={true}
@@ -403,29 +430,34 @@ export default class TongHopVanHanh extends React.Component {
                 key: '',
             },
             {
-                title: 'Vượt ngưỡng',
+                title: 'Giá trị ngưỡng',
                 dataIndex: '',
                 key: '',
             },
             {
-                title: 'Giá trị vượt ngưỡng',
-                dataIndex: '',
-                key: '',
-            },
-            {
-                title: 'Giá trị lớn nhất',
-                dataIndex: '',
-                key: '',
-            },
-            {
-                title: 'Giá trị nhỏ nhất',
-                dataIndex: '',
-                key: '',
-            },
-            {
-                title: 'Giá trị trung bình',
-                dataIndex: '',
-                key: '',
+                title: 'Tình trạng vượt ngưỡng',
+                children: [
+                    {
+                        title: 'Giá trị vượt ngưỡng',
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: 'Giá trị lớn nhất',
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: 'Giá trị nhỏ nhất',
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: 'Giá trị trung bình',
+                        dataIndex: '',
+                        key: '',
+                    },
+                ]
             },
             {
                 title: 'Xem lịch sử',
@@ -505,7 +537,7 @@ export default class TongHopVanHanh extends React.Component {
                     </div>
                 </div>
                 <div className="table-responsive px-2">
-                   <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                    <Tabs tabPosition="top" defaultActiveKey="1">
                         <TabPane tab="Mất kết nối" key="1">
                             <div>
                                 <Table dataSource={dataTram} columns={columnTramMatKetNoi} bordered pagination={false} />

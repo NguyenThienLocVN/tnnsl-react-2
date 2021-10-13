@@ -22,6 +22,10 @@ import blueMarker from '../../../../Shared/marker-blue.png';
 import GiamSatDuLieu from './GiamSatDuLieu';
 import CameraGiamSat from './CameraGiamSat';
 import GiamSatKetNoi from './GiamSatKetNoi';
+import NhatKyCanhBao from './NhatKyCanhBao';
+import TongHopVanHanh from './TongHopVanHanh';
+// import HeThongGiamSatLichSuMucDichKhacLonHon2m3s from './../../Mucdichkhaclonhon/Mucdichkhaclonhon/Mucdichkhaclonhon';
+import ChatLuongNuoc from './ChatLuongNuoc';
 
 const blueIcon = L.icon({
     iconUrl: blueMarker,
@@ -85,7 +89,7 @@ export default class HeThongGiamSatLichSuSanXuatNongNghiepNhoHon2m3s extends Rea
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                            <Tabs tabPosition="top" defaultActiveKey="1">
                                 <TabPane tab="Giám sát kết nối" key="1">
                                     <GiamSatKetNoi />
                                 </TabPane>
@@ -95,8 +99,15 @@ export default class HeThongGiamSatLichSuSanXuatNongNghiepNhoHon2m3s extends Rea
                                 <TabPane tab="Camera giám sát" key="3">
                                     <CameraGiamSat />
                                 </TabPane>
-                                <TabPane tab="Nhật ký cảnh báo" key="4"></TabPane>
-                                <TabPane tab="Tổng hợp vận hành" key="5"></TabPane>
+                                <TabPane tab="Nhật ký cảnh báo" key="4">
+                                    <NhatKyCanhBao />
+                                </TabPane>
+                                <TabPane tab="Tổng hợp vận hành" key="5">
+                                    <TongHopVanHanh /> 
+                                </TabPane>
+                                <TabPane tab="Chất lượng nước trong quá trình khai thác" key="6">
+                                    <ChatLuongNuoc /> 
+                                </TabPane>
                             </Tabs>
                         </div>
                     </div>

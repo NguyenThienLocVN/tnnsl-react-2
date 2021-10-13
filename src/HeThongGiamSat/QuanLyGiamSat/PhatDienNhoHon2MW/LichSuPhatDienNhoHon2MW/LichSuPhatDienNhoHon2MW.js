@@ -58,7 +58,7 @@ export default class HeThongGiamSatLichSuPhatDienNhoHon2MW extends React.Compone
     render(){
         return(
             <div>
-                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI HỒ CHỨA ĐỂ PHÁT ĐIỆN CÔNG SUẤT < 2MW" previousLink="/he-thong-giam-sat/phat-dien-nho-hon-2mw" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI HỒ CHỨA ĐỂ PHÁT ĐIỆN CÔNG SUẤT < 2MW" previousLink="/he-thong-giam-sat/phat-dien-lon-hon-2mw" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />
@@ -87,7 +87,7 @@ export default class HeThongGiamSatLichSuPhatDienNhoHon2MW extends React.Compone
                             {/* MAP */}
                         </div>
                         <div className="col-12 row align-items-center my-1 px-0 mx-0">
-                           <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                            <Tabs tabPosition="top" defaultActiveKey="1">
                                 <TabPane tab="Giám sát kết nối" key="1">
                                     <GiamSatKetNoi />
                                 </TabPane>
@@ -98,8 +98,7 @@ export default class HeThongGiamSatLichSuPhatDienNhoHon2MW extends React.Compone
                                     <CameraGiamSat />
                                 </TabPane>
                                 <TabPane tab="Nhật ký cảnh báo" key="4">
-                                    <NhatKyCanhBao /> 
-                                    {/* CTRL + SPACE rồi chọn để tự import file */}
+                                    <NhatKyCanhBao />
                                 </TabPane>
                                 <TabPane tab="Tổng hợp vận hành" key="5">
                                     <TongHopVanHanh />
