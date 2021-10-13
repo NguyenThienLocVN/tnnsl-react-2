@@ -173,7 +173,7 @@ export default class NhatKyCanhBao extends React.Component {
                 id: '1',
                 quantrac_tentram: 'THUONGLUU',
                 tram_kyhieu: '',
-                tram_chiso: 'LUULUONG',
+                tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
                 tram_trangthaiketnoi: [1, 3, 1, 8],
@@ -181,6 +181,16 @@ export default class NhatKyCanhBao extends React.Component {
             {
                 key: '2',
                 id: '2',
+                quantrac_tentram: 'HA LUU',
+                tram_kyhieu: '',
+                tram_chiso: 'MUCNUOC',
+                tram_thoigiannhan: '',
+                tram_giatriquantrac: '',
+                tram_trangthaiketnoi: [1, 3, 1, 8],
+            },
+            {
+                key: '3',
+                id: '3',
                 quantrac_tentram: 'NHAMAY',
                 tram_kyhieu: '',
                 tram_chiso: 'LUULUONG',
@@ -189,8 +199,8 @@ export default class NhatKyCanhBao extends React.Component {
                 tram_trangthaiketnoi: [2, 5, 3, 12],
             },
             {
-                key: '3',
-                id: '3',
+                key: '4',
+                id: '4',
                 quantrac_tentram: 'QUATRAN',
                 tram_kyhieu: '',
                 tram_chiso: 'LUULUONG',
@@ -199,8 +209,8 @@ export default class NhatKyCanhBao extends React.Component {
                 tram_trangthaiketnoi: [8, 6, 1, 6],
             },
             {
-                key: '4',
-                id: '4',
+                key: '5',
+                id: '5',
                 quantrac_tentram: 'DCTT',
                 tram_kyhieu: '',
                 tram_chiso: 'LUULUONG',
@@ -216,11 +226,7 @@ export default class NhatKyCanhBao extends React.Component {
                 dataIndex: 'quantrac_tentram',
                 key: 'quantrac_tentram',
             },
-            {
-                title: 'Ký hiệu trạm',
-                dataIndex: '',
-                key: '',
-            },
+            
             {
                 title: 'Chỉ số',
                 dataIndex: 'tram_chiso',
@@ -232,7 +238,7 @@ export default class NhatKyCanhBao extends React.Component {
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị quan trắc hiện tại',
                 dataIndex: '',
                 key: '',
             },
@@ -284,11 +290,7 @@ export default class NhatKyCanhBao extends React.Component {
                 dataIndex: 'quantrac_tentram',
                 key: 'quantrac_tentram',
             },
-            {
-                title: 'Ký hiệu trạm',
-                dataIndex: '',
-                key: '',
-            },
+         
             {
                 title: 'Chỉ số',
                 dataIndex: 'tram_chiso',
@@ -300,10 +302,30 @@ export default class NhatKyCanhBao extends React.Component {
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị quan trắc hiện tại',
                 dataIndex: '',
                 key: '',
             },
+            {
+                title: 'Giá trị quan trắc khi mất kết nối',
+                dataIndex: '',
+                key: '',
+            },
+            {
+                title: 'Trạng thái kết nối',
+                dataIndex: '',
+                key: '',
+                width: 200,
+                render: (text, record) => (
+                    <div className="d-flex justify-content-between">
+                        <div className="license_status bg-success px-3 text-light"> {record.tram_trangthaiketnoi[0] < 10 ? "0"+record.tram_trangthaiketnoi[0] : record.tram_trangthaiketnoi[0]} </div>
+                        <div className="license_status bg-warning px-3 text-light"> {record.tram_trangthaiketnoi[1] < 10 ? "0"+record.tram_trangthaiketnoi[1] : record.tram_trangthaiketnoi[1]} </div>
+                        <div className="license_status bg-danger px-3 text-light"> {record.tram_trangthaiketnoi[2] < 10 ? "0"+record.tram_trangthaiketnoi[2] : record.tram_trangthaiketnoi[2]} </div>
+                        <div className="license_status bg-secondary px-3 text-light"> {record.tram_trangthaiketnoi[3] < 10 ? "0"+record.tram_trangthaiketnoi[3] : record.tram_trangthaiketnoi[3]} </div>
+                    </div>
+                )
+            },
+
             {
                 title: 'Xem lịch sử',
                 key: '',
@@ -340,14 +362,14 @@ export default class NhatKyCanhBao extends React.Component {
                 key: 'quantrac_tentram',
             },
             {
-                title: 'Giá trị ngưỡng (m3/s)',
+                title: 'Giá trị ngưỡng',
                 dataIndex: '',
                 key: '',
             },
             {
-                title: 'Giá trị QT (m3/s)',
-                dataIndex: 'tram_chiso',
-                key: 'tram_chiso',
+                title: 'Giá trị quan trắc hiện tại',
+                dataIndex: '',
+                key: '',
             },
             {
                 title: 'Thời gian nhận',
@@ -355,29 +377,35 @@ export default class NhatKyCanhBao extends React.Component {
                 key: '',
             },
             {
-                title: 'Vượt ngưỡng',
+                title: 'Giá trị ngưỡng',
                 dataIndex: '',
                 key: '',
             },
+
             {
-                title: 'Giá trị vượt ngưỡng',
-                dataIndex: '',
-                key: '',
-            },
-            {
-                title: 'Giá trị lớn nhất',
-                dataIndex: '',
-                key: '',
-            },
-            {
-                title: 'Giá trị nhỏ nhất',
-                dataIndex: '',
-                key: '',
-            },
-            {
-                title: 'Giá trị trung bình',
-                dataIndex: '',
-                key: '',
+                title: 'Tình trạng vượt ngưỡng',
+                children: [
+                    {
+                        title: 'Giá trị vượt ngưỡng',
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: 'Giá trị lớn nhất',
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: 'Giá trị nhỏ nhất',
+                        dataIndex: '',
+                        key: '',
+                    },
+                    {
+                        title: 'Giá trị trung bình',
+                        dataIndex: '',
+                        key: '',
+                    },
+                ]
             },
             {
                 title: 'Xem lịch sử',
@@ -457,7 +485,7 @@ export default class NhatKyCanhBao extends React.Component {
                     </div>
                 </div>
                 <div className="table-responsive px-2">
-                   <Tabs tabPosition="top" type="card" defaultActiveKey="1">
+                    <Tabs tabPosition="top" defaultActiveKey="1">
                         <TabPane tab="Mất kết nối" key="1">
                             <div>
                                 <Table dataSource={dataTram} columns={columnTramMatKetNoi} bordered pagination={false} />

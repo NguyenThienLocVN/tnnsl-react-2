@@ -10,7 +10,7 @@ export default class DesktopNav extends React.Component {
                     <div className="col-lg-12 p-0">
                         <ul className="nav flex-column nav-pills pl-2 pb-1 mx-auto my-3 rounded">
                             <div className="pb-1">
-                                <p className="btn btn-outline-dark col-12 col-sm-11 mx-auto font-13 btn-sm d-flex justify-content-center align-items-center fw-bold mb-3"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
+                                <p className="btn btn-outline-dark col-12 col-sm-11 mx-auto font-13 btn-sm d-flex justify-content-center align-items-center fw-bold"> <InfoCircleOutlined className="mx-1" /> GIỚI THIỆU CHUNG</p>
                                 <p className="exploit-surfacewater-title mb-1 p-2 fw-bold text-start font-12">KHAI THÁC SỬ DỤNG NƯỚC MẶT</p>
                                 <li className="nav-item px-1">
                                     <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="nav-link font-13 hover-link" href="#">Thủy Điện</Link>

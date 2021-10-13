@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
-import { FilePdfOutlined, SendOutlined, CloseOutlined } from '@ant-design/icons';
+import { FilePdfOutlined } from '@ant-design/icons';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient } from '../../../Shared/Auth';
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
@@ -14,7 +14,6 @@ import { Modal } from 'antd';
 import Roboto from '../../../Shared/fonts/Roboto-Light.ttf';
 import RobotoBold from '../../../Shared/fonts/Roboto-Bold.ttf';
 import RobotoItalic from '../../../Shared/fonts/Roboto-LightItalic.ttf';
-import { Link } from 'react-router-dom';
 
 Font.register({
     family: "Roboto",
@@ -633,10 +632,9 @@ export default class QuanLyCapPhepGiaHanDieuChinhNuocMatThuyDien extends React.C
                                     </div>
                                 </div>
                             </div>
-                            <div className="border-top col-12 my-3"></div>
-                            <div className="pb-4 col-sm-12 d-flex justify-content-end">
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU &nbsp; <SendOutlined /> </button>
-                                <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="btn btn-danger mx-2 fw-bold font-14 d-flex align-items-center">HỦY &nbsp; <CloseOutlined /> </Link>
+                            <div className="pb-4 text-center col-sm-12">
+                                <hr />
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">GỬI YÊU CẦU CẤP MỚI GIẤY PHÉP</button>
                             </div>
                         </form>
                     </div>

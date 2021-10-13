@@ -3,7 +3,7 @@ import Header from '../../../Shared/Header';
 import { trackPromise } from 'react-promise-tracker';
 import configData from "../../../config.json";
 import { Button } from "react-bootstrap";
-import { PlusSquareOutlined, QuestionCircleOutlined, DeleteOutlined, CheckCircleOutlined, FilePdfOutlined, SendOutlined, CloseOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, QuestionCircleOutlined, DeleteOutlined, CheckCircleOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { Popover, Modal } from 'antd';
 import DemGiayPhep from './DemGiayPhep';
 import { apiClient, getToken, removeUserSession, getUser } from '../../../Shared/Auth';
@@ -12,7 +12,6 @@ import axios from "axios";
 // Alert library
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
 
 const user = getUser();
 
@@ -334,7 +333,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                 </Modal>
                             
                             <p className="px-2 m-0 d-flex font-14"><span className="col-1">Ngày cấp: </span><span className="fw-bold">{this.formatDate(licensePostData.gp_ngaycap)}</span></p>
-                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Thời hạn GP: </span><span className="fw-bold">{licensePostData.gp_thoigiancapphep}</span></p>
+                            <p className="px-2 m-0 d-flex font-14"><span className="col-1">Thời hạn GP: </span><span className="fw-bold">{licensePostData.gp_thoihangiayphep}</span></p>
                             </>
                         }
                         <div className="px-2"><hr /></div>
@@ -534,7 +533,7 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                     <div className="col-sm-3">
                                         <div className="mb-2">
                                             <label htmlFor="gp_thoihangiayphep" className="form-label fw-bold font-13 m-0">3.6.Thời gian đề nghị cấp phép</label>
-                                            <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoihangiayphep" name="gp_thoihangiayphep" value={licensePostData.gp_thoigiancapphep} />
+                                            <input type="text" onChange={(e) => this.handleInputChange(e)} required className="form-control form-control-sm" id="gp_thoihangiayphep" name="gp_thoihangiayphep" value={licensePostData.gp_thoihangiayphep} />
                                         </div>
                                     </div>
                                     <div className="col-sm-7">
@@ -704,10 +703,11 @@ export default class QuanLyCapPhepSuaGiayPhepNuocMatThuyDien extends React.Compo
                                     }
                                 </div>
                             </div>
-                            <div className="border-top col-12 my-3"></div>
-                            <div className="pb-4 col-sm-12 d-flex justify-content-end">
-                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14 d-flex align-items-center">GỬI YÊU CẦU &nbsp; <SendOutlined /> </button>
-                                <Link to="/quan-ly-cap-phep/nuoc-mat/thuy-dien" className="btn btn-danger mx-2 fw-bold font-14 d-flex align-items-center">HỦY &nbsp; <CloseOutlined /> </Link>
+                            <div className="pb-4 text-center col-sm-12">
+                                <div className="col-11 px-2 text-center m-auto">
+                                    <hr className="my-3" />
+                                </div>
+                                <button type="submit" className="btn btn-primary mx-2 fw-bold font-14">CẬP NHẬT GIẤY PHÉP</button>
                             </div>
                         </form>
                     </div>

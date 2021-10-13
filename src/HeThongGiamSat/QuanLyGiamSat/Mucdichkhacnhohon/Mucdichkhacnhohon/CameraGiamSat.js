@@ -182,7 +182,7 @@ export default class CameraGiamSat extends React.Component {
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị quan trắc hiện tại',
                 dataIndex: '',
                 key: '',
             },

@@ -274,16 +274,79 @@ import HeThongGiamSatLichSuMucdichkhaclonhon from './HeThongGiamSat/QuanLyGiamSa
 
 // <==================================================HE THONG GIAM SAT MUC DICH KHAC < 50.000m3/ngdem=================================================================================>
 import HeThongGiamSatMucdichkhacnhohon from './HeThongGiamSat/QuanLyGiamSat/Mucdichkhacnhohon/Mucdichkhacnhohon';
-import HeThongGiamSatLichSuMucdichkhacnhohon from './HeThongGiamSat/QuanLyGiamSat/Mucdichkhacnhohon/Mucdichkhacnhohon/LichsuMucdichkhacnhohon';
+import HeThongGiamSatLichSuMucdichkhacnhohon from './HeThongGiamSat/QuanLyGiamSat/Mucdichkhacnhohon/Mucdichkhacnhohon/Mucdichkhacnhohon';
 
 // <==================================================HE THONG GIAM SAT XA THAI LON HON 3000m3ngdem=================================================================================>
-import HeThongGiamSatXaThaiLonHon3000m3ngdem from './HeThongGiamSat/QuanLyGiamSat/XaThaiLonHon3000m3ngdem/XaThaiLonHon3000m3ngdem';
+import HeThongGiamSatXaThaiLonHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiLonHon/XaThaiLonHon';
+import HeThongGiamSatLichSuXaThaiLonHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiLonHon/XaThaiLonHon/LichSuXaThaiLonHon';
 
-// <==================================================HE THONG GIAM SAT XA THAI LON HON 3000m3ngdem=================================================================================>
-import HeThongGiamSatXaThaiNTTSLonHon3000m3ngdem from './HeThongGiamSat/QuanLyGiamSat/XaThaiNTTSLonHon3000m3ngdem/XaThaiNTTSLonHon3000m3ngdem';
+// <==================================================HE THONG GIAM SAT XA THAI NHỎ HON 3000m3ngdem=================================================================================>
+import HeThongGiamSatXaThaiNhoHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiNhoHon/XaThaiNhoHon';
+import HeThongGiamSatLichSuXaThaiNhoHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiNhoHon/XaThaiNhoHon/LichSuXaThaiNhoHon';
+
+
+
+// <==================================================HE THONG GIAM SAT XA THAI NUÔI TRỒNG THỦY SẢN > 30.000m3ngdem=================================================================================>
+import HeThongGiamSatXaThaiNuoiTrongThuySanLonHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiNuoiTrongThuySanLonHon/XaThaiNuoiTrongThuySanLonHon';
+import HeThongGiamSatLichSuNuoiTrongThuySanLonHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiNuoiTrongThuySanLonHon/XaThaiNuoiTrongThuySanLonHon/LichSuXaThaiNuoiTrongThuySanLonHon';
+
+// <==================================================HE THONG GIAM SAT XA THAI NUÔI TRỒNG THỦY SẢN < 30.000m3ngdem=================================================================================>
+import HeThongGiamSatXaThaiNuoiTrongThuySanNhoHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiNuoiTrongThuySanNhoHon/XaThaiNuoiTrongThuySanNhoHon';
+import HeThongGiamSatLichSuNuoiTrongThuySanNhoHon from './HeThongGiamSat/QuanLyGiamSat/XaThaiNuoiTrongThuySanNhoHon/XaThaiNuoiTrongThuySanNhoHon/LichSuXaThaiNuoiTrongThuySanNhoHon';
+
+
+// <==================================================HE THONG GIAM SAT TRUC TUYEN MUC NUOC HO=================================================================================>
+import HeThongGiamSatTrucTuyenMucNuocHo from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenMucNuocHo/TrucTuyenMucNuocHo';
+import HeThongGiamSatLichSuTrucTuyenMucNuocHo from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenMucNuocHo/TrucTuyenMucNuocHo/LichSuTrucTuyenMucNuocHo';
+
+
+// <==================================================HE THONG GIAM XA DONG CHAY TOI THIEU=================================================================================>
+import HeThongGiamSatTrucTuyenXaDongChayToiThieu from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenXaToiThieu/TrucTuyenXaToiThieu';
+import HeThongGiamSatLichSuTrucTuyenXaDongChayToiThieu from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenXaToiThieu/TrucTuyenXaToiThieu/LichSuTrucTuyenXaToiThieu';
+
+
+// <==================================================HE THONG GIAM SAT TRUC TUYEN XA DONG CHAY QUA NHA MAY=================================================================================>
+import HeThongGiamSatTrucTuyenXaDongChayQuaNhaMay from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenXaQuaNhaMay/TrucTuyenXaQuaNhaMay';
+import HeThongGiamSatLichSuTrucTuyenXaDongChayQuaNhaMay from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenXaQuaNhaMay/TrucTuyenXaQuaNhaMay/LichSuTrucTuyenTrucTuyenXaQuaNhaMay';
+
+
+// <==================================================HE THONG GIAM SAT TRỰC TUYENS XA TRÀN=================================================================================>
+import HeThongGiamSatTrucTuyenXaQuaTran from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenXaTran/TrucTuyenXaTran';
+import HeThongGiamSatLichSuTrucTuyenXaQuaTran from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenXaTran/TrucTuyenXaTran/LichSuTrucTuyenXaTran';
+
+// <==================================================HE THONG GIAM SAT TRƯC TUYEN HO CHƯA SAN XUAT NONG NGHIEP=================================================================================>
+import HeThongGiamSatTrucTuyenKhaiThacSXNN from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenKhaiThacSXNN/TrucTuyenKhaiThacSXNN';
+import HeThongGiamSatLichSuTrucTuyenKhaiThacSXNN from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenKhaiThacSXNN/TrucTuyenKhaiThacSXNN/LichSuTrucTuyenKhaiThacSXNN';
+
+// <==================================================HE THONG GIAM SAT TRƯC TUYEN MUC NUOC GIENG QUAN TRAC=================================================================================>
+import HeThongGiamSatTrucTuyenMucNuocGiengQuanTrac from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenMucNuocGiengQuanTrac/TrucTuyenMucNuocGiengQuanTrac';
+import HeThongGiamSatLichSuTrucTuyenMucNuocGiengQuanTracN from './HeThongGiamSat/QuanLyGiamSat/TrucTuyenMucNuocGiengQuanTrac/TrucTuyenMucNuocGiengQuanTrac/LichSuTrucTuyenMucNuocGiengQuanTrac';
+
+
+// <==================================================HE THONG GIAM SAT CAMERA VAN HANH XA NUOC=================================================================================>
+import HeThongGiamSatCameraXaDCTT from './HeThongGiamSat/QuanLyGiamSat/CameraXaDCTT/CameraXaDCTT';
+import HeThongGiamSatLichSuCameraXaDCTT from './HeThongGiamSat/QuanLyGiamSat/CameraXaDCTT/CameraXaDCTT/LichSuCameraXaDCTT';
+
+// <==================================================HE THONG GIAM SAT CAMERA VAN HANH XA NUOC=================================================================================>
+import HeThongGiamSatCameraXaNuocQuaTran from './HeThongGiamSat/QuanLyGiamSat/CameraXaNuocQuaTran/CameraXaNuocQuaTran';
+import HeThongGiamSatLichSuCameraXaNuocQuaTran from './HeThongGiamSat/QuanLyGiamSat/CameraXaNuocQuaTran/CameraXaNuocQuaTran/LichSuCameraXaDCTT';
+// <==================================================HE THONG GIAM SAT DINH KY XA TRAN HO NHO=================================================================================>
+import HeThongGiamSatDinhKyXaTranHoNho from './HeThongGiamSat/QuanLyGiamSat/DinhKyXaTranHoNho/DinhKyXaTranHoNho';
+import HeThongGiamSatLichSuDinhKyXaTranHoNho from './HeThongGiamSat/QuanLyGiamSat/DinhKyXaTranHoNho/DinhKyXaTranHoNho/LichSuDinhKyXaTran';
+
+// <==================================================HE THONG GIAM SAT DINH KY sn xuat nong nghiep=================================================================================>
+import HeThongGiamSatDinhKyKhaiThacSXNN from './HeThongGiamSat/QuanLyGiamSat/DinhKyKhaiThacSXNN/DinhKyKhaiThacSXNN';
+import HeThongGiamSatLichSuDinhKyKhaiThacSXNN from './HeThongGiamSat/QuanLyGiamSat/DinhKyKhaiThacSXNN/DinhKyKhaiThacSXNN/LichSuDinhKyKhaiThacSXNN1s';
+
+// <==================================================HE THONG GIAM SAT DỊNH KỲ MUC NUOC GIENG QUAN TRAC=================================================================================>
+import HeThongGiamSatDinhKyMucNuocGiengQuanTrac from './HeThongGiamSat/QuanLyGiamSat/DinhKyMucNuocGiengQuanTrac/DinhKyMucNuocGiengQuanTrac';
+import HeThongGiamSatLichSuDinhKyMucNuocGiengQuanTracN from './HeThongGiamSat/QuanLyGiamSat/DinhKyMucNuocGiengQuanTrac/DinhKyMucNuocGiengQuanTrac/LichSuDinhKyMucNuocGiengQuanTrac';
+
 
 // <==================================================BAO CAO BIEU MAU=================================================================================>
 import BaoCaoBieuMau from './BaoCaoBieuMau/BaoCaoBieuMau';
+// import HeThongGiamSatLichSuDinhKyKhaiThacSXNN from './HeThongGiamSat/QuanLyGiamSat/DinhKyKhaiThacSXNN/DinhKyKhaiThacSXNN/LichSuDinhKyKhaiThacSXNN';
+
 
 
 
@@ -580,10 +643,70 @@ function App() {
 
 
 				{/* ================================================== HE THONG GIAM SAT XA THAI LON HON 3000M3/NGAYDEM================================================== */}
-				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-lon-hon-3000-m3ngdem" component={HeThongGiamSatXaThaiLonHon3000m3ngdem} />
+				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-lon-hon-3000m3ngaydem" component={HeThongGiamSatXaThaiLonHon} />
+			  	<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-lon-hon-3000m3ngaydem/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuXaThaiLonHon} />
+
+			  {/* ================================================== HE THONG GIAM SAT XA THAI NHO HON 3000M3/NGAYDEM================================================== */}
+				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-nho-hon-3000m3ngaydem" component={HeThongGiamSatXaThaiNhoHon} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-nho-hon-3000m3ngaydem/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuXaThaiNhoHon} />
+			  
 
 				{/* ================================================== HE THONG GIAM SAT XA THAI NUOI TRONG THUY SAN LON HON 3000M3/NGAYDEM================================================== */}
-				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-nuoi-trong-thuy-san-lon-hon-3000-m3ngdem" component={HeThongGiamSatXaThaiNTTSLonHon3000m3ngdem} />
+				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-NTTS-lon-hon-30.000m3ngaydem" component={HeThongGiamSatXaThaiNuoiTrongThuySanLonHon} />
+			  	<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-NTTS-lon-hon-30.000m3ngaydem/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuNuoiTrongThuySanLonHon} />
+
+			  
+{/* ================================================== HE THONG GIAM SAT XA THAI NUOI TRONG THUY SAN LON HON 3000M3/NGAYDEM================================================== */}
+ 				<ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-NTTS-nho-hon-30.000m3ngaydem" component={HeThongGiamSatXaThaiNuoiTrongThuySanNhoHon} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/xa-thai-NTTS-nho-hon-30.000m3ngaydem/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuNuoiTrongThuySanNhoHon} />
+			  
+{/* ================================================== HE THONG GIAM SAT TRUC TUYEN MUC NUOC HO================================================== */}
+			<ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-muc-nuoc-ho-chua" component={HeThongGiamSatTrucTuyenMucNuocHo} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-muc-nuoc-ho/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuTrucTuyenMucNuocHo} />
+			  
+			  {/* ================================================== HE THONG GIAM SAT TRUC TUYEN XA DONG CHAY TOI THIEU================================================== */}
+			<ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-xa-dong-chay-toi-thieu" component={HeThongGiamSatTrucTuyenXaDongChayToiThieu} />
+			<ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-xa-dong-chay-toi-thieu/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuTrucTuyenXaDongChayToiThieu} />
+
+				  {/* ================================================== HE THONG GIAM SAT TRUC TUYEN XA DONG CHAY QUA NHA MAY================================================== */}
+				  <ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-xa-dong-chay-qua-nha-may" component={HeThongGiamSatTrucTuyenXaDongChayQuaNhaMay} />
+			<ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-xa-dong-chay-qua-nha-may/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuTrucTuyenXaDongChayQuaNhaMay} />
+			
+			
+			  {/* ================================================== HE THONG GIAM SAT TRUC TUYEN XA TRÀN================================================== */}
+				  <ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-xa-tràn" component={HeThongGiamSatTrucTuyenXaQuaTran} />
+			<ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-xa-tràn/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuTrucTuyenXaQuaTran} />
+		
+		  {/* ================================================== HE THONG GIAM SAT TRUC TUYEN HỒ CHỨA ĐỂ SẢN XUẤT NÔNG NGHIÊP================================================== */}
+		  <ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-ho-chua-san-xuat-nong-nghiep" component={HeThongGiamSatTrucTuyenKhaiThacSXNN} />
+			<ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-ho-chua-san-xuat-nong-nghiep/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuTrucTuyenKhaiThacSXNN} />
+		
+			  	  {/* ================================================== HE THONG GIAM SAT TRUC TUYEN MUC NUOC GIENG QUAN TRAC================================================== */}
+		  <ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-muc-muoc-gieng-quan-trac" component={HeThongGiamSatTrucTuyenMucNuocGiengQuanTrac} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/truc-tuyen-muc-muoc-gieng-quan-trac/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuTrucTuyenMucNuocGiengQuanTracN} />
+			  
+ 	  {/* ================================================== HE THONG GIAM SAT CAMERA VAN HANH XA DCTT ================================================== */}
+	   <ProtectedRoute exact path="/he-thong-giam-sat/camera-van-hanh-xa-dctt" component={HeThongGiamSatCameraXaDCTT} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/camera-van-hanh-xa-dctt/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuCameraXaDCTT} />
+
+		 {/* ================================================== HE THONG GIAM SAT CAMERA VAN HANH XA NUOC QUA TRAN ================================================== */}
+		 <ProtectedRoute exact path="/he-thong-giam-sat/camera-van-hanh-xa-nuoc-qua-tran" component={HeThongGiamSatCameraXaNuocQuaTran} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/camera-van-hanh-xa-nuoc-qua-tran/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuCameraXaNuocQuaTran} />
+			  
+
+			    {/* ================================================== HE THONG GIAM SAT DINH KY XA TRAN HO================================================== */}
+		  <ProtectedRoute exact path="/he-thong-giam-sat/dinh-ky-xa-tran-ho-nho" component={HeThongGiamSatDinhKyXaTranHoNho} />
+			<ProtectedRoute exact path="/he-thong-giam-sat/dinh-ky-xa-tran-ho-nho/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuDinhKyXaTranHoNho} />
+
+
+			  		    {/* ================================================== HE THONG GIAM SAT DINH KY KHAI THAC SAN XUAT NONG NGHIEP NHO HON================================================== */}
+		  <ProtectedRoute exact path="/he-thong-giam-sat/dinh-ky-khai-thac-luu-luong" component={HeThongGiamSatDinhKyKhaiThacSXNN} />
+			<ProtectedRoute exact path="/he-thong-giam-sat/dinh-ky-khai-thac-luu-luong/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuDinhKyKhaiThacSXNN} />
+
+	  	  {/* ================================================== HE THONG GIAM SAT dinh ky MUC NUOC GIENG QUAN TRAC================================================== */}
+			<ProtectedRoute exact path="/he-thong-giam-sat/dinh-ky-muc-muoc-gieng-quan-trac" component={HeThongGiamSatDinhKyMucNuocGiengQuanTrac} />
+			  <ProtectedRoute exact path="/he-thong-giam-sat/dinh-ky-muc-muoc-gieng-quan-trac/lich-su/:id_hangmuc" component={HeThongGiamSatLichSuDinhKyMucNuocGiengQuanTracN} />
+
 
 				{/* ==================================================BAO CAO BIEU MAU================================================== */}
 				<ProtectedRoute exact path="/bao-cao-bieu-mau" component={BaoCaoBieuMau} />

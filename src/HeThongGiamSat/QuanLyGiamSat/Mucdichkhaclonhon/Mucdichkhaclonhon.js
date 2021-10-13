@@ -30,7 +30,7 @@ const blueIcon = L.icon({
 });
 
 // SỬA Ở ĐÂY
-export default class HeThongGiamSatMucdichkhaclonhon extends React.Component {
+export default class HeThongGiamSatMucdichkhacLonHon2m3s extends React.Component {
     constructor(props){
         super(props)
         this.state = { 
@@ -96,7 +96,7 @@ export default class HeThongGiamSatMucdichkhaclonhon extends React.Component {
     render(){
         return(
             <div>
-                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI CÔNG TRÌNH VỚI MỤC ĐÍCH KHÁC VỚI QUY MÔ TỪ 50.000m3/ngày đêm" previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
+                <Header headTitle="GIÁM SÁT HOẠT ĐỘNG KHAI THÁC, SỬ DỤNG NƯỚC ĐỐI VỚI MỤC ĐÍCH KHÁC VỚI QUY MÔ TỪ 50.000 m3/ngày đêm " previousLink="/he-thong-giam-sat" showHeadImage={true} layoutfull={true} />
                 <main className="d-flex flex-column flex-lg-row">
                     <div className="col-12 col-lg-3 px-0 menu-home">
                         <LeftBar />

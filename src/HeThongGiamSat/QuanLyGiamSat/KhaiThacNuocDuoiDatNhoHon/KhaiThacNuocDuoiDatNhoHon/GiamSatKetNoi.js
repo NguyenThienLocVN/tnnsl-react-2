@@ -11,7 +11,7 @@ import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 
 
-export default class HeThongGiamSatLichSuKhaiThacNuocDuoiDatNhoHon extends React.Component {
+export default class HeThongGiamSatLichSuKhaiThacNuocDuoiDatLonHon extends React.Component {
     constructor(props){
         super(props)
         this.state = {

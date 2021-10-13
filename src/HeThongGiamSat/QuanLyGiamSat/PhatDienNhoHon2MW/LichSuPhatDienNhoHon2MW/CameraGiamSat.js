@@ -131,7 +131,7 @@ export default class CameraGiamSat extends React.Component {
                 tram_chiso: 'MUCNUOC',
                 tram_thoigiannhan: '',
                 tram_giatriquantrac: '',
-                tram_trangthaiketnoi: [1, 3, 1, 8],
+                tram_trangthaiketnoi: [2, 5, 3, 12],
             },
             {
                 key: '3',
@@ -182,7 +182,7 @@ export default class CameraGiamSat extends React.Component {
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị quan trắc hiện tại',
                 dataIndex: '',
                 key: '',
             },

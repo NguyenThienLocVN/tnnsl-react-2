@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import '../../../../Shared/Page.css';
@@ -236,7 +237,7 @@ export default class GiamSatDuLieu extends React.Component {
                 key: '',
             },
             {
-                title: 'Giá trị (m3/s)',
+                title: 'Giá trị quan trắc hiện tại',
                 dataIndex: '',
                 key: '',
             },
@@ -255,50 +256,55 @@ export default class GiamSatDuLieu extends React.Component {
                 )
             },
             {
-                title: 'Vượt ngưỡng',
+                title: 'Giá trị ngưỡng',
                 dataIndex: 'quantrac_vuotnguong',
                 key: 'quantrac_vuotnguong',
                 align: 'center',
             },
             {
-                title: () => (
-                    <>
-                        Giá trị <br /> vượt ngưỡng
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrivuotnguong',
-                key: 'quantrac_giatrivuotnguong',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> lớn nhất
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrilonnhat',
-                key: 'quantrac_giatrilonnhat',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> nhỏ nhất
-                    </>
-                ),
-                dataIndex: 'quantrac_giatrinhonhat',
-                key: 'quantrac_giatrinhonhat',
-                align: 'center',
-            },
-            {
-                title: () => (
-                    <>
-                        Giá trị <br /> trung bình
-                    </>
-                ),
-                dataIndex: 'quantrac_giatritrungbinh',
-                key: 'quantrac_giatritrungbinh',
-                align: 'center',
+                title: 'Tình trạng vượt ngưỡng',
+                children: [
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> vượt ngưỡng
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatrivuotnguong',
+                        key: 'quantrac_giatrivuotnguong',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> lớn nhất
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatrilonnhat',
+                        key: 'quantrac_giatrilonnhat',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> nhỏ nhất
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatrinhonhat',
+                        key: 'quantrac_giatrinhonhat',
+                        align: 'center',
+                    },
+                    {
+                        title: () => (
+                            <>
+                                Giá trị <br /> trung bình
+                            </>
+                        ),
+                        dataIndex: 'quantrac_giatritrungbinh',
+                        key: 'quantrac_giatritrungbinh',
+                        align: 'center',
+                    },
+                ]
             },
             {
                 title: 'Xem lịch sử',

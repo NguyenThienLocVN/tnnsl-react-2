@@ -17,11 +17,13 @@ export default class QuanLyCapPhep extends React.Component {
         super(props)
         this.state = {
             DemGPNuocMat:[],
-            DemGPNuocDuoiDat:[],
+            DemGPKTNuocDuoiDat:[],
+            DemGPTDNuocDuoiDat:[],
+            DemGPKhoanNuocDuoiDat:[],
             barChartData: {},
             doughnutData: {},
             startYear: '2016',
-            endYear: '2021',
+            endYear: '2020',
             timeFilterType: true
         }
     }
@@ -41,7 +43,9 @@ export default class QuanLyCapPhep extends React.Component {
                 {
                     this.setState({
                         DemGPNuocMat: response.data.gp_nuocmat,
-                        DemGPNuocDuoiDat: response.data.gp_nuocduoidat,
+                        DemGPKTNuocDuoiDat: response.data.gp_ktnuocduoidat,
+                        DemGPTDNuocDuoiDat: response.data.gp_tdnuocduoidat,
+                        DemGPKhoanNuocDuoiDat: response.data.gp_khoannuocduoidat,
                     });
                 }
             })
@@ -59,22 +63,21 @@ export default class QuanLyCapPhep extends React.Component {
             .then((response) => {
                 if(response.status === 200)
                 {
-                    console.log(response.data);
                     this.setState({
                         barChartData: {
                             labels: response.data.label,
                             datasets: [
                             {
-                                label: 'Nước mặt',
-                                data: response.data.dataCharts.gp_nuocmat,
+                                label: 'KT, SD nước mặt',
+                                data: response.data.data.gp_nuocmat,
                                 stack: 1,
                                 backgroundColor: [
                                     'rgb(97, 205, 187)',
                                 ],
                             },
                             {
-                                label: 'Nước dưới đất',
-                                data: response.data.dataCharts.gp_nuocduoidat,
+                                label: 'Khai thác nước dưới đất',
+                                data: response.data.data.gp_ktnuocduoidat,
                                 stack: 1,
                                 backgroundColor: [
                                     'rgb(39, 194, 76)',
@@ -82,7 +85,7 @@ export default class QuanLyCapPhep extends React.Component {
                             },
                             {
                                 label: 'Xả thải',
-                                data: response.data.dataCharts.gp_xathai,
+                                data: response.data.data.gp_xathai,
                                 stack: 1,
                                 backgroundColor: [
                                     'rgba(255, 159, 64)',
@@ -114,7 +117,7 @@ export default class QuanLyCapPhep extends React.Component {
                                 'GP còn hiệu lực','GP sắp hết hiệu lực','GP hết hiệu lực','GP chưa phê duyệt',
                             ],
                             datasets: [{
-                                data: response.data.dataChartsDoughnut.gp_nuocmat,
+                                data: response.data.dataDoughnut.gp_nuocmat,
                                 backgroundColor: [
                                 '#FF6384',
                                 '#36A2EB',
@@ -156,24 +159,40 @@ export default class QuanLyCapPhep extends React.Component {
                             labels: response.data.label,
                             datasets: [
                             {
-                                label: 'Nước mặt',
-                                data: response.data.dataCharts.gp_nuocmat,
+                                label: 'KT, SD nước mặt',
+                                data: response.data.data.gp_nuocmat,
                                 stack: 1,
                                 backgroundColor: [
                                     'rgb(97, 205, 187)',
                                 ],
                             },
                             {
-                                label: 'Nước dưới đất',
-                                data: response.data.dataCharts.gp_nuocduoidat,
+                                label: 'Khai thác nước dưới đất',
+                                data: response.data.data.gp_ktnuocduoidat,
                                 stack: 1,
                                 backgroundColor: [
                                     'rgb(39, 194, 76)',
                                 ],
                             },
                             {
+                                label: 'Thăm dò nước dưới đất',
+                                data: response.data.data.gp_tdnuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(220, 172, 172, 0.77)',
+                                ],
+                            },
+                            {
+                                label: 'Hành nghề khoan nước dưới đất',
+                                data: response.data.data.gp_khoannuocduoidat,
+                                stack: 1,
+                                backgroundColor: [
+                                    'rgba(226, 159, 106, 0.92)',
+                                ],
+                            },
+                            {
                                 label: 'Xả thải',
-                                data: response.data.dataCharts.gp_xathai,
+                                data: response.data.data.gp_xathai,
                                 stack: 1,
                                 backgroundColor: [
                                     'rgba(255, 159, 64)',
@@ -202,8 +221,7 @@ export default class QuanLyCapPhep extends React.Component {
             plugins: {
                 legend: {
                     display: true,
-                    position: 'right',
-                    align: 'start',
+                    position: 'top'
                 }
             },
             scales: {
@@ -254,7 +272,26 @@ export default class QuanLyCapPhep extends React.Component {
                                                     <label className="col-form-label">Từ năm: </label>
                                                 </div>
                                                 <div className="col-md-auto col-12">
-                                                    <input type="number" name="startYear" defaultValue={this.state.startYear} className="form-control form-control-sm" min="2000" max="3000" onChange={this.handlerChangeYear} />
+                                                    <select name="startYear" defaultValue={this.state.startYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
+                                                        <option value={2013}>2013</option>
+                                                        <option value={2014}>2014</option>
+                                                        <option value={2015}>2015</option>
+                                                        <option value={2016}>2016</option>
+                                                        <option value={2017}>2017</option>
+                                                        <option value={2018}>2018</option>
+                                                        <option value={2019}>2019</option>
+                                                        <option value={2020}>2020</option>
+                                                        <option value={2021}>2021</option>
+                                                        <option value={2022}>2022</option>
+                                                        <option value={2023}>2023</option>
+                                                        <option value={2024}>2024</option>
+                                                        <option value={2025}>2025</option>
+                                                        <option value={2026}>2026</option>
+                                                        <option value={2027}>2027</option>
+                                                        <option value={2028}>2028</option>
+                                                        <option value={2029}>2029</option>
+                                                        <option value={2030}>2030</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div className="col-auto row mx-0 px-0 align-items-center">
@@ -262,7 +299,26 @@ export default class QuanLyCapPhep extends React.Component {
                                                     <label className="col-form-label">Đến năm: </label>
                                                 </div>
                                                 <div className="col-md-auto col-12">
-                                                    <input type="number" name="endYear" defaultValue={this.state.endYear} className="form-control form-control-sm" min="2000" max="3000" onChange={this.handlerChangeYear} /> 
+                                                    <select name="endYear" defaultValue={this.state.endYear} className="form-select form-select-sm" onChange={this.handlerChangeYear} >
+                                                        <option value={2013}>2013</option>
+                                                        <option value={2014}>2014</option>
+                                                        <option value={2015}>2015</option>
+                                                        <option value={2016}>2016</option>
+                                                        <option value={2017}>2017</option>
+                                                        <option value={2018}>2018</option>
+                                                        <option value={2019}>2019</option>
+                                                        <option value={2020}>2020</option>
+                                                        <option value={2021}>2021</option>
+                                                        <option value={2022}>2022</option>
+                                                        <option value={2023}>2023</option>
+                                                        <option value={2024}>2024</option>
+                                                        <option value={2025}>2025</option>
+                                                        <option value={2026}>2026</option>
+                                                        <option value={2027}>2027</option>
+                                                        <option value={2028}>2028</option>
+                                                        <option value={2029}>2029</option>
+                                                        <option value={2030}>2030</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -369,23 +425,23 @@ export default class QuanLyCapPhep extends React.Component {
                                     <p className="bg-euw-title-box rounded mb-2 p-2 fw-bold text-center">KHAI THÁC NƯỚC DƯỚI ĐẤT</p>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Giấy phép: </p>
-                                        <p className="col-3">{this.state.DemGPNuocDuoiDat.tat_ca_giay_phep}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.tat_ca_giay_phep}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Còn hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPNuocDuoiDat.con_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.con_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Sắp hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPNuocDuoiDat.sap_het_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.sap_het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Hết hiệu lực: </p>
-                                        <p className="col-3">{this.state.DemGPNuocDuoiDat.het_hieu_luc}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.het_hieu_luc}</p>
                                     </div>
                                     <div className="fw-bold col-12 d-flex px-2">
                                         <p className="col-9 px-sm-0 font-13">Chưa phê duyệt: </p>
-                                        <p className="col-3">{this.state.DemGPNuocDuoiDat.chua_phe_duyet}</p>
+                                        <p className="col-3">{this.state.DemGPKTNuocDuoiDat.chua_phe_duyet}</p>
                                     </div>
                                 </div>
 
