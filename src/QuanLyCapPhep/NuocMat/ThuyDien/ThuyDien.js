@@ -130,15 +130,7 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
     }
 
     checkStatus = (hieulucgiayphep) =>{
-        if(hieulucgiayphep === "chuaduocduyet"){
-            return <div className="license_status" style={{color: "gray", backgroundColor: "#f0f0f0", border: "1px solid gray"}}> Chưa duyệt </div>;
-        }else if(hieulucgiayphep === "saphethieuluc"){
-            return <div className="license_status" style={{color: "#d09114", backgroundColor: "#ffd591", border: "1px solid orange"}}> Sắp hết hiệu lực </div>;
-        }else if(hieulucgiayphep === "conhieuluc"){
-            return <div className="license_status" style={{color: "green", backgroundColor: "#b7eb8f", border: "1px solid green"}}> Còn hiệu lực </div>;
-        }else if(hieulucgiayphep === "hethieuluc"){
-            return <div className="license_status" style={{color: "red", backgroundColor: "#ffa39e", border: "1px solid red"}}> Hết hiệu lực </div>;
-        }
+        return <div className="license_status" style={{color: "green", backgroundColor: "#b7eb8f", border: "1px solid green"}}> Còn hiệu lực </div>;
     }
 
     checkConnection = () => {
@@ -255,12 +247,12 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
               ),
             },
             {
-              title: 'Ngày ký',
-              dataIndex: 'gp_ngayky',
-              key: 'gp_ngayky',
-              sorter: (a, b) => new Date(a.gp_ngayky) - new Date(b.gp_ngayky),
+              title: 'Ngày cấp',
+              dataIndex: 'gp_ngaycap',
+              key: 'gp_ngaycap',
+              sorter: (a, b) => new Date(a.gp_ngaycap) - new Date(b.gp_ngaycap),
               render: (text, record) => (
-                this.formatDate(record.gp_ngayky)
+                this.formatDate(record.gp_ngaycap)
               )
             },
             {
@@ -290,10 +282,10 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
             },
             {
                 title: 'Thời hạn',
-                dataIndex: 'gp_thoihangiayphep',
-                key: 'gp_thoihangiayphep',
+                dataIndex: 'gp_thoigiancapphep',
+                key: 'gp_thoigiancapphep',
                 render: (text, record) => (
-                    record.gp_thoihangiayphep
+                    record.gp_thoigiancapphep
                 )
             },
             {
@@ -301,15 +293,20 @@ export default class QuanLyCapPhepNuocMatThuyDien extends React.Component {
                 dataIndex: 'tinhtrang_ketnoi',
                 key: 'tinhtrang_ketnoi',
                 render: (text, record) => (
-                    this.checkConnection()
+                    <div className="d-flex justify-content-center">
+                        <div className="license_status bg-success px-3 text-light"> 12 </div>
+                        <div className="license_status bg-warning px-3 text-light"> 15 </div>
+                        <div className="license_status bg-danger px-3 text-light"> 10 </div>
+                        <div className="license_status bg-secondary px-3 text-light"> 44 </div>
+                    </div>
                 )
             },
             {
                 title: 'Trạng thái',
-                dataIndex: 'hieulucgiayphep',
-                key: 'hieulucgiayphep',
+                dataIndex: 'status',
+                key: 'status',
                 render: (text, record) => (
-                    this.checkStatus(record.hieulucgiayphep)
+                    this.checkStatus(record.status)
                 )
             },
             {
